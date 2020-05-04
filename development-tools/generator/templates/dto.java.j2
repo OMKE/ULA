@@ -1,0 +1,36 @@
+package {{ dto.package }}.dto;
+
+import {{ dto.package }}.model.{{ dto.model_name }};
+
+public class {{ dto.name }}
+{
+    {% for property in dto.properties -%}
+        private {{ property["type"] }} {{ property["name"] }};
+    {% endfor %}
+
+    public {{ dto.name }}()
+    {
+        super();
+    }
+
+    public {{ dto.name }}({{ dto.model_name }} {{ dto.model_name[0].lower() }}{{ dto.model_name[1:] }})
+    {
+        {% for property in dto.properties -%}
+            this.{{ property["name"] }} = {{ dto.model_name[0].lower() }}{{ dto.model_name[1:] }}.get{{ property["name"][0].capitalize() }}{{ property["name"][1:] }}();
+        {% endfor %}
+    }
+    public {{ dto.name }}({% for property in dto.properties %}{{ property["type"] }} {{ property["name"] }}{% if not loop.last %}, {% endif %}{% endfor %})
+    {
+        {% for property in dto.properties -%}
+            this.{{ property["name"] }} = {{ property["name"] }};
+        {% endfor %}
+    }
+
+    {# Generate getters and setters #}
+    {% for property in dto.properties -%}
+    public {{ property["type"] }} get{{ property["name"][0].capitalize() }}{{ property["name"][1:] }}() { return {{ property["name"] }}; }
+    public void set{{ property["name"][0].capitalize() }}{{ property["name"][1:] }} ({{ property["type"] }} {{ property["name"] }}){ this.{{ property["name"] }} = {{ property["name"] }}; }
+    {% endfor %}
+
+    
+}

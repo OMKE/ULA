@@ -1,0 +1,76 @@
+package {{ controller.package }}.controller;
+
+import {{ controller.package }}.dto.{{ controller.model_name}}DTO;
+import {{ controller.package }}.model.{{ controller.model_name }};
+import {{ controller.package}}.service.{{ controller.service_name }};
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Controller
+@RequestMapping(path = "api/{{ controller.model_name.lower() }}s")
+public class {{ controller.name }}
+{
+    @Autowired
+    {{controller.service_name }} {{ controller.service_var }};
+
+    @RequestMapping(path = "", method = RequestMethod.GET)
+    public ResponseEntity<List<{{ controller.model_name }}DTO>> index(){
+        List<{{ controller.model_name }}DTO> dtos = new ArrayList<>();
+        for({{ controller.model_name }} {{ controller.model_var }}: {{ controller.service_var }}.findAll()){
+            dtos.add(new {{ controller.model_name }}DTO({{ controller.model_var }}));
+        }
+        return new ResponseEntity<List<{{ controller.model_name }}DTO>>(dtos, HttpStatus.OK);
+    }
+
+    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<{{ controller.model_name }}DTO> show(@PathVariable("id") Long id){
+        {{ controller.model_name }} {{ controller.model_var }} = {{ controller.service_var }}.findById(id);
+        if({{ controller.model_var }} == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<{{ controller.model_name }}DTO>(new {{ controller.model_name }}DTO({{ controller.model_var }}), HttpStatus.OK);
+    }
+    @RequestMapping(path = "", method = RequestMethod.POST)
+    public ResponseEntity<{{controller.model_name }}DTO> store(@RequestBody {{ controller.model_name }}DTO Store{{ controller.model_name }}){
+        
+        {{ controller.model_name }} {{ controller.model_var }} = new {{ controller.model_name }}();
+        {{ controller.service_var }}.save({{ controller.model_var }});
+        return new ResponseEntity<{{ controller.model_name }}DTO>(new {{ controller.model_name }}DTO({{ controller.model_var }}), HttpStatus.OK);
+    }
+
+    @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<{{ controller.model_name }}DTO> edit(@PathVariable("id") Long id, @RequestBody {{ controller.model_name }}DTO Edit{{ controller.model_name }}){
+        {{ controller.model_name }} {{ controller.model_var }} = {{ controller.service_var }}.findById(id);
+        if({{ controller.model_var }} == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        /*
+            Update
+        */
+
+
+        {{ controller.service_var }}.save({{ controller.model_var }});
+        return new ResponseEntity<{{ controller.model_name }}DTO>(new {{ controller.model_name }}DTO({{ controller.model_var }}), HttpStatus.OK);
+    }
+
+    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> destroy(@PathVariable("id") Long id){
+        {{ controller.model_name }} {{ controller.model_var }} = {{ controller.service_var }}.findById(id);
+        if({{ controller.model_var }} == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        {{ controller.service_var }}.delete(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+}
