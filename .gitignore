@@ -1,4 +1,4 @@
 .docker/mysql-dev/*
 .docker/mysql-debug/*
 .docker/mysql-prod/*
-development-tools/
+development-tools/*
