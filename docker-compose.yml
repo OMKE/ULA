@@ -9,6 +9,8 @@ services:
     build:
       context: ./backend/ULA-1/
       dockerfile: Dockerfile
+    volumes:
+      - .:/app
     ports:
       - "8080:8080"
       - "5005:5005"
