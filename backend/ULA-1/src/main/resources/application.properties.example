@@ -9,3 +9,5 @@ spring.jackson.mapper.default-view-inclusion=true
 
 token.secret=
 token.expiration=7200
+spring.security.user.name=
+spring.security.user.password=

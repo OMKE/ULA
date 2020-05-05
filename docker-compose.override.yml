@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  main_app_backend:
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/ula_1
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECt=org.hibernate.dialect.MySQL5InnoDBDialect
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_DATASOURCE_USERNAME=debug
+      - SPRING_DATASOURCE_PASSWORD=debug
+      - SPRING_JACKSON_MAPPER_DEFAULT_VIEW_INCLUSION=true
+      - TOKEN_SECRET=6SmdQ6mrjxGB7Db
+      - TOKEN_EXPIRATION=7200
+  main_app_frontend:
+    volumes:
+      - "/app:/var/www/html"
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+    depends_on:
+      - mysql
+    ports:
+      - "4300:80"
+
+  mysql:
+    ports:
+      - "5306:3306"
+    volumes:
+      - ./.docker/mysql-debug:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: ula_1
+      MYSQL_USER: debug
+      MYSQL_PASSWORD: debug
+      MYSQL_ROOT_PASSWORD: root
+      SERVICE_TAGS: debug
+      SERVICE_NAME: mysql

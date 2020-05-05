@@ -1,0 +1,62 @@
+version: "3"
+
+networks:
+  ula:
+
+services:
+  main_app_backend:
+    container_name: main_app_backend
+    build:
+      context: ./backend/ULA-1/
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+      - "5005:5005"
+    networks:
+      - ula
+    depends_on:
+      - mysql
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/ula_1
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECt=org.hibernate.dialect.MySQL5InnoDBDialect
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_DATASOURCE_USERNAME=dev
+      - SPRING_DATASOURCE_PASSWORD=dev
+      - SPRING_DEVTOOLS_RESTART_ENABLED=true
+      - SPRING_JACKSON_MAPPER_DEFAULT_VIEW_INCLUSION=true
+      - TOKEN_SECRET=6SmdQ6mrjxGB7Db
+      - TOKEN_EXPIRATION=7200
+  main_app_frontend:
+    container_name: main_app_frontend
+    image: ula/main-app-frontend
+    volumes:
+      - "./app/node_modules"
+      - "./frontend/:/app"
+    networks:
+      - ula
+    depends_on:
+      - mysql
+      - main_app_backend
+    ports:
+      - "4200:4200"
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile.dev
+  mysql:
+    image: mysql:5.7.22
+    container_name: mysqldb
+    restart: unless-stopped
+    ports:
+      - "4306:3306"
+    volumes:
+      - ./.docker/mysql-dev:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: ula_1
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: dev
+      MYSQL_ROOT_PASSWORD: root
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    tty: true
+    networks:
+      - ula
