@@ -1,4 +1,4 @@
-FROM tomcat:9.0.24
+FROM adoptopenjdk/openjdk11
 VOLUME /tmp
 COPY target/ula-main-app-dist.war /usr/local/tomcat/webapps/ula-main-app-dist.war
 EXPOSE 8080
