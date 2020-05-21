@@ -20,7 +20,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 public abstract class BaseEntity implements Serializable {
 
 
-
 	@Column(name = "deleted", columnDefinition = "bool default false", updatable = false)
 	private boolean deleted = false;
 	
@@ -30,4 +29,7 @@ public abstract class BaseEntity implements Serializable {
 	@LastModifiedDate
 	@Column(name = "updated_at")
 	private Date updatedAt;
+
+
+
 }
