@@ -67,7 +67,30 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.4.15.Final</version>
+		</dependency>
 	</dependencies>
+	
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<spring.profiles.active>dev</spring.profiles.active>
+			</properties>
+		</profile>
+		<profile>
+        		<id>prod</id>
+	        <properties>
+	            <spring.profiles.active>prod</spring.profiles.active>
+	        </properties>
+    	</profile>
+	</profiles>
 
 	<build>
 		<plugins>
