@@ -23,11 +23,11 @@ public abstract class BaseEntity implements Serializable {
 	@Column(name = "deleted", columnDefinition = "bool default false", updatable = false)
 	private boolean deleted = false;
 	
-	@Column(name = "created_at", nullable = false)
+	@Column(name = "created_at", nullable = false, columnDefinition = "TIMESTAMP")
 	private Date createdAt;
 	
 	@LastModifiedDate
-	@Column(name = "updated_at")
+	@Column(name = "updated_at", columnDefinition = "TIMESTAMP")
 	private Date updatedAt;
 
 
