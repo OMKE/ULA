@@ -14,6 +14,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.ula.domain.model.User;
@@ -45,7 +46,9 @@ public class UserServiceImpl implements UserService
 	private AuthenticationManager AuthenticationManager;
 
 	@Override
-	public HashMap<String, String> login(UserDTO userDTO) throws UserException {
+	public HashMap<String, String> login(UserDTO userDTO)
+			throws UserException, UsernameNotFoundException
+	{
 
 		try
 		{
@@ -71,7 +74,12 @@ public class UserServiceImpl implements UserService
 			return data;
 		} catch (InternalAuthenticationServiceException e)
 		{
-			throw new UserException("Username or password is incorrect");
+			throw new UserException(
+					"The username and password you entered do not match our records. Check them out and try again");
+		} catch (UsernameNotFoundException e)
+		{
+			throw new UserException(
+					"The username and password you entered do not match our records. Check them out and try again");
 		}
 
 
