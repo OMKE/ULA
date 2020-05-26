@@ -28,6 +28,8 @@ public interface UserService {
 
 	String add(UserDTO userDTO) throws UserException;
 
+	String updatePassword(UserDTO userDTO) throws UserException;
+
 	HashMap<String, String> login(UserDTO userDTO) throws UserException;
 
 	String delete(Long id) throws UserException;

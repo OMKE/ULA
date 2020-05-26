@@ -22,6 +22,4 @@ public class LoginRequest {
 	@Size(min = 6, max = 32, message = "Password must be at least 5 characters long")
 	private String password;
 
-	private String email;
-
 }

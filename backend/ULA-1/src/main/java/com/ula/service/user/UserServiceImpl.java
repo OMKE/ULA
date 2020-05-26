@@ -5,13 +5,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 import com.ula.domain.model.User;
@@ -37,7 +39,7 @@ public class UserServiceImpl implements UserService
 	private JWTUtils jwt;
 
 	@Autowired
-	private UserDetailsService userDetailsService;
+	private UserDetailsServiceImplementation userDetailsService;
 
 	@Autowired
 	private AuthenticationManager AuthenticationManager;
@@ -45,23 +47,34 @@ public class UserServiceImpl implements UserService
 	@Override
 	public HashMap<String, String> login(UserDTO userDTO) throws UserException {
 
-		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
-				userDTO.getUsername(), userDTO.getPassword());
-		UserDetails userDetails = userDetailsService.loadUserByUsername(userDTO.getUsername());
+		try
+		{
 
-		Authentication authentication = AuthenticationManager.authenticate(token);
+			UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
+					userDTO.getUsername(), userDTO.getPassword());
 
-		SecurityContextHolder.getContext().setAuthentication(authentication);
-
-
-
-		String userToken = jwt.generateToken(userDetails);
-
-		HashMap<String, String> data = new HashMap<>();
-		data.put("token", userToken);
+			UserDetails userDetails = userDetailsService.loadUserByUsername(userDTO.getUsername());
 
 
-		return data;
+			Authentication authentication = AuthenticationManager.authenticate(token);
+
+			SecurityContextHolder.getContext().setAuthentication(authentication);
+
+
+
+			String userToken = jwt.generateToken(userDetails);
+
+			HashMap<String, String> data = new HashMap<>();
+			data.put("token", userToken);
+
+
+			return data;
+		} catch (InternalAuthenticationServiceException e)
+		{
+			throw new UserException("Username or password is incorrect");
+		}
+
+
 	}
 
     
@@ -82,6 +95,7 @@ public class UserServiceImpl implements UserService
 	}
 
 
+	@Transactional
 	@Override
 	public String add(UserDTO userDTO) throws UserException {
 		AssertUtils.notNull(userDTO, userDTO.getUsername(), userDTO.getPassword(),
@@ -167,6 +181,7 @@ public class UserServiceImpl implements UserService
 	}
 
 
+	@Transactional
 	@Override
 	public String delete(Long id) throws UserException {
 		Optional<User> user;
@@ -181,6 +196,7 @@ public class UserServiceImpl implements UserService
 
 	}
 
+	@Transactional
 	@Override
 	public String restore(Long id) throws UserException {
 		Optional<User> user;
@@ -214,5 +230,25 @@ public class UserServiceImpl implements UserService
 		return userRepository.findAllWithTrashed();
 	}
 
+
+	@Transactional
+	@Override
+	public String updatePassword(UserDTO userDTO) throws UserException
+	{
+		Optional<User> user;
+		try
+		{
+			user = this.getById(userDTO.getId());
+			user.get().setPassword(userDTO.getPassword());
+
+			userRepository.save(user.get());
+			return "Password changed successfully";
+			
+		} catch (UserException e)
+		{
+			throw new UserException(e.getMessage());
+		}
+
+	}
 
 }

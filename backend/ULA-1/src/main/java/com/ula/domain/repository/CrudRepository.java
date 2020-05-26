@@ -74,7 +74,15 @@ public interface CrudRepository<T extends BaseEntity, ID extends Serializable>
 	@Transactional
 	public void restoreById(ID id);
 
-
+	/*
+	 * @TODO - work with entity types
+	 * 
+	 * @Query("update #{#entityName} t set e.deleted=false where t.id=?1")
+	 * 
+	 * @Transactional
+	 * 
+	 * @Modifying public void softDelete(T entity);
+	 */
 
 	/*
 	 * @desc - Permanently deletes an entity with given id

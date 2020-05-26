@@ -71,4 +71,18 @@ public class UserDetailsServiceImplementation implements UserDetailsService {
 		return null;
 	}
 
+	/*
+	 * public UserDetails loadByEmail(String email) { Optional<User> user; try {
+	 * user = userService.getByEmail(email); } catch (UserException e) { user =
+	 * null; throw new UsernameNotFoundException("User with given email not found");
+	 * } if (user.isPresent()) { ArrayList<GrantedAuthority> grantedAuthorities =
+	 * new ArrayList<>(); for (UserPermission userPermission :
+	 * user.get().getUserPermissions()) { grantedAuthorities .add(new
+	 * SimpleGrantedAuthority(userPermission.getPermission().getTitle())); } return
+	 * new
+	 * org.springframework.security.core.userdetails.User(user.get().getUsername(),
+	 * user.get().getPassword(), grantedAuthorities); }
+	 * 
+	 * return null; }
+	 */
 }
