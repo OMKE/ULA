@@ -12,22 +12,18 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.session.SessionManagementFilter;
 
-import com.ula.security.filters.AuthenticationTokenFilter;
-import com.ula.security.filters.CorsFilter;
+import com.ula.security.filter.JWTAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(securedEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-
 	@Autowired
 	private UserDetailsService userDetailsService;
 
@@ -56,25 +52,28 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	}
 
 	@Bean
-	public AuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
-		AuthenticationTokenFilter authenticationTokenFilter = new AuthenticationTokenFilter();
+	public JWTAuthenticationFilter JWTAuthenticationFilterBean() throws Exception {
+		JWTAuthenticationFilter authenticationTokenFilter = new JWTAuthenticationFilter();
 		authenticationTokenFilter.setAuthenticationManager(this.authenticationManagerBean());
 		return authenticationTokenFilter;
 	}
 
-	@Bean
-	CorsFilter corsFilter() {
-		CorsFilter filter = new CorsFilter();
-		return filter;
-	}
 
 	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-		http.addFilterBefore(corsFilter(), SessionManagementFilter.class);
-		http.addFilterBefore(authenticationTokenFilterBean(),
-				UsernamePasswordAuthenticationFilter.class);
-		http.csrf().disable();
-	}
+	protected void configure(HttpSecurity http) throws Exception 
+	{
+		http
+			.cors()
+			.and()
+			.csrf()
+				.disable();
 
+		http.addFilterBefore(JWTAuthenticationFilterBean(),
+				UsernamePasswordAuthenticationFilter.class);
+
+				
+				
+		
+		
+	}
 }
