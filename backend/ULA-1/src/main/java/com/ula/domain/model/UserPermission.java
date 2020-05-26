@@ -6,6 +6,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Accessors(chain = true)
 @Entity
 public class UserPermission extends BaseEntity {
 
@@ -19,39 +30,7 @@ public class UserPermission extends BaseEntity {
 	@ManyToOne
 	private Permission permission;
 
-	public UserPermission() {
-		super();
-	}
 
-	public UserPermission(Long id, User user, Permission permission) {
-		super();
-		this.id = id;
-		this.user = user;
-		this.permission = permission;
-	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public Permission getPermission() {
-		return permission;
-	}
-
-	public void setPermission(Permission permission) {
-		this.permission = permission;
-	}
 
 }

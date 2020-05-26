@@ -15,6 +15,15 @@ import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.Type;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@Accessors(chain = true)
 @Entity
 public class University extends BaseEntity {
 
