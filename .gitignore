@@ -5,3 +5,4 @@ development-tools/*
 Design/*
 .DS_Store
 application.properties
+bin/*
