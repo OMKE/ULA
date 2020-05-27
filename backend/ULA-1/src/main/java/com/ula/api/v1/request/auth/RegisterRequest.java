@@ -23,6 +23,10 @@ public class RegisterRequest {
 	@Size(min = 6, max = 32, message = "Password must be at least 5 characters long")
 	private String password;
 
+	@NotEmpty(message = "Password confirmation is required")
+	@Size(min = 6, max = 32, message = "Confirmation password must be at least 5 characters long")
+	private String confirmPassword;
+
 	@NotEmpty(message = "Email is required")
 	@Email(message = "Email must be valid")
 	private String email;

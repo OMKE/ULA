@@ -15,6 +15,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.ula.domain.model.User;
@@ -44,6 +45,12 @@ public class UserServiceImpl implements UserService
 
 	@Autowired
 	private AuthenticationManager AuthenticationManager;
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
+	@Autowired
+	private EmailVerificationService emailVerificationService;
 
 	@Override
 	public HashMap<String, String> login(UserDTO userDTO)
@@ -106,8 +113,13 @@ public class UserServiceImpl implements UserService
 	@Transactional
 	@Override
 	public String add(UserDTO userDTO) throws UserException {
+		
+		
 		AssertUtils.notNull(userDTO, userDTO.getUsername(), userDTO.getPassword(),
 				userDTO.getEmail(), userDTO.getFirstName(), userDTO.getLastName());
+		
+
+
 
 		Optional<User> foundedUser = userRepository.findByUsername(userDTO.getUsername());
 		if (foundedUser.isPresent()) {
@@ -129,11 +141,12 @@ public class UserServiceImpl implements UserService
 				user.getUserPermissions()
 						.add(new UserPermission(null, user, permissionRepository.ROLE_USER()));
 				userRepository.save(user);
+//				Generate email verification token
+				emailVerificationService.generate(user);
+				return "User registered successfully";
 			}
 
 		}
-
-		return null;
 	}
 
 	@Override
@@ -256,6 +269,15 @@ public class UserServiceImpl implements UserService
 		{
 			throw new UserException(e.getMessage());
 		}
+
+	}
+
+	@Transactional
+	@Override
+	public void verifyEmail(User user)
+	{
+		user.setEmailVerified(true);
+		userRepository.save(user);
 
 	}
 

@@ -11,7 +11,7 @@ public class RandomTokenGenerator {
 
 	public static String generate(int length) {
 
-		String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ$!&.1234567890";
+		String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ$!.1234567890";
 		StringBuilder salt = new StringBuilder();
 		Random rnd = new Random();
 		while (salt.length() < length) {

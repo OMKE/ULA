@@ -38,6 +38,8 @@ public interface UserService {
 
 	String restore(Long id) throws UserException;
 
+	void verifyEmail(User user);
+
 	/*
 	 * @TODO - force delete
 	 */
