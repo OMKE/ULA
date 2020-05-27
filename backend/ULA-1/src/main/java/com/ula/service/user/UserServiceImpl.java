@@ -281,4 +281,22 @@ public class UserServiceImpl implements UserService
 
 	}
 
+	@Override
+	public UserDTO getUserData(String username) throws UserException
+	{
+		Optional<User> user;
+		try
+		{
+			user = this.getByUsername(username);
+		} catch (UserException e)
+		{
+			throw new UserException(e.getMessage());
+		}
+		return new UserDTO().setId(user.get().getId()).setUsername(username).setEmail(user.get()
+				.getEmail())
+				.setFirstName(user.get().getFirstName()).setLastName(user.get().getLastName())
+				.setProfileImage(user.get().getProfileImage());
+
+	}
+
 }

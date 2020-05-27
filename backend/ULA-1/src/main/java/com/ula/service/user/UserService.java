@@ -38,6 +38,8 @@ public interface UserService {
 
 	String restore(Long id) throws UserException;
 
+	UserDTO getUserData(String username) throws UserException;
+
 	void verifyEmail(User user);
 
 	/*
