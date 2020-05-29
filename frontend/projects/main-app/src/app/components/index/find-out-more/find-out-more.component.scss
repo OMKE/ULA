@@ -1,0 +1,10 @@
+@import "../../../../styles/abstracts/mixins";
+
+.find-out-more {
+  &__heading {
+    @include break(xsmall) {
+      text-align: center;
+      font-size: 3rem;
+    }
+  }
+}

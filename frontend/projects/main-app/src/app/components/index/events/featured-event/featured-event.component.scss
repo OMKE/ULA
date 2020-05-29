@@ -1,0 +1,9 @@
+@import "../../../../../styles/abstracts/mixins";
+
+.featured-event {
+  &__img-wrap {
+    @include break(medium) {
+      margin: 0 auto;
+    }
+  }
+}

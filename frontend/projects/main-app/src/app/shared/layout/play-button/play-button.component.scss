@@ -1,0 +1,23 @@
+.play-button {
+  padding: 1rem 3rem;
+  border-radius: 2.5rem;
+  font-size: 2rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  color: var(--color-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  transition: transform ease-in-out 0.3s;
+
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-0.4rem);
+  }
+
+  &__icon {
+    margin-left: 1.5rem;
+    font-size: 2.5rem;
+  }
+}
