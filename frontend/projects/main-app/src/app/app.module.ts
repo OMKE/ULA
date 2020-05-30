@@ -3,7 +3,10 @@ import { BrowserModule, Title } from "@angular/platform-browser";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { AuthModule } from "./auth/auth.module";
+import { AboutHeaderComponent } from "./components/about/about-header/about-header.component";
+import { AboutNavigationComponent } from "./components/about/about-navigation/about-navigation.component";
 import { AboutComponent } from "./components/about/about.component";
+import { FacultyComponent } from "./components/faculty/faculty.component";
 import { DefaultEventListComponent } from "./components/index/events/default-event-list/default-event-list.component";
 import { DefaultEventComponent } from "./components/index/events/default-event/default-event.component";
 import { EventDateComponent } from "./components/index/events/event-date/event-date.component";
@@ -46,6 +49,9 @@ import { SharedModule } from "./shared/shared.module";
     DefaultEventComponent,
     DefaultEventListComponent,
     FooterComponent,
+    AboutHeaderComponent,
+    AboutNavigationComponent,
+    FacultyComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, SharedModule, AuthModule],
   providers: [Title],

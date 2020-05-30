@@ -18,12 +18,15 @@
       </li>
       <li class="navbar__item" [routerLinkActive]="'navbar__item--active'">
         <a
-          class="navbar__link"
+          class="navbar__link navbar__link--dropdown"
+          [routerLink]="['/faculties']"
           routerLinkActive="navbar__link--active"
           [class.navbar__link--dark]="dark('/faculties')"
-          >Faculties</a
         >
+          Faculties
+        </a>
       </li>
+
       <li class="navbar__item" [routerLinkActive]="'navbar__item--active'">
         <a
           [routerLink]="['/research']"

@@ -8,10 +8,6 @@
     }
   }
 
-  &__img {
-    width: 13rem;
-  }
-
   &__list {
     list-style: none;
 
@@ -75,6 +71,12 @@
       @include break(medium) {
         color: var(--color-black-2);
       }
+    }
+    &:hover {
+      cursor: pointer;
+    }
+    &--dropdown {
+      position: relative;
     }
     &--active {
       color: var(--color-primary) !important;

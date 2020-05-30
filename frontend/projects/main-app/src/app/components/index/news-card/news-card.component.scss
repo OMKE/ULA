@@ -1,12 +1,12 @@
 @import "../../../../styles/abstracts/mixins";
 
 .news-card {
-  @include break(medium) {
-    margin: 0.5rem;
+  @include break(large) {
+    margin: 1rem;
   }
   @include break(small) {
     margin: 0.5rem auto;
-    width: 65%;
+    width: 75%;
   }
   @include break(xsmall) {
     width: 95%;

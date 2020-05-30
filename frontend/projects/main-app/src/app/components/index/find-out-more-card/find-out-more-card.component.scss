@@ -14,11 +14,12 @@
   border-radius: 2rem;
   width: 18rem;
   height: 21rem;
-  transition: background-color ease-in-out 0.3s;
+  transition: all ease-in-out 0.3s;
 
   &:hover {
     cursor: pointer;
-    background-color: var(--color-grey-light-3);
+    background-color: var(--color-grey-light-4);
+    transform: translateY(-0.4rem);
   }
 
   &__icon {

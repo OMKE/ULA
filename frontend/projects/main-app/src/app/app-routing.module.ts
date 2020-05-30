@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { AboutComponent } from "./components/about/about.component";
 import { IndexComponent } from "./components/index/index.component";
 
 const routes: Routes = [
@@ -13,10 +12,11 @@ const routes: Routes = [
   },
   {
     path: "about",
-    component: AboutComponent,
     data: {
-      title: "ULA - About",
+      title: "ULA - About university",
     },
+    loadChildren: () =>
+      import("./components/about/about.module").then((m) => m.AboutModule),
   },
 ];
 

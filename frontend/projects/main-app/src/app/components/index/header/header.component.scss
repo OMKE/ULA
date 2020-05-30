@@ -13,6 +13,12 @@
     overflow: hidden;
   }
 
+  &__heading {
+    @include break(xsmall) {
+      font-size: 6rem;
+    }
+  }
+
   &__waves {
     position: absolute;
     bottom: -2%;

@@ -20,6 +20,11 @@
     object-position: center;
     border-radius: 2rem;
     overflow: hidden;
+    transition: transform ease-in-out 0.3s;
+
+    &:hover {
+      transform: translateY(-0.3rem);
+    }
   }
   &__img {
     width: 100%;

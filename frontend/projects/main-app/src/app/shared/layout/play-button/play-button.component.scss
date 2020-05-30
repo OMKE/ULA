@@ -1,3 +1,5 @@
+@import "../../../../styles/abstracts/mixins";
+
 .play-button {
   padding: 1rem 3rem;
   border-radius: 2.5rem;
@@ -10,6 +12,13 @@
   align-items: center;
   outline: none;
   transition: transform ease-in-out 0.3s;
+
+  @include break(xsmall) {
+    margin: 0 auto;
+    margin-top: 8rem;
+    font-size: 2.5rem;
+    padding: 1.5rem 3.5rem;
+  }
 
   &:hover {
     cursor: pointer;
