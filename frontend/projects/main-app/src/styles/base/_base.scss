@@ -12,3 +12,7 @@ html {
   font-size: 62.5%; // 1rem = 10px => 10px/16px(browser default) = 62.5%;
   box-sizing: border-box;
 }
+
+:focus {
+  outline: 0;
+}
