@@ -1,0 +1,38 @@
+
+
+server:
+    port: 8080
+    error:
+        whitelabel:
+            enabled: false
+            include-stacktrace: always
+
+
+spring:
+    datasource:
+        url: jdbc:mysql://localhost:3306/ula_1
+        username: user
+        password:
+        initialize: true
+    flyway:
+        enabled: true   
+    jpa:
+        hibernate:
+            ddl-auto: update
+    properties:
+        hibernate:
+            jdbc:
+                lob:
+                    non_contextual_creation: true
+            dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    jackson:
+        mapper:
+            default-view-inclusion: true
+
+token:
+    secret: secret
+ 
+
+
+
+
