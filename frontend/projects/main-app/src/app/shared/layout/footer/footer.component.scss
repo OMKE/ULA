@@ -14,11 +14,12 @@
     margin-right: 4rem;
   }
   &__logo {
+    width: 30rem;
     @include break(medium) {
       width: 25rem;
     }
     @include break(small) {
-      width: 13rem;
+      width: 16rem;
     }
     @include break(xsmall) {
       width: 25rem;
