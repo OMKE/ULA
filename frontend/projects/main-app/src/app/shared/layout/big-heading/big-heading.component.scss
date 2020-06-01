@@ -1,0 +1,22 @@
+@import "../../../../styles/abstracts/mixins";
+
+.app-big-heading {
+  margin: 12rem 0;
+  font-size: 6rem;
+  font-weight: 500;
+  color: var(--color-black-2);
+  line-height: 1;
+
+  @include break(medium) {
+    font-size: 5rem;
+  }
+
+  @include break(small) {
+    margin: 8rem 0;
+    font-size: 4.5rem;
+  }
+  @include break(xsmall) {
+    margin: 6rem 0;
+    font-size: 4rem;
+  }
+}

@@ -6,14 +6,6 @@ University of Los Angeles (ficitonal) management system.
 
 ## How to run
 
-### Features
-
-- Modern look and feel
-- Secure
-- Messaging and video services
-- Logs of any action made on the system
-- Easy deployable with docker
-
 ### Docker
 
 #### Requiremets
@@ -38,13 +30,17 @@ Or add it to your .zshrc/.bashrc file and source it.
 
 ### Without docker
 
-#TODO
+- Create new database and create an application.properties file based on example<br>
+  @TODO
 
-### Languages and frameworks
+#### @Requirements
+
+- Lombok
+
+### Technologies
 
 - SpringBoot
-- Angular 9
-- ActiveMQ Artemis
+- Angular 9 with ngrx
 - Sass
 - MySQL
 - MongoDB

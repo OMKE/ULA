@@ -1,0 +1,21 @@
+.event-date__day {
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: var(--color-black-1);
+  line-height: 1;
+
+  min-width: 12rem;
+  text-align: center;
+}
+.event-date__date {
+  color: var(--color-grey-light-5);
+  font-weight: 300;
+  line-height: 1;
+  font-size: 3rem;
+}
+.event-date__time {
+  color: var(--color-black-1);
+  font-weight: 300;
+  font-size: 2rem;
+  line-height: 1;
+}

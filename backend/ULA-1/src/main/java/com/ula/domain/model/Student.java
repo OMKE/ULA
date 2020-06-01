@@ -11,6 +11,15 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@Accessors(chain = true)
 @Entity
 public class Student extends BaseEntity {
 
@@ -37,67 +46,6 @@ public class Student extends BaseEntity {
 	@OneToOne(mappedBy = "student")
 	private SubjectAttendance subjectAttendances;
 
-	public Student() {
-		super();
-	}
 
-	public Student(Long id, User user, String umcn, String phoneNumber, Date dateOfBirth,
-			SubjectAttendance subjectAttendances) {
-		super();
-		this.id = id;
-		this.user = user;
-		this.umcn = umcn;
-		this.phoneNumber = phoneNumber;
-		this.dateOfBirth = dateOfBirth;
-		this.subjectAttendances = subjectAttendances;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public String getUmcn() {
-		return umcn;
-	}
-
-	public void setUmcn(String umcn) {
-		this.umcn = umcn;
-	}
-
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-
-	public Date getDateOfBirth() {
-		return dateOfBirth;
-	}
-
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
-
-	public SubjectAttendance getSubjectAttendances() {
-		return subjectAttendances;
-	}
-
-	public void setSubjectAttendances(SubjectAttendance subjectAttendances) {
-		this.subjectAttendances = subjectAttendances;
-	}
 
 }

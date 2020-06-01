@@ -1,0 +1,15 @@
+<div class="featured-event u-flex u-flex-d-c u-flex-ai-st">
+  <div class="featured-event__img-wrap">
+    <img src="{{ imagePath }}" alt="{{ title }}" class="featured-event__img" />
+  </div>
+  <div
+    class="featured-event__info u-flex u-flex-d-r u-flex-jc-c u-flex-ai-c u-mt-xs"
+  >
+    <app-event-date
+      [day]="eventDate.day"
+      [date]="eventDate.dayOfMonth"
+      [time]="eventDate.time"
+    ></app-event-date>
+    <app-event-info [title]="title" [desc]="description"></app-event-info>
+  </div>
+</div>

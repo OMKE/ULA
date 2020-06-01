@@ -1,0 +1,20 @@
+@import "../../../../styles/abstracts/mixins";
+
+.ula-events {
+  &__heading {
+    @include break(xsmall) {
+      text-align: center;
+    }
+  }
+
+  &__content {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+
+    @include break(medium) {
+      grid-template-columns: none;
+      grid-template-rows: repeat(2, minmax(min-content, auto));
+    }
+  }
+}

@@ -1,0 +1,87 @@
+@import "../../../../styles/abstracts/mixins";
+
+.footer {
+  @include break(xsmall) {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__group:not(:last-child) {
+    @include break(xsmall) {
+      margin-right: 0;
+      margin-bottom: 3rem;
+    }
+    margin-right: 4rem;
+  }
+  &__logo {
+    width: 30rem;
+    @include break(medium) {
+      width: 25rem;
+    }
+    @include break(small) {
+      width: 16rem;
+    }
+    @include break(xsmall) {
+      width: 25rem;
+      margin-bottom: 3rem;
+    }
+  }
+  &__heading {
+    color: var(--color-primary);
+    font-weight: 500;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    position: relative;
+    margin-bottom: 2rem;
+
+    &:hover {
+      cursor: default;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -1rem;
+      left: 0;
+      height: 0.07rem;
+      width: 60%;
+      background-color: var(--color-primary);
+      z-index: 10;
+    }
+  }
+  &__list {
+    margin-top: 4rem;
+    list-style: none;
+  }
+  &__item {
+    margin-bottom: 1.8rem;
+  }
+  &__link {
+    text-decoration: none;
+    font-size: 1.5rem;
+
+    &,
+    &:visited {
+      color: var(--color-black-1);
+    }
+  }
+
+  &__copyright {
+    font-family: "Ropa Sans" sans-serif;
+    font-size: 1.3rem;
+
+    & > a {
+      text-decoration: none;
+      &,
+      &:visited {
+        color: var(--color-primary);
+      }
+    }
+    & > br {
+      display: none;
+      @media only screen and (max-width: 406px) {
+        display: block;
+      }
+    }
+  }
+}

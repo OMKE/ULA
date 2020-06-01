@@ -1,0 +1,145 @@
+@import "../../../../styles/abstracts/mixins";
+
+.navbar {
+  &__logo {
+    @include break(small) {
+      position: relative;
+      z-index: 1001;
+    }
+  }
+
+  &__list {
+    list-style: none;
+
+    @include break(medium) {
+      position: fixed;
+      height: 100vh;
+      top: 0;
+      right: -150%;
+      width: 40%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      background-color: var(--color-white);
+      transition: right 0.7s cubic-bezier(1, 0, 0, 1);
+      box-shadow: 0 1rem 4rem rgba($color: #000000, $alpha: 0.1);
+      border-top-left-radius: 1rem;
+      border-bottom-left-radius: 1rem;
+    }
+    @include break(small) {
+      width: 70%;
+    }
+    @include break(xsmall) {
+      width: 100%;
+    }
+
+    &--active {
+      right: 0;
+    }
+  }
+
+  &__item {
+    @include break(medium) {
+      width: 99%;
+      text-align: center;
+      background-color: var(--color-grey-light-2);
+      padding: 1rem 0;
+
+      &--active {
+        border-left: 0.3rem solid var(--color-primary);
+      }
+    }
+  }
+
+  &__item:not(:last-child) {
+    @include break(medium) {
+      margin-right: 0;
+      margin-bottom: 1rem;
+    }
+    margin-right: 3rem;
+  }
+  &__link {
+    &,
+    &:link,
+    &:visited {
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 1.7rem;
+      color: var(--color-black-2);
+      font-weight: 500;
+      @include break(medium) {
+        color: var(--color-black-2);
+      }
+    }
+    &:hover {
+      cursor: pointer;
+    }
+    &--dropdown {
+      position: relative;
+    }
+    &--active {
+      color: var(--color-primary) !important;
+    }
+
+    &--white {
+      color: var(--color-white) !important;
+    }
+  }
+
+  &__toggler {
+    &:hover {
+      cursor: pointer;
+    }
+
+    &--dark {
+      background-color: var(--color-black-2) !important;
+    }
+
+    display: none;
+    @include break(medium) {
+      display: block;
+    }
+
+    position: relative;
+    width: 3rem;
+    height: 0.4rem;
+    background-color: var(--color-white);
+    z-index: 1000;
+    transition: background-color 0.7s cubic-bezier(1, 0, 0, 1);
+
+    &::before {
+      content: "";
+      top: -0.8rem;
+      left: 0;
+      position: absolute;
+      width: 3rem;
+      height: 0.4rem;
+      background-color: inherit;
+      visibility: visible;
+      transition: transform ease-in 0.3s;
+    }
+    &::after {
+      content: "";
+      top: 0.8rem;
+      left: 0;
+      position: absolute;
+      width: 3rem;
+      height: 0.4rem;
+      background-color: inherit;
+      visibility: visible;
+      transition: transform ease-in 0.5s;
+    }
+
+    &--close {
+      background-color: var(--color-black-2);
+
+      &::before {
+        transform: translateX(-0.8rem);
+      }
+      &::after {
+        transform: translateX(0.8rem);
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+@import "../../../../../styles/abstracts/mixins";
+
+.default-event {
+  display: flex;
+  align-items: center;
+  padding-bottom: 5rem;
+
+  @include break(xsmall) {
+    flex-direction: column;
+  }
+
+  &__img-wrap {
+    @include break(xsmall) {
+      margin-top: 1rem;
+    }
+    min-width: 15rem;
+    max-width: 15rem;
+    height: 10rem;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 2rem;
+    overflow: hidden;
+    transition: transform ease-in-out 0.3s;
+
+    &:hover {
+      transform: translateY(-0.3rem);
+    }
+  }
+  &__img {
+    width: 100%;
+    height: 100%;
+  }
+}

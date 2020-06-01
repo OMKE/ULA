@@ -14,6 +14,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 /*
  * Base Entity class that every class should inherit
@@ -24,11 +25,13 @@ import lombok.Setter;
 @MappedSuperclass
 @Getter
 @Setter
+@Accessors(chain = true)
 @NoArgsConstructor
 public abstract class BaseEntity implements Serializable {
 
 
-	@Column(name = "deleted", columnDefinition = "bool default false", updatable = false)
+
+	@Column(name = "deleted", columnDefinition = "bool default false")
 	private boolean deleted = false;
 	
 	@CreationTimestamp

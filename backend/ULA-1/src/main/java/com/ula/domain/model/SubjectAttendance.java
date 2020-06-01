@@ -7,6 +7,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@Accessors(chain = true)
 @Entity
 public class SubjectAttendance extends BaseEntity {
 
@@ -23,49 +32,5 @@ public class SubjectAttendance extends BaseEntity {
 	@OneToOne
 	private Student student;
 
-	public SubjectAttendance() {
-		super();
-	}
-
-	public SubjectAttendance(Long id, int finalGrade, SubjectRealization subjectRealization,
-			Student student) {
-		super();
-		this.id = id;
-		this.finalGrade = finalGrade;
-		this.subjectRealization = subjectRealization;
-		this.student = student;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public int getFinalGrade() {
-		return finalGrade;
-	}
-
-	public void setFinalGrade(int finalGrade) {
-		this.finalGrade = finalGrade;
-	}
-
-	public SubjectRealization getSubjectRealization() {
-		return subjectRealization;
-	}
-
-	public void setSubjectRealization(SubjectRealization subjectRealization) {
-		this.subjectRealization = subjectRealization;
-	}
-
-	public Student getStudent() {
-		return student;
-	}
-
-	public void setStudent(Student student) {
-		this.student = student;
-	}
 
 }

@@ -10,6 +10,15 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@Accessors(chain = true)
 @Entity
 public class TeachingTerm extends BaseEntity {
 

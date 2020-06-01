@@ -1,0 +1,33 @@
+@import "../../../../styles/abstracts/mixins";
+
+.header {
+  width: 100%;
+  height: 100vh;
+  background-image: url("/assets/img/students.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+
+  @include break(small) {
+    overflow: hidden;
+  }
+
+  &__heading {
+    @include break(xsmall) {
+      font-size: 6rem;
+    }
+  }
+
+  &__waves {
+    position: absolute;
+    bottom: -2%;
+    left: 0;
+    width: 100%;
+
+    @include break(small) {
+      width: auto;
+      height: 40%;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+<div class="default-event">
+  <app-event-date
+    [day]="eventDate.day"
+    [date]="eventDate.dayOfMonth"
+    [time]="eventDate.time"
+  ></app-event-date>
+  <div class="default-event__img-wrap">
+    <img
+      src="/assets/img/featured-event.png"
+      alt=""
+      class="default-event__img"
+    />
+  </div>
+  <app-event-info [title]="title" [desc]="description"></app-event-info>
+</div>
