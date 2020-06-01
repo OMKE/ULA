@@ -1,0 +1,9 @@
+<app-big-heading [text]="'Faculties'"></app-big-heading>
+<div class="u-container u-flex u-flex-d-c u-flex-jc-sc u-mb-xl">
+  <app-faculty-list-item
+    [text]="faculty.name"
+    [routerLink]="['/faculties', getLink(faculty.name), 'studies']"
+    [imagePath]="faculty.image"
+    *ngFor="let faculty of faculties"
+  ></app-faculty-list-item>
+</div>
