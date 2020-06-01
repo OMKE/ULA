@@ -18,6 +18,16 @@ const routes: Routes = [
     loadChildren: () =>
       import("./components/about/about.module").then((m) => m.AboutModule),
   },
+  {
+    path: "faculties",
+    data: {
+      title: "ULA - Faculties",
+    },
+    loadChildren: () =>
+      import("./components/faculties/faculties.module").then(
+        (m) => m.FacultiesModule
+      ),
+  },
 ];
 
 @NgModule({
