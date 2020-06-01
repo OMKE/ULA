@@ -6,7 +6,6 @@ import { AuthModule } from "./auth/auth.module";
 import { AboutHeaderComponent } from "./components/about/about-header/about-header.component";
 import { AboutNavigationComponent } from "./components/about/about-navigation/about-navigation.component";
 import { AboutComponent } from "./components/about/about.component";
-import { FacultyComponent } from "./components/faculty/faculty.component";
 import { DefaultEventListComponent } from "./components/index/events/default-event-list/default-event-list.component";
 import { DefaultEventComponent } from "./components/index/events/default-event/default-event.component";
 import { EventDateComponent } from "./components/index/events/event-date/event-date.component";
@@ -19,26 +18,15 @@ import { HeaderComponent } from "./components/index/header/header.component";
 import { IndexComponent } from "./components/index/index.component";
 import { NewsCardComponent } from "./components/index/news-card/news-card.component";
 import { NewsComponent } from "./components/index/news/news.component";
-import {
-  FooterComponent,
-  LogoComponent,
-  NavbarComponent,
-  PlayButtonComponent,
-  TextButtonComponent,
-} from "./shared";
 import { SharedModule } from "./shared/shared.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    LogoComponent,
-    PlayButtonComponent,
-    NavbarComponent,
     AboutComponent,
     NewsComponent,
     NewsCardComponent,
-    TextButtonComponent,
     FindOutMoreComponent,
     IndexComponent,
     FindOutMoreCardComponent,
@@ -48,10 +36,8 @@ import { SharedModule } from "./shared/shared.module";
     EventInfoComponent,
     DefaultEventComponent,
     DefaultEventListComponent,
-    FooterComponent,
     AboutHeaderComponent,
     AboutNavigationComponent,
-    FacultyComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, SharedModule, AuthModule],
   providers: [Title],
