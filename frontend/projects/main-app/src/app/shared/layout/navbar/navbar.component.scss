@@ -66,7 +66,7 @@
       text-decoration: none;
       text-transform: uppercase;
       font-size: 1.7rem;
-      color: var(--color-white);
+      color: var(--color-black-2);
       font-weight: 500;
       @include break(medium) {
         color: var(--color-black-2);
@@ -82,8 +82,8 @@
       color: var(--color-primary) !important;
     }
 
-    &--dark {
-      color: var(--color-black-2) !important;
+    &--white {
+      color: var(--color-white) !important;
     }
   }
 

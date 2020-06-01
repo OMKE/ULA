@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { NavigationStart, Router } from "@angular/router";
 
 @Component({
   selector: "app-navbar",
@@ -13,18 +13,26 @@ export class NavbarComponent implements OnInit {
 
   navShown: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    // When navigating from faculty to all faculties, navigation is still show so we check if there was navigation started
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        this.navShown = false;
+      }
+    });
+  }
 
   ngOnInit(): void {}
 
-  dark(path: string) {
-    if (this.router.url == path) {
-      return false;
-    } else if (this.router.url == "/") {
+  dark() {
+    if (this.router.url == "/") {
       return false;
     } else {
       return true;
     }
+  }
+  active(path: string): boolean {
+    return this.router.url.split("/").includes(path.slice(1));
   }
 
   getImageSrc(): string {
