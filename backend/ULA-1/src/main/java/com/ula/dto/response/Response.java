@@ -1,5 +1,7 @@
 package com.ula.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,7 +16,10 @@ import lombok.experimental.Accessors;
 @Setter
 @NoArgsConstructor
 @Accessors(chain = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Response<T> {
+
+	
 
 	private Status status;
 	private T payload;
@@ -22,6 +27,7 @@ public class Response<T> {
 	private Object metadata;
 
 	public static <T> Response<T> badRequest() {
+
 		Response<T> response = new Response<>();
 		response.setStatus(Status.BAD_REQUEST);
 		return response;
