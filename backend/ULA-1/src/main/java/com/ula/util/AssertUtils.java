@@ -7,11 +7,13 @@ public class AssertUtils {
 	private AssertUtils() {}
 	
 	
-	public static void notNull(Object... objects) {
+	public static void notNull(Object... objects) throws IllegalArgumentException
+	{
 		for(Object object: objects) {
-			Assert.notNull(object, "Argument can not be null");
-			;
-		}
+			Assert.notNull(object, "Field is required");
+			} 
+
 	}
-	
 }
+	
+

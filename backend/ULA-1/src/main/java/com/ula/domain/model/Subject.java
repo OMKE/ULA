@@ -8,7 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -59,6 +60,9 @@ public class Subject extends BaseEntity {
 	@ManyToMany
 	private Set<Subject> prerequisiteFor;
 
-	@OneToOne
-	private SubjectRealization subjectRealization;
+	@OneToMany(mappedBy = "subject")
+	private Set<SubjectRealization> subjectRealization;
+
+	@ManyToOne
+	private YearOfStudy yearOfStudy;
 }

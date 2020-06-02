@@ -1,14 +1,16 @@
 package com.ula.domain.model;
 
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,9 +31,12 @@ public class YearOfStudy extends BaseEntity {
 	@Column(nullable = false)
 	private Date year;
 
-	@OneToOne
+	@ManyToOne
 	private StudyProgram studyProgram;
 
 	@ManyToOne
 	private StudentOnYear studentOnYear;
+
+	@OneToMany(mappedBy = "yearOfStudy", cascade = CascadeType.ALL)
+	private Set<Subject> subjects;
 }

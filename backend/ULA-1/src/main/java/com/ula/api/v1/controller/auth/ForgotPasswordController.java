@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ula.api.v1.request.MethodArgumentExceptionResolver;
 import com.ula.api.v1.request.auth.ForgotPasswordRequest;
-import com.ula.api.v1.request.auth.MethodArgumentExceptionResolver;
 import com.ula.dto.model.PasswordResetsDTO;
 import com.ula.dto.response.Response;
 import com.ula.service.exception.EmailNotFoundException;

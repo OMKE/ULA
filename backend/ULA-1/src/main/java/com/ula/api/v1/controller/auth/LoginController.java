@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ula.api.v1.request.MethodArgumentExceptionResolver;
 import com.ula.api.v1.request.auth.LoginRequest;
-import com.ula.api.v1.request.auth.MethodArgumentExceptionResolver;
 import com.ula.dto.model.UserDTO;
 import com.ula.dto.response.Response;
+import com.ula.service.exception.RequiredFieldException;
 import com.ula.service.exception.UserException;
 import com.ula.service.user.UserService;
 
@@ -34,16 +35,25 @@ public class LoginController {
 			@RequestBody @Valid LoginRequest loginRequest, Errors errors)
 	{
 
-		UserDTO userDTO = new UserDTO().setUsername(loginRequest.getUsername())
-				.setPassword(loginRequest.getPassword());
+		try
+		{
+			MethodArgumentExceptionResolver.checkFields(loginRequest.getUsername(),
+					loginRequest.getPassword());
 
-		try {
+			UserDTO userDTO = new UserDTO().setUsername(loginRequest.getUsername())
+					.setPassword(loginRequest.getPassword());
+
 			return Response.ok().setPayload(userService.login(userDTO));
 		} catch (UserException e)
 		{
 			return Response.wrongCredentials()
 					.setErrors(MethodArgumentExceptionResolver.resolve(errors, e));
+		} catch (RequiredFieldException e)
+		{
+			return Response.badRequest()
+					.setErrors(MethodArgumentExceptionResolver.resolve(errors));
 		}
+
 	}
 
 	@GetMapping

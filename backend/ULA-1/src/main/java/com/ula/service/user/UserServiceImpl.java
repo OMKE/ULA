@@ -23,8 +23,8 @@ import com.ula.domain.model.UserPermission;
 import com.ula.domain.repository.PermissionRepository;
 import com.ula.domain.repository.UserRepository;
 import com.ula.dto.model.UserDTO;
+import com.ula.service.exception.PasswordsDontMatchException;
 import com.ula.service.exception.UserException;
-import com.ula.util.AssertUtils;
 import com.ula.util.JWTUtils;
 
 @Service
@@ -112,14 +112,9 @@ public class UserServiceImpl implements UserService
 
 	@Transactional
 	@Override
-	public String add(UserDTO userDTO) throws UserException {
+	public String add(UserDTO userDTO) throws UserException
+	{
 		
-		
-		AssertUtils.notNull(userDTO, userDTO.getUsername(), userDTO.getPassword(),
-				userDTO.getEmail(), userDTO.getFirstName(), userDTO.getLastName());
-		
-
-
 
 		Optional<User> foundedUser = userRepository.findByUsername(userDTO.getUsername());
 		if (foundedUser.isPresent()) {
@@ -200,6 +195,7 @@ public class UserServiceImpl implements UserService
 			return user;
 		}
 	}
+
 
 
 	@Transactional
@@ -296,6 +292,29 @@ public class UserServiceImpl implements UserService
 				.getEmail())
 				.setFirstName(user.get().getFirstName()).setLastName(user.get().getLastName())
 				.setProfileImage(user.get().getProfileImage());
+
+	}
+
+	@Override
+	public void checkForPasswords(String password, String confirmPassword)
+			throws PasswordsDontMatchException
+	{
+		if (!password.equals(confirmPassword))
+		{
+			throw new PasswordsDontMatchException("Passwords don't match");
+		}
+	}
+
+	@Override
+	public void checkTermsAndConditions(String value) throws UserException
+	{
+		if (!value.equals("true") && !value.equals("false"))
+		{
+			throw new UserException("Illegal value");
+		} else if (value.equals("false"))
+		{
+			throw new UserException("Terms and Condtions must be accepted in order to register");
+		}
 
 	}
 

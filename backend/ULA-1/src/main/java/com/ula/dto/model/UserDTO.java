@@ -18,6 +18,7 @@ public class UserDTO
     private String profileImage;
     private String firstName;
     private String lastName;
+	private String termsAndConditions;
     
     
 }
