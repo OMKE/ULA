@@ -62,7 +62,7 @@ CREATE TABLE `administrator` (
   PRIMARY KEY (`id`),
   KEY `FKqrcysxoyqjtyq2obdovndf3dq` (`user_id`),
   CONSTRAINT `FKqrcysxoyqjtyq2obdovndf3dq` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,7 +71,6 @@ CREATE TABLE `administrator` (
 
 LOCK TABLES `administrator` WRITE;
 /*!40000 ALTER TABLE `administrator` DISABLE KEYS */;
-INSERT INTO `administrator` VALUES (1,'2020-06-01 21:04:59',0,NULL,1);
 /*!40000 ALTER TABLE `administrator` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -387,6 +386,7 @@ CREATE TABLE `faculty` (
   `created_at` timestamp NOT NULL,
   `deleted` tinyint(1) DEFAULT '0',
   `updated_at` timestamp NULL DEFAULT NULL,
+  `icon` varchar(256) COLLATE utf8mb4_general_ci NOT NULL,
   `name` varchar(256) COLLATE utf8mb4_general_ci NOT NULL,
   `campus_id` bigint(20) NOT NULL,
   `information_id` bigint(20) DEFAULT NULL,
@@ -475,34 +475,7 @@ UNLOCK TABLES;
 -- Table structure for table `flyway_schema_history`
 --
 
-DROP TABLE IF EXISTS `flyway_schema_history`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `flyway_schema_history` (
-  `installed_rank` int(11) NOT NULL,
-  `version` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `description` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
-  `type` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
-  `script` varchar(1000) COLLATE utf8mb4_general_ci NOT NULL,
-  `checksum` int(11) DEFAULT NULL,
-  `installed_by` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `installed_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `execution_time` int(11) NOT NULL,
-  `success` tinyint(1) NOT NULL,
-  PRIMARY KEY (`installed_rank`),
-  KEY `flyway_schema_history_s_idx` (`success`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `flyway_schema_history`
---
-
-LOCK TABLES `flyway_schema_history` WRITE;
-/*!40000 ALTER TABLE `flyway_schema_history` DISABLE KEYS */;
-INSERT INTO `flyway_schema_history` VALUES (1,'1','<< Flyway Baseline >>','BASELINE','<< Flyway Baseline >>',NULL,'user','2020-06-01 21:04:59',0,1),(2,'1.1','BASELINE','SQL','V1.1__BASELINE.sql',0,'user','2020-06-01 21:04:59',3,1),(3,'2.0','INIT DB','SQL','V2.0__INIT_DB.sql',-1252470968,'user','2020-06-01 21:04:59',9,1);
-/*!40000 ALTER TABLE `flyway_schema_history` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `gallery`
@@ -658,10 +631,17 @@ CREATE TABLE `permission` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `title` varchar(64) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `permission`
+--
 
+LOCK TABLES `permission` WRITE;
+/*!40000 ALTER TABLE `permission` DISABLE KEYS */;
+/*!40000 ALTER TABLE `permission` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `phone_number`
@@ -918,8 +898,11 @@ CREATE TABLE `subject` (
   `research_works` int(11) NOT NULL,
   `semestar` int(11) NOT NULL,
   `subject_realization_id` bigint(20) DEFAULT NULL,
+  `year_of_study_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKns8222ehd0qt0cvm2xvsy7lml` (`subject_realization_id`),
+  KEY `FK3nyqyby8qyjem76s0lqr5hirg` (`year_of_study_id`),
+  CONSTRAINT `FK3nyqyby8qyjem76s0lqr5hirg` FOREIGN KEY (`year_of_study_id`) REFERENCES `year_of_study` (`id`),
   CONSTRAINT `FKns8222ehd0qt0cvm2xvsy7lml` FOREIGN KEY (`subject_realization_id`) REFERENCES `subject_realization` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1385,10 +1368,17 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_ob8kqyqqgmefl0aco34akdtpe` (`email`),
   UNIQUE KEY `UK_sb8bbouer5wak8vyiiy4pf2bx` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `user`
+--
 
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `user_permission`
@@ -1409,14 +1399,17 @@ CREATE TABLE `user_permission` (
   KEY `FK7c2x74rinbtf33lhdcyob20sh` (`user_id`),
   CONSTRAINT `FK7c2x74rinbtf33lhdcyob20sh` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `FKbklmo9kchans5u3e4va0ouo1s` FOREIGN KEY (`permission_id`) REFERENCES `permission` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `user_permission`
+--
 
-
-
-
-
+LOCK TABLES `user_permission` WRITE;
+/*!40000 ALTER TABLE `user_permission` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_permission` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `year_of_study`
@@ -1459,12 +1452,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-01 23:06:13
-
--- INSERTS
-
-INSERT INTO `permission` VALUES (1,'2020-06-01 21:04:59',0,NULL,'ADMIN'),(2,'2020-06-01 21:04:59',0,NULL,'USER'),(3,'2020-06-01 21:04:59',0,NULL,'STAFF'),(4,'2020-06-01 21:04:59',0,NULL,'CONTENT_CREATOR'),(5,'2020-06-01 21:04:59',0,NULL,'TEACHER'),(6,'2020-06-01 21:04:59',0,NULL,'STUDENT');
-
-INSERT INTO `user` VALUES (1,'2020-06-01 21:04:59',0,NULL,'admin@admin.com',1,'Admin',NULL,'Adminovic','{bcrypt}$2y$12$8gfi0X7BiKp9LMG/ogyTC.FRg8e1nhbrD9wFZamTOy2YpgUVSjGju','admin-icon.png','admin');
-
-INSERT INTO `user_permission` VALUES (1,'2020-06-01 21:04:59',0,NULL,1,1);
+-- Dump completed on 2020-06-02  4:02:57
