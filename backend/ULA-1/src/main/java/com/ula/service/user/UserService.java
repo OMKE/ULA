@@ -8,6 +8,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.ula.domain.model.User;
 import com.ula.dto.model.UserDTO;
+import com.ula.service.exception.PasswordsDontMatchException;
+import com.ula.service.exception.RequiredFieldException;
 import com.ula.service.exception.UserException;
 
 public interface UserService {
@@ -28,7 +30,7 @@ public interface UserService {
 
 	Optional<User> getByEmailAndPassword(String email, String password) throws UserException;
 
-	String add(UserDTO userDTO) throws UserException;
+	String add(UserDTO userDTO) throws UserException, RequiredFieldException;
 
 	String updatePassword(UserDTO userDTO) throws UserException;
 
@@ -41,6 +43,11 @@ public interface UserService {
 	UserDTO getUserData(String username) throws UserException;
 
 	void verifyEmail(User user);
+
+	void checkForPasswords(String password, String confirmPassword)
+			throws PasswordsDontMatchException;
+
+	void checkTermsAndConditions(String value) throws UserException;
 
 	/*
 	 * @TODO - force delete
