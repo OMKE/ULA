@@ -31,6 +31,9 @@ public class Faculty extends BaseEntity {
 	@Column(nullable = false, columnDefinition = "VARCHAR(256)")
 	private String name;
 
+	@Column(nullable = false, columnDefinition = "VARCHAR(256)")
+	private String icon;
+
 	@ManyToOne(optional = false)
 	private University university;
 
