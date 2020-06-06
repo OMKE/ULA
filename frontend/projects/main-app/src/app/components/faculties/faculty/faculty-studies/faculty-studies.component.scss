@@ -1,0 +1,142 @@
+@import "../../../../../styles/abstracts/mixins";
+
+.faculty-studies {
+  display: grid;
+  grid-template-columns: 70% minmax(20rem, 1fr);
+  column-gap: 4rem;
+
+  @include break(small) {
+    row-gap: 2rem;
+  }
+
+  @include break(medium) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: min-content;
+    row-gap: 4rem;
+  }
+  @include break(large) {
+    column-gap: 3rem;
+  }
+
+  &__content {
+    @include break(medium) {
+      grid-column: 1 / -1;
+    }
+  }
+
+  &-dropdown-container {
+    margin-top: 2rem;
+    @include break(xsmall) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  &__dropdown,
+  &__dropdown:visited {
+    color: var(--color-white);
+  }
+
+  &__dropdown {
+    text-decoration: none;
+    font-size: 1.6rem;
+    background-color: var(--color-primary);
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    display: inline-flex;
+    justify-content: center;
+    transition: background-color ease-in-out 0.3s;
+
+    &:hover {
+      cursor: pointer;
+      background-color: var(--color-primary-dark);
+
+      & > svg {
+        transform: translateY(0.3rem);
+      }
+    }
+
+    @include break(xsmall) {
+      width: 80%;
+    }
+  }
+  &__dropdown:first-child {
+    margin-right: 2rem;
+    @include break(xsmall) {
+      margin-right: 0;
+      margin-bottom: 1rem;
+    }
+  }
+  &__dropdown-icon {
+    margin: auto 0;
+    margin-left: 5rem;
+    width: 2rem;
+    height: 2rem;
+    transition: transform ease-in-out 0.3s;
+  }
+
+  //   --------- Cards ---------
+
+  &-card-container {
+    grid-column: 2 / 3;
+    @include break(medium) {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+    }
+  }
+
+  &-card {
+    display: grid;
+    grid-template-rows: 1fr min-content min-content;
+    grid-template-columns: 1fr 4fr 1fr;
+    color: var(--color-white);
+
+    border-radius: 1rem;
+
+    @include break(medium) {
+      width: 45%;
+      margin-bottom: 0 !important;
+    }
+    @include break(small) {
+      width: 80%;
+      &:first-child {
+        margin-bottom: 2rem !important;
+      }
+    }
+
+    &--red {
+      background-color: var(--color-primary);
+      margin-bottom: 4rem;
+    }
+    &--blue {
+      background-color: var(--color-blue);
+    }
+
+    &__heading {
+      grid-column: 2 / 3;
+      font-size: 2.5rem;
+      margin-top: 2rem;
+    }
+    &__text {
+      grid-row: 2 / 3;
+      grid-column: 2 / 3;
+      font-size: 2rem;
+    }
+    &__btn {
+      font-size: 1.5rem;
+      grid-column: 1 / -1;
+      grid-row: 3 / 4;
+      margin: 3rem;
+      border-radius: 1rem;
+      justify-self: center;
+      transition: all ease-in-out 0.3s;
+    }
+    &__btn,
+    &__btn:visited {
+      color: var(--color-white);
+    }
+  }
+}

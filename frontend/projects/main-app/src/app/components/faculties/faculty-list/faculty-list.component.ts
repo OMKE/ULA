@@ -20,10 +20,10 @@ export class FacultyListComponent implements OnInit {
     },
     {
       id: 2,
-      name: "Faculty of Agriculture",
+      name: "Faculty of Philosophy",
       campusId: 2,
       informationId: 2,
-      image: "/assets/img/faculty_images/faculty_of_agriculture.svg",
+      image: "/assets/img/faculty_images/faculty_of_philosophy.svg",
     },
     {
       id: 3,
