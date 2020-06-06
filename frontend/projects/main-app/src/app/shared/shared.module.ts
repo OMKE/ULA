@@ -9,6 +9,7 @@ import {
   PlayButtonComponent,
   TextButtonComponent,
 } from "./index";
+import { SearchComponent } from "./layout/search/search.component";
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import {
     LogoComponent,
     PlayButtonComponent,
     TextButtonComponent,
+    SearchComponent,
   ],
   imports: [CommonModule, RouterModule],
   exports: [
@@ -27,6 +29,7 @@ import {
     LogoComponent,
     PlayButtonComponent,
     TextButtonComponent,
+    SearchComponent,
   ],
 })
 export class SharedModule {}
