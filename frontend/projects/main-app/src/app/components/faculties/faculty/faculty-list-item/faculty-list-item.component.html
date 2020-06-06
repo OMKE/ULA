@@ -1,0 +1,24 @@
+<a href="#" class="u-link">
+  <div class="faculty-list-item">
+    <div class="faculty-list-item__header">
+      <h3 class="faculty-list-item__name">
+        {{ studyProgram.name }}
+      </h3>
+      <div class="u-flex u-flex-jc-c u-flex-ai-c">
+        <span class="faculty-list-item__vbar">&#124;</span>
+        <h5 class="faculty-list-item__degree">
+          {{ studyProgram.degree }}
+        </h5>
+      </div>
+    </div>
+    <p class="faculty-list-item__location">
+      <img
+        src="/assets/svg/location-icon.svg"
+        alt="location-icon"
+        class="faculty-list-item__icon"
+      />
+      {{ studyProgram.location }}
+    </p>
+    <hr *ngIf="!isLast" class="u-mt-s faculty-list-item__hr" />
+  </div>
+</a>
