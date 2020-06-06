@@ -1,0 +1,21 @@
+.faculty-contact {
+  font-size: 1.6rem;
+
+  &__disclaimer {
+    margin-bottom: 2rem;
+  }
+  &__use {
+    font-weight: 500;
+    margin-bottom: 2rem;
+  }
+  &__info {
+    margin-bottom: 2rem;
+  }
+  &__email {
+    margin-bottom: 2rem;
+    font-weight: 500;
+  }
+  &__phone-number {
+    margin-bottom: 20rem;
+  }
+}
