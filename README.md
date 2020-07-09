@@ -18,9 +18,9 @@ University of Los Angeles (ficitonal) management system.
 There are three docker-compose files, named after each enivornment.<br>
 To run containers in development environment:
 <br>
-`$ docker-comopse -f docker-compose.yml up -d`<br>
+`$ docker-compose -f docker-compose.yml up -d`<br>
 To run containers in production environment: <br>
-`$ docker-comopse -f docker-compose.prod.yml up -d`<br>
+`$ docker-compose -f docker-compose.prod.yml up -d`<br>
 
 Containers: main_app_backend, main_app_frontend, mysql
 
