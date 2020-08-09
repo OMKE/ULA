@@ -1,4 +1,4 @@
-package com.ula.authentication.config.security;
+package com.ula.authentication.config;
 
 import org.flywaydb.core.Flyway;
 import org.springframework.beans.factory.annotation.Autowired;
