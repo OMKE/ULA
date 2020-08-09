@@ -278,3 +278,40 @@
 .u-max-w-100 {
   max-width: 100;
 }
+
+.u-link {
+  &,
+  &:visited {
+    text-decoration: none;
+    color: initial;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+// Buttons
+.btn {
+  font-size: 1.8rem;
+  padding: 1rem 2rem;
+  text-decoration: none;
+
+  &--outline {
+    background-color: transparent;
+    border: 1px solid var(--color-white);
+  }
+
+  &--outline-primary {
+    &:hover {
+      background-color: var(--color-white);
+      color: var(--color-primary) !important;
+    }
+  }
+  &--outline-blue {
+    &:hover {
+      background-color: var(--color-white);
+      color: var(--color-blue) !important;
+    }
+  }
+}

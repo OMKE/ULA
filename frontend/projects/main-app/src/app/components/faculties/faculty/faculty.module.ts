@@ -8,6 +8,8 @@ import { FacultyComponent } from "./faculty.component";
 import { FacultyAboutComponent } from './faculty-about/faculty-about.component';
 import { FacultyLocationComponent } from './faculty-location/faculty-location.component';
 import { FacultyContactComponent } from './faculty-contact/faculty-contact.component';
+import { FacultyListComponent } from './faculty-list/faculty-list.component';
+import { FacultyListItemComponent } from './faculty-list-item/faculty-list-item.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { FacultyContactComponent } from './faculty-contact/faculty-contact.compo
     FacultyAboutComponent,
     FacultyLocationComponent,
     FacultyContactComponent,
+    FacultyListComponent,
+    FacultyListItemComponent,
   ],
   imports: [CommonModule, FacultyRoutingModule, SharedModule],
   exports: [],

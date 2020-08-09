@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: ula-api-gateway
+server:
+  port: 8080
+zuul:
+  sensitive-headers:
+    - Authorization,Cookie,Set-Cookie
+  routes:
+    ula-auth-service: /auth/**
+  host:
+    connect-timeout-millis: 60000
+  prefix: /api/v1
