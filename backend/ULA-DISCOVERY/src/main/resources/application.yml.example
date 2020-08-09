@@ -8,3 +8,11 @@ eureka:
   client:
     register-with-eureka: false
     fetch-registry: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: false
