@@ -29,9 +29,11 @@ public class LoginController
     public Response<Object> login(
             @RequestBody @Valid LoginRequest loginRequest, Errors errors)
     {
-
         try
         {
+            /*
+                We're checking that all fields are not null and within rules of validation
+             */
             MethodArgumentExceptionResolver.checkFields(loginRequest.getUsername(),
                     loginRequest.getPassword());
 
@@ -52,7 +54,7 @@ public class LoginController
     }
 
     @GetMapping("/check")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('USER')")
     public Response<Object> check(Authentication authentication)
     {
         try
