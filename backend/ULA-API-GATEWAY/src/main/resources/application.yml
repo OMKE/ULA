@@ -8,6 +8,7 @@ zuul:
     - Authorization,Cookie,Set-Cookie
   routes:
     ula-auth-service: /auth/**
+    ula-university-service: /university/**
   host:
     connect-timeout-millis: 60000
   prefix: /api/v1
