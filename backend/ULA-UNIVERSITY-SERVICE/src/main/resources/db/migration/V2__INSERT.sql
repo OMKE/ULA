@@ -1,6 +1,6 @@
-INSERT INTO `location` (id, latitude, longitude,name) VALUES (1, '34.019714', '-118.274852', 'Main Location');
-INSERT INTO `location` (id, latitude, longitude,name) VALUES (2, '34.023841', '-118.286074', 'Second Location');
-INSERT INTO `location` (id, latitude, longitude,name) VALUES (3, '34.021242', '-118.287217', 'Third Location');
+INSERT INTO `location` (id, latitude, longitude,name, created_at) VALUES (1, '34.019714', '-118.274852', 'Main Location', NOW());
+INSERT INTO `location` (id, latitude, longitude,name, created_at) VALUES (2, '34.023841', '-118.286074', 'Second Location', NOW());
+INSERT INTO `location` (id, latitude, longitude,name, created_at) VALUES (3, '34.021242', '-118.287217', 'Third Location', NOW());
 
 
 INSERT INTO `country` (id, name, created_at) VALUES (1, 'USA', NOW());
