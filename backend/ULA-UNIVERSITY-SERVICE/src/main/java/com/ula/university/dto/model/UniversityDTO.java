@@ -12,6 +12,7 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -34,10 +35,12 @@ public class UniversityDTO
     private Date establishmentDate;
 
     private AddressDTO address;
+    private UniversityInformationDTO information;
 
     private Set<PhoneNumberDTO> phoneNumbers = new HashSet<PhoneNumberDTO>() ;
 
-    private Set<Faculty> faculties = new HashSet<Faculty>();
+    private Collection<Faculty> faculties;
+
 
 
     public UniversityDTO setPhoneNumbersToDTO(University university)
