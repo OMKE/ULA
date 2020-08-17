@@ -9,6 +9,7 @@ zuul:
   routes:
     ula-auth-service: /auth/**
     ula-university-service: /university/**
+    ula-faculty-service: /faculty/**
   host:
     connect-timeout-millis: 60000
   prefix: /api/v1
