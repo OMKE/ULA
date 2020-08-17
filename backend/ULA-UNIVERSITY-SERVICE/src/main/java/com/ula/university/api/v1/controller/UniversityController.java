@@ -2,6 +2,7 @@ package com.ula.university.api.v1.controller;
 
 import com.ula.university.dto.response.Response;
 import com.ula.university.service.exception.GalleryNotFoundException;
+import com.ula.university.service.exception.UniversityInformationNotFoundException;
 import com.ula.university.service.exception.UniversityNotFoundException;
 import com.ula.university.service.university.UniversityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,10 @@ public class UniversityController
             return Response.ok().setPayload(universityService.index());
         } catch (UniversityNotFoundException e) {
             return Response.exception().setErrors(e.getMessage());
+        } catch (UniversityInformationNotFoundException e) {
+            return Response.exception().setErrors(e.getMessage());
         }
+
     }
 
 
