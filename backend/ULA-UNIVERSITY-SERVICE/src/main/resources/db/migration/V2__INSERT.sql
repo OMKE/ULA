@@ -17,6 +17,8 @@ INSERT INTO `address` (id, street_name, number, postal_code, city_id, created_at
 
 INSERT INTO `university` (id, name, establishment_date, address_id, created_at) VALUES (1,'University of Los Angeles', '2020-05-05', 1, NOW());
 
+INSERT INTO `university_information` (id, about, history, president, teaching_staff, publishing, university_id, created_at) VALUES (1, '<h1>University Information About</h1>', '<h1>University Information History</h1>', '<h1>University Information President</h1>', '<h1>University Information Teaching Staff</h1>', '<h1>University Information Publishing</h1>', 1, NOW());
+
 INSERT INTO `phone_number` (id, contact_info, number, university_id, created_at) VALUES (1, 'ULA - Main Management Office', '202-555-0149', 1, NOW());
 INSERT INTO `phone_number` (id, contact_info, number, university_id, created_at) VALUES (2, 'ULA - Management Office Downtown', '202-555-0150', 1, NOW());
 INSERT INTO `phone_number` (id, contact_info, number, university_id, created_at) VALUES (3, 'ULA - Management Office Uptown', '202-555-0151', 1, NOW());

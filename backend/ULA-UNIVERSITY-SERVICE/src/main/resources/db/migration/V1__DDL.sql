@@ -49,6 +49,20 @@ CREATE TABLE `university` (
                               CONSTRAINT `FKq9af0t50fvg0i0upumvgrig44` FOREIGN KEY (`address_id`) REFERENCES `address` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+CREATE TABLE `university_information` (
+  `id` bigint(20) not null auto_increment,
+  `created_at` timestamp not null ,
+  `deleted` tinyint(1) default '0',
+  `updated_at` timestamp null default null,
+  `about` text not null ,
+  `history` text not null ,
+  `president` text not null ,
+  `teaching_staff` text not null ,
+  `publishing` text not null ,
+  `university_id` bigint(20) not null ,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`university_id`) references `university` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `phone_number` (
                                 `id` bigint(20) NOT NULL AUTO_INCREMENT,
