@@ -69,6 +69,9 @@ CREATE TABLE `year_of_study` (
     `id` bigint(20) not null auto_increment,
     `year` datetime not null,
     `study_program_id` bigint(20) not null ,
+    `created_at` timestamp not null,
+    `deleted` tinyint(1) default '0',
+    `updated_at` timestamp null default null,
     primary key (`id`),
     foreign key (`study_program_id`) references `study_program` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -79,13 +82,16 @@ CREATE TABLE `subject` (
     `year_of_study_id` bigint(20) not null,
     `name` varchar(128) not null,
     `semester` int not null ,
-    `esbp` int not null ,
+    `espb` int not null ,
     `required` bool default true,
     `number_of_lectures` int not null ,
     `number_of_practical_lectures` int not null ,
     `other_forms_of_lectures` int not null ,
     `research_works` int not null ,
     `other_lectures` int not null,
+    `created_at` timestamp not null,
+    `deleted` tinyint(1) default '0',
+    `updated_at` timestamp null default null,
     primary key (`id`),
     foreign key (`year_of_study_id`) references `year_of_study` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -93,6 +99,9 @@ CREATE TABLE `subject` (
 CREATE TABLE `subject_prerequisite` (
     `id` bigint(20) not null auto_increment,
     `subject_id` bigint(20) not null ,
+    `created_at` timestamp not null,
+    `deleted` tinyint(1) default '0',
+    `updated_at` timestamp null default null,
     primary key (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -101,6 +110,9 @@ CREATE TABLE `subject_and_subject_prerequisite` (
     `id` bigint(20) not null auto_increment,
     `subject_id` bigint not null ,
     `subject_prerequisite_id` bigint not null ,
+    `created_at` timestamp not null,
+    `deleted` tinyint(1) default '0',
+    `updated_at` timestamp null default null,
     primary key (`id`),
     foreign key (`subject_id`) references `subject` (`id`),
     foreign key (`subject_prerequisite_id`) references `subject_prerequisite` (`id`)
@@ -110,6 +122,9 @@ CREATE TABLE `subject_and_subject_prerequisite` (
 CREATE TABLE `subject_realization` (
     `id` bigint(20) not null auto_increment,
     `subject_id` bigint(20) not null ,
+    `created_at` timestamp not null,
+    `deleted` tinyint(1) default '0',
+    `updated_at` timestamp null default null,
     primary key (`id`),
     foreign key (`subject_id`) references `subject` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -118,6 +133,9 @@ CREATE TABLE `teacher_on_realization` (
     `id` bigint(20) not null auto_increment,
     `teacher_id` bigint(20) not null comment 'Database: ula_auth; Table:teacher Column: id, no constraint',
     `number_of_lectures` int not null ,
+    `created_at` timestamp not null,
+    `deleted` tinyint(1) default '0',
+    `updated_at` timestamp null default null,
     primary key (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -125,6 +143,9 @@ CREATE TABLE `teacher_subject_realization` (
     `id` bigint(20) not null auto_increment,
     `teacher_on_realization_id` bigint(20) not null ,
     `subject_realization_id` bigint(20) not null ,
+    `created_at` timestamp not null,
+    `deleted` tinyint(1) default '0',
+    `updated_at` timestamp null default null,
     primary key (`id`),
     foreign key (`teacher_on_realization_id`) references `teacher_on_realization` (`id`),
     foreign key (`subject_realization_id`) references `subject_realization` (`id`)
