@@ -36,6 +36,16 @@ public class UniversityController
 
     }
 
+    @GetMapping("/about")
+    public Response<Object> about()
+    {
+        try {
+            return Response.ok().setPayload(universityService.information());
+        } catch (UniversityInformationNotFoundException e)
+        {
+            return Response.exception().setErrors(e.getMessage());
+        }
+    }
 
     @GetMapping("/gallery")
     public Response<Object> gallery()
