@@ -7,7 +7,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.hateoas.config.EnableHypermediaSupport;
 
 @EnableEurekaClient
-@EnableHypermediaSupport(type = EnableHypermediaSupport.HypermediaType.HAL)
+@EnableHypermediaSupport(type = EnableHypermediaSupport.HypermediaType.COLLECTION_JSON)
 @EnableFeignClients(basePackages = "com.ula.university.feign")
 @SpringBootApplication
 public class UlaUniversityServiceApplication
