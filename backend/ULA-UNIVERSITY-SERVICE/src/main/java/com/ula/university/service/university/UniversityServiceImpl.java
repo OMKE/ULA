@@ -1,7 +1,6 @@
 package com.ula.university.service.university;
 
 
-import com.ula.university.domain.model.Faculty;
 import com.ula.university.domain.model.Gallery;
 import com.ula.university.domain.model.University;
 import com.ula.university.domain.model.UniversityInformation;
@@ -13,13 +12,12 @@ import com.ula.university.dto.model.GalleryDTO;
 import com.ula.university.dto.model.UniversityDTO;
 import com.ula.university.dto.model.UniversityInformationDTO;
 import com.ula.university.feign.FacultyFeignClient;
+import com.ula.university.mapper.FacultyMapper;
 import com.ula.university.service.exception.GalleryNotFoundException;
 import com.ula.university.service.exception.UniversityInformationNotFoundException;
 import com.ula.university.service.exception.UniversityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Collection;
 
 
 @Service
@@ -43,12 +41,14 @@ public class UniversityServiceImpl implements UniversityService
     {
         University university = this.universityRepository.findByName("University of Los Angeles").orElseThrow(() -> new UniversityNotFoundException("University of Los Angeles not found."));
         UniversityInformation universityInformation = this.universityInformationRepository.findByUniversityId(university.getId()).orElseThrow(() -> new UniversityInformationNotFoundException("University Information not found."));
+
+//        Getting faculty objects from 'ula-faculty-service'
         Object faculties = facultyFeignClient.getFaculties().getPayload();
 
-
+//        Building universityDTO which we will return
         UniversityDTO universityDTO = new UniversityDTO()
                     .setName(university.getName())
-                    .setFaculties((Collection<Faculty>) faculties)
+                    .setFaculties(FacultyMapper.mapFaculties(faculties))
                     .setAddress(
                             new AddressDTO()
                                     .setNumber(university.getAddress().getNumber())
