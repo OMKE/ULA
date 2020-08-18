@@ -18,7 +18,7 @@ import java.util.Set;
 @Accessors(chain = true)
 @NoArgsConstructor
 @ToString
-@JsonInclude(value = JsonInclude.Include.NON_NULL)
+@JsonInclude(value = JsonInclude.Include.NON_EMPTY)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class FacultyDTO {
 
