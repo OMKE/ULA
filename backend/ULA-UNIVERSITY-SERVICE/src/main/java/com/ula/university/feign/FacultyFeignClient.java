@@ -1,14 +1,14 @@
 package com.ula.university.feign;
 
-import com.ula.university.domain.model.Faculty;
+import com.ula.university.dto.response.Response;
+import com.ula.university.feign.hystrix.FacultyServiceFallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.hateoas.CollectionModel;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(name = "ula-faculty-service")
+
+@FeignClient(name = "ula-faculty-service", fallbackFactory = FacultyServiceFallbackFactory.class)
 public interface FacultyFeignClient
 {
-    @GetMapping("/api/v1/faculty")
-    CollectionModel<Faculty> getFaculties(@PathVariable Long univeristyId);
+    @GetMapping("")
+    Response<Object> getFaculties();
 }

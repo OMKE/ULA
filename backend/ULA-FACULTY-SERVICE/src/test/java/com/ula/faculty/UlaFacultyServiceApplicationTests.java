@@ -1,10 +1,10 @@
-package com.uladiscovery;
+package com.ula.faculty;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class UlaDiscoveryApplicationTests
+class UlaFacultyServiceApplicationTests
 {
 
     @Test

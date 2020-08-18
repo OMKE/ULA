@@ -12,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Accessors(chain = true)
 @Entity
-public class Location
+public class Location extends BaseEntity
 {
 
 	

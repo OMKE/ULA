@@ -1,0 +1,11 @@
+# SpringLeaf CLI - http://github.com/OMKE/SpringLeaf
+springleaf:
+    project:
+        build: maven
+        controller-type: RestController
+        entities-folder: domain.model
+        methods: Lombok
+        name: ula-faculty-service
+        package: com.ula.faculty
+        response: com.ula.faculty.dto.response
+        structure: Standard

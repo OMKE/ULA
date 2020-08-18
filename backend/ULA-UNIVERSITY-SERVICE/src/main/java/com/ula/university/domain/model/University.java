@@ -38,6 +38,9 @@ public class University extends BaseEntity
 
 	@OneToOne
 	private Address address;
+
+	@OneToOne(mappedBy = "university")
+	private UniversityInformation universityAbout;
 	
 	@OneToMany(mappedBy = "university")
 	private Set<PhoneNumber> phoneNumbers;

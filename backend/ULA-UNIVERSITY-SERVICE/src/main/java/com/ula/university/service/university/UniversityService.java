@@ -1,14 +1,13 @@
 package com.ula.university.service.university;
 
-import com.ula.university.dto.model.GalleryDTO;
 import com.ula.university.dto.model.UniversityDTO;
-import com.ula.university.service.exception.GalleryNotFoundException;
+import com.ula.university.dto.model.UniversityInformationDTO;
+import com.ula.university.service.exception.UniversityInformationNotFoundException;
 import com.ula.university.service.exception.UniversityNotFoundException;
 
 public interface UniversityService
 {
-    UniversityDTO index() throws UniversityNotFoundException;
+    UniversityDTO index() throws UniversityNotFoundException, UniversityInformationNotFoundException;
 
-    GalleryDTO gallery() throws GalleryNotFoundException;
-
+    UniversityInformationDTO information() throws UniversityInformationNotFoundException;
 }
