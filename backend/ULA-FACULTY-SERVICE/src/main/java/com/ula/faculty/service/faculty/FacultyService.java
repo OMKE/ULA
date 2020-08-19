@@ -12,5 +12,4 @@ public interface FacultyService
 
     FacultyDTO show(Long id) throws FacultyNotFoundException;
 
-
 }
