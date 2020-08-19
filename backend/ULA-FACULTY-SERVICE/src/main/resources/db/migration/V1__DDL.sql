@@ -68,6 +68,7 @@ CREATE TABLE `study_program` (
 CREATE TABLE `year_of_study` (
     `id` bigint(20) not null auto_increment,
     `year` datetime not null,
+    `ordinal_number` int not null ,
     `study_program_id` bigint(20) not null ,
     `created_at` timestamp not null,
     `deleted` tinyint(1) default '0',

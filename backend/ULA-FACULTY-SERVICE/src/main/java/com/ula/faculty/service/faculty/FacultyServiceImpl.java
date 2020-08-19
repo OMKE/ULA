@@ -2,6 +2,7 @@ package com.ula.faculty.service.faculty;
 
 import com.ula.faculty.domain.model.Faculty;
 import com.ula.faculty.domain.repository.FacultyRepository;
+import com.ula.faculty.domain.repository.StudyProgramRepository;
 import com.ula.faculty.dto.model.FacultyDTO;
 import com.ula.faculty.mapper.FacultyMapper;
 import com.ula.faculty.service.exception.FacultyNotFoundException;
@@ -16,6 +17,9 @@ public class FacultyServiceImpl implements FacultyService
 
     @Autowired
     private FacultyRepository facultyRepository;
+
+    @Autowired
+    private StudyProgramRepository studyProgramRepository;
 
     @Override
     public List<FacultyDTO> index()
@@ -37,6 +41,6 @@ public class FacultyServiceImpl implements FacultyService
     public FacultyDTO show(Long id) throws FacultyNotFoundException
     {
         Faculty faculty = facultyRepository.findById(id).orElseThrow(() -> new FacultyNotFoundException(String.format("Faculty with provided id: %s not found", id)));
-        return FacultyMapper.mapWithStudyProgramsAndInformation(faculty);
+        return FacultyMapper.mapWithInformation(faculty);
     }
 }

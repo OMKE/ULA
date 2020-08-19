@@ -35,6 +35,8 @@ public class YearOfStudy extends BaseEntity {
 		Povezati studenta sa YearOfStudy
 	 */
 
+	@Column(nullable = false, columnDefinition = "INT")
+	private int ordinalNumber;
 
 	@OneToMany(mappedBy = "yearOfStudy", cascade = CascadeType.ALL)
 	private Set<Subject> subjects;

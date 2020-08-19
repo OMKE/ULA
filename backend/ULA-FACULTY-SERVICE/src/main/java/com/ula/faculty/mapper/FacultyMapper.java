@@ -3,13 +3,41 @@ package com.ula.faculty.mapper;
 import com.ula.faculty.domain.model.Faculty;
 import com.ula.faculty.domain.model.StudyProgram;
 import com.ula.faculty.dto.model.*;
+import org.springframework.data.domain.Page;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FacultyMapper
 {
+
+    public static FacultyDTO mapWithStudyPrograms(Faculty faculty, Page<StudyProgram> studyPrograms)
+    {
+        return new FacultyDTO()
+                    .setId(faculty.getId())
+                    .setIcon(faculty.getIcon())
+                    .setCampusId(faculty.getCampusId())
+                    .setName(faculty.getName())
+                    .setStudyPrograms(
+                            studyPrograms.stream().map(studyProgram ->
+                                    new StudyProgramDTO()
+                                        .setId(studyProgram.getId())
+                                        .setName(studyProgram.getName())
+                                        .setDegree(
+                                                new StudyProgramDegreeDTO()
+                                                    .setLevel(studyProgram.getDegree().getLevel())
+                                        )
+                                        .setFacultyId(faculty.getId())
+                                        .setLocation(
+                                                new StudyProgramLocationDTO()
+                                                    .setName(studyProgram.getLocation().getName())
+                                        )
+                                    ).collect(Collectors.toSet())
+                    );
+    }
+
     public static FacultyDTO mapWithoutStudyProgramsAndInformation(Faculty faculty)
     {
         return new FacultyDTO()
@@ -18,7 +46,7 @@ public class FacultyMapper
                 .setIcon(faculty.getIcon())
                 .setName(faculty.getName());
     }
-    public static  FacultyDTO mapWithStudyProgramsAndInformation(Faculty faculty)
+    public static FacultyDTO mapWithStudyProgramsAndInformation(Faculty faculty)
     {
         return new FacultyDTO()
                     .setId(faculty.getId())
@@ -27,50 +55,49 @@ public class FacultyMapper
                     .setIcon(faculty.getIcon())
                     .setInformation(FacultyMapper.mapFacultyInformation(faculty))
                     .setStudyPrograms(FacultyMapper.mapStudyPrograms(faculty));
-
     }
 
-
+    public static FacultyDTO mapWithInformation(Faculty faculty)
+    {
+        return new FacultyDTO()
+                .setId(faculty.getId())
+                .setName(faculty.getName())
+                .setCampusId(faculty.getCampusId())
+                .setIcon(faculty.getIcon())
+                .setInformation(FacultyMapper.mapFacultyInformation(faculty));
+    }
 
     public static ArrayList<FacultyDTO> mapFacultiesWithoutStudyProgramsAndInformation(List<Faculty> faculties)
     {
-        ArrayList<FacultyDTO> facultyDTOS = new ArrayList<>();
-        for(Faculty faculty: faculties)
-        {
-            facultyDTOS.add(
-                    new FacultyDTO()
-                        .setId(faculty.getId())
-                        .setCampusId(faculty.getCampusId())
-                        .setName(faculty.getName())
-                        .setIcon(faculty.getIcon())
-            );
-        }
-        return facultyDTOS;
-    }
-
-    public static ArrayList<FacultyDTO> mapFacultiesWithStudyPrograms(List<Faculty> faculties)
-    {
-        ArrayList<FacultyDTO> facultyDTOS = new ArrayList<>();
-        for(Faculty faculty: faculties)
-        {
-            facultyDTOS.add(
+        return faculties.stream().map
+                (faculty ->
                     new FacultyDTO()
                             .setId(faculty.getId())
                             .setCampusId(faculty.getCampusId())
                             .setName(faculty.getName())
                             .setIcon(faculty.getIcon())
-                            .setStudyPrograms(FacultyMapper.mapStudyPrograms(faculty))
-            );
-        }
-        return facultyDTOS;
+                ).collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    public static ArrayList<FacultyDTO> mapFacultiesWithStudyPrograms(List<Faculty> faculties)
+    {
+        return faculties.stream().map
+                (faculty ->
+                        new FacultyDTO()
+                                .setId(faculty.getId())
+                                .setCampusId(faculty.getCampusId())
+                                .setName(faculty.getName())
+                                .setIcon(faculty.getIcon())
+                                .setStudyPrograms(FacultyMapper.mapStudyPrograms(faculty))
+                ).collect(Collectors.toCollection(ArrayList::new));
     }
 
     public static ArrayList<FacultyDTO> mapFacultiesWithStudyProgramsAndInformation(List<Faculty> faculties)
     {
         ArrayList<FacultyDTO> facultyDTOS = new ArrayList<>();
-        for(Faculty faculty: faculties)
-        {
-            facultyDTOS.add(
+
+        return faculties.stream().map
+                (faculty ->
                     new FacultyDTO()
                             .setId(faculty.getId())
                             .setCampusId(faculty.getCampusId())
@@ -78,26 +105,21 @@ public class FacultyMapper
                             .setIcon(faculty.getIcon())
                             .setStudyPrograms(FacultyMapper.mapStudyPrograms(faculty))
                             .setInformation(FacultyMapper.mapFacultyInformation(faculty))
-            );
-        }
-        return facultyDTOS;
+                ).collect(Collectors.toCollection(ArrayList::new));
     }
 
     public static HashSet<StudyProgramDTO> mapStudyPrograms(Faculty faculty)
     {
-        HashSet<StudyProgramDTO> studyProgramDTOS = new HashSet<>();
-        for(StudyProgram studyProgram: faculty.getStudyPrograms())
-        {
-            studyProgramDTOS.add(
-                    new StudyProgramDTO()
+
+        return faculty.getStudyPrograms().stream().map((studyProgram) ->
+                new StudyProgramDTO()
                         .setId(studyProgram.getId())
                         .setName(studyProgram.getName())
                         .setDegree(new StudyProgramDegreeDTO().setLevel(studyProgram.getDegree().getLevel()))
                         .setFacultyId(faculty.getId())
                         .setLocation(new StudyProgramLocationDTO().setName(studyProgram.getLocation().getName()))
-            );
-        }
-        return studyProgramDTOS;
+        ).collect(Collectors.toCollection(HashSet::new));
+
     }
 
     public static FacultyInformationDTO mapFacultyInformation(Faculty faculty)
