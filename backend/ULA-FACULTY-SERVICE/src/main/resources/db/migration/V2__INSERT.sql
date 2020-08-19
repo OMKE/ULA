@@ -135,3 +135,128 @@ INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at)
 INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Acting', 3, 6, 3, NOW());
 INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Мusic Production', 3, 6, 3, NOW());
 INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Fine Arts', 3, 6, 3, NOW());
+
+# Production Engineering years
+INSERT INTO year_of_study (year, ordinal_number, study_program_id, created_at) VALUES ('2020-11-01', 1, 2, NOW());
+INSERT INTO year_of_study (year, ordinal_number, study_program_id, created_at) VALUES ('2021-11-01', 2, 2, NOW());
+INSERT INTO year_of_study (year, ordinal_number, study_program_id, created_at) VALUES ('2022-11-01', 3, 2, NOW());
+
+
+# Subjects/Courses
+
+# FIRST YEAR
+# 1st semester
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (1, "Advanced Methods in Metal Forming", 1, 7, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (1, "CAD CAE CAM and CIM Systems", 1, 5, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (1, "Casting Technology", 1, 5, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (1, "Computer Aided Design of Tools and Dies for Metal Forming", 1, 7, 20, 20, 0, 0, 0, NOW());
+
+# 2nd semester
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (1, "Contemporary Casting Technologies", 2, 6, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (1, "Contemporary Materials", 2, 6, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (1, "Cutting tools", 2, 6, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (1, "Fixtures", 2, 5, 20, 20, 0, 0, 0, NOW());
+
+# SECOND YEAR
+# 3rd semester
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (2, "Innovation Technologies", 3, 6, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (2, "Integrated CAPP Systems and Technological Database", 3, 4, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (2, "Machines and Devices for Plastic Processing", 3, 6, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (2, "Machines for Processing by Deforming", 3, 5, 20, 20, 0, 0, 0, NOW());
+
+# 4th semester
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (2, "Mechanical Materials", 4, 8, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (2, "Metal Forming", 4, 5, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (2, "Nonconventional Procedures in Processing", 4, 5, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (2, "Process Planning", 4, 6, 20, 20, 0, 0, 0, NOW());
+
+# THIRD YEAR
+# 5th semester
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (3, "Reverse Engineering and CAQ", 5, 6, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (3, "Virtual Product Designing", 5, 6, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (3, "Virtual Production in Technologies of Plastic Deforming", 5, 6, 20, 20, 0, 0, 0, NOW());
+
+
+# Computer Science years
+INSERT INTO year_of_study (year, ordinal_number, study_program_id, created_at) VALUES ('2020-11-01', 1, 3, NOW());
+INSERT INTO year_of_study (year, ordinal_number, study_program_id, created_at) VALUES ('2021-11-01', 2, 3, NOW());
+INSERT INTO year_of_study (year, ordinal_number, study_program_id, created_at) VALUES ('2022-11-01', 3, 3, NOW());
+INSERT INTO year_of_study (year, ordinal_number, study_program_id, created_at) VALUES ('2023-11-01', 4, 3, NOW());
+
+# Subjects/Courses
+
+# FIRST YEAR
+# 1st semester
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (4, "Great Ideas in Computer Science", 1, 7, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (4, "Elements of Data Science", 1, 5, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (4, "Discrete Mathematics for Computer Science", 1, 5, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (4, "Introduction to Computer Science", 1, 7, 20, 20, 0, 0, 0, NOW());
+
+# 2nd semester
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (4, "Abstraction and Design in Computation", 2, 6, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (4, "Systems Programming and Machine Organization", 2, 6, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (4, "Privacy and Technology", 2, 6, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (4, "Data Science 1: Introduction to Data Science", 2, 5, 20, 20, 0, 0, 0, NOW());
+
+# SECOND YEAR
+# 3rd semester
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (5, "Data Science 2: Advanced Topics in Data Science", 3, 6, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (5, "Data Structures and Algorithms", 3, 4, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (5, "Computing Hardware", 3, 6, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (5, "Computer Networks", 3, 5, 20, 20, 0, 0, 0, NOW());
+
+# 4th semester
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (5, "Programming Languages", 4, 8, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (5, "Computer Graphics", 4, 5, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (5, "Machine Learning", 4, 5, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (5, "Artificial Intelligence", 4, 6, 20, 20, 0, 0, 0, NOW());
+
+# THIRD YEAR
+# 5th semester
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (6, "Operating Systems", 5, 6, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (6, "Computing at Scale", 5, 6, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (6, "Advanced Topics in Programming Languages", 5, 6, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (6, "Computational Complexity", 5, 6, 20, 20, 0, 0, 0, NOW());
+
+# 6th semester
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (6, "Algorithms at the Ends of the Wire", 6, 6, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (6, "Computing Foundations for Computational Science", 6, 6, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (6, "Topics on Computation in Networks and Crowds", 6, 6, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (6, "Programming Languages", 6, 6, 20, 20, 0, 0, 0, NOW());
+
+# FOURTH YEAR
+# 7th semester
+
+
