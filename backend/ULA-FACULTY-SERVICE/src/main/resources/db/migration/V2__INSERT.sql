@@ -137,9 +137,9 @@ INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at)
 INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Fine Arts', 3, 6, 3, NOW());
 
 # Production Engineering years
-INSERT INTO year_of_study (year, ordinal_number, study_program_id, created_at) VALUES ('2020-11-01', 1, 2, NOW());
-INSERT INTO year_of_study (year, ordinal_number, study_program_id, created_at) VALUES ('2021-11-01', 2, 2, NOW());
-INSERT INTO year_of_study (year, ordinal_number, study_program_id, created_at) VALUES ('2022-11-01', 3, 2, NOW());
+INSERT INTO year_of_study (id,year, ordinal_number, study_program_id, created_at) VALUES (1,'2020-11-01', 1, 2, NOW());
+INSERT INTO year_of_study (id,year, ordinal_number, study_program_id, created_at) VALUES (2,'2021-11-01', 2, 2, NOW());
+INSERT INTO year_of_study (id,year, ordinal_number, study_program_id, created_at) VALUES (3,'2022-11-01', 3, 2, NOW());
 
 
 # Subjects/Courses
@@ -192,10 +192,10 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 
 
 # Computer Science years
-INSERT INTO year_of_study (year, ordinal_number, study_program_id, created_at) VALUES ('2020-11-01', 1, 3, NOW());
-INSERT INTO year_of_study (year, ordinal_number, study_program_id, created_at) VALUES ('2021-11-01', 2, 3, NOW());
-INSERT INTO year_of_study (year, ordinal_number, study_program_id, created_at) VALUES ('2022-11-01', 3, 3, NOW());
-INSERT INTO year_of_study (year, ordinal_number, study_program_id, created_at) VALUES ('2023-11-01', 4, 3, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (4,'2020-11-01', 1, 3, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (5,'2021-11-01', 2, 3, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (6,'2022-11-01', 3, 3, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (7,'2023-11-01', 4, 3, NOW());
 
 # Subjects/Courses
 
@@ -259,4 +259,20 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 # FOURTH YEAR
 # 7th semester
 
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (7, "Distributed systems", 7, 6, 20, 20, 0, 0, 0, NOW());
 
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (7, "Cloud computing", 7, 5, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (7, "Internet technology and web services", 7, 4, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (7, "Programming Languages 2", 7, 8, 20, 20, 0, 0, 0, NOW());
+
+# 8th semester
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (7, "Project management", 8, 4, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (7, "Topics in Theoretical Computer Science: Biology and Complexity", 8, 6, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (7, "Software testing and quality insurance", 8, 6, 20, 20, 0, 0, 0, NOW());
+
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (7, "Advanced Topics in Programming Languages", 8, 6, 20, 20, 0, 0, 0, NOW());

@@ -1,4 +1,4 @@
-package com.ula.authentication.service.user;
+package com.ula.authentication.service.passwordreset;
 
 
 import com.ula.authentication.domain.model.PasswordResets;

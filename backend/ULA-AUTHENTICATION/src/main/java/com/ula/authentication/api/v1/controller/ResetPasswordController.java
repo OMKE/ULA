@@ -5,7 +5,7 @@ import com.ula.authentication.dto.model.PasswordResetsDTO;
 import com.ula.authentication.dto.response.Response;
 import com.ula.authentication.service.exception.PasswordsDontMatchException;
 import com.ula.authentication.service.exception.ResetPasswordTokenInvalidException;
-import com.ula.authentication.service.user.PasswordResetsService;
+import com.ula.authentication.service.passwordreset.PasswordResetsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

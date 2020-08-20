@@ -1,11 +1,12 @@
-package com.ula.authentication.service.user;
+package com.ula.authentication.service.emailverification;
 
 import com.ula.authentication.domain.model.EmailVerificationToken;
 import com.ula.authentication.domain.model.User;
 import com.ula.authentication.domain.repository.EmailVerificationTokenRepository;
 import com.ula.authentication.dto.model.UserDTO;
 import com.ula.authentication.service.exception.EmailVerificationTokenException;
-import com.ula.authentication.service.exception.UserException;
+import com.ula.authentication.service.exception.UserNotFoundException;
+import com.ula.authentication.service.user.UserService;
 import com.ula.authentication.util.RandomTokenGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,7 +37,7 @@ public class EmailVerificationServiceImpl implements EmailVerificationService
 		try
 		{
 			user = userService.getByUsername(userDTO.getUsername());
-		} catch (UserException e)
+		} catch (UserNotFoundException e)
 		{
 			throw new EmailVerificationTokenException(
 					"User not found with corresponding verification token");
@@ -94,7 +95,7 @@ public class EmailVerificationServiceImpl implements EmailVerificationService
 			this.emailVerificationRepo.deleteByUser(user.get());
 			this.generate(user.get());
 			return "New confirmation link has been sent, check your emails";
-		} catch (UserException e)
+		} catch (UserNotFoundException e)
 		{
 			throw new EmailVerificationTokenException(
 					"Unsuccessfull creation of confirmation link.");

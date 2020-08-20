@@ -1,4 +1,4 @@
-package com.ula.authentication.service.user;
+package com.ula.authentication.service.passwordreset;
 
 import com.ula.authentication.config.security.SecurityConstants;
 import com.ula.authentication.domain.model.PasswordResets;
@@ -6,10 +6,8 @@ import com.ula.authentication.domain.model.User;
 import com.ula.authentication.domain.repository.PasswordResetsRepository;
 import com.ula.authentication.dto.model.PasswordResetsDTO;
 import com.ula.authentication.dto.model.UserDTO;
-import com.ula.authentication.service.exception.EmailNotFoundException;
-import com.ula.authentication.service.exception.PasswordsDontMatchException;
-import com.ula.authentication.service.exception.ResetPasswordTokenInvalidException;
-import com.ula.authentication.service.exception.UserException;
+import com.ula.authentication.service.exception.*;
+import com.ula.authentication.service.user.UserServiceImpl;
 import com.ula.authentication.util.RandomTokenGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -45,7 +43,7 @@ public class PasswordResetsServiceImpl implements PasswordResetsService
 		try
 		{
 			user =  userService.getByEmail(passwordResetDTO.getEmail());
-		} catch (UserException e)
+		} catch (UserNotFoundException e)
 		{
 			throw new EmailNotFoundException("User with given email does not exist");
 		}
@@ -119,7 +117,7 @@ public class PasswordResetsServiceImpl implements PasswordResetsService
 							new UserDTO().setPassword(newPassword).setId(user.get().getId()));
 			return true;
 			
-		} catch (UserException e)
+		} catch (UserNotFoundException | UserException e)
 		{
 			return false;
 		}

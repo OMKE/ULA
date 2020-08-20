@@ -1,10 +1,13 @@
 package com.ula.authentication.api.v1.controller;
 
 import com.ula.authentication.dto.model.ULAUserDTO;
-import com.ula.authentication.service.user.AuthService;
+import com.ula.authentication.service.auth.AuthService;
+import com.ula.authentication.util.RoleResolver;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -14,9 +17,14 @@ public class AuthController
     @Autowired
     private AuthService authService;
 
-    @PostMapping("/authorize")
-    public ULAUserDTO authorizeToken(@RequestParam String token)
+    /*
+        Route for services only
+     */
+    @PreAuthorize("hasAuthority('USER')")
+    @PostMapping("/user")
+    public ULAUserDTO getUser(Authentication authentication, @RequestBody String authorizeRoles)
     {
-        return authService.authorize(token);
+        RoleResolver roleResolver = new RoleResolver(authorizeRoles);
+        return authService.getUser(authentication.getName(), roleResolver.getRoles());
     }
 }

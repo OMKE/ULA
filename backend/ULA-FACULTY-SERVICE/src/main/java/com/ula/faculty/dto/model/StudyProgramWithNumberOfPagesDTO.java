@@ -9,7 +9,7 @@ import java.util.List;
 @Getter
 @Setter
 @Accessors(chain = true)
-public class StudyProgramDTOWithNumberOfPages
+public class StudyProgramWithNumberOfPagesDTO
 {
     List<StudyProgramDTO> studyPrograms;
     int totalPages;

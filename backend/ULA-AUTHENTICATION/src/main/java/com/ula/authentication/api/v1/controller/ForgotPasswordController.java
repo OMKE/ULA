@@ -5,7 +5,7 @@ import com.ula.authentication.api.v1.request.MethodArgumentExceptionResolver;
 import com.ula.authentication.dto.model.PasswordResetsDTO;
 import com.ula.authentication.dto.response.Response;
 import com.ula.authentication.service.exception.EmailNotFoundException;
-import com.ula.authentication.service.user.PasswordResetsService;
+import com.ula.authentication.service.passwordreset.PasswordResetsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PostMapping;

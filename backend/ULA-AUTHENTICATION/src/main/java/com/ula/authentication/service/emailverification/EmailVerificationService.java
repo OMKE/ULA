@@ -1,4 +1,4 @@
-package com.ula.authentication.service.user;
+package com.ula.authentication.service.emailverification;
 
 
 import com.ula.authentication.domain.model.EmailVerificationToken;

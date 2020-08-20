@@ -5,8 +5,11 @@ import com.ula.authentication.domain.model.UserPermission;
 import com.ula.authentication.domain.repository.PermissionRepository;
 import com.ula.authentication.domain.repository.UserRepository;
 import com.ula.authentication.dto.model.UserDTO;
+import com.ula.authentication.service.emailverification.EmailVerificationService;
 import com.ula.authentication.service.exception.PasswordsDontMatchException;
+import com.ula.authentication.service.exception.UserConflictException;
 import com.ula.authentication.service.exception.UserException;
+import com.ula.authentication.service.exception.UserNotFoundException;
 import com.ula.authentication.util.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,7 +27,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-
 
 
 @Service
@@ -100,10 +102,10 @@ public class UserServiceImpl implements UserService
 	}
 
 	@Override
-	public Optional<User> getById(Long id) throws UserException {
+	public Optional<User> getById(Long id) throws UserNotFoundException {
 		Optional<User> user = userRepository.findById(id);
 		if (user.isEmpty()) {
-			throw new UserException(String.format("User with id: '%s' does not exist", id));
+			throw new UserNotFoundException(String.format("User with id: '%s' does not exist", id));
 		} else {
 			return user;
 		}
@@ -112,18 +114,18 @@ public class UserServiceImpl implements UserService
 
 	@Transactional
 	@Override
-	public String add(UserDTO userDTO) throws UserException
+	public String add(UserDTO userDTO) throws UserConflictException
 	{
 		
 
 		Optional<User> foundedUser = userRepository.findByUsername(userDTO.getUsername());
 		if (foundedUser.isPresent()) {
-			throw new UserException(String.format("User with username: '%s' already exists",
+			throw new UserConflictException(String.format("User with username: '%s' already exists",
 					userDTO.getUsername()));
 		} else {
 			foundedUser = userRepository.findByEmail(userDTO.getEmail());
 			if (foundedUser.isPresent()) {
-				throw new UserException(
+				throw new UserConflictException(
 						String.format("User with email: '%s' already exists", userDTO.getEmail()));
 			} else {
 				User user = new User().setUsername(userDTO.getUsername())
@@ -145,11 +147,12 @@ public class UserServiceImpl implements UserService
 	}
 
 	@Override
-	public Optional<User> getByUsername(String username) throws UserException {
+	public Optional<User> getByUsername(String username) throws UserNotFoundException
+	{
 		
 		Optional<User> user = userRepository.findByUsername(username);
 		if(user.isEmpty()) {
-			throw new UserException(
+			throw new UserNotFoundException(
 					String.format("User with given username: '%s' does not exist", username));
 		} else {
 			return user;
@@ -159,10 +162,11 @@ public class UserServiceImpl implements UserService
 
 	@Override
 	public Optional<User> getByUsernameAndPassword(String username, String password)
-			throws UserException {
+			throws UserNotFoundException
+	{
 		Optional<User> user = userRepository.findByUsernameAndPassword(username, password);
 		if(user.isEmpty()) {
-			throw new UserException(String.format(
+			throw new UserNotFoundException(String.format(
 					"User with given username and password: '%s': '%d' does not exist", username,
 					password));
 		} else {
@@ -171,11 +175,12 @@ public class UserServiceImpl implements UserService
 	}
 
 	@Override
-	public Optional<User> getByEmail(String email) throws UserException {
+	public Optional<User> getByEmail(String email) throws UserNotFoundException
+	{
 
 		Optional<User> user = userRepository.findByEmail(email);
 		if (user.isEmpty()) {
-			throw new UserException(
+			throw new UserNotFoundException(
 					String.format("User with given email: '%s' does not exist", email));
 		} else {
 			return user;
@@ -184,11 +189,12 @@ public class UserServiceImpl implements UserService
 
 	@Override
 	public Optional<User> getByEmailAndPassword(String email, String password)
-			throws UserException {
+			throws UserNotFoundException
+	{
 
 		Optional<User> user = userRepository.findByUsernameAndPassword(email, password);
 		if (user.isEmpty()) {
-			throw new UserException(
+			throw new UserNotFoundException(
 					String.format("User with given email and password: '%s': '%d' does not exist",
 							email, password));
 		} else {
@@ -200,13 +206,14 @@ public class UserServiceImpl implements UserService
 
 	@Transactional
 	@Override
-	public String delete(Long id) throws UserException {
+	public String delete(Long id) throws UserNotFoundException
+	{
 		Optional<User> user;
 		try {
 			user = this.getById(id);
 			userRepository.deleteById(id);
-		} catch (UserException e) {
-			throw new UserException(String.format(
+		} catch (UserNotFoundException e) {
+			throw new UserNotFoundException(String.format(
 					"User with given id: '%s' could not be deleted because it does not exist", id));
 		}
 		return null;
@@ -261,7 +268,7 @@ public class UserServiceImpl implements UserService
 			userRepository.save(user.get());
 			return "Password changed successfully";
 			
-		} catch (UserException e)
+		} catch (UserNotFoundException e)
 		{
 			throw new UserException(e.getMessage());
 		}
@@ -278,15 +285,15 @@ public class UserServiceImpl implements UserService
 	}
 
 	@Override
-	public UserDTO getUserData(String username) throws UserException
+	public UserDTO getUserData(String username) throws UserNotFoundException
 	{
 		Optional<User> user;
 		try
 		{
 			user = this.getByUsername(username);
-		} catch (UserException e)
+		} catch (UserNotFoundException e)
 		{
-			throw new UserException(e.getMessage());
+			throw new UserNotFoundException(e.getMessage());
 		}
 		return new UserDTO().setId(user.get().getId()).setUsername(username).setEmail(user.get()
 				.getEmail())
@@ -294,6 +301,8 @@ public class UserServiceImpl implements UserService
 				.setProfileImage(user.get().getProfileImage());
 
 	}
+
+
 
 	@Override
 	public void checkForPasswords(String password, String confirmPassword)
