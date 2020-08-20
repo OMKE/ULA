@@ -7,6 +7,7 @@ import com.ula.authentication.dto.model.UserDTO;
 import com.ula.authentication.dto.response.Response;
 import com.ula.authentication.service.exception.PasswordsDontMatchException;
 import com.ula.authentication.service.exception.RequiredFieldException;
+import com.ula.authentication.service.exception.UserConflictException;
 import com.ula.authentication.service.exception.UserException;
 import com.ula.authentication.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,8 +52,8 @@ public class RegisterController {
 					.setTermsAndConditions(registerRequest.getAcceptTerms());
 
 //			Check if password and confirmation password match
-userService.checkForPasswords(registerRequest.getPassword(), registerRequest.getConfirmPassword());
-userService.checkTermsAndConditions(registerRequest.getAcceptTerms());
+			userService.checkForPasswords(registerRequest.getPassword(), registerRequest.getConfirmPassword());
+			userService.checkTermsAndConditions(registerRequest.getAcceptTerms());
 
 //			If everything is OK, return OK response
 			return Response.ok().setPayload(userService.add(userDTO));
@@ -67,9 +68,11 @@ userService.checkTermsAndConditions(registerRequest.getAcceptTerms());
 		{
 			return Response.badRequest()
 					.setErrors(MethodArgumentExceptionResolver.resolve(errors));
+		} catch (UserConflictException e) {
+			return Response.exception().setErrors(e.getMessage());
 		}
 
-		
+
 	}
 
 

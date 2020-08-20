@@ -3,7 +3,7 @@ package com.ula.authentication.api.v1.controller;
 import com.ula.authentication.dto.model.UserDTO;
 import com.ula.authentication.dto.response.Response;
 import com.ula.authentication.service.exception.EmailVerificationTokenException;
-import com.ula.authentication.service.user.EmailVerificationService;
+import com.ula.authentication.service.emailverification.EmailVerificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
