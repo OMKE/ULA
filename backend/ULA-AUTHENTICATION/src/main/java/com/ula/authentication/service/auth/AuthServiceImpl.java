@@ -1,19 +1,19 @@
-package com.ula.authentication.service.user;
+package com.ula.authentication.service.auth;
 
 import com.ula.authentication.domain.model.User;
-import com.ula.authentication.domain.model.UserPermission;
 import com.ula.authentication.dto.model.ULAUserDTO;
-import com.ula.authentication.service.exception.UserException;
+import com.ula.authentication.mapper.ULAUserMapper;
+import com.ula.authentication.service.exception.UserNotAuthorizedException;
+import com.ula.authentication.service.exception.UserNotFoundException;
+import com.ula.authentication.service.user.UserService;
 import com.ula.authentication.util.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class AuthServiceImpl implements AuthService
@@ -29,25 +29,30 @@ public class AuthServiceImpl implements AuthService
     private UserDetailsService userDetailsService;
 
     @Override
-    public ULAUserDTO authorize(String token)
+    public ULAUserDTO getUser(String username, ArrayList<String> roles)
     {
         try {
-            UserDetails userDetails = this.userDetailsService.loadUserByUsername(jwt.getUsername(token));
-
-            if(this.jwt.validateToken(token, userDetails))
-            {
-                Optional<User> user = userService.getByUsername(userDetails.getUsername());
-                ArrayList<String> roles = new ArrayList<>();
-                for(UserPermission up: user.get().getUserPermissions())
-                {
-                    roles.add(up.getPermission().getTitle());
-                }
-                return new ULAUserDTO().setId(user.get().getId()).setUsername(user.get().getUsername()).setRoles(roles);
-            } else {
-                return null;
-            }
-        } catch (UsernameNotFoundException | UserException e) {
+            return ULAUserMapper.map(this.verifyRoles(username, roles));
+        } catch (UserNotAuthorizedException | UserNotFoundException e) {
             return null;
+        }
+    }
+
+    @Override
+    public User verifyRoles(String username, ArrayList<String> roles) throws UserNotAuthorizedException, UserNotFoundException
+    {
+
+        User user = userService.getByUsername(username).get();
+        ArrayList<String> userRoles = user.getUserPermissions()
+                .stream()
+                .map(userPermission -> userPermission.getPermission().getTitle())
+                .collect(Collectors.toCollection(ArrayList::new));
+
+        if(roles.equals(userRoles))
+        {
+            return user;
+        } else {
+            throw new UserNotAuthorizedException("User is not authorized for given action");
         }
 
     }
