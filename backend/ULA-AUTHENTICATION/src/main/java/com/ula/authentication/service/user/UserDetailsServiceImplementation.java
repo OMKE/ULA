@@ -2,7 +2,7 @@ package com.ula.authentication.service.user;
 
 import com.ula.authentication.domain.model.User;
 import com.ula.authentication.domain.model.UserPermission;
-import com.ula.authentication.service.exception.UserException;
+import com.ula.authentication.service.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -55,7 +55,7 @@ public class UserDetailsServiceImplementation implements UserDetailsService {
 		try
 		{
 			user = userService.getByUsername(username);
-		} catch (UserException e)
+		} catch (UserNotFoundException e)
 		{
 			user = null;
 			throw new UsernameNotFoundException("User with given username not found");
