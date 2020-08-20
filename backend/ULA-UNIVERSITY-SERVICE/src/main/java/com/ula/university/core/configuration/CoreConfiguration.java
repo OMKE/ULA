@@ -26,4 +26,12 @@ public class CoreConfiguration implements WebMvcConfigurer
     }
 
 
+    /*
+        Somehow if we don't set the default return type, it sets xml as default which we don't want in any case
+     */
+    @Override
+    public void configureContentNegotiation(ContentNegotiationConfigurer configurer)
+    {
+        configurer.defaultContentType(MediaType.APPLICATION_JSON);
+    }
 }
