@@ -9,9 +9,7 @@ import java.util.List;
 @Getter
 @Setter
 @Accessors(chain = true)
-public class StudyProgramWithNumberOfPagesDTO
+public class StudyProgramWithYearsOfStudyDTO
 {
-    List<StudyProgramDTO> studyPrograms;
-    int totalPages;
-
+    private List<YearOfStudyWithSubjectsDTO> years;
 }
