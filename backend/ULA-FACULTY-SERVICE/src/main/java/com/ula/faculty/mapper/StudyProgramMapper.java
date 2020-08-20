@@ -41,4 +41,7 @@ public class StudyProgramMapper
         return studyPrograms.stream().map(StudyProgramMapper::map).collect(Collectors.toCollection(ArrayList::new));
     }
 
+
+
+
 }
