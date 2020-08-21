@@ -1,0 +1,77 @@
+@import "../../../../../styles/abstracts/mixins";
+
+.faculty-list-item {
+  display: flex;
+  background-color: var(--color-grey-light-3);
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  margin: 2rem auto;
+  border-radius: 1rem;
+
+  &:active {
+    outline: none !important;
+    transform: translateY(0.3rem) !important;
+  }
+
+  transition: all ease-in-out 0.3s;
+
+  @include break(small) {
+    width: 100%;
+  }
+
+  &:hover {
+    background-color: var(--color-grey-light-4);
+    cursor: pointer;
+    transform: translateY(-0.3rem);
+  }
+
+  &,
+  &:visited {
+    text-decoration: none;
+    color: var(--color-black-2);
+  }
+
+  &__container {
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    height: 10rem;
+  }
+
+  &__image-wrap {
+    @include break(small) {
+      display: none;
+    }
+    height: 15rem;
+    width: 13rem;
+    object-fit: cover;
+    object-position: center;
+    margin-left: 1rem;
+  }
+
+  &__image {
+    height: 100%;
+    width: 100%;
+  }
+
+  &__text {
+    @include break(medium) {
+      font-size: 2rem;
+    }
+    font-size: 3rem;
+    font-weight: 400;
+    margin-left: 5rem;
+  }
+
+  &__icon {
+    @include break(xsmall) {
+      & > svg {
+        width: 3rem;
+        height: 3rem;
+      }
+    }
+    margin-top: 0.6rem;
+    margin-right: 2.5rem;
+  }
+}

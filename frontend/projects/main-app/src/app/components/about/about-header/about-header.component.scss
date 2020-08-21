@@ -1,0 +1,70 @@
+@import "../../../../styles/abstracts/mixins";
+
+.about-header {
+  &__img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include break(large) {
+      width: 100%;
+    }
+    @include break(xsmall) {
+      margin-top: 3rem;
+    }
+  }
+  &__img-wrap {
+    width: 25rem;
+    height: 25rem;
+    border-radius: 3rem;
+    overflow: hidden;
+
+    @include break(medium) {
+      width: 15rem;
+      height: 15rem;
+    }
+    @include break(small) {
+      width: 10rem;
+      height: 10rem;
+    }
+    @include break(xsmall) {
+      margin-top: 1rem;
+      border-radius: 0;
+      width: 15rem;
+      height: 15rem;
+    }
+
+    &:not(:last-child) {
+      margin-right: 2rem;
+
+      @include break(xsmall) {
+        margin-right: 1rem;
+      }
+    }
+  }
+
+  &__img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__heading {
+    color: var(--color-black-2);
+    margin-top: 7rem;
+    font-size: 7rem;
+    font-family: "Ropa Sans", sans-serif;
+    font-weight: 300;
+
+    @include break(small) {
+      font-size: 5rem;
+    }
+    @include break(xsmall) {
+      margin-top: 3rem;
+      font-size: 3rem;
+    }
+  }
+
+  & > hr {
+    width: 70%;
+  }
+}

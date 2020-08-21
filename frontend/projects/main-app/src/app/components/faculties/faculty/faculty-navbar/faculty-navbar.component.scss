@@ -1,0 +1,49 @@
+@import "../../../../../styles/abstracts/mixins";
+
+.faculty-navbar {
+  &__list {
+    display: inline-flex;
+    list-style: none;
+    padding-bottom: 1.5rem;
+    border-bottom: 0.1rem solid var(--color-grey-light-4);
+
+    @include break(xsmall) {
+      width: 100%;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+  }
+
+  &__item {
+    &:not(:last-child) {
+      margin-right: 3rem;
+      @include break(xsmall) {
+        margin-right: 0;
+        padding: 0 1rem;
+      }
+    }
+  }
+  &__link {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: 500;
+    padding-bottom: 1.8rem;
+    transition: color ease-in-out 0.5s, border-bottom ease-in-out 0.5s;
+    border-bottom: 0.1rem solid rgba(255, 32, 255, 0);
+
+    &,
+    &:visited {
+      color: var(--color-black-2);
+    }
+
+    &--active {
+      color: var(--color-primary) !important;
+      border-bottom: 0.1rem solid var(--color-primary);
+      @include break(xsmall) {
+        border-bottom: none;
+      }
+    }
+  }
+}

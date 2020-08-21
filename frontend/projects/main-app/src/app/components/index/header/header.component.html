@@ -1,0 +1,17 @@
+<div class="header u-mb-s">
+  <app-navbar></app-navbar>
+  <div class="u-container">
+    <h1 class="h-m h-fw-3 l-h-1 t-c-white u-mt-xxl header__heading">
+      Your course <br />to Success
+    </h1>
+
+    <div class="u-mt-m">
+      <app-play-button
+        [text]="'Learn about ULA'"
+        (onPlay)="playVideo()"
+      ></app-play-button>
+    </div>
+
+    <img src="assets/svg/waves.svg" alt="Waves" class="header__waves" />
+  </div>
+</div>

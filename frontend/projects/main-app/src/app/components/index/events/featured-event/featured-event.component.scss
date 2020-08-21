@@ -1,0 +1,22 @@
+@import "../../../../../styles/abstracts/mixins";
+
+.featured-event {
+  &__img-wrap {
+    transition: transform ease-in-out 0.3s;
+    &:hover {
+      transform: translateY(-0.3rem);
+    }
+
+    @include break(medium) {
+      margin: 0 auto;
+    }
+    @include break(xsmall) {
+      width: 100%;
+    }
+  }
+  &__img {
+    @include break(xsmall) {
+      width: 100%;
+    }
+  }
+}

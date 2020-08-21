@@ -1,0 +1,29 @@
+@import "../../../../styles/abstracts/mixins";
+
+.find-out-more-card {
+  @include break(medium) {
+    margin: 0.7rem;
+  }
+  @include break(xsmall) {
+    margin: 0.8rem;
+    width: 30rem;
+    height: 33rem;
+  }
+
+  background-color: var(--color-grey-light-2);
+  border-radius: 2rem;
+  width: 18rem;
+  height: 21rem;
+  transition: all ease-in-out 0.3s;
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--color-grey-light-4);
+    transform: translateY(-0.4rem);
+  }
+
+  &__icon {
+    width: 30%;
+    height: 30%;
+  }
+}

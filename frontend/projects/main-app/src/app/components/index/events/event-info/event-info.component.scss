@@ -1,0 +1,33 @@
+@import "../../../../../styles/abstracts/mixins";
+.event-info {
+  display: inline-block;
+  grid-area: 1 / 2;
+
+  &__img-wrap {
+    width: 90%;
+    border-radius: 2rem;
+    overflow: hidden;
+    object-fit: cover;
+    object-position: center;
+  }
+  &__img {
+    width: 100%;
+    height: 100%;
+  }
+  &__content {
+    @include break(xsmall) {
+      grid-column: 2 / 3;
+    }
+    color: var(--color-black-1);
+  }
+  &__heading {
+    @include break(xsmall) {
+      margin-top: 1rem;
+    }
+    font-size: 2.3rem;
+    text-transform: uppercase;
+  }
+  &__desc {
+    font-size: 1.5rem;
+  }
+}

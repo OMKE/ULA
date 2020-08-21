@@ -1,0 +1,317 @@
+// -------- CONTAINER --------
+
+.u-container {
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  @include break(xlarge) {
+    max-width: 1140px;
+  }
+
+  @include break(large) {
+    max-width: 960px;
+  }
+
+  @include break(medium) {
+    max-width: 720px;
+  }
+
+  @include break(small) {
+    max-width: 540px;
+  }
+}
+
+// -------- MARGINS --------
+
+// Margin top
+.u-mt-xs {
+  margin-top: 1rem;
+}
+.u-mt-s {
+  margin-top: 3rem;
+}
+.u-mt-m {
+  margin-top: 5rem;
+}
+.u-mt-l {
+  margin-top: 7rem;
+}
+.u-mt-xl {
+  margin-top: 10rem;
+}
+.u-mt-xxl {
+  margin-top: 15rem;
+}
+.u-mt-auto {
+  margin-top: auto;
+}
+
+// Margin bottom
+.u-mb-xs {
+  margin-bottom: 1.5rem;
+}
+.u-mb-s {
+  margin-bottom: 3rem;
+}
+.u-mb-m {
+  margin-bottom: 5rem;
+}
+.u-mb-l {
+  margin-bottom: 7rem;
+}
+.u-mb-xl {
+  margin-bottom: 10rem;
+}
+.u-mb-xxl {
+  margin-bottom: 15rem;
+}
+.u-mb-auto {
+  margin-bottom: auto;
+}
+
+// Margin left
+.u-ml-xs {
+  margin-left: 1.5rem;
+}
+.u-ml-s {
+  margin-left: 3rem;
+}
+.u-ml-m {
+  margin-left: 5rem;
+}
+.u-ml-l {
+  margin-left: 7rem;
+}
+.u-ml-xl {
+  margin-left: 10rem;
+}
+.u-ml-xxl {
+  margin-left: 15rem;
+}
+.u-ml-auto {
+  margin-left: auto;
+}
+
+// Margin right
+.u-mr-xs {
+  margin-right: 1.5rem;
+}
+.u-mr-s {
+  margin-right: 3rem;
+}
+.u-mr-m {
+  margin-right: 5rem;
+}
+.u-mr-l {
+  margin-right: 7rem;
+}
+.u-mr-xl {
+  margin-right: 10rem;
+}
+.u-mr-xxl {
+  margin-right: 15rem;
+}
+.u-mr-auto {
+  margin-right: auto;
+}
+
+// Margin auto on X axis
+.u-mx-auto {
+  margin: 0 auto;
+}
+// Margin auto on Y axis
+.u-my-auto {
+  margin: auto 0;
+}
+
+// -------- PADDINGS --------
+
+// Padding top
+.u-pt-xs {
+  padding-top: 1.5rem;
+}
+.u-pt-s {
+  padding-top: 3rem;
+}
+.u-pt-m {
+  padding-top: 5rem;
+}
+.u-pt-l {
+  padding-top: 7rem;
+}
+.u-pt-xl {
+  padding-top: 10rem;
+}
+.u-pt-xxl {
+  padding-top: 15rem;
+}
+
+// Padding bottom
+.u-pb-xs {
+  padding-bottom: 1.5rem;
+}
+.u-pb-s {
+  padding-bottom: 3rem;
+}
+.u-pb-m {
+  padding-bottom: 5rem;
+}
+.u-pb-l {
+  padding-bottom: 7rem;
+}
+.u-pb-xl {
+  padding-bottom: 10rem;
+}
+.u-pb-xxl {
+  padding-bottom: 15rem;
+}
+
+// Padding left
+
+.u-pl-xs {
+  padding-left: 1.5rem;
+}
+.u-pl-s {
+  padding-left: 3rem;
+}
+.u-pl-m {
+  padding-left: 5rem;
+}
+.u-pl-l {
+  padding-left: 7rem;
+}
+.u-pl-xl {
+  padding-left: 10rem;
+}
+.u-pl-xxl {
+  padding-left: 15rem;
+}
+
+// Padding right
+.u-pr-xs {
+  padding-right: 1.5rem;
+}
+.u-pr-s {
+  padding-right: 3rem;
+}
+.u-pr-m {
+  padding-right: 5rem;
+}
+.u-pr-l {
+  padding-right: 7rem;
+}
+.u-pr-xl {
+  padding-right: 10rem;
+}
+.u-pr-xxl {
+  padding-right: 15rem;
+}
+
+// -------- Flexbox --------
+
+.u-flex {
+  display: flex;
+}
+.u-flex-wrap {
+  flex-wrap: wrap;
+}
+
+.u-flex-flow-cw {
+  flex-flow: column wrap;
+}
+.u-flex-flow-rw {
+  flex-flow: row wrap;
+}
+
+.u-flex-1 {
+  flex: 1;
+}
+
+// Flex direction
+.u-flex-d-c {
+  flex-direction: column;
+}
+.u-flex-d-cr {
+  flex-direction: column-reverse;
+}
+.u-flex-d-r {
+  flex-direction: row;
+}
+.u-flex-d-rr {
+  flex-direction: row-reverse;
+}
+// Justify content
+.u-flex-jc-s {
+  justify-content: flex-start;
+}
+.u-flex-jc-e {
+  justify-content: flex-end;
+}
+.u-flex-jc-c {
+  justify-content: center;
+}
+.u-flex-jc-sb {
+  justify-content: space-between;
+}
+.u-flex-jc-sa {
+  justify-content: space-around;
+}
+
+.u-flex-jc-se {
+  justify-content: space-evenly;
+}
+// Align items
+.u-flex-ai-s {
+  align-items: stretch;
+}
+.u-flex-ai-c {
+  align-items: center;
+}
+.u-flex-ai-st {
+  align-items: flex-start;
+}
+.u-flex-ai-e {
+  align-items: flex-end;
+}
+
+.u-max-w-100 {
+  max-width: 100;
+}
+
+.u-link {
+  &,
+  &:visited {
+    text-decoration: none;
+    color: initial;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+// Buttons
+.btn {
+  font-size: 1.8rem;
+  padding: 1rem 2rem;
+  text-decoration: none;
+
+  &--outline {
+    background-color: transparent;
+    border: 1px solid var(--color-white);
+  }
+
+  &--outline-primary {
+    &:hover {
+      background-color: var(--color-white);
+      color: var(--color-primary) !important;
+    }
+  }
+  &--outline-blue {
+    &:hover {
+      background-color: var(--color-white);
+      color: var(--color-blue) !important;
+    }
+  }
+}

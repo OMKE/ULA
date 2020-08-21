@@ -1,0 +1,24 @@
+<div class="faculty-contact u-container">
+  <p class="faculty-contact__disclaimer">
+    Whether you are planning a visit, joining us for an event, or have a
+    question, we’re here to help. <br />
+    The following are a list of the main connections to the school or office
+    that you may need.
+  </p>
+  <p class="faculty-contact__use">Use this address for all {{ name }} mail:</p>
+
+  <div class="faculty-contact__info">
+    <p class="faculty-contact__uni-name">
+      University of Los Angeles
+    </p>
+    <p class="faculty-contact__street-name">
+      {{ address.number }} {{ address.streetName }}
+    </p>
+    <p class="faculty-contact__city-pc-c">
+      {{ address.cityName }}, {{ address.postalCode }} USA
+    </p>
+  </div>
+  <p class="faculty-contact__email">Email address: {{ email }}</p>
+
+  <p class="faculty-contact__phone-number">Admission: {{ getPhoneNumber() }}</p>
+</div>

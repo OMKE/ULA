@@ -1,0 +1,33 @@
+// Responsive break points
+@mixin break($breakpoint) {
+  // #Small devices - Smartphones portrait 📱- 576px and ⬇
+  @if $breakpoint == xsmall {
+    @media only screen and (max-width: 576px) {
+      @content;
+    }
+  }
+  // #Small devices - Smartphones - landscape 📱- 767.98px and ⬇
+  @if $breakpoint == small {
+    @media only screen and (max-width: 767.98px) {
+      @content;
+    }
+  }
+  // #Medium devices - Tablets 📱 - 991.98px and ⬇
+  @if $breakpoint == medium {
+    @media only screen and (max-width: 991.98px) {
+      @content;
+    }
+  }
+  // #Large devices - Desktops 💻 -  1199.98px and ⬇
+  @if $breakpoint == large {
+    @media only screen and (max-width: 1199.98px) {
+      @content;
+    }
+  }
+  // #Extra large devices - Large desktops 🖥 - 1200px and ⬆
+  @if $breakpoint == xlarge {
+    @media only screen and (min-width: 1200px) {
+      @content;
+    }
+  }
+}

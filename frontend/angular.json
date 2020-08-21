@@ -1,13 +1,26 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "main-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "skipTests": true
+        },
+        "@schematics/angular:class": {
+          "skipTests": true
+        },
+        "@schematics/angular:directive": {
+          "skipTests": true
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
         }
       },
       "root": "projects/main-app",
@@ -27,9 +40,7 @@
               "projects/main-app/src/favicon.ico",
               "projects/main-app/src/assets"
             ],
-            "styles": [
-              "projects/main-app/src/styles.scss"
-            ],
+            "styles": ["projects/main-app/src/styles/app.scss"],
             "scripts": []
           },
           "configurations": {
@@ -91,9 +102,7 @@
               "projects/main-app/src/favicon.ico",
               "projects/main-app/src/assets"
             ],
-            "styles": [
-              "projects/main-app/src/styles.scss"
-            ],
+            "styles": ["projects/main-app/src/styles.scss"],
             "scripts": []
           }
         },
@@ -105,9 +114,7 @@
               "projects/main-app/tsconfig.spec.json",
               "projects/main-app/e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
@@ -123,6 +130,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "main-app"
 }

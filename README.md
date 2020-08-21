@@ -2,53 +2,44 @@
 
 ## Description
 
-University of Los Angeles (ficitonal) management system.
+University of Los Angeles management system.  
+@TODO
+
+## Contributors
+
+- [Omar Iriskic](https://github.com/OMKE)
+- [Lazar Filipovic](https://github.com/laki098)
+
+## Application Architecture
+
+@TODO
 
 ## How to run
 
-### Features
+### 🐳 Docker
 
-- Modern look and feel
-- Secure
-- Messaging and video services
-- Logs of any action made on the system
-- Easy deployable with docker
-
-### Docker
-
-#### Requiremets
+<!-- #### Requiremets
 
 - [Docker](https://docs.docker.com/get-docker/)
-- [Docker-Compose](https://docs.docker.com/compose/install/)
+- [Docker-Compose](https://docs.docker.com/compose/install/) -->
 
-#### Note
+@TODO
 
-There are three docker-compose files, named after each enivornment.<br>
-To run containers in development environment:
-<br>
-`$ docker-comopse -f docker-compose.yml up -d`<br>
-To run containers in production environment: <br>
-`$ docker-comopse -f docker-compose.prod.yml up -d`<br>
+### 💻 Without docker
 
-Containers: main_app_backend, main_app_frontend, mysql
+@TODO
 
-If you don't want to write a -f docker-compose.yml everytime, just export env variable with<br>
-`$ export COMPOSE_FILE=docker-compose.yml` <br>
-Or add it to your .zshrc/.bashrc file and source it.
-
-### Without docker
-
-#TODO
-
-### Languages and frameworks
+### Technologies and frameworks
 
 - SpringBoot
-- Angular 9
-- ActiveMQ Artemis
-- Sass
+- Zuul Proxy
+- Eureka Service Discovery
+- Hystrix Circuit Breaker
 - MySQL
 - MongoDB
-- Python (code-generation)
+- Angular 9 with ngrx
+- Sass
+- Python (code-generation) - [SpringLeaf](https://github.com/OMKE/SpringLeaf)
 
 ### Design resources
 

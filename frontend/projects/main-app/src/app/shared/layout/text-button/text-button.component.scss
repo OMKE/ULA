@@ -1,0 +1,23 @@
+.text-btn {
+  display: flex;
+  align-items: center;
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  font-weight: 500;
+
+  &:hover {
+    cursor: pointer;
+
+    img {
+      margin-right: 1rem;
+    }
+  }
+
+  &__icon {
+    width: 0.6rem;
+    margin-right: 0.45rem;
+    margin-top: 0.05rem;
+    transition: margin-right ease-in-out 0.2s;
+  }
+}

@@ -1,0 +1,13 @@
+<button
+  class="play-button"
+  [class.play-button--active]="active"
+  (click)="play()"
+>
+  {{ text }}
+
+  <img
+    src="/assets/svg/play-icon.svg"
+    alt="Play icon"
+    class="play-button__icon"
+  />
+</button>

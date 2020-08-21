@@ -35,6 +35,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-actuator</artifactId>
+			<version>2.3.0.RELEASE</version>
+		</dependency>
 
 		<dependency>
 			<groupId>mysql</groupId>
@@ -52,6 +57,16 @@
 			<version>2.2.3.RELEASE</version>
 		</dependency>
 		<dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.0</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
@@ -67,7 +82,35 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.4.15.Final</version>
+		</dependency>
+		<dependency>
+    		<groupId>org.flywaydb</groupId>
+    		<artifactId>flyway-core</artifactId>
+    		<version>6.4.2</version>
+		</dependency>
 	</dependencies>
+	
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<spring.profiles.active>dev</spring.profiles.active>
+			</properties>
+		</profile>
+		<profile>
+        		<id>prod</id>
+	        <properties>
+	            <spring.profiles.active>prod</spring.profiles.active>
+	        </properties>
+    	</profile>
+	</profiles>
 
 	<build>
 		<plugins>

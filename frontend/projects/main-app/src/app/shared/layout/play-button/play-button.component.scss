@@ -1,0 +1,60 @@
+@import "../../../../styles/abstracts/mixins";
+
+@keyframes showUp {
+  0% {
+    transform: scale(0.6);
+  }
+
+  80% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.play-button {
+  padding: 1rem 3rem;
+  border-radius: 2.5rem;
+  font-size: 2rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  color: var(--color-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  transition: transform ease-in-out 0.3s, color ease-in-out 0.3s;
+
+  @include break(xsmall) {
+    margin: 0 auto;
+    margin-top: 8rem;
+    font-size: 2.5rem;
+    padding: 1.5rem 3.5rem;
+  }
+
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-0.3rem);
+  }
+
+  &--active {
+    color: rgba(255, 255, 255, 0);
+
+    & > .play-button__icon {
+      transform: translateX(-8rem);
+      @include break(small) {
+        transform: translateX(-10rem) scale(1.4);
+      }
+    }
+  }
+
+  &__icon {
+    transition: transform ease-in-out 0.1s;
+    margin-left: 1.5rem;
+    font-size: 2.5rem;
+    animation: showUp 1s;
+    width: 3rem;
+    height: 3rem;
+  }
+}

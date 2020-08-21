@@ -1,0 +1,11 @@
+@import "../../../../../styles/abstracts/mixins";
+.default-event-list {
+  @include break(medium) {
+    margin-top: 8rem;
+  }
+  grid-area: 2 / 3;
+  justify-content: flex-start;
+
+  display: flex;
+  flex-direction: column;
+}
