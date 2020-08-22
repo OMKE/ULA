@@ -14,6 +14,7 @@ public class ContactController
     @Autowired
     private ContactService contactService;
 
+
     @GetMapping("/contact")
     public Response<Object> index()
     {
@@ -24,5 +25,6 @@ public class ContactController
             return Response.exception().setErrors(e.getMessage());
         }
     }
+
 
 }

@@ -48,10 +48,26 @@ public class AuthServiceImpl implements AuthService
                 .map(userPermission -> userPermission.getPermission().getTitle())
                 .collect(Collectors.toCollection(ArrayList::new));
 
-        if(roles.equals(userRoles))
+
+        boolean foundRole = false;
+
+        for (String role: roles)
+        {
+            for(String userRole: userRoles)
+            {
+                if(role.equals(userRole))
+                {
+                    foundRole = true;
+                }
+            }
+        }
+
+        if(foundRole)
         {
             return user;
         } else {
+            System.out.println(roles);
+            System.out.println(userRoles);
             throw new UserNotAuthorizedException("User is not authorized for given action");
         }
 

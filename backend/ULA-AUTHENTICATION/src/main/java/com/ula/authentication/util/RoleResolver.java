@@ -25,7 +25,7 @@ public class RoleResolver
         if(this.value.contains("[") && this.value.contains(",") && this.value.contains("]")) {
             this.value = this.value.replace("[", "").replace("]", "");
 
-            this.roles.addAll(Arrays.asList(this.value.split(",")));
+            this.roles.addAll(Arrays.asList(Arrays.stream(this.value.split(",")).map(String::trim).toArray(String[]::new)));
         } else if (!this.value.contains("[") && this.value.contains("]"))
         {
             throw new IllegalArgumentException("@Authorized annotation is missing opening bracket");
