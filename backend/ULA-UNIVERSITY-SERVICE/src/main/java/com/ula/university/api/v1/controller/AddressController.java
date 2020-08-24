@@ -18,11 +18,12 @@ import javax.validation.Valid;
 
 @RestController
 @Validated
-public class AddressController
+public class AddressController extends BaseController
 {
 
     @Autowired
     private AddressService addressService;
+
 
     @GetMapping("/contact/address")
     public Response<Object> index()
@@ -55,10 +56,10 @@ public class AddressController
                                     this.addressService.store
                                             (
                                             new AddressDTO()
-                                                .setStreetName(addressRequest.getStreetName())
-                                                .setNumber(addressRequest.getNumber())
+                                                .setStreetName(this.sanitize(addressRequest.getStreetName()))
+                                                .setNumber(this.sanitize(addressRequest.getNumber()))
                                                 .setCityId(addressRequest.getCityId())
-                                                .setPostalCode(addressRequest.getPostalCode())
+                                                .setPostalCode(this.sanitize(addressRequest.getPostalCode()))
                                             )
                                 );
         } catch (CityNotFoundException e) {
@@ -84,10 +85,10 @@ public class AddressController
                                     (
                                     id,
                                     new AddressDTO()
-                                        .setStreetName(addressRequest.getStreetName())
-                                        .setPostalCode(addressRequest.getPostalCode())
+                                        .setStreetName(this.sanitize(addressRequest.getStreetName()))
+                                        .setPostalCode(this.sanitize(addressRequest.getPostalCode()))
                                         .setCityId(addressRequest.getCityId())
-                                        .setNumber(addressRequest.getNumber())
+                                        .setNumber(this.sanitize(addressRequest.getNumber()))
                                     )
                         );
         } catch (AddressNotFoundException e) {

@@ -18,7 +18,7 @@ import javax.validation.Valid;
 
 @RestController
 @Validated
-public class PhoneNumberController
+public class PhoneNumberController extends BaseController
 {
 
     @Autowired
@@ -57,8 +57,8 @@ public class PhoneNumberController
                             this.phoneNumberService.store
                                 (
                                     new PhoneNumberDTO()
-                                            .setContactInfo(phoneNumberRequest.getContactInfo())
-                                            .setNumber(phoneNumberRequest.getPhoneNumber())
+                                            .setContactInfo(this.sanitize(phoneNumberRequest.getContactInfo()))
+                                            .setNumber(this.sanitize(phoneNumberRequest.getPhoneNumber()))
                                 )
 
                         );
@@ -85,8 +85,8 @@ public class PhoneNumberController
                                     (
                                         id,
                                         new PhoneNumberDTO()
-                                                .setContactInfo(phoneNumberRequest.getContactInfo())
-                                                .setNumber(phoneNumberRequest.getPhoneNumber())
+                                                .setContactInfo(this.sanitize(phoneNumberRequest.getContactInfo()))
+                                                .setNumber(this.sanitize(phoneNumberRequest.getPhoneNumber()))
                                     )
                         );
         } catch (PhoneNumberNotFoundException e) {
