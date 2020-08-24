@@ -36,11 +36,32 @@ public class UniversityInformationServiceImpl implements UniversityInformationSe
     }
 
     @Override
+    public String updateAbout(String about) throws UniversityInformationNotFoundException
+    {
+        UniversityInformation universityInformation = this.universityInformationRepository.findByUniversityId(1L).orElseThrow(() -> new UniversityInformationNotFoundException(String.format("University information with university id: %s not found", 1L)));
+
+        universityInformation.setAbout(about);
+        this.universityInformationRepository.save(universityInformation);
+        return "University About has been updated.";
+
+    }
+
+    @Override
     public String history() throws UniversityInformationNotFoundException
     {
         UniversityInformation universityInformation = this.universityInformationRepository.findByUniversityId(1L).orElseThrow(() -> new UniversityInformationNotFoundException(String.format("University information with university id: %s not found", 1L)));
 
         return universityInformation.getHistory();
+    }
+
+    @Override
+    public String updateHistory(String history) throws UniversityInformationNotFoundException
+    {
+        UniversityInformation universityInformation = this.universityInformationRepository.findByUniversityId(1L).orElseThrow(() -> new UniversityInformationNotFoundException(String.format("University information with university id: %s not found", 1L)));
+
+        universityInformation.setHistory(history);
+        this.universityInformationRepository.save(universityInformation);
+        return "University History has been updated.";
     }
 
     @Override
@@ -52,6 +73,16 @@ public class UniversityInformationServiceImpl implements UniversityInformationSe
     }
 
     @Override
+    public String updatePresident(String president) throws UniversityInformationNotFoundException
+    {
+        UniversityInformation universityInformation = this.universityInformationRepository.findByUniversityId(1L).orElseThrow(() -> new UniversityInformationNotFoundException(String.format("University information with university id: %s not found", 1L)));
+
+        universityInformation.setPresident(president);
+        this.universityInformationRepository.save(universityInformation);
+        return "University President has been updated.";
+    }
+
+    @Override
     public String teachingStaff() throws UniversityInformationNotFoundException
     {
         UniversityInformation universityInformation = this.universityInformationRepository.findByUniversityId(1L).orElseThrow(() -> new UniversityInformationNotFoundException(String.format("University information with university id: %s not found", 1L)));
@@ -60,10 +91,30 @@ public class UniversityInformationServiceImpl implements UniversityInformationSe
     }
 
     @Override
+    public String updateTeachingStaff(String teachingStaff) throws UniversityInformationNotFoundException
+    {
+        UniversityInformation universityInformation = this.universityInformationRepository.findByUniversityId(1L).orElseThrow(() -> new UniversityInformationNotFoundException(String.format("University information with university id: %s not found", 1L)));
+
+        universityInformation.setTeachingStaff(teachingStaff);
+        this.universityInformationRepository.save(universityInformation);
+        return "University Teaching Staff has been updated.";
+    }
+
+    @Override
     public String publishing() throws UniversityInformationNotFoundException
     {
         UniversityInformation universityInformation = this.universityInformationRepository.findByUniversityId(1L).orElseThrow(() -> new UniversityInformationNotFoundException(String.format("University information with university id: %s not found", 1L)));
 
         return universityInformation.getPublishing();
+    }
+
+    @Override
+    public String updatePublishing(String publishing) throws UniversityInformationNotFoundException
+    {
+        UniversityInformation universityInformation = this.universityInformationRepository.findByUniversityId(1L).orElseThrow(() -> new UniversityInformationNotFoundException(String.format("University information with university id: %s not found", 1L)));
+
+        universityInformation.setPublishing(publishing);
+        this.universityInformationRepository.save(universityInformation);
+        return "University Publishing has been updated.";
     }
 }
