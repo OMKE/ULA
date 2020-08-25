@@ -2,10 +2,12 @@ package com.ula.authentication.service.user;
 
 import com.ula.authentication.domain.model.User;
 import com.ula.authentication.dto.model.UserDTO;
-import com.ula.authentication.service.exception.*;
+import com.ula.authentication.service.exception.PasswordsDontMatchException;
+import com.ula.authentication.service.exception.UserConflictException;
+import com.ula.authentication.service.exception.UserException;
+import com.ula.authentication.service.exception.UserNotFoundException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -29,7 +31,7 @@ public interface UserService {
 
 	Optional<User> getByEmailAndPassword(String email, String password) throws UserNotFoundException;
 
-	String add(UserDTO userDTO) throws UserException, RequiredFieldException, UserConflictException;
+	String add(UserDTO userDTO) throws UserException, UserConflictException;
 
 	String updatePassword(UserDTO userDTO) throws UserException;
 
