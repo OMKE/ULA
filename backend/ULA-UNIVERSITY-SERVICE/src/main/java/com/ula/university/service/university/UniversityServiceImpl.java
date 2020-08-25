@@ -65,17 +65,4 @@ public class UniversityServiceImpl implements UniversityService
 
         return universityDTO;
     }
-
-    @Override
-    public UniversityInformationDTO information() throws UniversityInformationNotFoundException
-    {
-        UniversityInformation universityInformation = this.universityInformationRepository.findByUniversityId(1L).orElseThrow(() -> new UniversityInformationNotFoundException(String.format("University information with university id: %s not found", 1L)));
-        return new UniversityInformationDTO()
-                .setAbout(universityInformation.getAbout())
-                .setPublishing(universityInformation.getPublishing())
-                .setTeachingStaff(universityInformation.getTeachingStaff())
-                .setHistory(universityInformation.getHistory())
-                .setPresident(universityInformation.getPresident());
-    }
-
 }

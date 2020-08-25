@@ -17,11 +17,13 @@ import javax.validation.constraints.Size;
 public class LoginRequest {
 
 	@NotEmpty(message = "Username is required")
-	@Size(min = 4, max = 32, message = "Username must be at least 4 charaters long")
+	@Size(min = 4, message = "Username must be at least 4 characters long")
+	@Size(max = 32, message = "Username can not be longer than 32 characters")
 	private String username;
 
 	@NotEmpty(message = "Password is required")
-	@Size(min = 6, max = 32, message = "Password must be at least 5 characters long")
+	@Size(min = 6, message = "Password must be at least 5 characters long")
+	@Size(max = 32, message = "Password can not be longer than 32 characters")
 	private String password;
 
 }

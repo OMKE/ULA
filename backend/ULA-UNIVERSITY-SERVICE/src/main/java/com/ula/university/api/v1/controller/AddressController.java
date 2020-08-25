@@ -1,11 +1,7 @@
 package com.ula.university.api.v1.controller;
 
 import com.ula.university.api.v1.request.AddressRequest;
-import com.ula.university.core.annotation.Authorized;
-import com.ula.university.core.annotation.Token;
-import com.ula.university.core.util.JWT;
 import com.ula.university.dto.model.AddressDTO;
-import com.ula.university.dto.response.Response;
 import com.ula.university.service.address.AddressService;
 import com.ula.university.service.exception.AddressNotFoundException;
 import com.ula.university.service.exception.CityNotFoundException;
@@ -13,16 +9,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.ula.core.annotation.Authorized;
+import org.ula.core.annotation.Token;
+import org.ula.core.api.BaseController;
+import org.ula.core.api.response.Response;
+import org.ula.core.util.JWT;
 
 import javax.validation.Valid;
 
 @RestController
 @Validated
-public class AddressController
+public class AddressController extends BaseController
 {
 
     @Autowired
     private AddressService addressService;
+
 
     @GetMapping("/contact/address")
     public Response<Object> index()
@@ -55,10 +57,10 @@ public class AddressController
                                     this.addressService.store
                                             (
                                             new AddressDTO()
-                                                .setStreetName(addressRequest.getStreetName())
-                                                .setNumber(addressRequest.getNumber())
+                                                .setStreetName(this.sanitize(addressRequest.getStreetName()))
+                                                .setNumber(this.sanitize(addressRequest.getNumber()))
                                                 .setCityId(addressRequest.getCityId())
-                                                .setPostalCode(addressRequest.getPostalCode())
+                                                .setPostalCode(this.sanitize(addressRequest.getPostalCode()))
                                             )
                                 );
         } catch (CityNotFoundException e) {
@@ -84,10 +86,10 @@ public class AddressController
                                     (
                                     id,
                                     new AddressDTO()
-                                        .setStreetName(addressRequest.getStreetName())
-                                        .setPostalCode(addressRequest.getPostalCode())
+                                        .setStreetName(this.sanitize(addressRequest.getStreetName()))
+                                        .setPostalCode(this.sanitize(addressRequest.getPostalCode()))
                                         .setCityId(addressRequest.getCityId())
-                                        .setNumber(addressRequest.getNumber())
+                                        .setNumber(this.sanitize(addressRequest.getNumber()))
                                     )
                         );
         } catch (AddressNotFoundException e) {

@@ -2,7 +2,7 @@ package com.ula.authentication.mapper;
 
 import com.ula.authentication.domain.model.User;
 import com.ula.authentication.domain.model.UserPermission;
-import com.ula.authentication.dto.model.ULAUserDTO;
+import org.ula.core.domain.model.ULAUserDTO;
 
 import java.util.ArrayList;
 import java.util.Set;
