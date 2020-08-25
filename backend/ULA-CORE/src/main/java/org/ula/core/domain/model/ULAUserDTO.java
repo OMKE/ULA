@@ -1,4 +1,4 @@
-package com.ula.authentication.dto.model;
+package org.ula.core.domain.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,9 +7,9 @@ import lombok.experimental.Accessors;
 
 import java.util.ArrayList;
 
-@NoArgsConstructor
 @Getter
 @Setter
+@NoArgsConstructor
 @Accessors(chain = true)
 public class ULAUserDTO
 {

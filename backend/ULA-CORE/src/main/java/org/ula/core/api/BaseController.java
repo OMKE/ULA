@@ -1,6 +1,5 @@
-package com.ula.university.api.v1.controller;
+package org.ula.core.api;
 
-import com.ula.university.core.util.Sanitizer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
