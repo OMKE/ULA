@@ -1,14 +1,16 @@
 package com.ula.authentication.api.v1.controller;
 
 import com.ula.authentication.dto.model.UserDTO;
-import com.ula.authentication.dto.response.Response;
-import com.ula.authentication.service.exception.EmailVerificationTokenException;
 import com.ula.authentication.service.emailverification.EmailVerificationService;
+import com.ula.authentication.service.exception.EmailVerificationTokenException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.ula.core.api.response.Response;
 
 
 @RestController
@@ -19,9 +21,11 @@ public class EmailVerificationController {
 
 	@PreAuthorize("hasAuthority('USER')")
 	@GetMapping("/verifyemail")
-	public Response<Object> verify(
+	public Response<Object> verify
+	(
 			@RequestParam("token") String token,
-			Authentication authentication)
+			Authentication authentication
+	)
 	{
 		try
 		{
@@ -37,7 +41,6 @@ public class EmailVerificationController {
 	@PostMapping("/resend")
 	public Response<Object> resendToken(Authentication authentication)
 	{
-		System.out.println(authentication.getPrincipal().getClass());
 		try
 		{
 			return Response.ok()
