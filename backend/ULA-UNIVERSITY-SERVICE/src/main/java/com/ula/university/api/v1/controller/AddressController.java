@@ -1,11 +1,7 @@
 package com.ula.university.api.v1.controller;
 
 import com.ula.university.api.v1.request.AddressRequest;
-import com.ula.university.core.annotation.Authorized;
-import com.ula.university.core.annotation.Token;
-import com.ula.university.core.util.JWT;
 import com.ula.university.dto.model.AddressDTO;
-import com.ula.university.dto.response.Response;
 import com.ula.university.service.address.AddressService;
 import com.ula.university.service.exception.AddressNotFoundException;
 import com.ula.university.service.exception.CityNotFoundException;
@@ -13,6 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.ula.core.annotation.Authorized;
+import org.ula.core.annotation.Token;
+import org.ula.core.api.BaseController;
+import org.ula.core.api.response.Response;
+import org.ula.core.util.JWT;
 
 import javax.validation.Valid;
 

@@ -1,10 +1,6 @@
 package com.ula.university.api.v1.controller;
 
 import com.ula.university.api.v1.request.InformationRequest;
-import com.ula.university.core.annotation.Authorized;
-import com.ula.university.core.annotation.Token;
-import com.ula.university.core.util.JWT;
-import com.ula.university.dto.response.Response;
 import com.ula.university.service.exception.UniversityInformationNotFoundException;
 import com.ula.university.service.universityinformation.UniversityInformationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.ula.core.annotation.Authorized;
+import org.ula.core.annotation.Token;
+import org.ula.core.api.BaseController;
+import org.ula.core.api.response.Response;
+import org.ula.core.util.JWT;
 
 import javax.validation.Valid;
 
@@ -57,7 +58,6 @@ public class UniversityInformationController extends BaseController
             Errors errors
     )
     {
-
         try {
             return Response.ok().setPayload(universityInformationService.updateAbout(this.sanitize(informationRequest.getHtml())));
         } catch (UniversityInformationNotFoundException e) {

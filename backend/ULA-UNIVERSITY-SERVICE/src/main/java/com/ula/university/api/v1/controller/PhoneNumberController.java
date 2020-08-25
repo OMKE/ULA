@@ -1,11 +1,7 @@
 package com.ula.university.api.v1.controller;
 
 import com.ula.university.api.v1.request.PhoneNumberRequest;
-import com.ula.university.core.annotation.Authorized;
-import com.ula.university.core.annotation.Token;
-import com.ula.university.core.util.JWT;
 import com.ula.university.dto.model.PhoneNumberDTO;
-import com.ula.university.dto.response.Response;
 import com.ula.university.service.exception.PhoneNumberNotFoundException;
 import com.ula.university.service.exception.UniversityInformationNotFoundException;
 import com.ula.university.service.phonenumber.PhoneNumberService;
@@ -13,6 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.ula.core.annotation.Authorized;
+import org.ula.core.annotation.Token;
+import org.ula.core.api.BaseController;
+import org.ula.core.api.response.Response;
+import org.ula.core.util.JWT;
 
 import javax.validation.Valid;
 

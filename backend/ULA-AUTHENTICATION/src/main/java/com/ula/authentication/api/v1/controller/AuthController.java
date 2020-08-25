@@ -1,6 +1,5 @@
 package com.ula.authentication.api.v1.controller;
 
-import com.ula.authentication.dto.model.ULAUserDTO;
 import com.ula.authentication.dto.response.Response;
 import com.ula.authentication.service.auth.AuthService;
 import com.ula.authentication.service.exception.UserException;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.ula.core.domain.model.ULAUserDTO;
 
 @RestController
 public class AuthController
