@@ -22,6 +22,9 @@ public class StudyProgram extends BaseEntity {
 	@Column(nullable = false, columnDefinition = "VARCHAR(256)")
 	private String name;
 
+	@Column(nullable = false, columnDefinition = "TEXT")
+	private String description;
+
 	@OneToMany(mappedBy = "studyProgram")
 	private Set<YearOfStudy> yearOfStudy;
 

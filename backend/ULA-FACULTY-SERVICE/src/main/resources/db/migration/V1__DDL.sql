@@ -48,6 +48,7 @@ CREATE TABLE `study_program` (
    `deleted` tinyint(1) default '0',
    `updated_at` timestamp null default null,
    `name` varchar(256) not null ,
+   `description` text not null ,
    `faculty_id` bigint(20) not null ,
    `location_id` bigint(20) not null ,
    `degree_id` bigint(20) not null,
