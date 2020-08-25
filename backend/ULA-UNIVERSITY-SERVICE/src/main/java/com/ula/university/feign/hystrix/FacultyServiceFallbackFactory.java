@@ -1,11 +1,12 @@
 package com.ula.university.feign.hystrix;
 
-import com.ula.university.dto.response.Response;
+
 import com.ula.university.feign.FacultyFeignClient;
 import feign.hystrix.FallbackFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.ula.core.api.response.Response;
 
 import java.util.Collections;
 
