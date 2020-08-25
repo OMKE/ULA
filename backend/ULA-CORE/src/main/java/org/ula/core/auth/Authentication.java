@@ -6,6 +6,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.stereotype.Component;
 import org.ula.core.annotation.Authorized;
 import org.ula.core.domain.model.ULAUserDTO;
@@ -17,6 +18,7 @@ import org.ula.core.util.JWT;
 import java.lang.reflect.Method;
 
 @Aspect
+@EnableFeignClients("org.ula.core.feign")
 @Component
 public class Authentication
 {

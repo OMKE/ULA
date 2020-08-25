@@ -4,7 +4,7 @@
 
     <groupId>org.ula</groupId>
     <artifactId>ULA-CORE</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <packaging>jar</packaging>
 
     <name>University of Los Angeles - Core</name>
