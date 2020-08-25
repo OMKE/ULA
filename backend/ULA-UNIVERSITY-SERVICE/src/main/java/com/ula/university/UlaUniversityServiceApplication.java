@@ -10,7 +10,7 @@ import org.springframework.hateoas.config.EnableHypermediaSupport;
 
 @EnableEurekaClient
 @EnableHypermediaSupport(type = EnableHypermediaSupport.HypermediaType.COLLECTION_JSON)
-@EnableFeignClients(basePackages = {"org.ula.core.feign", "com.ula.university.feign"})
+@EnableFeignClients
 @EnableCircuitBreaker
 @ComponentScan({"com.ula.university","org.ula.core"})
 @SpringBootApplication
