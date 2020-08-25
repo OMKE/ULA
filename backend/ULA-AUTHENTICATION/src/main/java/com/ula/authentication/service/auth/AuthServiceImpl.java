@@ -1,7 +1,6 @@
 package com.ula.authentication.service.auth;
 
 import com.ula.authentication.domain.model.User;
-import com.ula.authentication.dto.model.ULAUserDTO;
 import com.ula.authentication.mapper.ULAUserMapper;
 import com.ula.authentication.service.exception.UserNotAuthorizedException;
 import com.ula.authentication.service.exception.UserNotFoundException;
@@ -11,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
+import org.ula.core.domain.model.ULAUserDTO;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
