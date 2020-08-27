@@ -24,6 +24,10 @@ spring:
       default-view-inclusion: true
 
 
+feign:
+  hystrix:
+    enabled: true
+
 auth:
   token:
     secret: github-secret
