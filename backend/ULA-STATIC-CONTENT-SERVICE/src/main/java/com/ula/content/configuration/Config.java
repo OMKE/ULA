@@ -61,6 +61,14 @@ public class Config implements WebMvcConfigurer
         arrayHttpMessageConverter.setSupportedMediaTypes(getSupportedMediaTypes());
         return arrayHttpMessageConverter;
     }
+
+    @Bean
+    public StorageUtil getStorageUtilBean()
+    {
+        return new StorageUtil();
+    }
+
+
     private List<MediaType> getSupportedMediaTypes() {
         List<MediaType> list = new ArrayList<MediaType>();
         list.add(MediaType.IMAGE_JPEG);
