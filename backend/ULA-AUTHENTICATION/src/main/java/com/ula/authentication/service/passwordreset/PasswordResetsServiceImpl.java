@@ -114,7 +114,7 @@ public class PasswordResetsServiceImpl implements PasswordResetsService
 			user = userService.getByEmail(passwordReset.getEmail());
 			userService
 					.updatePassword(
-							new UserDTO().setPassword(newPassword).setId(user.get().getId()));
+							new UserDTO().setPassword(newPassword).setUsername(user.get().getUsername()));
 			return true;
 			
 		} catch (UserNotFoundException | UserException e)

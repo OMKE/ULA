@@ -27,114 +27,114 @@ INSERT INTO study_program_location (id, name) VALUES (3, 'South Campus');
 
 
 
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Production Engineering', 1, 1, 1, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Computer Science', 1, 1, 1, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Biomedical Engineering', 1, 1, 1, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Mechatronics', 1, 1, 1, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Industrial Engineering', 1, 1, 1, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Graphic Engineering and Design', 1, 1, 1, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Computing and Control Engineering', 1, 1, 1, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Architecture', 1, 1, 1, NOW());
+INSERT INTO study_program (name, description, degree_id, faculty_id, location_id, created_at) VALUES ('Production Engineering', 'Description about Production Engineering',1, 1, 1, NOW());
+INSERT INTO study_program (name, description, degree_id, faculty_id, location_id, created_at) VALUES ('Computer Science', 'Description about Computer Science',1, 1, 1, NOW());
+INSERT INTO study_program (name, description, degree_id, faculty_id, location_id, created_at) VALUES ('Biomedical Engineering', 'Description about Biomedical Engineering',1, 1, 1, NOW());
+INSERT INTO study_program (name, description, degree_id, faculty_id, location_id, created_at) VALUES ('Mechatronics', 'Description about Mechatronics',1, 1, 1, NOW());
+INSERT INTO study_program (name, description, degree_id, faculty_id, location_id, created_at) VALUES ('Industrial Engineering',  'Description about Industrial Engineering',1, 1, 1, NOW());
+INSERT INTO study_program (name, description, degree_id, faculty_id, location_id, created_at) VALUES ('Graphic Engineering and Design', 'Description about Graphic Engnineering and Design', 1, 1, 1,NOW());
+INSERT INTO study_program (name, description, degree_id, faculty_id, location_id, created_at) VALUES ('Computing and Control Engineering',  'Description about Computing and Control Engineering',1, 1, 1, NOW());
+INSERT INTO study_program (name, description, degree_id, faculty_id, location_id, created_at) VALUES ('Architecture',  'Description about Architecture',1, 1, 1, NOW());
 
 
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Production Engineering', 2, 1, 1, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Civil Engineering', 2, 1, 1, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Architecture', 2, 1, 1, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Computer Science', 2, 1, 1, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Graphic Engineering and Design', 2, 1, 1, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Biomedical Engineering', 2, 1, 1, NOW());
+INSERT INTO study_program (name, description, degree_id, faculty_id, location_id, created_at) VALUES ('Production Engineering', 'Description about Production Engineering',2, 1, 1, NOW());
+INSERT INTO study_program (name, description, degree_id, faculty_id, location_id, created_at) VALUES ('Civil Engineering', 'Description about Civil Engineering',2, 1, 1, NOW());
+INSERT INTO study_program (name, description, degree_id, faculty_id, location_id, created_at) VALUES ('Architecture', 'Description about Architecture',2, 1, 1, NOW());
+INSERT INTO study_program (name, description, degree_id, faculty_id, location_id, created_at) VALUES ('Computer Science', 'Description about Computer Science',2, 1, 1, NOW());
+INSERT INTO study_program (name, description, degree_id, faculty_id, location_id, created_at) VALUES ('Graphic Engineering and Design', 'Description about Graphic Engineering and Design',2, 1, 1, NOW());
+INSERT INTO study_program (name, description, degree_id, faculty_id, location_id, created_at) VALUES ('Biomedical Engineering', 'Description about Biomedical Engineering',2, 1, 1, NOW());
 
 
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Architecture', 3, 1, 1, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Mechatronics', 3, 1, 1, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Computing and Control Engineering', 3, 1, 1, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Traffic Engineering', 3, 1, 1, NOW());
-
-
-
-
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Pedagogy', 1, 2, 2, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Psychology', 1, 2, 2, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Sociology', 1, 2, 2, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Philosophy', 1, 2, 2, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Journalism', 1, 2, 2, NOW());
-
-
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('History', 2, 2, 2, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Pedagogy', 2, 2, 2, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Psychology', 2, 2, 2, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Sociology', 2, 2, 2, NOW());
-
-
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('General Legal Studies', 1, 3, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Criminal Justice Studies', 1, 3, 3, NOW());
-
-
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('General Legal Studies', 2, 3, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Criminal Justice Studies', 2, 3, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('National Security', 2, 3, 3, NOW());
-
-
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Public Law', 3, 3, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Private Law', 3, 3, 3, NOW());
+INSERT INTO study_program (name, description, degree_id, faculty_id, location_id, created_at) VALUES ('Architecture', 'Description about Architecture',3, 1, 1, NOW());
+INSERT INTO study_program (name, description, degree_id, faculty_id, location_id, created_at) VALUES ('Mechatronics', 'Description about Mechatronics',3, 1, 1, NOW());
+INSERT INTO study_program (name, description, degree_id, faculty_id, location_id, created_at) VALUES ('Computing and Control Engineering', 'Description about Computing and Control Engineering',3, 1, 1, NOW());
+INSERT INTO study_program (name, description, degree_id, faculty_id, location_id, created_at) VALUES ('Traffic Engineering', 'Description about Traffic Engineering',3, 1, 1, NOW());
 
 
 
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Finance, Banking and Insurance', 1, 4, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Management', 1, 4, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Accounting and Auditing', 1, 4, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Trade', 1, 4, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Business Informatics', 1, 4, 3, NOW());
+
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Pedagogy','Description about Pedagogy', 1, 2, 2, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Psychology','Description about Psychology', 1, 2, 2, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Sociology','Description about Sociology', 1, 2, 2, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Philosophy','Description about Philosophy', 1, 2, 2, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Journalism','Description about Journalism', 1, 2, 2, NOW());
 
 
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Finance, Banking and Insurance', 2, 4, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Management', 2, 4, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Business Information Systems', 2, 4, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Accounting and Auditing', 2, 4, 3, NOW());
-
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Economy', 3, 4, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Business Economics and Management', 3, 4, 3, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('History','Description about History', 2, 2, 2, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Pedagogy','Description about Pedagogy', 2, 2, 2, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Psychology','Description about Psychology', 2, 2, 2, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Sociology','Description about Sociology', 2, 2, 2, NOW());
 
 
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Nursing', 1, 5, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Medical Rehabilitation', 1, 5, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Special Education and Rehabilitation', 1, 5, 3, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('General Legal Studies','Description about General Legal Studies', 1, 3, 3, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Criminal Justice Studies','Description about Criminal Justice Studies', 1, 3, 3, NOW());
 
 
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Nursing', 2, 5, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Special Education and Rehabilitation', 2, 5, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Medical Rehabilitation', 2, 5, 3, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('General Legal Studies','Description about General Legal Studies', 2, 3, 3, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Criminal Justice Studies','Description about Criminal Justice Studies', 2, 3, 3, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('National Security','Description about National Security', 2, 3, 3, NOW());
 
 
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Molecular Medicine', 3, 5, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Clinical Medicine', 3, 5, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Public Health', 3, 5, 3, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Public Law','Description about Public Law', 3, 3, 3, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Private Law','Description about Private Law', 3, 3, 3, NOW());
 
 
 
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Composition', 1, 6, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Musicology', 1, 6, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Ethnomusicology', 1, 6, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Music Pedagogy', 1, 6, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Acting', 1, 6, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Мusic Production', 1, 6, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Fine Arts', 1, 6, 3, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Finance, Banking and Insurance','Description about Finance, Banking and Insurance', 1, 4, 3, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Management','Description about Management', 1, 4, 3, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Accounting and Auditing','Description about Accounting and Auditing', 1, 4, 3, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Trade','Description about Trade', 1, 4, 3, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Business Informatics','Description about Business Informatics', 1, 4, 3, NOW());
 
 
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Composition', 2, 6, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Musicology', 2, 6, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Ethnomusicology', 2, 6, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Acting', 2, 6, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Мusic Production', 2, 6, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Fine Arts', 2, 6, 3, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Finance, Banking and Insurance','Description about Finance, Banking and Insurance', 2, 4, 3, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Management','Description about Management', 2, 4, 3, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Business Information Systems','Description about Business Information Systems', 2, 4, 3, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Accounting and Auditing','Description about Accounting and Auditing', 2, 4, 3, NOW());
+
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Economy','Description about Economy', 3, 4, 3, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Business Economics and Management', 'Description about Business Economics and Management',3, 4, 3, NOW());
 
 
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Composition', 3, 6, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Musicology', 3, 6, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Ethnomusicology', 3, 6, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Acting', 3, 6, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Мusic Production', 3, 6, 3, NOW());
-INSERT INTO study_program (name, degree_id, faculty_id, location_id, created_at) VALUES ('Fine Arts', 3, 6, 3, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Nursing', 'Description about Nursing',1, 5, 3, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Medical Rehabilitation', 'Description about Medical Rehabilitation',1, 5, 3, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Special Education and Rehabilitation', 'Description about Special Education and Rehabilitation',1, 5, 3, NOW());
+
+
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Nursing', 'Description about Nursing',2, 5, 3, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Special Education and Rehabilitation', 'Description about Special Education and Rehabilitation',2, 5, 3, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Medical Rehabilitation', 'Description about ',2, 5, 3, NOW());
+
+
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Molecular Medicine', 'Description about Molecular Medicine',3, 5, 3, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Clinical Medicine', 'Description about Clinical Medicine',3, 5, 3, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Public Health', 'Description about Public Health',3, 5, 3, NOW());
+
+
+
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Composition', 'Description about Composition',1, 6, 3, NOW());
+INSERT INTO study_program (name,description, degree_id, faculty_id, location_id, created_at) VALUES ('Musicology', 'Description about Musicology',1, 6, 3, NOW());
+INSERT INTO study_program (name, description,degree_id, faculty_id, location_id, created_at) VALUES ('Ethnomusicology', 'Description about Ethnomusicology',1, 6, 3, NOW());
+INSERT INTO study_program (name, description,degree_id, faculty_id, location_id, created_at) VALUES ('Music Pedagogy', 'Description about Music Pedagogy',1, 6, 3, NOW());
+INSERT INTO study_program (name, description,degree_id, faculty_id, location_id, created_at) VALUES ('Acting', 'Description about Acting',1, 6, 3, NOW());
+INSERT INTO study_program (name, description,degree_id, faculty_id, location_id, created_at) VALUES ('Мusic Production', 'Description about Мusic Production',1, 6, 3, NOW());
+INSERT INTO study_program (name, description,degree_id, faculty_id, location_id, created_at) VALUES ('Fine Arts', 'Description about Fine Arts',1, 6, 3, NOW());
+
+
+INSERT INTO study_program (name, description,degree_id, faculty_id, location_id, created_at) VALUES ('Composition', 'Description about Composition',2, 6, 3, NOW());
+INSERT INTO study_program (name, description,degree_id, faculty_id, location_id, created_at) VALUES ('Musicology', 'Description about Musicology',2, 6, 3, NOW());
+INSERT INTO study_program (name, description,degree_id, faculty_id, location_id, created_at) VALUES ('Ethnomusicology', 'Description about Ethnomusicology',2, 6, 3, NOW());
+INSERT INTO study_program (name, description,degree_id, faculty_id, location_id, created_at) VALUES ('Acting', 'Description about Acting',2, 6, 3, NOW());
+INSERT INTO study_program (name, description,degree_id, faculty_id, location_id, created_at) VALUES ('Мusic Production', 'Description about Мusic Production',2, 6, 3, NOW());
+INSERT INTO study_program (name, description,degree_id, faculty_id, location_id, created_at) VALUES ('Fine Arts', 'Description about Fine Arts',2, 6, 3, NOW());
+
+
+INSERT INTO study_program (name, description,degree_id, faculty_id, location_id, created_at) VALUES ('Composition', 'Description about Composition',3, 6, 3, NOW());
+INSERT INTO study_program (name, description,degree_id, faculty_id, location_id, created_at) VALUES ('Musicology', 'Description about Musicology',3, 6, 3, NOW());
+INSERT INTO study_program (name, description,degree_id, faculty_id, location_id, created_at) VALUES ('Ethnomusicology', 'Description about Ethnomusicology',3, 6, 3, NOW());
+INSERT INTO study_program (name, description,degree_id, faculty_id, location_id, created_at) VALUES ('Acting', 'Description about Acting',3, 6, 3, NOW());
+INSERT INTO study_program (name, description,degree_id, faculty_id, location_id, created_at) VALUES ('Мusic Production', 'Description about Мusic Production',3, 6, 3, NOW());
+INSERT INTO study_program (name, description,degree_id, faculty_id, location_id, created_at) VALUES ('Fine Arts', 'Description about Fine Arts',3, 6, 3, NOW());
 
 # Production Engineering years
 INSERT INTO year_of_study (id,year, ordinal_number, study_program_id, created_at) VALUES (1,'2020-11-01', 1, 2, NOW());

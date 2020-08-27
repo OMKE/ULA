@@ -5,11 +5,10 @@ import com.ula.authentication.domain.model.UserPermission;
 import com.ula.authentication.domain.repository.PermissionRepository;
 import com.ula.authentication.domain.repository.UserRepository;
 import com.ula.authentication.dto.model.UserDTO;
+import com.ula.authentication.feign.StaticContentServiceFeignClient;
+import com.ula.authentication.service.auth.AuthService;
 import com.ula.authentication.service.emailverification.EmailVerificationService;
-import com.ula.authentication.service.exception.PasswordsDontMatchException;
-import com.ula.authentication.service.exception.UserConflictException;
-import com.ula.authentication.service.exception.UserException;
-import com.ula.authentication.service.exception.UserNotFoundException;
+import com.ula.authentication.service.exception.*;
 import com.ula.authentication.util.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,8 +20,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.ula.core.api.response.Response;
 
 import javax.transaction.Transactional;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,6 +55,13 @@ public class UserServiceImpl implements UserService
 
 	@Autowired
 	private EmailVerificationService emailVerificationService;
+
+
+	@Autowired
+	private StaticContentServiceFeignClient staticContentServiceFeignClient;
+
+	@Autowired
+	private AuthService authService;
 
 	@Override
 	public HashMap<String, String> login(UserDTO userDTO)
@@ -144,6 +153,16 @@ public class UserServiceImpl implements UserService
 			}
 
 		}
+	}
+
+	@Override
+	public String update(UserDTO userDTO) throws UserNotFoundException
+	{
+		User user = this.getByUsername(userDTO.getUsername()).get();
+		user.setFirstName(userDTO.getFirstName())
+			.setLastName(userDTO.getLastName());
+		this.userRepository.save(user);
+		return "User has been updated";
 	}
 
 	@Override
@@ -259,20 +278,14 @@ public class UserServiceImpl implements UserService
 	@Override
 	public String updatePassword(UserDTO userDTO) throws UserException
 	{
-		Optional<User> user;
-		try
-		{
-			user = this.getById(userDTO.getId());
-			user.get().setPassword(userDTO.getPassword());
-
-			userRepository.save(user.get());
-			return "Password changed successfully";
-			
-		} catch (UserNotFoundException e)
-		{
+		try {
+			User user = this.getByUsername(userDTO.getUsername()).get();
+			user.setPassword(userDTO.getPassword());
+			userRepository.save(user);
+			return "Password has been changed";
+		} catch (UserNotFoundException e) {
 			throw new UserException(e.getMessage());
 		}
-
 	}
 
 	@Transactional
@@ -315,6 +328,18 @@ public class UserServiceImpl implements UserService
 	}
 
 	@Override
+	public boolean checkForOldPassword(String username, String oldPassword) throws UserNotFoundException, WrongOldPasswordException
+	{
+		User user = this.getByUsername(username).get();
+		if(this.passwordEncoder.matches(oldPassword, user.getPassword()))
+		{
+			return true;
+		} else {
+			throw new WrongOldPasswordException("Wrong old password");
+		}
+	}
+
+	@Override
 	public void checkTermsAndConditions(String value) throws UserException
 	{
 		if (!value.equals("true") && !value.equals("false"))
@@ -326,5 +351,46 @@ public class UserServiceImpl implements UserService
 		}
 
 	}
+
+	@Override
+	public String storeProfileImage(String username, String token, MultipartFile image) throws IOException, UserNotFoundException
+	{
+		User user = this.getByUsername(username).get();
+
+		String fileName = (String) this.staticContentServiceFeignClient.addProfileImage(token, image).getPayload();
+
+		user.setProfileImage("users/" + fileName);
+		this.userRepository.save(user);
+
+		return "User photo has been stored";
+	}
+
+	@Override
+	public String deleteProfileImage(String username, String token) throws UserNotFoundException, ProfileImageNotFoundException
+	{
+		User user = this.getByUsername(username).get();
+		String oldImage = "";
+		if(!user.getProfileImage().equals("user-icon.png") || !user.getProfileImage().equals("admin-icon.png"))
+		{
+			oldImage = user.getProfileImage();
+			Response response = this.staticContentServiceFeignClient.deleteProfileImage(token, username, Response.ok().setPayload(oldImage));
+			if(response.getPayload() != null)
+			{
+				if(authService.isAdmin(user.getUsername())){
+					user.setProfileImage("admin-icon.png");
+				} else {
+					user.setProfileImage("user-icon.png");
+				}
+				userRepository.save(user);
+				String message = (String) response.getPayload();
+				return message;
+			} else {
+				throw new ProfileImageNotFoundException(response.getErrors().toString());
+			}
+		} else {
+			throw new ProfileImageNotFoundException("You don't have a profile image to delete");
+		}
+	}
+
 
 }

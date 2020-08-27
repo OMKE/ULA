@@ -19,6 +19,7 @@ public class StudyProgramMapper
     {
         return new StudyProgramDTO()
                     .setName(studyProgram.getName())
+                    .setDescription(studyProgram.getDescription())
                     .setLocation
                             (
                             new StudyProgramLocationDTO().setName(studyProgram.getLocation().getName())

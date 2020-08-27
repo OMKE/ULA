@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.ula.core.domain.model.ULAUserDTO;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 
 @Service
@@ -71,5 +72,16 @@ public class AuthServiceImpl implements AuthService
             throw new UserNotAuthorizedException("User is not authorized for given action");
         }
 
+    }
+
+    @Override
+    public boolean isAdmin(String username)
+    {
+        try {
+            User user = this.verifyRoles(username, new ArrayList<>(Arrays.asList("ADMIN")));
+            return user != null;
+        } catch (UserNotFoundException | UserNotAuthorizedException e) {
+            return false;
+        }
     }
 }
