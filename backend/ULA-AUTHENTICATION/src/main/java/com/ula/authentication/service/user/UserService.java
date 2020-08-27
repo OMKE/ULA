@@ -32,6 +32,7 @@ public interface UserService {
 	Optional<User> getByEmailAndPassword(String email, String password) throws UserNotFoundException;
 
 	String add(UserDTO userDTO) throws UserException, UserConflictException;
+	String update(UserDTO userDTO) throws UserNotFoundException;
 
 	String updatePassword(UserDTO userDTO) throws UserException;
 
