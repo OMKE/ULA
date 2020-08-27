@@ -49,6 +49,8 @@ public interface UserService {
 	void checkForPasswords(String password, String confirmPassword)
 			throws PasswordsDontMatchException;
 
+	boolean checkForOldPassword(String username, String oldPassword) throws UserNotFoundException, WrongOldPasswordException;
+
 	void checkTermsAndConditions(String value) throws UserException;
 
 	/*
