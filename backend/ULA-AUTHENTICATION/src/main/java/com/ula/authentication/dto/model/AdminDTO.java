@@ -4,21 +4,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.ula.core.domain.model.UserDTO;
 
 @Getter
 @Setter
 @Accessors(chain = true)
 @NoArgsConstructor
-public class UserDTO
+public class AdminDTO
 {
     private Long id;
-    private String username;
-    private String password;
-    private String email;
-    private String profileImage;
-    private String firstName;
-    private String lastName;
-    private String termsAndConditions;
-
-
+    private UserDTO user;
 }

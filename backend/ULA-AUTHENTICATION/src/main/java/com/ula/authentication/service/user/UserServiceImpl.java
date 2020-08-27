@@ -4,7 +4,6 @@ import com.ula.authentication.domain.model.User;
 import com.ula.authentication.domain.model.UserPermission;
 import com.ula.authentication.domain.repository.PermissionRepository;
 import com.ula.authentication.domain.repository.UserRepository;
-import com.ula.authentication.dto.model.UserDTO;
 import com.ula.authentication.feign.StaticContentServiceFeignClient;
 import com.ula.authentication.service.auth.AuthService;
 import com.ula.authentication.service.emailverification.EmailVerificationService;
@@ -22,6 +21,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.ula.core.api.response.Response;
+import org.ula.core.domain.model.UserDTO;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
@@ -90,11 +90,7 @@ public class UserServiceImpl implements UserService
 
 
 			return data;
-		} catch (InternalAuthenticationServiceException e)
-		{
-			throw new UserException(
-					"The username and password you entered do not match our records. Check them out and try again");
-		} catch (UsernameNotFoundException e)
+		} catch (InternalAuthenticationServiceException | UsernameNotFoundException e)
 		{
 			throw new UserException(
 					"The username and password you entered do not match our records. Check them out and try again");
@@ -140,7 +136,7 @@ public class UserServiceImpl implements UserService
 				User user = new User().setUsername(userDTO.getUsername())
 						.setPassword(userDTO.getPassword()).setEmail(userDTO.getEmail())
 						.setFirstName(userDTO.getFirstName()).setLastName(userDTO.getLastName())
-						.setProfileImage("user-icon.png");
+						.setProfileImage("users/user-icon.png");
 
 				user = userRepository.save(user);
 				user.setUserPermissions(new HashSet<>());

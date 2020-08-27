@@ -1,10 +1,10 @@
 package com.ula.authentication.service.user;
 
 import com.ula.authentication.domain.model.User;
-import com.ula.authentication.dto.model.UserDTO;
 import com.ula.authentication.service.exception.*;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.multipart.MultipartFile;
+import org.ula.core.domain.model.UserDTO;
 
 import java.io.IOException;
 import java.util.HashMap;

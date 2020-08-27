@@ -1,10 +1,11 @@
-package com.ula.authentication.domain.repository;
+package org.ula.core.domain.repository;
 
-import com.ula.authentication.domain.model.BaseEntity;
+
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.transaction.annotation.Transactional;
+import org.ula.core.domain.model.BaseEntity;
 
 import java.io.Serializable;
 import java.util.List;

@@ -1,6 +1,5 @@
 package com.ula.authentication.api.v1.controller;
 
-import com.ula.authentication.dto.model.UserDTO;
 import com.ula.authentication.service.emailverification.EmailVerificationService;
 import com.ula.authentication.service.exception.EmailVerificationTokenException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.ula.core.api.response.Response;
+import org.ula.core.domain.model.UserDTO;
 
 
 @RestController

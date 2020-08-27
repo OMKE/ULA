@@ -66,8 +66,12 @@ public class UserDetailsServiceImplementation implements UserDetailsService {
 			ArrayList<GrantedAuthority> grantedAuthorities = new ArrayList<>();
 			for (UserPermission userPermission : user.get().getUserPermissions())
 			{
-				grantedAuthorities
-						.add(new SimpleGrantedAuthority(userPermission.getPermission().getTitle()));
+				// Add only if user permission is not deleted
+				if(!userPermission.isDeleted())
+				{
+					grantedAuthorities
+							.add(new SimpleGrantedAuthority(userPermission.getPermission().getTitle()));
+				}
 			}
 			return new org.springframework.security.core.userdetails.User(user.get().getUsername(),
 					user.get().getPassword(), grantedAuthorities);

@@ -2,7 +2,6 @@ package com.ula.authentication.api.v1.controller;
 
 import com.ula.authentication.api.v1.request.UpdateUserFirstAndLastNameRequest;
 import com.ula.authentication.api.v1.request.UpdateUserPasswordRequest;
-import com.ula.authentication.dto.model.UserDTO;
 import com.ula.authentication.service.exception.*;
 import com.ula.authentication.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.ula.core.api.BaseController;
 import org.ula.core.api.response.Response;
+import org.ula.core.domain.model.UserDTO;
 
 import javax.validation.Valid;
 import java.io.IOException;

@@ -3,6 +3,7 @@ package com.ula.authentication.domain.model;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.ula.core.domain.model.BaseEntity;
 
 import javax.persistence.*;
 import java.util.Date;

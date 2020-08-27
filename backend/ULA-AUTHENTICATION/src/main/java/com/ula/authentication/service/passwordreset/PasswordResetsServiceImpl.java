@@ -5,13 +5,13 @@ import com.ula.authentication.domain.model.PasswordResets;
 import com.ula.authentication.domain.model.User;
 import com.ula.authentication.domain.repository.PasswordResetsRepository;
 import com.ula.authentication.dto.model.PasswordResetsDTO;
-import com.ula.authentication.dto.model.UserDTO;
 import com.ula.authentication.service.exception.*;
 import com.ula.authentication.service.user.UserServiceImpl;
 import com.ula.authentication.util.RandomTokenGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.ula.core.domain.model.UserDTO;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;

@@ -3,8 +3,8 @@ package com.ula.authentication.service.emailverification;
 
 import com.ula.authentication.domain.model.EmailVerificationToken;
 import com.ula.authentication.domain.model.User;
-import com.ula.authentication.dto.model.UserDTO;
 import com.ula.authentication.service.exception.EmailVerificationTokenException;
+import org.ula.core.domain.model.UserDTO;
 
 public interface EmailVerificationService
 {
