@@ -1,0 +1,22 @@
+
+server:
+  port: 8100
+spring:
+  application:
+    name: ula-static-content-service
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+content:
+  path: path/to/the/storage/location
+  folders: users, gallery, events, assets, assets/img, assets/css, assets/js, files
+
+
+feign:
+  hystrix:
+    enabled: true
+
+
+
