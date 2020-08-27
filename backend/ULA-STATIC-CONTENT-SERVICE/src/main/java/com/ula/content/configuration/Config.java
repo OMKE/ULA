@@ -19,6 +19,7 @@ import org.ula.core.resolver.TokenResolver;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Configuration
 @EnableWebMvc
 public class Config implements WebMvcConfigurer
@@ -29,6 +30,7 @@ public class Config implements WebMvcConfigurer
     {
         resolvers.add(new TokenResolver());
     }
+
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters)
     {
