@@ -2,12 +2,11 @@ package com.ula.authentication.service.user;
 
 import com.ula.authentication.domain.model.User;
 import com.ula.authentication.dto.model.UserDTO;
-import com.ula.authentication.service.exception.PasswordsDontMatchException;
-import com.ula.authentication.service.exception.UserConflictException;
-import com.ula.authentication.service.exception.UserException;
-import com.ula.authentication.service.exception.UserNotFoundException;
+import com.ula.authentication.service.exception.*;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;

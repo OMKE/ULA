@@ -1,3 +1,5 @@
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @PreAuthorize("hasAuthority('USER')")
     @PutMapping("/me")
     public Response<Object> updateFirstAndLastName

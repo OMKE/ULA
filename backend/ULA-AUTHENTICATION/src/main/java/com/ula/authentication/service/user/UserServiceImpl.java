@@ -147,6 +147,16 @@ public class UserServiceImpl implements UserService
 	}
 
 	@Override
+	public String update(UserDTO userDTO) throws UserNotFoundException
+	{
+		User user = this.getByUsername(userDTO.getUsername()).get();
+		user.setFirstName(userDTO.getFirstName())
+			.setLastName(userDTO.getLastName());
+		this.userRepository.save(user);
+		return "User has been updated";
+	}
+
+	@Override
 	public Optional<User> getByUsername(String username) throws UserNotFoundException
 	{
 		
@@ -259,20 +269,14 @@ public class UserServiceImpl implements UserService
 	@Override
 	public String updatePassword(UserDTO userDTO) throws UserException
 	{
-		Optional<User> user;
-		try
-		{
-			user = this.getById(userDTO.getId());
-			user.get().setPassword(userDTO.getPassword());
-
-			userRepository.save(user.get());
-			return "Password changed successfully";
-			
-		} catch (UserNotFoundException e)
-		{
+		try {
+			User user = this.getByUsername(userDTO.getUsername()).get();
+			user.setPassword(userDTO.getPassword());
+			userRepository.save(user);
+			return "Password has been changed";
+		} catch (UserNotFoundException e) {
 			throw new UserException(e.getMessage());
 		}
-
 	}
 
 	@Transactional
@@ -311,6 +315,18 @@ public class UserServiceImpl implements UserService
 		if (!password.equals(confirmPassword))
 		{
 			throw new PasswordsDontMatchException("Passwords don't match");
+		}
+	}
+
+	@Override
+	public boolean checkForOldPassword(String username, String oldPassword) throws UserNotFoundException, WrongOldPasswordException
+	{
+		User user = this.getByUsername(username).get();
+		if(this.passwordEncoder.matches(oldPassword, user.getPassword()))
+		{
+			return true;
+		} else {
+			throw new WrongOldPasswordException("Wrong old password");
 		}
 	}
 
