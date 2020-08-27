@@ -2,7 +2,6 @@ package com.ula.authentication.api.v1.controller;
 
 
 import com.ula.authentication.api.v1.request.RegisterRequest;
-import com.ula.authentication.dto.model.UserDTO;
 import com.ula.authentication.service.exception.PasswordsDontMatchException;
 import com.ula.authentication.service.exception.UserConflictException;
 import com.ula.authentication.service.exception.UserException;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.ula.core.api.BaseController;
 import org.ula.core.api.response.Response;
+import org.ula.core.domain.model.UserDTO;
 
 import javax.validation.Valid;
 
