@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.ula.core.domain.model.BaseEntity;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -13,7 +14,8 @@ import java.util.Date;
 @NoArgsConstructor
 @Accessors(chain = true)
 @Entity
-public class Student extends BaseEntity {
+public class Student extends BaseEntity
+{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

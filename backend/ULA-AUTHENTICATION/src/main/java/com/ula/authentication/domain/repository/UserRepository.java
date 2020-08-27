@@ -1,6 +1,9 @@
 package com.ula.authentication.domain.repository;
 
 import com.ula.authentication.domain.model.User;
+import org.springframework.stereotype.Repository;
+import org.ula.core.domain.repository.CrudRepository;
+
 import java.util.Optional;
 
 

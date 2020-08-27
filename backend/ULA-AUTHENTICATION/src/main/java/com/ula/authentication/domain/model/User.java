@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.ula.core.domain.model.BaseEntity;
 
 import javax.persistence.*;
 import java.util.Set;

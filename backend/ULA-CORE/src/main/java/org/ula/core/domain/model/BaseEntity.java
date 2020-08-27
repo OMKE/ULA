@@ -1,4 +1,4 @@
-package com.ula.authentication.domain.model;
+package org.ula.core.domain.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
