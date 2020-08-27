@@ -52,6 +52,9 @@ public interface UserService {
 
 	void checkTermsAndConditions(String value) throws UserException;
 
+	String storeProfileImage(String username, String token,MultipartFile file) throws IOException, UserNotFoundException;
+	String deleteProfileImage(String username, String token) throws UserNotFoundException, ProfileImageNotFoundException;
+
 	/*
 	 * @TODO - force delete
 	 */
