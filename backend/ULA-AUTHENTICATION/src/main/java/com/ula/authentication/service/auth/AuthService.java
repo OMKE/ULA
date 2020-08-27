@@ -11,4 +11,5 @@ public interface AuthService
 {
     ULAUserDTO getUser(String username, ArrayList<String> roles);
     User verifyRoles(String username, ArrayList<String> roles) throws UserNotAuthorizedException, UserNotFoundException;
+    boolean isAdmin(String username);
 }
