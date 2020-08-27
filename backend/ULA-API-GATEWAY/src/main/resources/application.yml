@@ -1,6 +1,10 @@
 spring:
   application:
     name: ula-api-gateway
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
 server:
   port: 8080
 zuul:
@@ -10,10 +14,10 @@ zuul:
   sensitive-headers:
     - Authorization,Cookie,Set-Cookie
   routes:
-    ula-auth-service: /auth/**
-    ula-university-service: /university/**
-    ula-faculty-service: /faculty/**
+    ula-auth-service: /api/v1/auth/**
+    ula-university-service: /api/v1/university/**
+    ula-faculty-service: /api/v1/faculty/**
+    ula-static-content-service: /storage/**
   host:
     connect-timeout-millis: 60000
-  prefix: /api/v1
 
