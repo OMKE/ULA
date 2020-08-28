@@ -20,6 +20,7 @@ CREATE TABLE `faculty_information` (
    `updated_at` timestamp null default null,
    `faculty_id` bigint(20) not null ,
    `address_id` bigint(20) not null comment 'Database: ula_university; Table:address Column: id; No constraint',
+   `location_id` bigint(20) not null comment 'Database: ula_university; Table:location Column: id; No constraint',
    `history` text not null,
    `president` text not null,
    `mission` text not null,
