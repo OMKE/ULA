@@ -12,9 +12,10 @@ import java.util.Date;
 @Setter
 @Accessors(chain = true)
 @NoArgsConstructor
-public class AdminDTO
+public class TeacherDTO
 {
     private Long id;
+    private String biography;
     private UserDTO user;
     private boolean deleted;
     private Date createdAt;

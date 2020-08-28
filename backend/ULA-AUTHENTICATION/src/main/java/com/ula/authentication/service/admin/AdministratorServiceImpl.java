@@ -37,7 +37,7 @@ public class AdministratorServiceImpl implements AdministratorService
     @Override
     public List<AdminDTO> index()
     {
-        return AdministratorMapper.map(administratorRepository.findAll());
+        return AdministratorMapper.map(administratorRepository.findAllWithTrashed());
     }
 
     @Override
@@ -61,7 +61,7 @@ public class AdministratorServiceImpl implements AdministratorService
                         .anyMatch
                                 (
                                         userPermission -> userPermission
-                                                .getPermission().equals(permissionRepository.ROLE_ADMIN())
+                                                .getPermission().equals(permissionRepository.ROLE_ADMIN()) && !userPermission.isDeleted()
                                 )
         )
         {
@@ -69,7 +69,6 @@ public class AdministratorServiceImpl implements AdministratorService
         }
 
         // Add permissions to user entity
-        user.setProfileImage("users/admin-icon.png");
         user.getUserPermissions().add(new UserPermission().setUser(user).setPermission(permissionRepository.ROLE_ADMIN()));
 
         // Save user
@@ -99,7 +98,7 @@ public class AdministratorServiceImpl implements AdministratorService
 
         String adminRole = permissionRepository.ROLE_ADMIN().getTitle();
 
-        // Filters through user's permissions and looks for ROLE_ADMIN, if it's found, get's first and soft deletes by it's id
+        // Filters through user's permissions and looks for ADMIN title, if it's found, get's first and soft deletes by it's id
         userPermissionRepository.deleteById
                 (
                         user.getUserPermissions()
@@ -117,8 +116,6 @@ public class AdministratorServiceImpl implements AdministratorService
                 );
 
         administratorRepository.deleteById(administrator.getId());
-        user.setProfileImage("users/user-icon.png");
-        userRepository.save(user);
         return String.format("Administrator: %s has been deleted", user.getUsername());
     }
 
@@ -153,8 +150,6 @@ public class AdministratorServiceImpl implements AdministratorService
                 );
 
         administratorRepository.restoreById(administrator.getId());
-        user.setProfileImage("users/admin-icon.png");
-        userRepository.save(user);
         return String.format("Administrator: %s has been restored", user.getUsername());
     }
 }

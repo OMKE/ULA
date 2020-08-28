@@ -28,13 +28,13 @@ public interface CrudRepository<T extends BaseEntity, ID extends Serializable>
 
 	@Override
 	@Query("select e from #{#entityName} e where e.deleted=false")
-	public List<T> findAll();
+	List<T> findAll();
 
 	/*
 	 * @desc - Finds all, even if entity is soft deleted
 	 */
 	@Query("select e from #{#entityName} e")
-	public List<T> findAllWithTrashed();
+	List<T> findAllWithTrashed();
 
 	/*
 	 * @desc - Finds an entity with given Id if it's not soft deleted
@@ -42,13 +42,19 @@ public interface CrudRepository<T extends BaseEntity, ID extends Serializable>
 
 	@Override
 	@Query("select e from #{#entityName} e where e.deleted=false and e.id=?1")
-	public Optional<T> findById(ID id);
+	Optional<T> findById(ID id);
 
 	/*
 	 * @desc - Finds an entity even if it's soft deleted
 	 */
 	@Query("select e from #{#entityName} e where e.id=?1")
-	public Optional<T> findByIdTrashed(ID id);
+	Optional<T> findByIdWithTrashed(ID id);
+
+	/*
+	 * @desc - Finds an entity if it's soft deleted
+	 */
+	@Query("select e from #{#entityName} e where e.id=?1 and e.deleted=true")
+	Optional<T> findByIdTrashed(ID id);
 
 
 	/*
@@ -56,7 +62,7 @@ public interface CrudRepository<T extends BaseEntity, ID extends Serializable>
 	 */
 
 	@Query("select e from #{#entityName} e where e.deleted=true")
-	public List<T> findAllTrashed();
+	List<T> findAllTrashed();
 
 
 	/*
@@ -65,7 +71,7 @@ public interface CrudRepository<T extends BaseEntity, ID extends Serializable>
 	@Override
 	@Query("update #{#entityName} e set e.deleted=true where e.id=?1")
 	@Modifying
-	public void deleteById(ID id);
+	void deleteById(ID id);
 
 	/*
 	 * @desc - Restores an entity, setting deleted column to false
@@ -74,7 +80,7 @@ public interface CrudRepository<T extends BaseEntity, ID extends Serializable>
 	@Query("update #{#entityName} e set e.deleted=false where e.id=?1")
 	@Modifying
 	@Transactional
-	public void restoreById(ID id);
+	void restoreById(ID id);
 
 	/*
 	 * @TODO - work with entity types
@@ -83,7 +89,7 @@ public interface CrudRepository<T extends BaseEntity, ID extends Serializable>
 	 * 
 	 * @Transactional
 	 * 
-	 * @Modifying public void softDelete(T entity);
+	 * @Modifying void softDelete(T entity);
 	 */
 
 	/*
@@ -91,7 +97,7 @@ public interface CrudRepository<T extends BaseEntity, ID extends Serializable>
 	 */
 	@Query("delete #{#entityName} e where e.id=?1")
 	@Modifying
-	public void forceDelete(ID id);
+	void forceDelete(ID id);
 
 
 
