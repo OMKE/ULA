@@ -47,8 +47,10 @@ public class AddressServiceImpl implements AddressService
                 .setId(address.getId())
                 .setStreetName(address.getStreetName())
                 .setCityId(address.getCity().getId())
+                .setCityName(address.getCity().getName())
                 .setPostalCode(address.getPostalCode())
-                .setNumber(address.getNumber());
+                .setNumber(address.getNumber())
+                .setCountry(address.getCity().getCountry().getName());
     }
 
     @Override
