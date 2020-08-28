@@ -1,6 +1,6 @@
 package com.ula.faculty.api.v1.controller;
 
-import com.ula.faculty.dto.response.Response;
+
 import com.ula.faculty.service.exception.FacultyNotFoundException;
 import com.ula.faculty.service.exception.StudyProgramNotFoundException;
 import com.ula.faculty.service.studyprogram.StudyProgramService;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.ula.core.api.response.Response;
 
 import java.util.Optional;
 
