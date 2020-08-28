@@ -20,6 +20,11 @@ import javax.validation.Valid;
 public class AdministratorController
 {
 
+    /*
+        @TODO
+        Add logger to every admin action
+     */
+
     @Autowired
     private AdministratorService administratorService;
 
@@ -58,26 +63,30 @@ public class AdministratorController
 
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @DeleteMapping("/admin/{id}")
+    @DeleteMapping("/admin/{userId}")
     public Response<Object> delete
     (
-        @PathVariable("id") Long id
+        @PathVariable("userId") Long userId
     )
     {
         try {
-            return Response.ok().setPayload(this.administratorService.delete(id));
+            return Response.ok().setPayload(this.administratorService.delete(userId));
         } catch (UserNotFoundException | UserPermissionException | AdministratorNotFoundException e) {
             return Response.exception().setErrors(e.getMessage());
         }
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @PutMapping("/admin/{id}/restore")
+    @PutMapping("/admin/{userId}/restore")
     public Response<Object> restore
     (
-        @PathVariable("id") Long id
+        @PathVariable("userId") Long userId
     )
     {
-        return null;
+        try {
+            return Response.ok().setPayload(this.administratorService.restore(userId));
+        } catch (UserNotFoundException | UserPermissionException | AdministratorNotFoundException e) {
+            return Response.exception().setErrors(e.getMessage());
+        }
     }
 }
