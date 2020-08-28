@@ -8,6 +8,7 @@ import com.ula.authentication.feign.StaticContentServiceFeignClient;
 import com.ula.authentication.service.auth.AuthService;
 import com.ula.authentication.service.emailverification.EmailVerificationService;
 import com.ula.authentication.service.exception.*;
+import com.ula.authentication.util.IpAddressUtils;
 import com.ula.authentication.util.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -76,12 +77,17 @@ public class UserServiceImpl implements UserService
 
 			UserDetails userDetails = userDetailsService.loadUserByUsername(userDTO.getUsername());
 
-
 			Authentication authentication = AuthenticationManager.authenticate(token);
 
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 
-
+			User user = this.userRepository.findByUsername(userDTO.getUsername())
+						.orElseThrow
+								(
+									() -> new UserException(String.format("User with username: %s not found."))
+								);
+			user.setIpAddress(IpAddressUtils.getClientIpAddressIfServletRequestExist());
+			userRepository.save(user);
 
 			String userToken = jwt.generateToken(userDetails);
 
