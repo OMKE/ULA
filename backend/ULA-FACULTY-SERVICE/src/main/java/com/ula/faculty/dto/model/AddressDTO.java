@@ -2,10 +2,8 @@
 package com.ula.faculty.dto.model;
 
 
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,18 +18,14 @@ import lombok.experimental.Accessors;
 @ToString
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class FacultyInformationDTO {
-
+public class AddressDTO
+{
     private Long id;
-
-    private Long facultyId;
-
-    private String history;
-
-    private String president;
-
-    private String mission;
-
-    private String accreditation;
+    private Long cityId;
+    private String cityName;
+    private String streetName;
+    private String number;
+    private String postalCode;
+    private String country;
 }
 

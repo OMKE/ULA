@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.ula.core.domain.model.BaseEntity;
 
 import javax.persistence.*;
 
@@ -12,7 +13,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Accessors(chain = true)
 @Entity
-public class FacultyInformation extends BaseEntity {
+public class FacultyInformation extends BaseEntity
+{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +24,8 @@ public class FacultyInformation extends BaseEntity {
 	private Faculty faculty;
 
 	private Long addressId;
+
+	private Long locationId;
 
 	@Column(nullable = false, columnDefinition = "TEXT")
 	private String history;
@@ -48,5 +52,6 @@ public class FacultyInformation extends BaseEntity {
 
 	@Column(nullable = false, columnDefinition = "VARCHAR(64)")
 	private String phoneNumber;
+
 
 }

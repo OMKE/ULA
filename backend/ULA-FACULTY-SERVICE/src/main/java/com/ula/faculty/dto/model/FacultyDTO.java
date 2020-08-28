@@ -25,6 +25,8 @@ public class FacultyDTO {
     private Long id;
     private Long universityId;
     private FacultyInformationDTO information;
+    private ContactDTO contact;
+    private LocationDTO location;
     private Long campusId;
     private String name;
     private String icon;

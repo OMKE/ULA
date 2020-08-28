@@ -1,12 +1,13 @@
 package com.ula.faculty.api.v1.controller;
 
-import com.ula.faculty.dto.response.Response;
+
 import com.ula.faculty.service.exception.FacultyNotFoundException;
 import com.ula.faculty.service.faculty.FacultyService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+import org.ula.core.api.response.Response;
 
 
 @RestController
@@ -20,15 +21,9 @@ public class FacultyController
         Return a listing of the resource
 
     */
-    @GetMapping(produces = "application/json")
-    public Response<Object> index(@RequestParam(value = "studyPrograms", required = false) Optional<String> withStudyPrograms) {
-        if(withStudyPrograms.isPresent() && withStudyPrograms.get().equals("fetch"))
-        {
-            return Response.ok().setPayload(facultyService.indexWithStudyPrograms());
-        } else {
+    @GetMapping
+    public Response<Object> index() {
             return Response.ok().setPayload(facultyService.index());
-        }
-
     }
 
 
