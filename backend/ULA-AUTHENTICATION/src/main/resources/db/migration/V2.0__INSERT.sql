@@ -57,8 +57,8 @@ VALUES
 
 INSERT INTO `administrator` (user_id, created_at)
 VALUES (1, NOW());
-INSERT INTO `student` (user_id, umcn, phone_number, date_of_birth,created_at)
-VALUES (3, '2017270622', '123-456-789', '1998-01-01',NOW());
+INSERT INTO `student` (user_id, ssn, phone_number, date_of_birth,created_at)
+VALUES (3, '029384591', '123-456-789', '1998-01-01',NOW());
 
 INSERT INTO `teacher` (created_at, deleted, biography, user_id) VALUES (NOW(), 0, '<h1>Edddie Baker<h1><p>Eddie Baker Biography</p>', 4);
 INSERT INTO `teacher` (created_at, deleted, biography, user_id) VALUES (NOW(), 0, '<h1>Klara Richards<h1><p>Klara Richards Biography</p>', 7);

@@ -25,10 +25,10 @@ public class Student extends BaseEntity
 	private User user;
 
 	/*
-	 * Unique Master Citizen Number, name varies in each country
+	 * Social Security Number, name varies in each country
 	 */
-	@Column(nullable = false, unique = true, columnDefinition = "VARCHAR(256)")
-	private String umcn;
+	@Column(nullable = false, unique = true, columnDefinition = "VARCHAR(20)")
+	private String ssn;
 
 
 	@Column(nullable = false, columnDefinition = "VARCHAR(64)")

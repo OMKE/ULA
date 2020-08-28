@@ -72,10 +72,10 @@ CREATE TABLE `student` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `date_of_birth` datetime DEFAULT NULL,
   `phone_number` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `umcn` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `ssn` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `user_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `UK_9wv9bhkkjhr9rtlj9ul1si0hk` (`umcn`),
+  UNIQUE KEY `UK_9wv9bhkkjhr9rtlj9ul1si0hk` (`ssn`),
   KEY `FKk5m148xqefonqw7bgnpm0snwj` (`user_id`),
   CONSTRAINT `FKk5m148xqefonqw7bgnpm0snwj` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
