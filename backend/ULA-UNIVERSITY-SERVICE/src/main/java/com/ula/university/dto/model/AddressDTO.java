@@ -28,5 +28,6 @@ public class AddressDTO
     private String streetName;
     private String number;
     private String postalCode;
+    private String country;
 }
 
