@@ -14,4 +14,5 @@ public class AdminDTO
 {
     private Long id;
     private UserDTO user;
+    private boolean deleted;
 }

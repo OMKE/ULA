@@ -8,7 +8,7 @@ import com.ula.authentication.domain.repository.PermissionRepository;
 import com.ula.authentication.domain.repository.UserPermissionRepository;
 import com.ula.authentication.domain.repository.UserRepository;
 import com.ula.authentication.dto.model.AdminDTO;
-import com.ula.authentication.mapper.AdminMapper;
+import com.ula.authentication.mapper.AdministratorMapper;
 import com.ula.authentication.service.exception.AdministratorNotFoundException;
 import com.ula.authentication.service.exception.UserIsAlreadyAdministratorException;
 import com.ula.authentication.service.exception.UserNotFoundException;
@@ -37,13 +37,13 @@ public class AdministratorServiceImpl implements AdministratorService
     @Override
     public List<AdminDTO> index()
     {
-        return AdminMapper.map(administratorRepository.findAll());
+        return AdministratorMapper.map(administratorRepository.findAll());
     }
 
     @Override
     public AdminDTO show(Long id) throws AdministratorNotFoundException
     {
-        return AdminMapper.map
+        return AdministratorMapper.map
                 (
                     administratorRepository.findById(id)
                             .orElseThrow(() -> new AdministratorNotFoundException(String.format("Administrator with id: %s could not be found", id)))
@@ -80,14 +80,24 @@ public class AdministratorServiceImpl implements AdministratorService
                 (
                     new Administrator().setUser(user)
                 );
-        return "Admin has been stored";
+        return String.format("User: %s has been stored as administrator", user.getUsername());
     }
 
     @Override
-    public String delete(Long userId) throws UserNotFoundException, UserPermissionException, AdministratorNotFoundException
+    public String delete(Long id) throws UserNotFoundException, UserPermissionException, AdministratorNotFoundException
     {
+
+        Administrator administrator = administratorRepository.findById(id)
+                .orElseThrow
+                        (() ->
+                            new AdministratorNotFoundException(String.format("Administrator with id: %s could not be found", id))
+                        );
+
+
         // Get user
-        User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException("User with id: %s could not be found"));
+        User user = userRepository.findById(administrator.getUser().getId()).orElseThrow(() -> new UserNotFoundException("User with id: %s could not be found"));
+
+        String adminRole = permissionRepository.ROLE_ADMIN().getTitle();
 
         // Filters through user's permissions and looks for ROLE_ADMIN, if it's found, get's first and soft deletes by it's id
         userPermissionRepository.deleteById
@@ -99,19 +109,52 @@ public class AdministratorServiceImpl implements AdministratorService
                                             userPermission ->
                                                 userPermission
                                                         .getPermission()
-                                                        .equals(permissionRepository.ROLE_ADMIN())
+                                                        .getTitle()
+                                                        .equals(adminRole) && !userPermission.isDeleted()
                                         )
-                                .findFirst().orElseThrow(() -> new UserPermissionException("User permission could not be found")).getId()
+                                .findAny().orElseThrow(() -> new UserPermissionException("User permission could not be found")).getId()
 
                 );
-        Administrator administrator = administratorRepository.findByUserId(userId)
-                                                .orElseThrow
-                                                        (() ->
-                                                        new AdministratorNotFoundException(String.format("Admin with user id: %s could not be found", userId))
-                                                        );
+
         administratorRepository.deleteById(administrator.getId());
         user.setProfileImage("users/user-icon.png");
         userRepository.save(user);
-        return "Admin has been deleted";
+        return String.format("Administrator: %s has been deleted", user.getUsername());
+    }
+
+    @Override
+    public String restore(Long id) throws UserNotFoundException, UserPermissionException, AdministratorNotFoundException
+    {
+        Administrator administrator = administratorRepository.findByIdTrashed(id)
+                .orElseThrow
+                        (() ->
+                                new AdministratorNotFoundException(String.format("Administrator with id: %s could not be found", id))
+                        );
+
+
+        // Get user
+        User user = userRepository.findById(administrator.getUser().getId()).orElseThrow(() -> new UserNotFoundException("User with id: %s could not be found"));
+
+        String adminRole = permissionRepository.ROLE_ADMIN().getTitle();
+
+        userPermissionRepository.restoreById
+                (
+                        user.getUserPermissions()
+                                .stream()
+                                .filter
+                                        (
+                                                userPermission ->
+                                                        userPermission
+                                                                .getPermission()
+                                                                .getTitle()
+                                                                .equals(adminRole) && userPermission.isDeleted()
+                                        )
+                                .findAny().orElseThrow(() -> new UserPermissionException("User permission could not be found")).getId()
+                );
+
+        administratorRepository.restoreById(administrator.getId());
+        user.setProfileImage("users/admin-icon.png");
+        userRepository.save(user);
+        return String.format("Administrator: %s has been restored", user.getUsername());
     }
 }

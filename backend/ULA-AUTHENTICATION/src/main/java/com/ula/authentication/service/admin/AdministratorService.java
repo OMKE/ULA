@@ -14,6 +14,6 @@ public interface AdministratorService
     List<AdminDTO> index();
     AdminDTO show(Long id) throws AdministratorNotFoundException;
     String store(Long userId) throws UserNotFoundException, UserIsAlreadyAdministratorException;
-    String delete(Long userId) throws UserNotFoundException, UserPermissionException, AdministratorNotFoundException;
-
+    String delete(Long id) throws UserNotFoundException, UserPermissionException, AdministratorNotFoundException;
+    String restore(Long id) throws UserNotFoundException, UserPermissionException, AdministratorNotFoundException;
 }
