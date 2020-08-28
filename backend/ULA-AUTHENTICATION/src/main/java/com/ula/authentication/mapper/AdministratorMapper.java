@@ -14,6 +14,8 @@ public class AdministratorMapper
         return new AdminDTO()
                     .setId(administrator.getId())
                     .setDeleted(administrator.isDeleted())
+                    .setCreatedAt(administrator.getCreatedAt())
+                    .setUpdatedAt(administrator.getUpdatedAt())
                     .setUser
                         (
                             new UserDTO()
