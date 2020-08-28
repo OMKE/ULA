@@ -8,8 +8,6 @@ import java.util.List;
 public interface FacultyService
 {
     List<FacultyDTO> index();
-    List<FacultyDTO> indexWithStudyPrograms();
-
     FacultyDTO show(Long id) throws FacultyNotFoundException;
 
 }
