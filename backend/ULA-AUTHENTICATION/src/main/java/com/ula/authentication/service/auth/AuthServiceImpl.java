@@ -67,8 +67,6 @@ public class AuthServiceImpl implements AuthService
         {
             return user;
         } else {
-            System.out.println(roles);
-            System.out.println(userRoles);
             throw new UserNotAuthorizedException("User is not authorized for given action");
         }
 

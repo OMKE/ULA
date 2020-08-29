@@ -29,7 +29,7 @@ public class Faculty extends BaseEntity
 	@Column(nullable = false, columnDefinition = "VARCHAR(256)")
 	private String name;
 
-	@Column(nullable = false, columnDefinition = "VARCHAR(256)")
+	@Column(columnDefinition = "VARCHAR(256)")
 	private String icon;
 
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "faculty")

@@ -355,16 +355,22 @@ public class UserServiceImpl implements UserService
 	}
 
 	@Override
-	public String storeProfileImage(String username, String token, MultipartFile image) throws IOException, UserNotFoundException
+	public String storeProfileImage(String username, String token, MultipartFile image)
+	throws IOException, UserNotFoundException, FileStorageException
 	{
 		User user = this.getByUsername(username).get();
+		Response<Object> profileImageResponse = this.staticContentServiceFeignClient.addProfileImage(token, image);
+		String fileName = (String) profileImageResponse.getPayload();
 
-		String fileName = (String) this.staticContentServiceFeignClient.addProfileImage(token, image).getPayload();
+		if(fileName == null)
+		{
+			throw new FileStorageException((String) profileImageResponse.getErrors());
+		} else {
+			user.setProfileImage("users/" + fileName);
+			this.userRepository.save(user);
 
-		user.setProfileImage("users/" + fileName);
-		this.userRepository.save(user);
-
-		return "User photo has been stored";
+			return "User photo has been stored";
+		}
 	}
 
 	@Override

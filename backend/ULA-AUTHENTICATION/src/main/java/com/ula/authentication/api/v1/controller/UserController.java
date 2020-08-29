@@ -105,7 +105,7 @@ public class UserController extends BaseController
     {
         try {
             return Response.ok().setPayload(this.userService.storeProfileImage(authentication.getName(), authHeader, image));
-        } catch (IOException | UserNotFoundException e) {
+        } catch (IOException | UserNotFoundException | FileStorageException e) {
             return Response.exception().setErrors(e.getMessage());
         }
     }

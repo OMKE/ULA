@@ -75,14 +75,14 @@ Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus 
 
 
 
-INSERT INTO study_program_degree (id, level) VALUES (1, 'Undergraduate');
-INSERT INTO study_program_degree (id, level) VALUES (2, 'Master');
-INSERT INTO study_program_degree (id, level) VALUES (3, 'Doctoral');
+INSERT INTO study_program_degree (id, level, created_at) VALUES (1, 'Undergraduate', NOW());
+INSERT INTO study_program_degree (id, level, created_at) VALUES (2, 'Master', NOW());
+INSERT INTO study_program_degree (id, level, created_at) VALUES (3, 'Doctoral', NOW());
 
 
-INSERT INTO study_program_location (id, name) VALUES (1,'Main Campus');
-INSERT INTO study_program_location (id, name) VALUES (2, 'West Campus');
-INSERT INTO study_program_location (id, name) VALUES (3, 'South Campus');
+INSERT INTO study_program_location (id, name, created_at) VALUES (1,'Main Campus', NOW());
+INSERT INTO study_program_location (id, name, created_at) VALUES (2, 'West Campus', NOW());
+INSERT INTO study_program_location (id, name, created_at) VALUES (3, 'South Campus', NOW());
 
 
 

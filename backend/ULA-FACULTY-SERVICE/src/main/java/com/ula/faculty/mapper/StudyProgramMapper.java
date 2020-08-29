@@ -18,15 +18,15 @@ public class StudyProgramMapper
     public static StudyProgramDTO map(StudyProgram studyProgram)
     {
         return new StudyProgramDTO()
-                    .setName(studyProgram.getName())
-                    .setDescription(studyProgram.getDescription())
-                    .setLocation
-                            (
-                            new StudyProgramLocationDTO().setName(studyProgram.getLocation().getName())
-                            )
-                    .setFacultyId(studyProgram.getFaculty().getId())
-                    .setDegree(new StudyProgramDegreeDTO().setLevel(studyProgram.getDegree().getLevel()))
-                    .setId(studyProgram.getId());
+                .setName(studyProgram.getName())
+                .setDescription(studyProgram.getDescription())
+                .setLocation
+                        (
+                                new StudyProgramLocationDTO().setName(studyProgram.getLocation().getName())
+                        )
+                .setFacultyId(studyProgram.getFaculty().getId())
+                .setDegree(new StudyProgramDegreeDTO().setLevel(studyProgram.getDegree().getLevel()))
+                .setId(studyProgram.getId());
     }
 
     /*
@@ -41,8 +41,6 @@ public class StudyProgramMapper
     {
         return studyPrograms.stream().map(StudyProgramMapper::map).collect(Collectors.toCollection(ArrayList::new));
     }
-
-
 
 
 }

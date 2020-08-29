@@ -8,7 +8,7 @@ CREATE TABLE `faculty` (
     `university_id` bigint(20) not null comment 'Database: ula_university; Table:university Column: id; No constraint',
     `campus_id` bigint(20) not null comment 'Database: ula_university; Table:campus Column: id; No constraint',
     `name` varchar(256) not null,
-    `icon` varchar(256) not null,
+    `icon` varchar(256),
     primary key (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -34,12 +34,18 @@ CREATE TABLE `faculty_information` (
 CREATE TABLE `study_program_location` (
     `id` bigint(20) not null auto_increment,
     `name` varchar(64) not null,
+    `created_at` timestamp not null,
+    `deleted` tinyint(1) default '0',
+    `updated_at` timestamp null default null,
     primary key (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `study_program_degree` (
     `id` bigint(20) not null auto_increment,
     `level` varchar(64) not null ,
+    `created_at` timestamp not null,
+    `deleted` tinyint(1) default '0',
+    `updated_at` timestamp null default null,
     primary key (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

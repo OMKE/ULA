@@ -1,22 +1,30 @@
 package com.ula.faculty.api.v1.controller;
 
 
+import com.ula.faculty.api.v1.request.StoreAndUpdateStudyProgramRequest;
 import com.ula.faculty.service.exception.FacultyNotFoundException;
+import com.ula.faculty.service.exception.StudyProgramDegreeNotFoundException;
+import com.ula.faculty.service.exception.StudyProgramLocationNotFoundException;
 import com.ula.faculty.service.exception.StudyProgramNotFoundException;
 import com.ula.faculty.service.studyprogram.StudyProgramService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+import org.ula.core.annotation.Authorized;
+import org.ula.core.annotation.Token;
+import org.ula.core.api.BaseController;
 import org.ula.core.api.response.Response;
+import org.ula.core.util.JWT;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @RestController
-public class StudyProgramController
+@Validated
+public class StudyProgramController extends BaseController
 {
 
     @Autowired
@@ -25,6 +33,7 @@ public class StudyProgramController
     /*
         @TODO - Improve search capability with spring-search
         @RESOURCE - https://www.sipios.com/blog-tech/how-to-generate-an-advanced-search-api-spring-boot
+        @TODO - Add option for admin to see deleted study programs
      */
     @GetMapping("/{id}/study-program")
     public Response<Object> index
@@ -54,6 +63,63 @@ public class StudyProgramController
     {
         try {
             return Response.ok().setPayload(this.studyProgramService.show(id));
+        } catch (StudyProgramNotFoundException e) {
+            return Response.exception().setErrors(e.getMessage());
+        }
+    }
+
+
+    @Authorized("ADMIN")
+    @PostMapping("/study-program")
+    public Response<Object> store
+    (
+            @Token JWT jwt,
+            @Valid @RequestBody StoreAndUpdateStudyProgramRequest storeRequest,
+            Errors errors
+    )
+    {
+
+        storeRequest.setDescription(this.sanitize(storeRequest.getDescription()))
+                    .setName(this.sanitize(storeRequest.getName()));
+
+        try {
+            return Response.ok().setPayload(this.studyProgramService.store(storeRequest));
+        } catch (StudyProgramLocationNotFoundException | StudyProgramDegreeNotFoundException | FacultyNotFoundException e) {
+            return Response.exception().setErrors(e.getMessage());
+        }
+    }
+
+    @Authorized("ADMIN")
+    @PutMapping("/study-program/{id}")
+    public Response<Object> update
+            (
+                    @Token JWT jwt,
+                    @PathVariable("id") Long id,
+                    @Valid @RequestBody StoreAndUpdateStudyProgramRequest storeRequest,
+                    Errors errors
+            )
+    {
+
+        storeRequest.setDescription(this.sanitize(storeRequest.getDescription()))
+                    .setName(this.sanitize(storeRequest.getName()));
+
+        try {
+            return Response.ok().setPayload(this.studyProgramService.update(id, storeRequest));
+        } catch (StudyProgramLocationNotFoundException | StudyProgramDegreeNotFoundException | FacultyNotFoundException | StudyProgramNotFoundException e) {
+            return Response.exception().setErrors(e.getMessage());
+        }
+    }
+
+    @Authorized("ADMIN")
+    @DeleteMapping("/study-program/{id}")
+    public Response<Object> delete
+    (
+        @Token JWT jwt,
+        @PathVariable("id") Long id
+    )
+    {
+        try {
+            return Response.ok().setPayload(this.studyProgramService.delete(id));
         } catch (StudyProgramNotFoundException e) {
             return Response.exception().setErrors(e.getMessage());
         }
