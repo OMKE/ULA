@@ -51,4 +51,41 @@ public class FacultyServiceImpl implements FacultyService
 
         return FacultyMapper.map(faculty, addressDTO, locationDTO);
     }
+
+    @Override
+    public String store(FacultyDTO facultyDTO)
+    {
+        Faculty faculty = new Faculty()
+                    .setName(facultyDTO.getName())
+                    .setUniversityId(1L)
+                    .setCampusId(facultyDTO.getCampusId());
+
+        this.facultyRepository.save(faculty);
+        return String.format("Faculty: %s has been stored", faculty.getName());
+    }
+
+    @Override
+    public String update(Long id, FacultyDTO facultyDTO)
+    throws FacultyNotFoundException
+    {
+        Faculty faculty = this.facultyRepository.findById(id)
+                                                .orElseThrow(() -> new FacultyNotFoundException(String.format("Faculty with id: %s could not be found", id)));
+
+        faculty.setName(facultyDTO.getName())
+               .setCampusId(facultyDTO.getCampusId());
+
+        this.facultyRepository.save(faculty);
+        return String.format("Faculty: %s has been updated", faculty.getName());
+    }
+
+    @Override
+    public String delete(Long id)
+    throws FacultyNotFoundException
+    {
+        Faculty faculty = this.facultyRepository.findById(id)
+                                                .orElseThrow(() -> new FacultyNotFoundException(String.format("Faculty with id: %s could not be found", id)));
+
+        this.facultyRepository.deleteById(id);
+        return String.format("Faculty: %s has been deleted", faculty.getName());
+    }
 }
