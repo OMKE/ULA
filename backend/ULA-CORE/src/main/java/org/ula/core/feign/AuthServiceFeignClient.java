@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.ula.core.domain.model.ULAUserDTO;
 import org.ula.core.feign.hystrix.AuthServiceFallbackFactory;
 
+
 @FeignClient(value = "ula-auth-service", fallbackFactory = AuthServiceFallbackFactory.class)
 public interface AuthServiceFeignClient
 {

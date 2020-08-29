@@ -48,20 +48,27 @@ public class Authentication
                 jwt = (JWT) o;
             }
         }
+
         // If there is token present, we will call the authentication service to check the token
+
         if(jwt != null)
         {
-            // Auth-service has an util RoleResolver class which will create an array based on sent string
-            // If user has correct roles, auth service will return an user object
-            ULAUserDTO user = authServiceFeignClient.getUser(jwt.getContent(), roles);
-
-            // If we didn't get the user object, that means that user is not authenticated so
-            // we throw an exception which we can catch with global ControllerAdvice
-            if (user == null)
+            // Check if there is no Authorization header present
+            if(jwt.getContent() == null)
             {
                 throw new NotAuthorizedException("User is not authorized");
             } else {
-//                user.getRoles().forEach(System.out::println);
+                // Auth-service has an util RoleResolver class which will create an array based on sent string
+                // If user has correct roles, auth service will return an user object
+                ULAUserDTO user = authServiceFeignClient.getUser(jwt.getContent(), roles);
+
+                // If we didn't get the user object, that means that user is not authenticated so
+                // we throw an exception which we can catch with global ControllerAdvice
+                if (user == null)
+                {
+                    throw new NotAuthorizedException("User is not authorized");
+                } 
+
             }
         } else {
             throw new JWTNotFoundException("@Authorized annotation can't be used without @Token parameter");

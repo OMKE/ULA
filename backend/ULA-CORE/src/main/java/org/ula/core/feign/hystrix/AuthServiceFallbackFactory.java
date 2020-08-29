@@ -3,6 +3,7 @@ package org.ula.core.feign.hystrix;
 
 import feign.hystrix.FallbackFactory;
 import org.springframework.stereotype.Component;
+
 import org.ula.core.domain.model.ULAUserDTO;
 import org.ula.core.feign.AuthServiceFeignClient;
 
