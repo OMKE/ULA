@@ -54,7 +54,7 @@ public class Authentication
         if(jwt != null)
         {
             // Check if there is no Authorization header present
-            if(jwt.getContent() == null)
+            if(jwt.getContent() == null || jwt.getContent().equals(""))
             {
                 throw new NotAuthorizedException("User is not authorized");
             } else {
@@ -67,7 +67,7 @@ public class Authentication
                 if (user == null)
                 {
                     throw new NotAuthorizedException("User is not authorized");
-                } 
+                }
 
             }
         } else {
