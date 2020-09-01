@@ -44,6 +44,9 @@ public class SubjectRealization extends BaseEntity
 	@OneToMany(mappedBy = "subjectRealization")
 	private Set<TeacherSubjectRealization> teachersOnRealization;
 
+	@OneToMany(mappedBy = "subjectRealization")
+	private Set<SubjectAttendance> subjectAttendance;
+
 	/*
 		@TODO
 		@OneToMany(mappedBy = "subjectRealization")
