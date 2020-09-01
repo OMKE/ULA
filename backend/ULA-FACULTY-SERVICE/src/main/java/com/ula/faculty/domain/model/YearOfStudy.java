@@ -25,21 +25,16 @@ public class YearOfStudy extends BaseEntity
 	@Column(nullable = false)
 	private Date year;
 
-	/*
-		- StudyProgram service
-	 */
-
 	@ManyToOne
 	private StudyProgram studyProgram;
 
-	/*
-		- Student service
-		Povezati studenta sa YearOfStudy
-	 */
 
 	@Column(nullable = false, columnDefinition = "INT")
 	private int ordinalNumber;
 
 	@OneToMany(mappedBy = "yearOfStudy", cascade = CascadeType.ALL)
 	private Set<Subject> subjects;
+
+	@OneToMany(mappedBy = "yearOfStudy")
+	private Set<StudentOnYear> students;
 }
