@@ -2,19 +2,22 @@ package com.ula.faculty.dto.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import java.util.Date;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @Accessors(chain = true)
-public class YearOfStudyDTO
+public class SubjectAttendanceDTO
 {
     private Long id;
-    private Date year;
-    private int ordinalNumber;
-    private Long studyProgramId;
+    private Long studentId;
+    private Long subjectRealizationId;
+    private int finalGrade;
+    private boolean deleted;
     private Date createdAt;
     private Date updatedAt;
 }
