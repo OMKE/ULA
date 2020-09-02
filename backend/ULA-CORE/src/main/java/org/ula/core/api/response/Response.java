@@ -69,8 +69,9 @@ public class Response<T> {
         return response;
     }
 
-    public static ResponseError addErrorMessageToResponse(Response<Object> response,
-                                                          String message) {
+    public static ResponseError addErrorMessageToResponse(
+            Response<Object> response,
+            String message) {
         ResponseError error = new ResponseError();
         error.setText(message);
         response.setErrors(error);
