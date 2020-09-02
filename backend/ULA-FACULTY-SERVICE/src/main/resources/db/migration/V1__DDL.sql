@@ -91,10 +91,20 @@ CREATE TABLE `student_on_year` (
     `deleted` tinyint(1) default '0',
     `updated_at` timestamp null default null,
     `student_id` bigint(20) not null,
-    `year_of_study_id` bigint(20) not null ,
     `transcript_identifier` varchar(64) not null unique ,
     `date_of_enrollment` timestamp not null default NOW(),
+    primary key (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `student_on_year_year_of_study` (
+    `id` bigint(20) not null auto_increment,
+    `student_on_year_id` bigint(20) not null ,
+    `year_of_study_id` bigint(20) not null ,
+    `created_at` timestamp not null,
+    `deleted` tinyint(1) default '0',
+    `updated_at` timestamp null default null,
     primary key (`id`),
+    foreign key (`student_on_year_id`) references `student_on_year` (`id`),
     foreign key (`year_of_study_id`) references `year_of_study` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
