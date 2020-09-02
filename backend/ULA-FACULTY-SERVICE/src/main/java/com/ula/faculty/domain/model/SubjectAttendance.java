@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.ula.core.domain.model.BaseEntity;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -13,7 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Accessors(chain = true)
 @Entity
-public class SubjectAttendance
+public class SubjectAttendance extends BaseEntity
 {
 
     @Id

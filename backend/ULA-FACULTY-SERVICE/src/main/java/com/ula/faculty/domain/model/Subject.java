@@ -51,8 +51,8 @@ public class Subject extends BaseEntity
 	@OneToMany(mappedBy = "subject")
 	private Set<SubjectAndSubjectPrerequisite> prerequisites;
 
-	@OneToMany(mappedBy = "subject")
-	private Set<SubjectRealization> subjectRealization;
+	@OneToOne(mappedBy = "subject")
+	private SubjectRealization subjectRealization;
 
 	@ManyToOne
 	private YearOfStudy yearOfStudy;
