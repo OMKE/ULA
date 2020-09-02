@@ -813,8 +813,12 @@ INSERT INTO subject_realization (id, subject_id, created_at) VALUES (0, 795, NOW
 
 
 INSERT INTO student_on_year
-    (id, student_id, transcript_identifier, year_of_study_id, date_of_enrollment, created_at) VALUES
-    (0, 1, '2020270001', 1,'2020-09-01', NOW());
+    (id, student_id, transcript_identifier, date_of_enrollment, created_at) VALUES
+    (0, 1, '202010212','2020-09-01', NOW());
+
+INSERT INTO student_on_year_year_of_study
+    (id, student_on_year_id, year_of_study_id, created_at) VALUES
+    (0, 1, 1, NOW());
 
 INSERT INTO subject_attendance (id, subject_realization_id, student_id, created_at) VALUES(0, 1, 1, NOW());
 INSERT INTO subject_attendance (id, subject_realization_id, student_id, created_at) VALUES(0, 2, 1, NOW());

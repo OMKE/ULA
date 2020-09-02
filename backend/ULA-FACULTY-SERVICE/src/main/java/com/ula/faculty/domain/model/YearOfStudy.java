@@ -36,5 +36,5 @@ public class YearOfStudy extends BaseEntity
 	private Set<Subject> subjects;
 
 	@OneToMany(mappedBy = "yearOfStudy")
-	private Set<StudentOnYear> students;
+	private Set<StudentOnYearYearOfStudy> students;
 }

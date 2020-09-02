@@ -10,7 +10,7 @@ CREATE TABLE `faculty` (
     `name` varchar(256) not null,
     `icon` varchar(256),
     primary key (`id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 CREATE TABLE `faculty_information` (
@@ -29,7 +29,7 @@ CREATE TABLE `faculty_information` (
    `phone_number` varchar(64) not null,
    primary key (`id`),
    foreign key (`faculty_id`) references `faculty` (`id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `study_program_location` (
     `id` bigint(20) not null auto_increment,
@@ -38,7 +38,7 @@ CREATE TABLE `study_program_location` (
     `deleted` tinyint(1) default '0',
     `updated_at` timestamp null default null,
     primary key (`id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `study_program_degree` (
     `id` bigint(20) not null auto_increment,
@@ -47,7 +47,7 @@ CREATE TABLE `study_program_degree` (
     `deleted` tinyint(1) default '0',
     `updated_at` timestamp null default null,
     primary key (`id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `study_program` (
    `id` bigint(20) not null auto_increment,
@@ -63,7 +63,7 @@ CREATE TABLE `study_program` (
    foreign key (`faculty_id`) references `faculty` (`id`),
    foreign key (`location_id`) references `study_program_location` (`id`),
    foreign key (`degree_id`) references `study_program_degree` (`id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 
@@ -83,7 +83,7 @@ CREATE TABLE `year_of_study` (
     `updated_at` timestamp null default null,
     primary key (`id`),
     foreign key (`study_program_id`) references `study_program` (`id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `student_on_year` (
     `id` bigint(20) not null auto_increment,
@@ -91,12 +91,22 @@ CREATE TABLE `student_on_year` (
     `deleted` tinyint(1) default '0',
     `updated_at` timestamp null default null,
     `student_id` bigint(20) not null,
-    `year_of_study_id` bigint(20) not null ,
     `transcript_identifier` varchar(64) not null unique ,
     `date_of_enrollment` timestamp not null default NOW(),
+    primary key (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `student_on_year_year_of_study` (
+    `id` bigint(20) not null auto_increment,
+    `student_on_year_id` bigint(20) not null ,
+    `year_of_study_id` bigint(20) not null ,
+    `created_at` timestamp not null,
+    `deleted` tinyint(1) default '0',
+    `updated_at` timestamp null default null,
     primary key (`id`),
+    foreign key (`student_on_year_id`) references `student_on_year` (`id`),
     foreign key (`year_of_study_id`) references `year_of_study` (`id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `subject` (
     `id` bigint(20) not null auto_increment,
@@ -115,7 +125,7 @@ CREATE TABLE `subject` (
     `updated_at` timestamp null default null,
     primary key (`id`),
     foreign key (`year_of_study_id`) references `year_of_study` (`id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `subject_prerequisite` (
     `id` bigint(20) not null auto_increment,
@@ -124,7 +134,7 @@ CREATE TABLE `subject_prerequisite` (
     `deleted` tinyint(1) default '0',
     `updated_at` timestamp null default null,
     primary key (`id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 CREATE TABLE `subject_and_subject_prerequisite` (
@@ -137,7 +147,7 @@ CREATE TABLE `subject_and_subject_prerequisite` (
     primary key (`id`),
     foreign key (`subject_id`) references `subject` (`id`),
     foreign key (`subject_prerequisite_id`) references `subject_prerequisite` (`id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 CREATE TABLE `subject_realization` (
@@ -148,7 +158,7 @@ CREATE TABLE `subject_realization` (
     `updated_at` timestamp null default null,
     primary key (`id`),
     foreign key (`subject_id`) references `subject` (`id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 CREATE TABLE `subject_attendance`
@@ -163,7 +173,7 @@ CREATE TABLE `subject_attendance`
     primary key (`id`),
     foreign key (`subject_realization_id`) references `subject_realization` (`id`),
     foreign key (student_id) references `student_on_year` (`id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `taking_exam` (
     `id` bigint(20) not null auto_increment,
@@ -175,7 +185,7 @@ CREATE TABLE `taking_exam` (
     `updated_at` timestamp null default null,
     primary key (`id`),
     foreign key (`subject_attendance_id`) references `subject_attendance` (`id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `exam_type` (
     `id` bigint(20) not null auto_increment,
@@ -184,7 +194,7 @@ CREATE TABLE `exam_type` (
     `deleted` tinyint(1) default '0',
     `updated_at` timestamp null default null,
     primary key (`id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 
@@ -201,7 +211,7 @@ CREATE TABLE `exam` (
     primary key (`id`),
     foreign key (`type_id`) references `exam_type` (`id`),
     foreign key (`taking_exam_id`) references `taking_exam` (`id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `exam_outcome` (
     `id` bigint(20) not null auto_increment,
@@ -222,7 +232,7 @@ CREATE TABLE `teacher_on_realization` (
     `deleted` tinyint(1) default '0',
     `updated_at` timestamp null default null,
     primary key (`id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `teacher_subject_realization` (
     `id` bigint(20) not null auto_increment,
@@ -234,4 +244,4 @@ CREATE TABLE `teacher_subject_realization` (
     primary key (`id`),
     foreign key (`teacher_on_realization_id`) references `teacher_on_realization` (`id`),
     foreign key (`subject_realization_id`) references `subject_realization` (`id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

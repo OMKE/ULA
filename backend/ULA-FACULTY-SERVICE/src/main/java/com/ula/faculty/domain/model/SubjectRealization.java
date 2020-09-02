@@ -33,7 +33,7 @@ public class SubjectRealization extends BaseEntity
 	 */
 
 
-	@ManyToOne(optional = false)
+	@OneToOne(optional = false)
 	private Subject subject;
 
 

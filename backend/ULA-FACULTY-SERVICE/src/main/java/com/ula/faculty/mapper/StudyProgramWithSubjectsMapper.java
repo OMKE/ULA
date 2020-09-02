@@ -28,7 +28,6 @@ public class StudyProgramWithSubjectsMapper
         return new YearOfStudyWithSubjectsDTO()
                     .setId(yearOfStudy.getId())
                     .setStudyProgramId(yearOfStudy.getStudyProgram().getId())
-                    .setCreated_at(yearOfStudy.getCreatedAt())
                     .setOrdinalNumber(yearOfStudy.getOrdinalNumber())
                     .setYear(yearOfStudy.getYear())
                     .setSubjects(SubjectMapper

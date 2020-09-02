@@ -16,6 +16,5 @@ public class YearOfStudyWithSubjectsDTO
     private Date year;
     private int ordinalNumber;
     private Long studyProgramId;
-    private Date created_at;
     private List<SubjectDTO> subjects;
 }

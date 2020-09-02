@@ -22,8 +22,10 @@ public class YearOfStudyMapper
                     .setId(yearOfStudy.getId())
                     .setOrdinalNumber(yearOfStudy.getOrdinalNumber())
                     .setStudyProgramId(yearOfStudy.getStudyProgram().getId())
-                    .setCreated_at(yearOfStudy.getCreatedAt())
-                    .setYear(yearOfStudy.getYear());
+                    .setYear(yearOfStudy.getYear())
+                    .setCreatedAt(yearOfStudy.getCreatedAt())
+                    .setUpdatedAt(yearOfStudy.getUpdatedAt());
+
     }
 
 }

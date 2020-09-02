@@ -1,20 +1,25 @@
 package com.ula.faculty.dto.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.ula.core.domain.model.UserDTO;
 
 import java.util.Date;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @Accessors(chain = true)
-public class YearOfStudyDTO
+public class StudentDTO
 {
     private Long id;
-    private Date year;
-    private int ordinalNumber;
-    private Long studyProgramId;
+    private UserDTO user;
+    private String ssn;
+    private String phoneNumber;
+    private Date dateOfBirth;
+    private boolean deleted;
     private Date createdAt;
     private Date updatedAt;
 }
