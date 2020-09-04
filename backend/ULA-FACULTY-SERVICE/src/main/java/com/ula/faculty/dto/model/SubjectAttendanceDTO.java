@@ -16,7 +16,7 @@ public class SubjectAttendanceDTO
     private Long id;
     private Long studentId;
     private Long subjectRealizationId;
-    private int finalGrade;
+    private Integer finalGrade;
     private boolean deleted;
     private Date createdAt;
     private Date updatedAt;
