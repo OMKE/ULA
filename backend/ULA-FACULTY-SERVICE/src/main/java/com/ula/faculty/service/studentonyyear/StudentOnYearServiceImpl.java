@@ -115,13 +115,13 @@ public class StudentOnYearServiceImpl implements StudentOnYearService
         this.studentOnYearRepository.save(studentOnYear);
         studentOnYear.getYearOfStudies().add(new StudentOnYearYearOfStudy().setYearOfStudy(yearOfStudy).setStudentOnYear(studentOnYear));
         this.studentOnYearRepository.save(studentOnYear);
-        this.storeSubjectAttendanceBasedOnSubjects(yearOfStudy.getSubjects(), studentOnYear.getId());
+        this.storeSubjectAttendanceBasedOnSubjects(yearOfStudy.getSubjects(), studentOnYear.getId(), token);
         return "Student on year has been stored";
 
     }
 
     @Override
-    public void storeSubjectAttendanceBasedOnSubjects(Set<Subject> subjects, Long studentId)
+    public void storeSubjectAttendanceBasedOnSubjects(Set<Subject> subjects, Long studentId, String token)
     throws SubjectRealizationNotFoundException, StudentNotFoundException, StudentOnYearNotFoundException
     {
         for (Subject subject: subjects)
@@ -129,7 +129,7 @@ public class StudentOnYearServiceImpl implements StudentOnYearService
             SubjectAttendanceDTO subjectAttendanceDTO = new SubjectAttendanceDTO()
                         .setSubjectRealizationId(subject.getSubjectRealization().getId())
                         .setStudentId(studentId);
-            subjectAttendanceService.store(subjectAttendanceDTO);
+            subjectAttendanceService.store(subjectAttendanceDTO, token);
         }
     }
 
@@ -156,7 +156,7 @@ public class StudentOnYearServiceImpl implements StudentOnYearService
 
         studentOnYear.getYearOfStudies().add(new StudentOnYearYearOfStudy().setStudentOnYear(studentOnYear).setYearOfStudy(yearOfStudy));
         this.studentOnYearRepository.save(studentOnYear);
-        this.storeSubjectAttendanceBasedOnSubjects(yearOfStudy.getSubjects(), studentOnYear.getId());
+        this.storeSubjectAttendanceBasedOnSubjects(yearOfStudy.getSubjects(), studentOnYear.getId(), token);
         return "Student on year has been updated";
 
     }
