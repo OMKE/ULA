@@ -1,0 +1,114 @@
+package com.ula.exam.api.v1.controller;
+
+import com.ula.exam.api.v1.request.StoreExamRequest;
+import com.ula.exam.api.v1.request.UpdateExamRequest;
+import com.ula.exam.dto.model.ExamDTO;
+import com.ula.exam.service.exam.ExamService;
+import com.ula.exam.service.exception.ExamNotFoundException;
+import com.ula.exam.service.exception.ExamTypeNotFoundException;
+import com.ula.exam.service.exception.TakingExamNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+import org.ula.core.annotation.Authorized;
+import org.ula.core.annotation.Token;
+import org.ula.core.api.BaseController;
+import org.ula.core.api.response.Response;
+import org.ula.core.util.JWT;
+
+import javax.validation.Valid;
+
+@RestController
+@Validated
+public class ExamController extends BaseController
+{
+    @Autowired
+    private ExamService examService ;
+
+    @Authorized("[ADMIN,TEACHER]")
+    @GetMapping("/exam")
+    public Response<Object> index
+    (
+            @Token JWT jwt
+    )
+    {
+        return Response.ok()
+                       .setPayload(this.examService.index());
+    }
+
+    @Authorized("[ADMIN,TEACHER]")
+    @GetMapping("/exam/{id}")
+    public Response<Object> show
+    (
+            @Token JWT jwt,
+            @PathVariable("id") Long id
+    )
+    {
+        try {
+            return Response.ok()
+                           .setPayload(this.examService.show(id));
+        } catch (ExamNotFoundException e) {
+            return Response.exception().setErrors(e.getMessage());
+        }
+    }
+    
+    @Authorized("[ADMIN,TEACHER]")
+    @PostMapping("exam")
+    public Response<Object> store
+    (
+        @Token JWT jwt,
+        @Valid @RequestBody StoreExamRequest storeRequest,
+        Errors errors
+    )
+    {
+        ExamDTO examDTO = new ExamDTO()
+                    .setExamTypeId(storeRequest.getTypeId())
+                    .setTakingExamId(storeRequest.getTakingExamId())
+                    .setStartTime(storeRequest.getStartTime())
+                    .setEndTime(storeRequest.getEndTime());
+
+        try {
+            return Response.ok()
+                           .setPayload(this.examService.store(examDTO));
+        } catch (TakingExamNotFoundException | ExamTypeNotFoundException e) {
+            return Response.exception().setErrors(e.getMessage());
+        }
+    }
+    
+    @Authorized("[ADMIN,TEACHER]")
+    @PutMapping("/exam/{id}")
+    public Response<Object> update
+    (
+        @Token JWT jwt,
+        @Valid @RequestBody UpdateExamRequest updateRequest,
+        @PathVariable("id") Long id,
+        Errors errors
+    )
+    {
+        updateRequest.setDescription(this.sanitize(updateRequest.getDescription()));
+
+        try {
+            return Response.ok()
+                           .setPayload(this.examService.update(id, updateRequest));
+        } catch (ExamNotFoundException e) {
+            return Response.exception().setErrors(e.getMessage());
+        }
+    }
+    
+    @Authorized("[ADMIN,TEACHER]")
+    @DeleteMapping("/exam/{id}")
+    public Response<Object> delete
+    (
+        @Token JWT jwt,
+        @PathVariable("id") Long id
+    )
+    {
+        try {
+            return Response.ok()
+                           .setPayload(this.examService.delete(id));
+        } catch (ExamNotFoundException e) {
+            return Response.exception().setErrors(e.getMessage());
+        }
+    }
+}
