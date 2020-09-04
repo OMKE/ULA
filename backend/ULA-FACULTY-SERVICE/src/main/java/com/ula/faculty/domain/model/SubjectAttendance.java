@@ -7,7 +7,6 @@ import lombok.experimental.Accessors;
 import org.ula.core.domain.model.BaseEntity;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -22,15 +21,12 @@ public class SubjectAttendance extends BaseEntity
     private Long id;
 
     @Column(columnDefinition = "INT")
-    private int finalGrade;
+    private Integer finalGrade;
 
     @ManyToOne(optional = false)
     private SubjectRealization subjectRealization;
 
     @ManyToOne
     private StudentOnYear student;
-
-    @OneToMany(mappedBy = "subjectAttendance")
-    private Set<TakingExam> takingExams;
 
 }

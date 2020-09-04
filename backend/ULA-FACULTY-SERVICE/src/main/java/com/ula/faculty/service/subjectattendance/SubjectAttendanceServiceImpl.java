@@ -7,6 +7,8 @@ import com.ula.faculty.domain.repository.StudentOnYearRepository;
 import com.ula.faculty.domain.repository.SubjectAttendanceRepository;
 import com.ula.faculty.domain.repository.SubjectRealizationRepository;
 import com.ula.faculty.dto.model.SubjectAttendanceDTO;
+import com.ula.faculty.dto.request.StoreTakingExamRequest;
+import com.ula.faculty.feign.ExamFeignClient;
 import com.ula.faculty.mapper.SubjectAttendanceMapper;
 import com.ula.faculty.service.exception.StudentNotFoundException;
 import com.ula.faculty.service.exception.StudentOnYearNotFoundException;
@@ -14,6 +16,7 @@ import com.ula.faculty.service.exception.SubjectAttendanceNotFoundException;
 import com.ula.faculty.service.exception.SubjectRealizationNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.ula.core.feign.AuthServiceFeignClient;
 
 import java.util.List;
 
@@ -29,6 +32,13 @@ public class SubjectAttendanceServiceImpl implements SubjectAttendanceService
 
     @Autowired
     private StudentOnYearRepository studentOnYearRepository;
+
+
+    @Autowired
+    private AuthServiceFeignClient authServiceFeignClient;
+
+    @Autowired
+    private ExamFeignClient examFeignClient;
 
 
     @Override
@@ -49,7 +59,7 @@ public class SubjectAttendanceServiceImpl implements SubjectAttendanceService
     }
 
     @Override
-    public String store(SubjectAttendanceDTO subjectAttendanceDTO)
+    public String store(SubjectAttendanceDTO subjectAttendanceDTO, String token)
     throws SubjectRealizationNotFoundException, StudentNotFoundException, StudentOnYearNotFoundException
     {
         SubjectRealization subjectRealization = this.subjectRealizationRepository
@@ -60,8 +70,7 @@ public class SubjectAttendanceServiceImpl implements SubjectAttendanceService
                                 (
                                     String.format("Subject realization with id: %s could not be found", subjectAttendanceDTO.getSubjectRealizationId())
                                 )
-                    )
-                ;
+                    );
 
         StudentOnYear studentOnYear = this.studentOnYearRepository
                 .findById(subjectAttendanceDTO.getStudentId())
@@ -73,12 +82,17 @@ public class SubjectAttendanceServiceImpl implements SubjectAttendanceService
                                  )
                     );
 
-        this.subjectAttendanceRepository.save
-                (
-                        new SubjectAttendance()
-                            .setStudent(studentOnYear)
-                            .setSubjectRealization(subjectRealization)
-                );
+        SubjectAttendance subjectAttendance = new SubjectAttendance()
+                .setStudent(studentOnYear)
+                .setSubjectRealization(subjectRealization);
+
+        this.subjectAttendanceRepository.save(subjectAttendance);
+
+
+        String note = "Subject: " + subjectRealization.getSubject().getName();
+        // Call exam service and create TakingExam
+        this.examFeignClient.storeTakingExam(new StoreTakingExamRequest().setNote(note).setSubjectAttendanceId(subjectAttendance.getId()), token);
+
         return "Subject attendance has been stored";
     }
 

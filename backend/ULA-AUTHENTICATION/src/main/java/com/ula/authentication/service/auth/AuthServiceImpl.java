@@ -46,7 +46,7 @@ public class AuthServiceImpl implements AuthService
         User user = userService.getByUsername(username).get();
         ArrayList<String> userRoles = user.getUserPermissions()
                 .stream()
-                .map(userPermission -> userPermission.getPermission().getTitle())
+                .map(userPermission -> !userPermission.isDeleted() ? userPermission.getPermission().getTitle() : null)
                 .collect(Collectors.toCollection(ArrayList::new));
 
 

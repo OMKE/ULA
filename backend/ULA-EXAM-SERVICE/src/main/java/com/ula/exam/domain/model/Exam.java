@@ -1,4 +1,4 @@
-package com.ula.faculty.domain.model;
+package com.ula.exam.domain.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

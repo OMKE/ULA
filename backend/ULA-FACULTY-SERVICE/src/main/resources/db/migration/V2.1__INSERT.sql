@@ -834,7 +834,3 @@ INSERT INTO teacher_subject_realization
     (id, teacher_on_realization_id, subject_realization_id, created_at) VALUES
     (0, 1, 1, NOW()), (0, 2, 1, NOW());
 
-
-INSERT INTO exam_type
-    (id, name, created_at) VALUES
-    (0, 'Quiz', NOW()), (0, 'Essay', NOW()), (0, 'Oral', NOW()), (0, 'Practical', NOW());

@@ -175,54 +175,6 @@ CREATE TABLE `subject_attendance`
     foreign key (student_id) references `student_on_year` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE `taking_exam` (
-    `id` bigint(20) not null auto_increment,
-    `subject_attendance_id` bigint(20) not null ,
-    `points` double default 0,
-    `note` text null,
-    `created_at` timestamp not null,
-    `deleted` tinyint(1) default '0',
-    `updated_at` timestamp null default null,
-    primary key (`id`),
-    foreign key (`subject_attendance_id`) references `subject_attendance` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-CREATE TABLE `exam_type` (
-    `id` bigint(20) not null auto_increment,
-    `name` varchar(64) not null ,
-    `created_at` timestamp not null,
-    `deleted` tinyint(1) default '0',
-    `updated_at` timestamp null default null,
-    primary key (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-
-
-CREATE TABLE `exam` (
-    `id` bigint(20) not null auto_increment,
-    `type_id` bigint(20) not null ,
-    `taking_exam_id` bigint(20) not null ,
-    `start_time` datetime not null ,
-    `end_time` datetime not null ,
-    `points` double not null ,
-    `created_at` timestamp not null,
-    `deleted` tinyint(1) default '0',
-    `updated_at` timestamp null default null,
-    primary key (`id`),
-    foreign key (`type_id`) references `exam_type` (`id`),
-    foreign key (`taking_exam_id`) references `taking_exam` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-CREATE TABLE `exam_outcome` (
-    `id` bigint(20) not null auto_increment,
-    `description` text not null ,
-    `exam_id` bigint(20) not null ,
-    `created_at` timestamp not null,
-    `deleted` tinyint(1) default '0',
-    `updated_at` timestamp null default null,
-    primary key (`id`),
-    foreign key (`exam_id`) references `exam` (`id`)
-);
 
 CREATE TABLE `teacher_on_realization` (
     `id` bigint(20) not null auto_increment,

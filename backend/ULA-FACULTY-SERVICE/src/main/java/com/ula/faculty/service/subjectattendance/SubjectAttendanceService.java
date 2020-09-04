@@ -15,7 +15,7 @@ public interface SubjectAttendanceService
     SubjectAttendanceDTO show(Long id)
     throws SubjectAttendanceNotFoundException;
 
-    String store(SubjectAttendanceDTO subjectAttendanceDTO)
+    String store(SubjectAttendanceDTO subjectAttendanceDTO, String token)
     throws SubjectRealizationNotFoundException, StudentNotFoundException, StudentOnYearNotFoundException;
 
     String update(Long id, SubjectAttendanceDTO subjectAttendanceDTO)

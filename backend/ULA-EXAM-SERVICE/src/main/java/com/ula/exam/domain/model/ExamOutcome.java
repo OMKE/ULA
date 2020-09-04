@@ -1,27 +1,29 @@
-package com.ula.faculty.domain.model;
+package com.ula.exam.domain.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.ula.core.domain.model.BaseEntity;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Accessors(chain = true)
 @Entity
-public class ExamType {
+public class ExamOutcome extends BaseEntity
+{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable = false, columnDefinition = "VARCHAR(64)")
-	private String name;
 
-	@OneToMany(mappedBy = "type")
-	private Set<Exam> exams;
+	@Column(nullable = false, columnDefinition = "TEXT")
+	private String description;
+
+	@OneToOne
+	private Exam exam;
 }

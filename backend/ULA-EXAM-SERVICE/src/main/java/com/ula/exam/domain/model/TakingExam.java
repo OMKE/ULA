@@ -1,9 +1,10 @@
-package com.ula.faculty.domain.model;
+package com.ula.exam.domain.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import org.ula.core.domain.model.BaseEntity;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -13,11 +14,14 @@ import java.util.Set;
 @NoArgsConstructor
 @Accessors(chain = true)
 @Entity
-public class TakingExam
+public class TakingExam extends BaseEntity
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column
+    private Long subjectAttendanceId;
 
     @Column(columnDefinition = "DOUBLE")
     private double points;
@@ -26,9 +30,6 @@ public class TakingExam
     private String note;
 
     @OneToMany(mappedBy = "takingExam")
-    private Set<Exam> exam;
-
-    @ManyToOne
-    private SubjectAttendance subjectAttendance;
+    private Set<Exam> exams;
 
 }
