@@ -32,4 +32,6 @@ public class TakingExam extends BaseEntity
     @OneToMany(mappedBy = "takingExam")
     private Set<Exam> exams;
 
+
+
 }
