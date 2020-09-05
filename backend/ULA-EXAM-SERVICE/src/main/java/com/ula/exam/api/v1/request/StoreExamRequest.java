@@ -30,5 +30,6 @@ public class StoreExamRequest
     @NotNull(message = "End time is required")
     private Date endTime;
 
-
+    @NotNull(message = "Final is required")
+    private boolean finalExam;
 }
