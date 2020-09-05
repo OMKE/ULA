@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService
 
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 
-			User user = this.userRepository.findByUsername(userDTO.getUsername())
+			User user = this.userRepository.findByUsernameAndDeletedFalse(userDTO.getUsername())
 						.orElseThrow
 								(
 									() -> new UserException(String.format("User with username: %s not found."))
@@ -129,7 +129,7 @@ public class UserServiceImpl implements UserService
 	{
 		
 
-		Optional<User> foundedUser = userRepository.findByUsername(userDTO.getUsername());
+		Optional<User> foundedUser = userRepository.findByUsernameAndDeletedFalse(userDTO.getUsername());
 		if (foundedUser.isPresent()) {
 			throw new UserConflictException(String.format("User with username: '%s' already exists",
 					userDTO.getUsername()));
@@ -171,7 +171,7 @@ public class UserServiceImpl implements UserService
 	public Optional<User> getByUsername(String username) throws UserNotFoundException
 	{
 		
-		Optional<User> user = userRepository.findByUsername(username);
+		Optional<User> user = userRepository.findByUsernameAndDeletedFalse(username);
 		if(user.isEmpty()) {
 			throw new UserNotFoundException(
 					String.format("User with given username: '%s' does not exist", username));
@@ -185,7 +185,7 @@ public class UserServiceImpl implements UserService
 	public Optional<User> getByUsernameAndPassword(String username, String password)
 			throws UserNotFoundException
 	{
-		Optional<User> user = userRepository.findByUsernameAndPassword(username, password);
+		Optional<User> user = userRepository.findByUsernameAndPasswordAndDeletedFalse(username, password);
 		if(user.isEmpty()) {
 			throw new UserNotFoundException(String.format(
 					"User with given username and password: '%s': '%d' does not exist", username,
@@ -213,7 +213,7 @@ public class UserServiceImpl implements UserService
 			throws UserNotFoundException
 	{
 
-		Optional<User> user = userRepository.findByUsernameAndPassword(email, password);
+		Optional<User> user = userRepository.findByUsernameAndPasswordAndDeletedFalse(email, password);
 		if (user.isEmpty()) {
 			throw new UserNotFoundException(
 					String.format("User with given email and password: '%s': '%d' does not exist",

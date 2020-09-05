@@ -1,20 +1,38 @@
 package com.ula.exam.mapper;
 
 import com.ula.exam.domain.model.TakingExam;
+import com.ula.exam.dto.model.ExamDTO;
 import com.ula.exam.dto.model.TakingExamDTO;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 public class TakingExamMapper
 {
+
     public static TakingExamDTO map(TakingExam takingExam)
     {
         return new TakingExamDTO()
                     .setId(takingExam.getId())
                     .setSubjectAttendanceId(takingExam.getSubjectAttendanceId())
                     .setNote(takingExam.getNote())
-                    .setPoints(takingExam.getPoints());
+                    .setPoints(takingExam.getPoints())
+                    .setExams
+                            (
+                                    takingExam.getExams()
+                                          .stream()
+                                          .map(exam ->
+                                                   new ExamDTO()
+                                                           .setId(exam.getId())
+                                                            .setTakingExamId(takingExam.getId())
+                                                            .setExamTypeId(exam.getType().getId())
+                                                            .setExamType(exam.getType().getName())
+                                                            .setStartTime(exam.getStartTime())
+                                                            .setEndTime(exam.getEndTime()))
+                                          .collect(Collectors.toList())
+
+                            );
     }
 
     public static List<TakingExamDTO> map(List<TakingExam> takingExams)

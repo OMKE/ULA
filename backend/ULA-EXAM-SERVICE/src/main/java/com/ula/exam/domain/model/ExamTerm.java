@@ -7,6 +7,7 @@ import lombok.experimental.Accessors;
 import org.ula.core.domain.model.BaseEntity;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Set;
 
 @Getter
@@ -14,23 +15,23 @@ import java.util.Set;
 @NoArgsConstructor
 @Accessors(chain = true)
 @Entity
-public class TakingExam extends BaseEntity
+public class ExamTerm extends BaseEntity
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    private Long subjectAttendanceId;
+    @Column(nullable = false, columnDefinition = "VARCHAR(128)")
+    private String name;
 
-    @Column(columnDefinition = "DOUBLE")
-    private double points;
+    @Column(nullable = false, columnDefinition = "DATETIME")
+    private Date startDate;
 
-    @Column(columnDefinition = "TEXT")
-    private String note;
+    @Column(nullable = false, columnDefinition = "DATETIME")
+    private Date endDate;
 
-    @OneToMany(mappedBy = "takingExam")
-    private Set<Exam> exams;
+    @OneToMany(mappedBy = "examTerm")
+    private Set<ExamEntry> examEntries;
 
 
 

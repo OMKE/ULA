@@ -7,10 +7,17 @@ spring:
       max-request-size: 10MB
 server:
   port: 8080
+ribbon:
+  ReadTimeout: 60000
+  connection-timeout: 3000
+  eureka:
+    enabled: true
 zuul:
   ribbon:
     eager-load:
       enabled: true
+  semaphore:
+    max-semaphores: 500
   sensitive-headers:
     - Authorization,Cookie,Set-Cookie
   routes:
