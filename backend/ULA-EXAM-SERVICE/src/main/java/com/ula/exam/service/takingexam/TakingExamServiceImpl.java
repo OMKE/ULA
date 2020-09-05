@@ -1,12 +1,16 @@
 package com.ula.exam.service.takingexam;
 
 import com.ula.exam.domain.model.TakingExam;
+import com.ula.exam.domain.repository.ExamRepository;
 import com.ula.exam.domain.repository.TakingExamRepository;
+import com.ula.exam.dto.model.ExamDTO;
 import com.ula.exam.dto.model.SubjectAttendanceDTO;
 import com.ula.exam.dto.model.TakingExamDTO;
 import com.ula.exam.feign.FacultyFeignClient;
 import com.ula.exam.mapper.SubjectAttendanceDTOMapper;
 import com.ula.exam.mapper.TakingExamMapper;
+import com.ula.exam.service.exam.ExamService;
+import com.ula.exam.service.exception.FinalExamNotFoundException;
 import com.ula.exam.service.exception.SubjectAttendanceConflictException;
 import com.ula.exam.service.exception.SubjectAttendanceNotFoundException;
 import com.ula.exam.service.exception.TakingExamNotFoundException;
@@ -14,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.ula.core.api.response.Response;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,9 +26,14 @@ import java.util.Optional;
 public class TakingExamServiceImpl implements TakingExamService
 {
 
+    @Autowired
+    private ExamService examService;
 
     @Autowired
     private TakingExamRepository takingExamRepository;
+
+    @Autowired
+    private ExamRepository examRepository;
 
     @Autowired
     private FacultyFeignClient facultyFeignClient;
@@ -44,7 +54,7 @@ public class TakingExamServiceImpl implements TakingExamService
                                 (
                                     () ->
                                     new TakingExamNotFoundException(String.format("Taking exam with id: %s could not be found", id))
-                                )
+                                ).setExams(new HashSet<>(examRepository.findAllByTakingExamId(id)))
                 );
     }
 
@@ -73,7 +83,8 @@ public class TakingExamServiceImpl implements TakingExamService
         // Populate Entity
         TakingExam takingExam = new TakingExam()
                     .setNote(takingExamDTO.getNote())
-                    .setSubjectAttendanceId(subjectAttendanceDTO.getId());
+                    .setSubjectAttendanceId(subjectAttendanceDTO.getId())
+                    .setExams(new HashSet<>());
 
         // Save to DB
 
@@ -82,6 +93,47 @@ public class TakingExamServiceImpl implements TakingExamService
 
         return String.format("Taking exam has been stored");
 
+    }
+
+    @Override
+    public TakingExamDTO getWithPointsCalculated(Long id)
+    throws TakingExamNotFoundException
+    {
+
+        try {
+
+            // get last two
+            List<ExamDTO> lastTwo = this.examService.getLastTwoByTakingExamIdNotFinalExam(id);
+
+            // get last which is final
+            ExamDTO lastFinal = this.examService.getLastByTakingExamIdFinalExamTrue(id);
+
+
+            // sum points
+            double points = lastTwo.stream()
+                                   .mapToDouble(ExamDTO::getPoints)
+                                   .sum();
+
+            points += lastFinal.getPoints();
+
+            // return
+            return TakingExamMapper.map
+                    (
+                            takingExamRepository.findById(id).orElseThrow
+                                    (
+                                            () ->
+                                                    new TakingExamNotFoundException(String.format("Taking exam with id: %s could not be found", id))
+                                    ).setExams(new HashSet<>(examRepository.findAllByTakingExamId(id))).setPoints(points));
+        } catch (FinalExamNotFoundException e) {
+
+            return TakingExamMapper.map
+                    (
+                            takingExamRepository.findById(id).orElseThrow
+                                    (
+                                            () ->
+                                                    new TakingExamNotFoundException(String.format("Taking exam with id: %s could not be found", id))
+                                    ).setExams(new HashSet<>(examRepository.findAllByTakingExamId(id))));
+        }
     }
 
     @Override
