@@ -2,9 +2,7 @@ package com.ula.exam.service.exam;
 
 import com.ula.exam.api.v1.request.UpdateExamRequest;
 import com.ula.exam.dto.model.ExamDTO;
-import com.ula.exam.service.exception.ExamNotFoundException;
-import com.ula.exam.service.exception.ExamTypeNotFoundException;
-import com.ula.exam.service.exception.TakingExamNotFoundException;
+import com.ula.exam.service.exception.*;
 
 import java.util.List;
 
@@ -18,8 +16,13 @@ public interface ExamService
     String store(ExamDTO examDTO)
     throws TakingExamNotFoundException, ExamTypeNotFoundException;
 
+    List<ExamDTO> getLastTwoByTakingExamIdNotFinalExam(Long takingExamId);
+
+    ExamDTO getLastByTakingExamIdFinalExamTrue(Long takingExamId)
+    throws FinalExamNotFoundException;
+
     String update(Long id, UpdateExamRequest updateExamRequest)
-    throws ExamNotFoundException;
+    throws ExamNotFoundException, ExamDoesNotHaveActiveEntryException, ExamDoesNotHaveEntry;
 
     String delete(Long id)
     throws ExamNotFoundException;

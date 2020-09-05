@@ -11,9 +11,7 @@ import com.ula.exam.domain.repository.ExamTypeRepository;
 import com.ula.exam.domain.repository.TakingExamRepository;
 import com.ula.exam.dto.model.ExamDTO;
 import com.ula.exam.mapper.ExamMapper;
-import com.ula.exam.service.exception.ExamNotFoundException;
-import com.ula.exam.service.exception.ExamTypeNotFoundException;
-import com.ula.exam.service.exception.TakingExamNotFoundException;
+import com.ula.exam.service.exception.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -69,7 +67,8 @@ public class ExamServiceImpl implements ExamService
                 .setTakingExam(takingExam)
                 .setType(examType)
                 .setStartTime(examDTO.getStartTime())
-                .setEndTime(examDTO.getEndTime());
+                .setEndTime(examDTO.getEndTime())
+                .setFinalExam(examDTO.isFinalExam());
 
 
 
@@ -81,9 +80,33 @@ public class ExamServiceImpl implements ExamService
         return "Exam has been stored";
     }
 
+    // Will be used for calculating grade,
+    // we will take only last two tests that are not final and last taken final
+    // Add points from all of them and return grade
+    @Override
+    public List<ExamDTO> getLastTwoByTakingExamIdNotFinalExam(Long takingExamId)
+    {
+        return ExamMapper.map(this.examRepository.findLastTwoNotFinal(takingExamId));
+    }
+
+    @Override
+    public ExamDTO getLastByTakingExamIdFinalExamTrue(Long takingExamId)
+    throws FinalExamNotFoundException
+    {
+        return ExamMapper.map
+                (
+                    this.examRepository
+                            .findLastByTakingExamIdAndFinalExamTrue(takingExamId)
+                            .orElseThrow(() ->
+                             new FinalExamNotFoundException(String.format("Final exam with taking exam id: %s could not be found", takingExamId)))
+
+                );
+    }
+
+
     @Override
     public String update(Long id, UpdateExamRequest updateExamRequest)
-    throws ExamNotFoundException
+    throws ExamNotFoundException, ExamDoesNotHaveActiveEntryException, ExamDoesNotHaveEntry
     {
 
         // Find exam with id
@@ -91,13 +114,23 @@ public class ExamServiceImpl implements ExamService
                 .findById(id)
                 .orElseThrow(() -> new ExamNotFoundException(String.format("Exam with id: %s could not be found", id)));
 
+        if(exam.getExamEntry() != null)
+        {
+            if(exam.getExamEntry().isActive())
+            {
+                exam.setPoints(updateExamRequest.getPoints())
+                    .getExamOutcome().setDescription(updateExamRequest.getDescription());
 
-        exam.setPoints(updateExamRequest.getPoints())
-            .getExamOutcome().setDescription(updateExamRequest.getDescription());
+                this.examRepository.save(exam);
 
-        this.examRepository.save(exam);
+                return "Exam has been updated";
+            } else {
+                throw new ExamDoesNotHaveActiveEntryException("Exam can not be updated because it doesn't have an active entry registered");
+            }
 
-        return "Exam has been updated";
+        } else {
+            throw new ExamDoesNotHaveEntry("Exam can not be updated because exam does not have an entry");
+        }
     }
 
     @Override
