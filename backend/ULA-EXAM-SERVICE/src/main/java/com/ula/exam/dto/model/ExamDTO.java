@@ -20,4 +20,5 @@ public class ExamDTO
     private Date endTime;
     private double points;
     private String examType;
+    private boolean finalExam;
 }
