@@ -1,4 +1,4 @@
-package com.ula.exam.config;
+package com.ula.exam.configuration;
 
 import org.flywaydb.core.Flyway;
 import org.springframework.beans.factory.annotation.Autowired;

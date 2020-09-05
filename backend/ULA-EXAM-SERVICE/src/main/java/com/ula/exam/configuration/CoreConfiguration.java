@@ -1,4 +1,4 @@
-package com.ula.exam.config;
+package com.ula.exam.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
