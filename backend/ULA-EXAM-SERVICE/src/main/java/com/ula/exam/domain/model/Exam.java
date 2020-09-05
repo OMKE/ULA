@@ -30,13 +30,19 @@ public class Exam extends BaseEntity
 	@Column(nullable = false, columnDefinition = "DOUBLE")
 	private double points;
 
-	@ManyToOne
+	@Column(nullable = false, columnDefinition = "TINYINT(1) DEFAULT 0")
+	private boolean finalExam;
+
+	@ManyToOne(optional = false)
 	private ExamType type;
 
-	@OneToOne(mappedBy = "exam")
+	@OneToOne(mappedBy = "exam", optional = false)
 	private ExamOutcome examOutcome;
 
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private TakingExam takingExam;
+
+	@OneToOne(mappedBy = "exam", optional = false)
+	private ExamEntry examEntry;
 
 }
