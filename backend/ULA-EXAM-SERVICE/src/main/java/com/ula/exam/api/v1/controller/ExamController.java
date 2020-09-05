@@ -4,9 +4,8 @@ import com.ula.exam.api.v1.request.StoreExamRequest;
 import com.ula.exam.api.v1.request.UpdateExamRequest;
 import com.ula.exam.dto.model.ExamDTO;
 import com.ula.exam.service.exam.ExamService;
-import com.ula.exam.service.exception.ExamNotFoundException;
-import com.ula.exam.service.exception.ExamTypeNotFoundException;
-import com.ula.exam.service.exception.TakingExamNotFoundException;
+import com.ula.exam.service.exception.*;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
@@ -24,7 +23,11 @@ import javax.validation.Valid;
 public class ExamController extends BaseController
 {
     @Autowired
-    private ExamService examService ;
+    private ExamService examService;
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
 
     @Authorized("[ADMIN,TEACHER]")
     @GetMapping("/exam")
@@ -66,7 +69,8 @@ public class ExamController extends BaseController
                     .setExamTypeId(storeRequest.getTypeId())
                     .setTakingExamId(storeRequest.getTakingExamId())
                     .setStartTime(storeRequest.getStartTime())
-                    .setEndTime(storeRequest.getEndTime());
+                    .setEndTime(storeRequest.getEndTime())
+                    .setFinalExam(storeRequest.isFinalExam());
 
         try {
             return Response.ok()
@@ -91,7 +95,7 @@ public class ExamController extends BaseController
         try {
             return Response.ok()
                            .setPayload(this.examService.update(id, updateRequest));
-        } catch (ExamNotFoundException e) {
+        } catch (ExamNotFoundException | ExamDoesNotHaveActiveEntryException | ExamDoesNotHaveEntry e) {
             return Response.exception().setErrors(e.getMessage());
         }
     }
@@ -110,5 +114,13 @@ public class ExamController extends BaseController
         } catch (ExamNotFoundException e) {
             return Response.exception().setErrors(e.getMessage());
         }
+    }
+
+    @GetMapping("/test")
+    public String test(@RequestParam("message") String message)
+    {
+        rabbitTemplate.convertAndSend("ula-queue", "ula.test.baz", message);
+
+        return message;
     }
 }
