@@ -1,4 +1,4 @@
-package com.ula.authentication.config.security;
+package com.ula.authentication.configuration.security;
 
 import com.ula.authentication.filter.JWTAuthenticationFilter;
 import com.ula.authentication.service.user.UserDetailsServiceImplementation;

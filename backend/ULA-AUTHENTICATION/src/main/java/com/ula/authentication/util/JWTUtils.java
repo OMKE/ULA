@@ -1,6 +1,6 @@
 package com.ula.authentication.util;
 
-import com.ula.authentication.config.security.SecurityConstants;
+import com.ula.authentication.configuration.security.SecurityConstants;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Value;

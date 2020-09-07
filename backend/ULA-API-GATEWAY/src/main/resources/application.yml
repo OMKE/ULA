@@ -24,6 +24,7 @@ zuul:
     ula-auth-service: /api/v1/auth/**
     ula-university-service: /api/v1/university/**
     ula-faculty-service: /api/v1/faculty/**
+    ula-student-service: /api/v1/student/**
     ula-exam-service: /api/v1/exam/**
     ula-static-content-service: /storage/**
   host:
