@@ -24,10 +24,10 @@ public class ExamTerm extends BaseEntity
     @Column(nullable = false, columnDefinition = "VARCHAR(128)")
     private String name;
 
-    @Column(nullable = false, columnDefinition = "DATETIME")
+    @Column(nullable = false, columnDefinition = "TIMESTAMP")
     private Date startDate;
 
-    @Column(nullable = false, columnDefinition = "DATETIME")
+    @Column(nullable = false, columnDefinition = "TIMESTAMP")
     private Date endDate;
 
     @OneToMany(mappedBy = "examTerm")
