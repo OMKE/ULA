@@ -16,11 +16,6 @@ public interface ExamService
     String store(ExamDTO examDTO)
     throws TakingExamNotFoundException, ExamTypeNotFoundException;
 
-    List<ExamDTO> getLastTwoByTakingExamIdNotFinalExam(Long takingExamId);
-
-    ExamDTO getLastByTakingExamIdFinalExamTrue(Long takingExamId)
-    throws FinalExamNotFoundException;
-
     String update(Long id, UpdateExamRequest updateExamRequest)
     throws ExamNotFoundException, ExamDoesNotHaveActiveEntryException, ExamDoesNotHaveEntry;
 

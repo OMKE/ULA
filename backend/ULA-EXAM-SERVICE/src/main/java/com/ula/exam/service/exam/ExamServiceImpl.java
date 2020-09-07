@@ -80,29 +80,6 @@ public class ExamServiceImpl implements ExamService
         return "Exam has been stored";
     }
 
-    // Will be used for calculating grade,
-    // we will take only last two tests that are not final and last taken final
-    // Add points from all of them and return grade
-    @Override
-    public List<ExamDTO> getLastTwoByTakingExamIdNotFinalExam(Long takingExamId)
-    {
-        return ExamMapper.map(this.examRepository.findLastTwoNotFinal(takingExamId));
-    }
-
-    @Override
-    public ExamDTO getLastByTakingExamIdFinalExamTrue(Long takingExamId)
-    throws FinalExamNotFoundException
-    {
-        return ExamMapper.map
-                (
-                    this.examRepository
-                            .findLastByTakingExamIdAndFinalExamTrue(takingExamId)
-                            .orElseThrow(() ->
-                             new FinalExamNotFoundException(String.format("Final exam with taking exam id: %s could not be found", takingExamId)))
-
-                );
-    }
-
 
     @Override
     public String update(Long id, UpdateExamRequest updateExamRequest)

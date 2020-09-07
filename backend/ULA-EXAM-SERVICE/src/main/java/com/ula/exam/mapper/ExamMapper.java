@@ -16,7 +16,9 @@ public class ExamMapper
                     .setExamTypeId(exam.getType().getId())
                     .setExamType(exam.getType().getName())
                     .setStartTime(exam.getStartTime())
-                    .setEndTime(exam.getEndTime());
+                    .setEndTime(exam.getEndTime())
+                    .setPoints(exam.getPoints())
+                    .setFinalExam(exam.isFinalExam());
     }
 
     public static List<ExamDTO> map(List<Exam> exams)

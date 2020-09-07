@@ -3,9 +3,11 @@ package com.ula.exam.api.v1.controller;
 import com.ula.exam.api.v1.request.StoreTakingExamRequest;
 import com.ula.exam.api.v1.request.UpdateTakingExamRequest;
 import com.ula.exam.dto.model.TakingExamDTO;
+import com.ula.exam.service.exception.FinalExamNotFoundException;
 import com.ula.exam.service.exception.SubjectAttendanceConflictException;
 import com.ula.exam.service.exception.SubjectAttendanceNotFoundException;
 import com.ula.exam.service.exception.TakingExamNotFoundException;
+import com.ula.exam.service.points.PointsService;
 import com.ula.exam.service.takingexam.TakingExamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
@@ -25,6 +27,9 @@ public class TakingExamController extends BaseController
 {
     @Autowired
     private TakingExamService takingExamService;
+
+    @Autowired
+    private PointsService pointsService;
 
     @Authorized("[ADMIN,TEACHER]")
     @GetMapping("/taking-exam")
@@ -49,6 +54,21 @@ public class TakingExamController extends BaseController
             return Response.ok()
                            .setPayload(this.takingExamService.show(id));
         } catch (TakingExamNotFoundException e) {
+            return Response.exception().setErrors(e.getMessage());
+        }
+    }
+
+    @Authorized("[ADMIN,TEACHER]")
+    @GetMapping("/taking-exam/{id}/points")
+    public Response<Object> showPoints
+    (
+            @Token JWT jwt,
+            @PathVariable("id") Long id
+    )
+    {
+        try {
+            return Response.ok().setPayload(this.pointsService.getByTakingExamId(id));
+        } catch (TakingExamNotFoundException | FinalExamNotFoundException e) {
             return Response.exception().setErrors(e.getMessage());
         }
     }
