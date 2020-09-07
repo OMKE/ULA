@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: ula-student-service
+server:
+  port: 8085
+
+
+feign:
+  hystrix:
+    enabled: true
