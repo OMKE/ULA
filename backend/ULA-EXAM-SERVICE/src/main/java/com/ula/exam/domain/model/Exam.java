@@ -21,10 +21,10 @@ public class Exam extends BaseEntity
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable = false, columnDefinition = "DATETIME")
+	@Column(nullable = false, columnDefinition = "TIMESTAMP")
 	private Date startTime;
 
-	@Column(nullable = false, columnDefinition = "DATETIME")
+	@Column(nullable = false, columnDefinition = "TIMESTAMP")
 	private Date endTime;
 
 	@Column(nullable = false, columnDefinition = "DOUBLE")
