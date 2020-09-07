@@ -129,7 +129,7 @@ public class UserServiceImpl implements UserService
 	{
 		
 
-		Optional<User> foundedUser = userRepository.findByUsernameAndDeletedFalse(userDTO.getUsername());
+		Optional<User> foundedUser = userRepository.findByUsername(userDTO.getUsername());
 		if (foundedUser.isPresent()) {
 			throw new UserConflictException(String.format("User with username: '%s' already exists",
 					userDTO.getUsername()));

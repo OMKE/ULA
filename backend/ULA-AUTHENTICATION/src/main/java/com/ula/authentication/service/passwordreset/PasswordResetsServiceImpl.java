@@ -1,6 +1,6 @@
 package com.ula.authentication.service.passwordreset;
 
-import com.ula.authentication.config.security.SecurityConstants;
+import com.ula.authentication.configuration.security.SecurityConstants;
 import com.ula.authentication.domain.model.PasswordResets;
 import com.ula.authentication.domain.model.User;
 import com.ula.authentication.domain.repository.PasswordResetsRepository;

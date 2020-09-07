@@ -1,4 +1,4 @@
-package com.ula.authentication.config.security;
+package com.ula.authentication.configuration.security;
 
 public class SecurityConstants {
 
