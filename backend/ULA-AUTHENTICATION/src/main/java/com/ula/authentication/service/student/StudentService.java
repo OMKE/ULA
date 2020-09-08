@@ -25,4 +25,7 @@ public interface StudentService
 
     String restore(Long id)
     throws StudentNotFoundException, UserNotFoundException, UserPermissionException;
+
+    StudentDTO getStudentBasedOnUsername(String username)
+    throws UserNotFoundException, StudentNotFoundException;
 }

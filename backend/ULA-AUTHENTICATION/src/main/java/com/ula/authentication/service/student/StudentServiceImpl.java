@@ -34,6 +34,7 @@ public class StudentServiceImpl implements StudentService
     @Autowired
     private UserPermissionRepository userPermissionRepository;
 
+
     @Override
     public List<StudentDTO> index()
     {
@@ -196,5 +197,21 @@ public class StudentServiceImpl implements StudentService
 
         this.studentRepository.restoreById(student.getId());
         return String.format("Student: %s has been restored", user.getUsername());
+    }
+
+    @Override
+    public StudentDTO getStudentBasedOnUsername(String username)
+    throws UserNotFoundException, StudentNotFoundException
+    {
+        User user = userRepository
+                .findByUsernameAndDeletedFalse(username)
+                .orElseThrow(() -> new UserNotFoundException(String.format("User with username: %s could not be found", username)));
+
+        Student student = this.studentRepository
+                .getByUserId(user.getId())
+                .orElseThrow(() -> new StudentNotFoundException(String.format("Student with user id: %s could not be found", user.getId())));
+
+        return StudentMapper.map(student);
+
     }
 }
