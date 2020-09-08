@@ -16,6 +16,9 @@ public interface StudentOnYearService
     StudentOnYearDTO show(Long id)
     throws StudentOnYearNotFoundException;
 
+    StudentOnYearDTO showByStudentId(Long studentId)
+    throws StudentOnYearNotFoundException;
+
     String store(String token, StoreStudentOnYearRequest studentOnYearDTO)
     throws StudentOnYearNotFoundException, StudentNotFoundException, YearOfStudyNotFoundException, StudentOnYearConflictException, SubjectRealizationNotFoundException;
 
