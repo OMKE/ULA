@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import org.ula.core.domain.repository.CrudRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface SubjectAttendanceRepository extends CrudRepository<SubjectAttendance, Long>
@@ -12,4 +13,6 @@ public interface SubjectAttendanceRepository extends CrudRepository<SubjectAtten
     List<SubjectAttendance> getAllByStudentId(Long studentId);
     List<SubjectAttendance> getAllByStudentIdAndFinalGradeNotNull(Long studentId);
     List<SubjectAttendance> getAllByStudentIdAndFinalGradeNull(Long studentId);
+
+    Optional<SubjectAttendance> getByIdAndStudentIdAndDeletedFalse(Long id, Long studentId);
 }
