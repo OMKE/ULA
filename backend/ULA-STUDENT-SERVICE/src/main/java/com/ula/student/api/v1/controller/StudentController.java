@@ -27,6 +27,5 @@ public class StudentController
         return Response.ok()
                        .setPayload(this.studentService.getStudent(jwt.getUsername()));
     }
-    
 
 }
