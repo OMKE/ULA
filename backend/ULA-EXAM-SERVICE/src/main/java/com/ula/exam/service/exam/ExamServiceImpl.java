@@ -53,6 +53,7 @@ public class ExamServiceImpl implements ExamService
     @Override
     public String store(ExamDTO examDTO)
     throws TakingExamNotFoundException, ExamTypeNotFoundException
+    throws TakingExamNotFoundException, ExamTypeNotFoundException, ExamTermNotFoundException
     {
         // Check if TakingExam exists
         TakingExam takingExam = this.takingExamRepository
@@ -62,6 +63,11 @@ public class ExamServiceImpl implements ExamService
         ExamType examType = this.examTypeRepository
                     .findById(examDTO.getExamTypeId())
                     .orElseThrow(() -> new ExamTypeNotFoundException(String.format("Taking exam with id: %s could not be found", examDTO.getExamTypeId())));
+
+
+        ExamTerm examTerm = this.examTermRepository
+                    .findById(examDTO.getExamTermId())
+                    .orElseThrow(() -> new ExamTermNotFoundException(String.format("Exam term with id: %s could not be found", examDTO.getExamTermId())));
         // Populate new Exam
         Exam exam = new Exam()
                 .setTakingExam(takingExam)
@@ -75,6 +81,13 @@ public class ExamServiceImpl implements ExamService
         // Save to DB
         this.examRepository.save(exam);
 
+        this.examEntryRepository.save
+                (
+                        new ExamEntry()
+                                .setActive(true)
+                                .setExam(exam)
+                                .setExamTerm(examTerm)
+                );
         this.examOutcomeRepository.save(new ExamOutcome().setExam(exam).setDescription("Not yet taken."));
 
         return "Exam has been stored";
