@@ -1,5 +1,6 @@
 package com.ula.faculty.api.v1.controller;
 
+import com.ula.faculty.dto.model.SubjectAttendanceWithSubjectDTO;
 import com.ula.faculty.service.exception.SubjectAttendanceNotFoundException;
 import com.ula.faculty.service.subjectattendance.SubjectAttendanceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +13,15 @@ import org.ula.core.annotation.Token;
 import org.ula.core.api.response.Response;
 import org.ula.core.util.JWT;
 
+import java.util.List;
+
 @RestController
 @Validated
 public class SubjectAttendanceController
 {
     @Autowired
     private SubjectAttendanceService subjectAttendanceService;
+
 
     @Authorized("[ADMIN,TEACHER]")
     @GetMapping("/subject-attendance")
@@ -45,6 +49,42 @@ public class SubjectAttendanceController
             return Response.exception().setErrors(e.getMessage());
         }
     }
+
+    // @TODO - Make routes only available to other services, but not to api gateway
+    @Authorized("STUDENT")
+    @GetMapping("/private/subject-attendance/student/{id}")
+    public List<SubjectAttendanceWithSubjectDTO> indexByStudentId
+    (
+            @Token JWT jwt,
+            @PathVariable("id") Long id
+    )
+    {
+        return this.subjectAttendanceService.getAllByStudentId(id);
+    }
+
+    @Authorized("STUDENT")
+    @GetMapping("/private/subject-attendance/student/{id}/passed")
+    public List<SubjectAttendanceWithSubjectDTO> indexPassedByStudentId
+            (
+                    @Token JWT jwt,
+                    @PathVariable("id") Long id
+            )
+    {
+        return this.subjectAttendanceService.getAllPassedByStudentId(id);
+    }
+
+    @Authorized("STUDENT")
+    @GetMapping("/private/subject-attendance/student/{id}/not-passed")
+    public List<SubjectAttendanceWithSubjectDTO> indexCurrentByStudentId
+            (
+                    @Token JWT jwt,
+                    @PathVariable("id") Long id
+            )
+    {
+        return this.subjectAttendanceService.getAllCurrentByStudentId(id);
+    }
+
+
     /*
     @Authorized("ADMIN")
     @PostMapping("")
