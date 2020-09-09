@@ -19,4 +19,9 @@ public class UserUtil
 
         return jwt.getUsername();
     }
+
+    public String getToken()
+    {
+        return this.request.getHeader("Authorization");
+    }
 }
