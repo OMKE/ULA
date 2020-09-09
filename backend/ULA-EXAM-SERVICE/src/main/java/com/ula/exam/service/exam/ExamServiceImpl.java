@@ -1,17 +1,13 @@
 package com.ula.exam.service.exam;
 
 import com.ula.exam.api.v1.request.UpdateExamRequest;
-import com.ula.exam.domain.model.Exam;
-import com.ula.exam.domain.model.ExamOutcome;
-import com.ula.exam.domain.model.ExamType;
-import com.ula.exam.domain.model.TakingExam;
-import com.ula.exam.domain.repository.ExamOutcomeRepository;
-import com.ula.exam.domain.repository.ExamRepository;
-import com.ula.exam.domain.repository.ExamTypeRepository;
-import com.ula.exam.domain.repository.TakingExamRepository;
+import com.ula.exam.domain.model.*;
+import com.ula.exam.domain.repository.*;
 import com.ula.exam.dto.model.ExamDTO;
+import com.ula.exam.dto.model.TakingExamDTO;
 import com.ula.exam.mapper.ExamMapper;
 import com.ula.exam.service.exception.*;
+import com.ula.exam.service.takingexam.TakingExamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +16,10 @@ import java.util.List;
 @Service
 public class ExamServiceImpl implements ExamService
 {
+
+    @Autowired
+    private TakingExamService takingExamService;
+
     @Autowired
     private ExamRepository examRepository;
 
@@ -28,6 +28,12 @@ public class ExamServiceImpl implements ExamService
 
     @Autowired
     private TakingExamRepository takingExamRepository;
+
+    @Autowired
+    private ExamEntryRepository examEntryRepository;
+
+    @Autowired
+    private ExamTermRepository examTermRepository;
 
     @Autowired
     private ExamOutcomeRepository examOutcomeRepository;
@@ -86,7 +92,6 @@ public class ExamServiceImpl implements ExamService
 
     @Override
     public String store(ExamDTO examDTO)
-    throws TakingExamNotFoundException, ExamTypeNotFoundException
     throws TakingExamNotFoundException, ExamTypeNotFoundException, ExamTermNotFoundException
     {
         // Check if TakingExam exists
@@ -114,7 +119,6 @@ public class ExamServiceImpl implements ExamService
 
         // Save to DB
         this.examRepository.save(exam);
-
         this.examEntryRepository.save
                 (
                         new ExamEntry()
