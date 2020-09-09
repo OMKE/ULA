@@ -13,10 +13,6 @@ public interface SubjectAttendanceService
 {
     List<SubjectAttendanceDTO> index();
 
-    List<SubjectAttendanceWithSubjectDTO> getAllByStudentId(Long studentId);
-    List<SubjectAttendanceWithSubjectDTO> getAllPassedByStudentId(Long studentId);
-    List<SubjectAttendanceWithSubjectDTO> getAllCurrentByStudentId(Long studentId);
-
     SubjectAttendanceDTO show(Long id)
     throws SubjectAttendanceNotFoundException;
 
@@ -27,4 +23,13 @@ public interface SubjectAttendanceService
     throws SubjectRealizationNotFoundException, StudentOnYearNotFoundException, SubjectAttendanceNotFoundException;
 
     String delete(Long id);
+
+
+    //  For Student service
+    List<SubjectAttendanceWithSubjectDTO> getAllByStudentId(Long studentId);
+    List<SubjectAttendanceWithSubjectDTO> getAllPassedByStudentId(Long studentId);
+    List<SubjectAttendanceWithSubjectDTO> getAllCurrentByStudentId(Long studentId);
+    SubjectAttendanceWithSubjectDTO getOneByStudentId(Long resourceId, Long studentId)
+    throws SubjectAttendanceNotFoundException;
+
 }
