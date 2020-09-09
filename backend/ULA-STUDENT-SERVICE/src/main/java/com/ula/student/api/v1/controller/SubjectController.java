@@ -4,11 +4,13 @@ import com.ula.student.service.subject.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.ula.core.annotation.Authorized;
 import org.ula.core.annotation.Token;
 import org.ula.core.api.response.Response;
+import org.ula.core.api.response.ResponseResolver;
 import org.ula.core.util.JWT;
 
 @RestController
@@ -21,7 +23,7 @@ public class SubjectController
 
     @Authorized("STUDENT")
     @GetMapping("/subject")
-    public Response<Object> subjects
+    public Response<Object> index
     (
             @Token JWT jwt,
             @RequestParam(value = "fetch", required = false) String passed
@@ -43,7 +45,19 @@ public class SubjectController
          else {
             return Response.ok().setPayload(this.subjectService.index());
         }
+    }
+
+    @Authorized("STUDENT")
+    @GetMapping("/subject/{id}")
+    public Response<Object> show
+    (
+            @Token JWT jwt,
+            @PathVariable("id") Long id
+    )
+    {
+        return ResponseResolver.resolve(this.subjectService.show(id));
 
     }
-    
+
+
 }
