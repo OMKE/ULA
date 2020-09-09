@@ -51,6 +51,40 @@ public class ExamServiceImpl implements ExamService
     }
 
     @Override
+    public ExamDTO showByStudentIdAndSubjectAttendanceId
+    (
+            Long studentId,
+            Long subjectAttendanceId,
+            Long id
+    )
+    throws TakingExamNotFoundException, ExamNotFoundException
+    {
+        TakingExamDTO takingExamDTO = takingExamService.showByStudentIdAndSubjectAttendanceId(studentId, subjectAttendanceId);
+        if(takingExamDTO != null)
+        {
+            Exam exam = this.examRepository
+                    .findById(id)
+                    .orElseThrow(() ->
+                             new ExamNotFoundException(String.format("Exam with id: %s could not be found", id)));
+            // Check if user can access this exam
+            // Resource Ownership check
+            // Every exam has an id of taking exam, every taking exam is mapped to SubjectAttendance, so if we got TakingExamDTO from
+            // TakingExamService (which already checks for resource ownership), we can check if Exam that we found in db belongs to that user
+            if(exam.getTakingExam()
+                   .getId()
+                   .equals(takingExamDTO.getId()))
+            {
+                return ExamMapper.map(exam);
+            } else {
+                return null;
+            }
+
+        } else {
+            return null;
+        }
+    }
+
+    @Override
     public String store(ExamDTO examDTO)
     throws TakingExamNotFoundException, ExamTypeNotFoundException
     throws TakingExamNotFoundException, ExamTypeNotFoundException, ExamTermNotFoundException

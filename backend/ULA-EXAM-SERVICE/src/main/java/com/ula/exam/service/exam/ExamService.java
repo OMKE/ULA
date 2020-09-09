@@ -13,7 +13,7 @@ public interface ExamService
     ExamDTO show(Long id)
     throws ExamNotFoundException;
 
-    ExamDTO showBySubjectIdAndSubjectAttendanceId(Long studentId, Long subjectAttendanceId, Long id)
+    ExamDTO showByStudentIdAndSubjectAttendanceId(Long studentId, Long subjectAttendanceId, Long id)
     throws TakingExamNotFoundException, ExamNotFoundException;
 
     String store(ExamDTO examDTO)
