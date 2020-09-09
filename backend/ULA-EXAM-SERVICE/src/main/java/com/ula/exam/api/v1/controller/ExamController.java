@@ -55,6 +55,23 @@ public class ExamController extends BaseController
             return Response.exception().setErrors(e.getMessage());
         }
     }
+
+    @Authorized("STUDENT")
+    @GetMapping("/private/taking-exam/subject-attendance/{studentId}/{subjectAttendanceId}/{examId}")
+    public ExamDTO showByStudentIdSubjectAttendanceIdAndExamId
+    (
+        @Token JWT jwt,
+        @PathVariable("studentId") Long studentId,
+        @PathVariable("subjectAttendanceId") Long subjectAttendanceId,
+        @PathVariable("examId") Long examId
+    )
+    {
+        try {
+            return this.examService.showBySubjectIdAndSubjectAttendanceId(studentId, subjectAttendanceId, examId);
+        } catch (TakingExamNotFoundException | ExamNotFoundException e) {
+            return null;
+        }
+    }
     
     @Authorized("[ADMIN,TEACHER]")
     @PostMapping("exam")
@@ -70,12 +87,13 @@ public class ExamController extends BaseController
                     .setTakingExamId(storeRequest.getTakingExamId())
                     .setStartTime(storeRequest.getStartTime())
                     .setEndTime(storeRequest.getEndTime())
-                    .setFinalExam(storeRequest.isFinalExam());
+                    .setFinalExam(storeRequest.isFinalExam())
+                    .setExamTermId(storeRequest.getExamTermId());
 
         try {
             return Response.ok()
                            .setPayload(this.examService.store(examDTO));
-        } catch (TakingExamNotFoundException | ExamTypeNotFoundException e) {
+        } catch (TakingExamNotFoundException | ExamTypeNotFoundException | ExamTermNotFoundException e) {
             return Response.exception().setErrors(e.getMessage());
         }
     }
