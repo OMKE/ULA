@@ -7,9 +7,11 @@ import com.ula.faculty.domain.repository.StudentOnYearRepository;
 import com.ula.faculty.domain.repository.SubjectAttendanceRepository;
 import com.ula.faculty.domain.repository.SubjectRealizationRepository;
 import com.ula.faculty.dto.model.SubjectAttendanceDTO;
+import com.ula.faculty.dto.model.SubjectAttendanceWithSubjectDTO;
 import com.ula.faculty.dto.request.StoreTakingExamRequest;
 import com.ula.faculty.feign.ExamFeignClient;
 import com.ula.faculty.mapper.SubjectAttendanceMapper;
+import com.ula.faculty.mapper.SubjectAttendanceWithSubjectMapper;
 import com.ula.faculty.service.exception.StudentNotFoundException;
 import com.ula.faculty.service.exception.StudentOnYearNotFoundException;
 import com.ula.faculty.service.exception.SubjectAttendanceNotFoundException;
@@ -45,6 +47,25 @@ public class SubjectAttendanceServiceImpl implements SubjectAttendanceService
     public List<SubjectAttendanceDTO> index()
     {
         return SubjectAttendanceMapper.map(this.subjectAttendanceRepository.findAll());
+    }
+
+    @Override
+    public List<SubjectAttendanceWithSubjectDTO> getAllByStudentId(Long studentId)
+    {
+
+        return SubjectAttendanceWithSubjectMapper.map(this.subjectAttendanceRepository.getAllByStudentId(studentId));
+    }
+
+    @Override
+    public List<SubjectAttendanceWithSubjectDTO> getAllPassedByStudentId(Long studentId)
+    {
+        return SubjectAttendanceWithSubjectMapper.map(this.subjectAttendanceRepository.getAllByStudentIdAndFinalGradeNotNull(studentId));
+    }
+
+    @Override
+    public List<SubjectAttendanceWithSubjectDTO> getAllCurrentByStudentId(Long studentId)
+    {
+        return SubjectAttendanceWithSubjectMapper.map(this.subjectAttendanceRepository.getAllByStudentIdAndFinalGradeNull(studentId));
     }
 
     @Override
