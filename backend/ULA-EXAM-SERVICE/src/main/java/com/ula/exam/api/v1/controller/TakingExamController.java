@@ -58,6 +58,24 @@ public class TakingExamController extends BaseController
         }
     }
 
+    @Authorized("STUDENT")
+    @GetMapping("/private/taking-exam/subject-attendance/{studentId}/{id}")
+    public TakingExamDTO showBySubjectAttendanceId
+            (
+                    @Token JWT jwt,
+                    @PathVariable("studentId") Long studentId,
+                    @PathVariable("id") Long id
+            )
+    {
+
+        try {
+            return this.takingExamService.showByStudentIdAndSubjectAttendanceId(studentId, id);
+        } catch (TakingExamNotFoundException e) {
+            return null;
+        }
+
+    }
+
     @Authorized("[ADMIN,TEACHER]")
     @GetMapping("/taking-exam/{id}/points")
     public Response<Object> showPoints
