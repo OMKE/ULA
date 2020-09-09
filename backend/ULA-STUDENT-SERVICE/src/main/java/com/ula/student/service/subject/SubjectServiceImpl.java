@@ -65,6 +65,11 @@ public class SubjectServiceImpl implements SubjectService
     @Override
     public SubjectAttendanceWithSubjectDTO show(Long id)
     {
+        StudentDTO studentDTO = this.studentService.getStudent(this.userUtil.getUsername());
+        if(studentDTO != null)
+        {
+            return this.facultyService.getSubjectAttendanceById(this.userUtil.getToken(), studentDTO.getStudentOnYear().getId(), id);
+        }
         return null;
     }
 }
