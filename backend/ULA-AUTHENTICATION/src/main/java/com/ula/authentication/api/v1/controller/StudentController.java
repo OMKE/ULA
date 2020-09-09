@@ -2,6 +2,7 @@ package com.ula.authentication.api.v1.controller;
 
 import com.ula.authentication.api.v1.request.StoreStudentRequest;
 import com.ula.authentication.api.v1.request.UpdateStudentRequest;
+import com.ula.authentication.domain.guard.StudentGuard;
 import com.ula.authentication.dto.model.StudentDTO;
 import com.ula.authentication.service.exception.StudentNotFoundException;
 import com.ula.authentication.service.exception.UserIsAlreadyStudent;
@@ -25,6 +26,9 @@ public class StudentController extends BaseController
 {
     @Autowired
     private StudentService studentService;
+
+    @Autowired
+    private StudentGuard studentGuard;
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/student")
@@ -116,6 +120,20 @@ public class StudentController extends BaseController
                            .setPayload(this.studentService.restore(id));
         } catch (StudentNotFoundException | UserNotFoundException | UserPermissionException e) {
             return Response.exception().setErrors(e.getMessage());
+        }
+    }
+
+    @PreAuthorize("hasAuthority('STUDENT') && @studentGuard.check(#username, authentication)")
+    @GetMapping("/student/username/{username}")
+    public StudentDTO getByUsername
+    (
+            @PathVariable("username") String username
+    )
+    {
+        try {
+            return this.studentService.getStudentBasedOnUsername(username);
+        } catch (UserNotFoundException | StudentNotFoundException e) {
+            return null;
         }
     }
 }

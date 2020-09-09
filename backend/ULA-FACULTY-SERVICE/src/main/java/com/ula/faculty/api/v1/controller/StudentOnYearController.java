@@ -2,6 +2,7 @@ package com.ula.faculty.api.v1.controller;
 
 import com.ula.faculty.api.v1.request.StoreStudentOnYearRequest;
 import com.ula.faculty.api.v1.request.UpdateStudentOnYearRequest;
+import com.ula.faculty.dto.model.StudentOnYearDTO;
 import com.ula.faculty.service.exception.*;
 import com.ula.faculty.service.studentonyyear.StudentOnYearService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,21 +25,45 @@ public class StudentOnYearController extends BaseController
     @Autowired
     private StudentOnYearService studentOnYearService;
 
+    @Authorized("ADMIN,TEACHER")
     @GetMapping("/student-on-year")
-    public Response<Object> index()
+    public Response<Object> index
+    (
+            @Token JWT jwt
+    )
     {
         return Response.ok()
                        .setPayload(this.studentOnYearService.index());
     }
 
+    @Authorized("ADMIN, TEACHER")
     @GetMapping("/student-on-year/{id}")
-    public Response<Object> show(@PathVariable("id") Long id)
+    public Response<Object> show
+    (
+            @Token JWT jwt,
+            @PathVariable("id") Long id
+    )
     {
         try {
             return Response.ok()
                            .setPayload(this.studentOnYearService.show(id));
         } catch (StudentOnYearNotFoundException e) {
             return Response.exception().setErrors(e.getMessage());
+        }
+    }
+
+    @Authorized("STUDENT")
+    @GetMapping("/student-on-year/student/{studentId}")
+    public StudentOnYearDTO showByStudentId
+    (
+            @Token JWT jwt,
+            @PathVariable("studentId") Long studentId
+    )
+    {
+        try {
+            return this.studentOnYearService.showByStudentId(studentId);
+        } catch (StudentOnYearNotFoundException e) {
+            return null;
         }
     }
 

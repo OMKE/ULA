@@ -1,18 +1,19 @@
 package com.ula.student.dto;
 
 import lombok.Getter;
-import lombok.Setter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.Accessors;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Accessors(chain = true)
-public class SubjectDTO
+public class SubjectWithRealizationIdDTO
 {
     private Long id;
     private Long yearOfStudyId;
+    private Long subjectRealizationId;
     private String name;
     private int semester;
     private int espb;

@@ -6,18 +6,17 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Accessors(chain = true)
-public class SubjectAttendanceDTO
+public class StudentOnYearDTO
 {
     private Long id;
     private Long studentId;
-    private Long subjectRealizationId;
-    private Integer finalGrade;
-    private boolean deleted;
-    private Date createdAt;
-    private Date updatedAt;
+    private List<Long> yearOfStudyIds;
+    private Date dateOfEnrollment;
+    private String transcriptIdentifier;
 }

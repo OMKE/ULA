@@ -69,6 +69,25 @@ public class StudentOnYearServiceImpl implements StudentOnYearService
     }
 
     @Override
+    public StudentOnYearDTO showByStudentId(Long studentId)
+    throws StudentOnYearNotFoundException
+    {
+        return StudentOnYearMapper.map
+                (
+                    this.studentOnYearRepository
+                            .findByStudentIdAndDeletedFalse(studentId)
+                            .orElseThrow(
+                                    () ->
+                                    new StudentOnYearNotFoundException
+                                            (
+                                            String.format("Student on year with student id: %s could not be found", studentId)
+                                            )
+                                        )
+                );
+
+    }
+
+    @Override
     public String store(String token, StoreStudentOnYearRequest studentOnYearDTO)
     throws StudentOnYearNotFoundException, StudentNotFoundException, YearOfStudyNotFoundException, StudentOnYearConflictException, SubjectRealizationNotFoundException
     {

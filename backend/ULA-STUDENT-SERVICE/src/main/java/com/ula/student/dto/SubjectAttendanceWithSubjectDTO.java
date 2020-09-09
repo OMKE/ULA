@@ -1,21 +1,18 @@
-package com.ula.exam.dto.model;
+package com.ula.student.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-import java.util.Date;
-
 @Getter
 @Setter
 @NoArgsConstructor
 @Accessors(chain = true)
-public class ExamTermDTO
+public class SubjectAttendanceWithSubjectDTO
 {
-
     private Long id;
-    private String name;
-    private Date startDate;
-    private Date endDate;
+    private Long studentId;
+    private SubjectWithRealizationIdDTO subject;
+    private Integer finalGrade;
 }
