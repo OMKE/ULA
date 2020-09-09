@@ -13,6 +13,10 @@ public interface TakingExamService
 
     TakingExamDTO show(Long id) throws TakingExamNotFoundException;
 
+
+    TakingExamDTO showByStudentIdAndSubjectAttendanceId(Long studentId, Long subjectAttendanceId)
+    throws TakingExamNotFoundException;
+
     String store(TakingExamDTO takingExamDTO, String token)
     throws SubjectAttendanceNotFoundException, SubjectAttendanceConflictException;
 
