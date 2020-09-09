@@ -11,6 +11,7 @@ import com.ula.exam.mapper.TakingExamMapper;
 import com.ula.exam.service.exception.SubjectAttendanceConflictException;
 import com.ula.exam.service.exception.SubjectAttendanceNotFoundException;
 import com.ula.exam.service.exception.TakingExamNotFoundException;
+import com.ula.exam.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.ula.core.api.response.Response;
@@ -34,6 +35,9 @@ public class TakingExamServiceImpl implements TakingExamService
     @Autowired
     private FacultyFeignClient facultyFeignClient;
 
+    @Autowired
+    private UserUtil userUtil;
+
     @Override
     public List<TakingExamDTO> index()
     {
@@ -52,6 +56,39 @@ public class TakingExamServiceImpl implements TakingExamService
                                     new TakingExamNotFoundException(String.format("Taking exam with id: %s could not be found", id))
                                 ).setExams(new HashSet<>(examRepository.findAllByTakingExamId(id)))
                 );
+    }
+
+    @Override
+    public TakingExamDTO showByStudentIdAndSubjectAttendanceId(Long studentId, Long subjectAttendanceId)
+    throws TakingExamNotFoundException
+    {
+
+        // Get subject attendance by studentId and SubjectAttendanceId
+        SubjectAttendanceDTO subjectAttendanceDTO = this.facultyFeignClient
+                .getByStudentIdAndSubjectAttendanceId(userUtil.getToken(),studentId, subjectAttendanceId);
+
+        // If it's not null
+
+        if(subjectAttendanceDTO != null)
+        {
+            TakingExam takingExam = this.takingExamRepository
+                    .getBySubjectAttendanceId(subjectAttendanceDTO.getId())
+                    .orElseThrow(() ->
+                                         new TakingExamNotFoundException
+                                                 (
+                                                         String.format("Taking exam with subject attendance id: %s could not be found", subjectAttendanceId)
+                                                 )
+                                );
+
+
+            return TakingExamMapper.map
+                    (
+                            takingExam.setExams(new HashSet<>(examRepository.findAllByTakingExamId(takingExam.getId())))
+                    );
+
+        } else {
+            return null;
+        }
     }
 
     @Override

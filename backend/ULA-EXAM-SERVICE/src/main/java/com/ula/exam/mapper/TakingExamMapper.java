@@ -29,7 +29,8 @@ public class TakingExamMapper
                                                             .setExamTypeId(exam.getType().getId())
                                                             .setExamType(exam.getType().getName())
                                                             .setStartTime(exam.getStartTime())
-                                                            .setEndTime(exam.getEndTime()))
+                                                            .setEndTime(exam.getEndTime())
+                                                            .setPoints(exam.getPoints()))
                                           .collect(Collectors.toList())
 
                             );

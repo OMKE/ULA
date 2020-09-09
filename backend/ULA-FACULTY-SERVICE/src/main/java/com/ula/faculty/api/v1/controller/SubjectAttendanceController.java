@@ -65,23 +65,40 @@ public class SubjectAttendanceController
     @Authorized("STUDENT")
     @GetMapping("/private/subject-attendance/student/{id}/passed")
     public List<SubjectAttendanceWithSubjectDTO> indexPassedByStudentId
-            (
-                    @Token JWT jwt,
-                    @PathVariable("id") Long id
-            )
+    (
+            @Token JWT jwt,
+            @PathVariable("id") Long id
+    )
     {
         return this.subjectAttendanceService.getAllPassedByStudentId(id);
     }
 
+
     @Authorized("STUDENT")
     @GetMapping("/private/subject-attendance/student/{id}/not-passed")
     public List<SubjectAttendanceWithSubjectDTO> indexCurrentByStudentId
-            (
-                    @Token JWT jwt,
-                    @PathVariable("id") Long id
-            )
+    (
+            @Token JWT jwt,
+            @PathVariable("id") Long id
+    )
     {
         return this.subjectAttendanceService.getAllCurrentByStudentId(id);
+    }
+
+    @Authorized("STUDENT")
+    @GetMapping("/private/subject-attendance/student/{studentId}/{id}")
+    public SubjectAttendanceWithSubjectDTO showByStudentId
+    (
+            @Token JWT jwt,
+            @PathVariable("studentId") Long studentId,
+            @PathVariable("id") Long resourceId
+    )
+    {
+        try {
+            return this.subjectAttendanceService.getOneByStudentId(resourceId, studentId);
+        } catch (SubjectAttendanceNotFoundException e) {
+            return null;
+        }
     }
 
 

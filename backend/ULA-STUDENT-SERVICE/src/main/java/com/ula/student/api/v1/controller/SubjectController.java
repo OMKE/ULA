@@ -4,10 +4,13 @@ import com.ula.student.service.subject.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.ula.core.annotation.Authorized;
 import org.ula.core.annotation.Token;
 import org.ula.core.api.response.Response;
+import org.ula.core.api.response.ResponseResolver;
 import org.ula.core.util.JWT;
 
 @RestController
@@ -19,32 +22,42 @@ public class SubjectController
     private SubjectService subjectService;
 
     @Authorized("STUDENT")
-    @GetMapping("/subjects")
-    public Response<Object> subjects
+    @GetMapping("/subject")
+    public Response<Object> index
     (
-            @Token JWT jwt
+            @Token JWT jwt,
+            @RequestParam(value = "fetch", required = false) String passed
+
     )
     {
-        return Response.ok().setPayload(this.subjectService.index());
+        if(passed != null)
+        {
+            if(passed.equals("passed"))
+            {
+                return Response.ok().setPayload(this.subjectService.indexPassed());
+            } else if(passed.equals("not-passed"))
+            {
+                return Response.ok().setPayload(this.subjectService.indexNotPassed());
+            } else {
+                return Response.exception().setErrors("Param: fetch can only be either 'passed' or 'not-passed'");
+            }
+        }
+         else {
+            return Response.ok().setPayload(this.subjectService.index());
+        }
     }
 
     @Authorized("STUDENT")
-    @GetMapping("/subjects/passed")
-    public Response<Object> subjectsPassed
+    @GetMapping("/subject/{id}")
+    public Response<Object> show
     (
-            @Token JWT jwt
+            @Token JWT jwt,
+            @PathVariable("id") Long id
     )
     {
-        return Response.ok().setPayload(this.subjectService.indexPassed());
+        return ResponseResolver.resolve(this.subjectService.show(id));
+
     }
 
-    @Authorized("STUDENT")
-    @GetMapping("/subjects/not-passed")
-    public Response<Object> subjectsNotPassed
-    (
-            @Token JWT jwt
-    )
-    {
-        return Response.ok().setPayload(this.subjectService.indexNotPassed());
-    }
+
 }

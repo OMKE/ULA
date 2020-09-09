@@ -1,5 +1,6 @@
 package com.ula.exam.feign.hystrix;
 
+import com.ula.exam.dto.model.SubjectAttendanceDTO;
 import com.ula.exam.feign.FacultyFeignClient;
 import feign.hystrix.FallbackFactory;
 import org.slf4j.Logger;
@@ -22,6 +23,15 @@ public class FacultyServiceFallbackFactory implements FallbackFactory<FacultyFei
             {
                 LOGGER.error("Error has occurred while fetching subject attendance", cause);
                 return Response.exception().setErrors("Error has occurred while fetching subject attendance");
+            }
+
+            @Override
+            public SubjectAttendanceDTO getByStudentIdAndSubjectAttendanceId(
+                    String token, Long studentId, Long resourceId
+                                                                            )
+            {
+                LOGGER.error("Error has occurred while fetching subject attendance by student id and id", cause);
+                return null;
             }
         };
     }

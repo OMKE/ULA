@@ -36,6 +36,7 @@ public class SubjectAttendanceServiceImpl implements SubjectAttendanceService
     private StudentOnYearRepository studentOnYearRepository;
 
 
+
     @Autowired
     private AuthServiceFeignClient authServiceFeignClient;
 
@@ -66,6 +67,20 @@ public class SubjectAttendanceServiceImpl implements SubjectAttendanceService
     public List<SubjectAttendanceWithSubjectDTO> getAllCurrentByStudentId(Long studentId)
     {
         return SubjectAttendanceWithSubjectMapper.map(this.subjectAttendanceRepository.getAllByStudentIdAndFinalGradeNull(studentId));
+    }
+
+    @Override
+    public SubjectAttendanceWithSubjectDTO getOneByStudentId(Long resourceId, Long studentId)
+    throws SubjectAttendanceNotFoundException
+    {
+        return SubjectAttendanceWithSubjectMapper.map
+                (
+                    this.subjectAttendanceRepository
+                            .getByIdAndStudentIdAndDeletedFalse(resourceId,studentId)
+                            .orElseThrow(
+                                () ->
+                                new SubjectAttendanceNotFoundException(String.format("Subject attendance with student id: %s could not be found", studentId)))
+                );
     }
 
     @Override
