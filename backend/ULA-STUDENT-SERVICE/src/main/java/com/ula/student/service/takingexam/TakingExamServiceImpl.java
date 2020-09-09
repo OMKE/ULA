@@ -2,7 +2,7 @@ package com.ula.student.service.takingexam;
 
 import com.ula.student.dto.StudentDTO;
 import com.ula.student.dto.TakingExamDTO;
-import com.ula.student.feign.ExamService;
+import com.ula.student.feign.ExamServiceFeignClient;
 import com.ula.student.service.student.StudentService;
 import com.ula.student.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class TakingExamServiceImpl implements TakingExamService
     private UserUtil userUtil;
 
     @Autowired
-    private ExamService examService;
+    private ExamServiceFeignClient examServiceFeignClient;
 
     @Override
     public TakingExamDTO show(Long subjectAttendanceId)
@@ -27,7 +27,7 @@ public class TakingExamServiceImpl implements TakingExamService
         StudentDTO studentDTO = this.studentService.getStudent(this.userUtil.getUsername());
         if(studentDTO != null)
         {
-            TakingExamDTO takingExamDTO = this.examService.getTakingExamBySubjectAttendanceId
+            TakingExamDTO takingExamDTO = this.examServiceFeignClient.getTakingExamBySubjectAttendanceId
                     (
                         userUtil.getToken(), studentDTO.getStudentOnYear().getId(), subjectAttendanceId
                     );
