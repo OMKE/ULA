@@ -1,6 +1,6 @@
 package com.ula.student.api.v1.controller;
 
-import com.ula.student.service.takingexam.TakingExamService;
+import com.ula.student.service.exam.ExamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,27 +14,21 @@ import org.ula.core.util.JWT;
 
 @RestController
 @Validated
-public class TakingExamController
+public class ExamController
 {
 
     @Autowired
-    private TakingExamService takingExamService;
+    private ExamService examService;
 
-
-    /*
-        {id] - subjectAttendanceId
-     */
     @Authorized("STUDENT")
-    @GetMapping("/subject/{id}/exam")
+    @GetMapping("/subject/{subjectAttendance}/exam/{examId}")
     public Response<Object> show
     (
             @Token JWT jwt,
-            @PathVariable("id") Long id
+            @PathVariable("subjectAttendance") Long subjectAttendanceId,
+            @PathVariable("examId") Long examId
     )
     {
-        return ResponseResolver.resolve(this.takingExamService.show(id));
+        return ResponseResolver.resolve(this.examService.show(subjectAttendanceId, examId));
     }
-
-
-
 }

@@ -13,6 +13,7 @@ public class ExamEntryDTO
 {
     private Long id;
     private Long examTermId;
+    private String examTerm;
     private Long examId;
     private boolean active;
 }

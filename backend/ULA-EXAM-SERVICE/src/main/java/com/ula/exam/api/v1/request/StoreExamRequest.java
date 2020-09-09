@@ -23,6 +23,9 @@ public class StoreExamRequest
     @NotNull(message = "Taking exam id is required")
     private Long takingExamId;
 
+    @NotNull(message = "Exam term id is required")
+    private Long examTermId;
+
 
     @NotNull(message = "Start time is required")
     private Date startTime;

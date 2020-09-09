@@ -2,6 +2,7 @@ package com.ula.exam.mapper;
 
 import com.ula.exam.domain.model.TakingExam;
 import com.ula.exam.dto.model.ExamDTO;
+import com.ula.exam.dto.model.ExamEntryDTO;
 import com.ula.exam.dto.model.TakingExamDTO;
 
 import java.util.List;
@@ -30,7 +31,17 @@ public class TakingExamMapper
                                                             .setExamType(exam.getType().getName())
                                                             .setStartTime(exam.getStartTime())
                                                             .setEndTime(exam.getEndTime())
-                                                            .setPoints(exam.getPoints()))
+                                                            .setPoints(exam.getPoints())
+                                                            .setExamEntry(exam.getExamEntry() != null ?
+                                                                    new ExamEntryDTO()
+                                                                        .setId(exam.getExamEntry().getId())
+                                                                        .setExamTerm(exam.getExamEntry().getExamTerm().getName())
+                                                                        .setActive(exam.getExamEntry().isActive())
+                                                                        .setExamTermId(exam.getExamEntry().getExamTerm().getId())
+                                                                        .setExamId(exam.getId())
+                                                                        : null
+                                                                         )
+                                              )
                                           .collect(Collectors.toList())
 
                             );

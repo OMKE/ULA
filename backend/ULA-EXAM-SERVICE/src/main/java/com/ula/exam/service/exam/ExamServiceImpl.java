@@ -1,17 +1,13 @@
 package com.ula.exam.service.exam;
 
 import com.ula.exam.api.v1.request.UpdateExamRequest;
-import com.ula.exam.domain.model.Exam;
-import com.ula.exam.domain.model.ExamOutcome;
-import com.ula.exam.domain.model.ExamType;
-import com.ula.exam.domain.model.TakingExam;
-import com.ula.exam.domain.repository.ExamOutcomeRepository;
-import com.ula.exam.domain.repository.ExamRepository;
-import com.ula.exam.domain.repository.ExamTypeRepository;
-import com.ula.exam.domain.repository.TakingExamRepository;
+import com.ula.exam.domain.model.*;
+import com.ula.exam.domain.repository.*;
 import com.ula.exam.dto.model.ExamDTO;
+import com.ula.exam.dto.model.TakingExamDTO;
 import com.ula.exam.mapper.ExamMapper;
 import com.ula.exam.service.exception.*;
+import com.ula.exam.service.takingexam.TakingExamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +16,10 @@ import java.util.List;
 @Service
 public class ExamServiceImpl implements ExamService
 {
+
+    @Autowired
+    private TakingExamService takingExamService;
+
     @Autowired
     private ExamRepository examRepository;
 
@@ -28,6 +28,12 @@ public class ExamServiceImpl implements ExamService
 
     @Autowired
     private TakingExamRepository takingExamRepository;
+
+    @Autowired
+    private ExamEntryRepository examEntryRepository;
+
+    @Autowired
+    private ExamTermRepository examTermRepository;
 
     @Autowired
     private ExamOutcomeRepository examOutcomeRepository;
@@ -51,8 +57,42 @@ public class ExamServiceImpl implements ExamService
     }
 
     @Override
+    public ExamDTO showByStudentIdAndSubjectAttendanceId
+    (
+            Long studentId,
+            Long subjectAttendanceId,
+            Long id
+    )
+    throws TakingExamNotFoundException, ExamNotFoundException
+    {
+        TakingExamDTO takingExamDTO = takingExamService.showByStudentIdAndSubjectAttendanceId(studentId, subjectAttendanceId);
+        if(takingExamDTO != null)
+        {
+            Exam exam = this.examRepository
+                    .findById(id)
+                    .orElseThrow(() ->
+                             new ExamNotFoundException(String.format("Exam with id: %s could not be found", id)));
+            // Check if user can access this exam
+            // Resource Ownership check
+            // Every exam has an id of taking exam, every taking exam is mapped to SubjectAttendance, so if we got TakingExamDTO from
+            // TakingExamService (which already checks for resource ownership), we can check if Exam that we found in db belongs to that user
+            if(exam.getTakingExam()
+                   .getId()
+                   .equals(takingExamDTO.getId()))
+            {
+                return ExamMapper.map(exam);
+            } else {
+                return null;
+            }
+
+        } else {
+            return null;
+        }
+    }
+
+    @Override
     public String store(ExamDTO examDTO)
-    throws TakingExamNotFoundException, ExamTypeNotFoundException
+    throws TakingExamNotFoundException, ExamTypeNotFoundException, ExamTermNotFoundException
     {
         // Check if TakingExam exists
         TakingExam takingExam = this.takingExamRepository
@@ -62,6 +102,11 @@ public class ExamServiceImpl implements ExamService
         ExamType examType = this.examTypeRepository
                     .findById(examDTO.getExamTypeId())
                     .orElseThrow(() -> new ExamTypeNotFoundException(String.format("Taking exam with id: %s could not be found", examDTO.getExamTypeId())));
+
+
+        ExamTerm examTerm = this.examTermRepository
+                    .findById(examDTO.getExamTermId())
+                    .orElseThrow(() -> new ExamTermNotFoundException(String.format("Exam term with id: %s could not be found", examDTO.getExamTermId())));
         // Populate new Exam
         Exam exam = new Exam()
                 .setTakingExam(takingExam)
@@ -74,7 +119,13 @@ public class ExamServiceImpl implements ExamService
 
         // Save to DB
         this.examRepository.save(exam);
-
+        this.examEntryRepository.save
+                (
+                        new ExamEntry()
+                                .setActive(true)
+                                .setExam(exam)
+                                .setExamTerm(examTerm)
+                );
         this.examOutcomeRepository.save(new ExamOutcome().setExam(exam).setDescription("Not yet taken."));
 
         return "Exam has been stored";
