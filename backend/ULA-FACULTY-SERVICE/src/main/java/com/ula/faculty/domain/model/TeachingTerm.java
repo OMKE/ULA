@@ -33,5 +33,8 @@ public class TeachingTerm extends BaseEntity
     @ManyToOne(optional = false)
     private TeachingType type;
 
+    @OneToOne(mappedBy = "teachingTerm")
+    private TeachingTermOutcome outcome;
+
 
 }
