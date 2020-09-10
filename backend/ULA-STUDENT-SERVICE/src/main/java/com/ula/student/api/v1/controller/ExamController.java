@@ -1,16 +1,19 @@
 package com.ula.student.api.v1.controller;
 
+import com.ula.student.api.v1.request.UpdateExamEntryRequest;
 import com.ula.student.service.exam.ExamService;
+import com.ula.student.service.exception.EntryIsAlreadyActiveException;
+import com.ula.student.service.exception.ExamNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.ula.core.annotation.Authorized;
 import org.ula.core.annotation.Token;
 import org.ula.core.api.response.Response;
 import org.ula.core.api.response.ResponseResolver;
 import org.ula.core.util.JWT;
+
+import javax.validation.Valid;
 
 @RestController
 @Validated
@@ -30,5 +33,23 @@ public class ExamController
     )
     {
         return ResponseResolver.resolve(this.examService.show(subjectAttendanceId, examId));
+    }
+
+    @Authorized("STUDENT")
+    @PostMapping("/subject/{subjectAttendance}/exam/{examId}")
+    public Response<Object> addExamEntry
+            (
+                    @Token JWT jwt,
+                    @PathVariable("subjectAttendance") Long subjectAttendanceId,
+                    @PathVariable("examId") Long examId,
+                    @Valid @RequestBody UpdateExamEntryRequest updateRequest
+
+            )
+    {
+        try {
+            return ResponseResolver.resolve(this.examService.storeEntry(subjectAttendanceId, examId, updateRequest));
+        } catch (EntryIsAlreadyActiveException | ExamNotFoundException e) {
+            return Response.exception().setErrors(e.getMessage());
+        }
     }
 }
