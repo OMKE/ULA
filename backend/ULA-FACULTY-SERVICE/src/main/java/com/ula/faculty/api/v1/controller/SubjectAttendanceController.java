@@ -50,7 +50,6 @@ public class SubjectAttendanceController
         }
     }
 
-    // @TODO - Make routes only available to other services, but not to api gateway
     @Authorized("STUDENT")
     @GetMapping("/private/subject-attendance/student/{id}")
     public List<SubjectAttendanceWithSubjectDTO> indexByStudentId

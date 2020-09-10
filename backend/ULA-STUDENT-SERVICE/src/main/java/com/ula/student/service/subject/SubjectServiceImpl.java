@@ -2,7 +2,6 @@ package com.ula.student.service.subject;
 
 import com.ula.student.dto.StudentDTO;
 import com.ula.student.dto.SubjectAttendanceWithSubjectDTO;
-
 import com.ula.student.feign.FacultyService;
 import com.ula.student.service.student.StudentService;
 import com.ula.student.util.UserUtil;

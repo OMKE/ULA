@@ -84,6 +84,17 @@ public class SubjectAttendanceServiceImpl implements SubjectAttendanceService
     }
 
     @Override
+    public List<SubjectAttendanceWithSubjectDTO> getAllBySubjectRealizationIdAndStudentId
+    (
+            Long subjectRealizationId,
+            Long studentId
+    )
+    {
+        return SubjectAttendanceWithSubjectMapper
+                .map(this.subjectAttendanceRepository.getAllBySubjectRealizationIdAndStudentIdAndDeletedFalse(subjectRealizationId, studentId));
+    }
+
+    @Override
     public SubjectAttendanceDTO show(Long id)
     throws SubjectAttendanceNotFoundException
     {
