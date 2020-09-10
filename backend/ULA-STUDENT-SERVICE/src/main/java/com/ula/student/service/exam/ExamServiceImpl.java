@@ -59,7 +59,7 @@ public class ExamServiceImpl implements ExamService
                 if(!examDTO.getExamEntry().isActive())
                 {
                     // send request to the exam service
-                    return this.examService.placeExamEntry
+                    return this.examService.addExamEntry
                             (
                                     userUtil.getToken(),
                                     studentDTO.getStudentOnYear().getId(),
