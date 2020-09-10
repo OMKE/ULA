@@ -44,6 +44,7 @@ public class YearOfStudyController
         }
     }
 
+
     @GetMapping("/year-of-study/{id}/subjects")
     public Response<Object> subjects(@PathVariable("id") Long yearOfStudyId)
     {
