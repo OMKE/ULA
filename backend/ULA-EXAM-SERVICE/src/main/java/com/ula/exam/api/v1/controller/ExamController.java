@@ -1,6 +1,7 @@
 package com.ula.exam.api.v1.controller;
 
 import com.ula.exam.api.v1.request.StoreExamRequest;
+import com.ula.exam.api.v1.request.UpdateExamEntryRequest;
 import com.ula.exam.api.v1.request.UpdateExamRequest;
 import com.ula.exam.dto.model.ExamDTO;
 import com.ula.exam.service.exam.ExamService;
@@ -67,11 +68,31 @@ public class ExamController extends BaseController
     )
     {
         try {
-            return this.examService.showBySubjectIdAndSubjectAttendanceId(studentId, subjectAttendanceId, examId);
+            return this.examService.showByStudentIdAndSubjectAttendanceId(studentId, subjectAttendanceId, examId);
         } catch (TakingExamNotFoundException | ExamNotFoundException e) {
             return null;
         }
     }
+
+    @Authorized("STUDENT")
+    @PostMapping("/private/taking-exam/subject-attendance/{studentId}/{subjectAttendanceId}/{examId}")
+    public String addExamEntry
+    (
+                    @Token JWT jwt,
+                    @PathVariable("studentId") Long studentId,
+                    @PathVariable("subjectAttendanceId") Long subjectAttendanceId,
+                    @PathVariable("examId") Long examId,
+                    @Valid @RequestBody UpdateExamEntryRequest updateExamEntryRequest
+    )
+    {
+        try {
+            return this.examService.storeEntry(examId, studentId, subjectAttendanceId, updateExamEntryRequest);
+        } catch (ExamNotFoundException | TakingExamNotFoundException e) {
+            return null;
+        }
+    }
+
+
     
     @Authorized("[ADMIN,TEACHER]")
     @PostMapping("exam")
