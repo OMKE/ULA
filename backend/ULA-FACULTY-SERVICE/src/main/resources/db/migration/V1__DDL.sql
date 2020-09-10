@@ -160,6 +160,27 @@ CREATE TABLE `subject_realization` (
     foreign key (`subject_id`) references `subject` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+CREATE TABLE `subject_notification_type` (
+    `id` bigint(20) not null auto_increment,
+    `name` varchar(32) not null ,
+    `created_at` timestamp not null,
+    `deleted` tinyint(1) default '0',
+    `updated_at` timestamp null default null,
+    primary key (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `subject_notification` (
+    `id` bigint(20) not null auto_increment,
+    `subject_realization_id` bigint(20) not null ,
+    `type_id` bigint(20) not null ,
+    `text` varchar(128) not null ,
+    `created_at` timestamp not null,
+    `deleted` tinyint(1) default '0',
+    `updated_at` timestamp null default null,
+    primary key (`id`),
+    foreign key (`subject_realization_id`) references `subject_realization` (`id`),
+    foreign key (`type_id`) references `subject_notification_type` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `subject_attendance`
 (
