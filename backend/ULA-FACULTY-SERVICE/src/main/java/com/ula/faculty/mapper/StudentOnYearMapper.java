@@ -16,7 +16,7 @@ public class StudentOnYearMapper
                 .setStudentId(studentOnYear.getStudentId())
                 .setYearOfStudyIds(studentOnYear.getYearOfStudies()
                                                 .stream()
-                                                .map(studentOnYearYearOfStudy -> studentOnYearYearOfStudy.getId())
+                                                .map(studentOnYearYearOfStudy -> studentOnYearYearOfStudy.getYearOfStudy().getId())
                                                 .collect(Collectors.toList()))
                 .setTranscriptIdentifier(studentOnYear.getTranscriptIdentifier())
                 .setDateOfEnrollment(studentOnYear.getDateOfEnrollment())
