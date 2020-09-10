@@ -32,4 +32,6 @@ public interface SubjectAttendanceService
     SubjectAttendanceWithSubjectDTO getOneByStudentId(Long resourceId, Long studentId)
     throws SubjectAttendanceNotFoundException;
 
+    List<SubjectAttendanceWithSubjectDTO> getAllBySubjectRealizationIdAndStudentId(Long subjectRealizationId, Long studentId);
+
 }
