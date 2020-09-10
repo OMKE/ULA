@@ -21,18 +21,6 @@ public class SubjectRealization extends BaseEntity
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	/*
-		@TODO
-		@del *Pohadjanje predmeta*
-		Vise studenata polaze jednu realizaciju predmeta
-		Ovdje cuvamo ko je profa, koji je predmet u pitanju, a moci cemo ga dobiti preko studenta pa onda preko StudentAttendance(pohadjanje predmeta)
-		Student service
-		SubjectAttendance
-		@OneToOne(optional = false)
-		private SubjectAttendance subjectAttendance;
-	 */
-
-
 	@OneToOne(optional = false)
 	private Subject subject;
 
@@ -52,6 +40,9 @@ public class SubjectRealization extends BaseEntity
 		@OneToMany(mappedBy = "subjectRealization")
 		private Set<TeachingTerm> teachingTerms;
 	 */
+
+	@OneToMany(mappedBy = "subjectRealization")
+	private Set<SubjectNotification> notifications;
 
 
 }
