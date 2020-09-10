@@ -1,13 +1,13 @@
 package com.ula.student.feign;
 
+import com.ula.student.api.v1.request.UpdateExamEntryRequest;
 import com.ula.student.dto.ExamDTO;
 import com.ula.student.dto.TakingExamDTO;
+import com.ula.student.feign.hystrix.ExamServiceFallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.*;
 
-@FeignClient(value = "ula-exam-service")
+@FeignClient(value = "ula-exam-service", fallbackFactory = ExamServiceFallbackFactory.class)
 public interface ExamServiceFeignClient
 {
     @GetMapping("/private/taking-exam/subject-attendance/{studentId}/{id}")
@@ -26,5 +26,15 @@ public interface ExamServiceFeignClient
                     @PathVariable("studentId") Long studentId,
                     @PathVariable("subjectAttendanceId") Long subjectAttendanceId,
                     @PathVariable("examId") Long examId
+            );
+
+    @PostMapping("/private/taking-exam/subject-attendance/{studentId}/{subjectAttendanceId}/{examId}")
+    String addExamEntry
+            (
+                    @RequestHeader("Authorization") String token,
+                    @PathVariable("studentId") Long studentId,
+                    @PathVariable("subjectAttendanceId") Long subjectAttendanceId,
+                    @PathVariable("examId") Long examId,
+                    @RequestBody UpdateExamEntryRequest updateExamEntryRequest
             );
 }

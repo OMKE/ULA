@@ -50,7 +50,7 @@ CREATE TABLE `exam_entry` (
       `id` bigint(20) not null auto_increment,
       `exam_term_id` bigint(20) not null ,
       `exam_id` bigint(20) not null ,
-      `active` tinyint(1) default 1,
+      `active` tinyint(1) default 0,
       `created_at` timestamp not null,
       `deleted` tinyint(1) default '0',
       `updated_at` timestamp null default null,
