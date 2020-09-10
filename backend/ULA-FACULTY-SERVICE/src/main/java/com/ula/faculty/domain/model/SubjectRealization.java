@@ -44,5 +44,7 @@ public class SubjectRealization extends BaseEntity
 	@OneToMany(mappedBy = "subjectRealization")
 	private Set<SubjectNotification> notifications;
 
+	@OneToMany(mappedBy = "subjectRealization")
+	private Set<TeachingTerm> teachingTerms;
 
 }
