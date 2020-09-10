@@ -41,7 +41,7 @@ public class StudentServiceImpl implements StudentService
                     .setStudentOnYear(studentOnYearDTO);
         }
         else {
-            return new StudentDTO();
+            return null;
         }
     }
 }
