@@ -29,7 +29,7 @@ public class SubjectServiceImpl implements SubjectService
     public List<SubjectAttendanceWithSubjectDTO> index()
     {
         StudentDTO studentDTO = this.studentService.getStudent(this.userUtil.getUsername());
-        if(studentDTO != null)
+        if(studentDTO != null && studentDTO.getStudentOnYear() != null)
         {
             return this.facultyService.getAllSubjectAttendancesWithSubjects(userUtil.getToken(), studentDTO.getStudentOnYear().getId());
         } else {
@@ -41,7 +41,7 @@ public class SubjectServiceImpl implements SubjectService
     public List<SubjectAttendanceWithSubjectDTO> indexPassed()
     {
         StudentDTO studentDTO = this.studentService.getStudent(this.userUtil.getUsername());
-        if(studentDTO != null)
+        if(studentDTO != null && studentDTO.getStudentOnYear() != null)
         {
             return this.facultyService.getPassedSubjectAttendancesWithSubjects(userUtil.getToken(), studentDTO.getStudentOnYear().getId());
         } else {
@@ -53,7 +53,7 @@ public class SubjectServiceImpl implements SubjectService
     public List<SubjectAttendanceWithSubjectDTO> indexNotPassed()
     {
         StudentDTO studentDTO = this.studentService.getStudent(this.userUtil.getUsername());
-        if(studentDTO != null)
+        if(studentDTO != null && studentDTO.getStudentOnYear() != null)
         {
             return this.facultyService.getNotPassedSubjectAttendancesWithSubjects(userUtil.getToken(), studentDTO.getStudentOnYear().getId());
         } else {
@@ -65,7 +65,7 @@ public class SubjectServiceImpl implements SubjectService
     public SubjectAttendanceWithSubjectDTO show(Long id)
     {
         StudentDTO studentDTO = this.studentService.getStudent(this.userUtil.getUsername());
-        if(studentDTO != null)
+        if(studentDTO != null && studentDTO.getStudentOnYear() != null)
         {
             return this.facultyService.getSubjectAttendanceById(this.userUtil.getToken(), studentDTO.getStudentOnYear().getId(), id);
         }
