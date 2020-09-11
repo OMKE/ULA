@@ -20,6 +20,7 @@ public class SubjectDTO
     private int otherFormsOfLectures;
     private int researchWorks;
     private int otherLectures;
+    private SubjectSyllabusDTO syllabus;
 
     /*
     @TODO
