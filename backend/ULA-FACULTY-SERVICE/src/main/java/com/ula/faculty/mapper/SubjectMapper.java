@@ -2,6 +2,7 @@ package com.ula.faculty.mapper;
 
 import com.ula.faculty.domain.model.Subject;
 import com.ula.faculty.dto.model.SubjectDTO;
+import com.ula.faculty.dto.model.SubjectSyllabusDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,13 @@ public class SubjectMapper
                     .setRequired(subject.isRequired())
                     .setResearchWorks(subject.getResearchWorks())
                     .setSemester(subject.getSemester())
-                    .setYearOfStudyId(subject.getYearOfStudy().getId());
+                    .setYearOfStudyId(subject.getYearOfStudy().getId())
+                    .setSyllabus(
+                            new SubjectSyllabusDTO()
+                                .setId(subject.getSyllabus().getId())
+                                .setSubjectId(subject.getId())
+                                .setContent(subject.getSyllabus().getContent())
+                                          );
     }
 
     public static ArrayList<SubjectDTO> map(List<Subject> subjects)
