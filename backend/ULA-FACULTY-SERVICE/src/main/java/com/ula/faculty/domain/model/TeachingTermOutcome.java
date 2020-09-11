@@ -25,4 +25,7 @@ public class TeachingTermOutcome extends BaseEntity
     @ManyToOne(optional = true)
     private EducationalGoal educationalGoal;
 
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String description;
+
 }

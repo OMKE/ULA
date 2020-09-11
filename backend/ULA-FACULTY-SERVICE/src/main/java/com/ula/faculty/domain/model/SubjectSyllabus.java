@@ -19,7 +19,6 @@ public class SubjectSyllabus extends BaseEntity
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     // html - content - wysiwyg
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;

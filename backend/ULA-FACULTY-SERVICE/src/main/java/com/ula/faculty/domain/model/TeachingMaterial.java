@@ -21,7 +21,6 @@ public class TeachingMaterial extends BaseEntity
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     @Column(nullable = false, columnDefinition = "DATE")
     private Date publicationDate;
 

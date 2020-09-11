@@ -27,6 +27,9 @@ public class StudyProgram extends BaseEntity
 	@Column(nullable = false, columnDefinition = "TEXT")
 	private String description;
 
+	@OneToOne(mappedBy = "studyProgram")
+	private StudyProgramManager manager;
+
 	@OneToMany(mappedBy = "studyProgram")
 	private Set<YearOfStudy> yearOfStudy;
 
