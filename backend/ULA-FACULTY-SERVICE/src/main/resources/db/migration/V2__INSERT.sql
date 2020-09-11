@@ -2364,3 +2364,9 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 
 INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (100, "Business analysis", 8, 6, 20, 20, 0, 0, 0, NOW());
 
+INSERT INTO `teaching_type` (id, name, created_at)
+VALUES (0, 'Lecture', NOW()),
+       (0, 'Practical', NOW()),
+       (0, 'Tutorial', NOW()),
+       (0, 'Seminar', NOW()),
+       (0, 'Workshop', NOW());

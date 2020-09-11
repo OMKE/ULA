@@ -65,6 +65,20 @@ CREATE TABLE `study_program` (
    foreign key (`degree_id`) references `study_program_degree` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+CREATE TABLE `study_program_manager` (
+    `id` bigint(20) not null auto_increment,
+    `study_program_id` bigint(20) not null,
+    `first_name` varchar(128) not null ,
+    `last_name` varchar(128) not null ,
+    `title` varchar(64) not null ,
+    `phone_number` varchar(64) not null ,
+    `email` varchar(128) not null ,
+    `created_at` timestamp not null,
+    `deleted` tinyint(1) default '0',
+    `updated_at` timestamp null default null,
+    primary key (`id`),
+    foreign key (`study_program_id`) references `study_program` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;;
 
 
 # TODO
@@ -125,6 +139,17 @@ CREATE TABLE `subject` (
     `updated_at` timestamp null default null,
     primary key (`id`),
     foreign key (`year_of_study_id`) references `year_of_study` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `subject_syllabus` (
+    `id` bigint(20) not null auto_increment,
+    `subject_id` bigint(20) not null ,
+    `content` text not null ,
+    `created_at` timestamp not null,
+    `deleted` tinyint(1) default '0',
+    `updated_at` timestamp null default null,
+    primary key (`id`),
+    foreign key (`subject_id`) references `subject` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `subject_prerequisite` (
@@ -217,4 +242,84 @@ CREATE TABLE `teacher_subject_realization` (
     primary key (`id`),
     foreign key (`teacher_on_realization_id`) references `teacher_on_realization` (`id`),
     foreign key (`subject_realization_id`) references `subject_realization` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `educational_goal` (
+    `id` bigint(20) not null auto_increment,
+    `description` text not null ,
+    `created_at` timestamp not null,
+    `deleted` tinyint(1) default '0',
+    `updated_at` timestamp null default null,
+    primary key (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `teaching_type` (
+    `id` bigint(20) not null auto_increment,
+    `name` varchar(32) not null ,
+    `created_at` timestamp not null,
+    `deleted` tinyint(1) default '0',
+    `updated_at` timestamp null default null,
+    primary key (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `teaching_term` (
+    `id` bigint(20) not null auto_increment,
+    `subject_realization_id` bigint(20) not null ,
+    `type_id` bigint(20) not null,
+    `start_time` timestamp not null ,
+    `end_time` timestamp not null ,
+    `created_at` timestamp not null,
+    `deleted` tinyint(1) default '0',
+    `updated_at` timestamp null default null,
+    primary key (`id`),
+    foreign key (`subject_realization_id`) references `subject_realization` (`id`),
+    foreign key (`type_id`) references `teaching_type` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `teaching_term_outcome` (
+    `id` bigint(20) not null auto_increment,
+    `teaching_term_id` bigint(20) not null ,
+    `educational_goal_id` bigint(20) not null ,
+    `description` text not null ,
+    `created_at` timestamp not null,
+    `deleted` tinyint(1) default '0',
+    `updated_at` timestamp null default null,
+    primary key (`id`),
+    foreign key (`teaching_term_id`) references `teaching_term` (`id`),
+    foreign key (`educational_goal_id`) references `educational_goal` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `teaching_material` (
+    `id` bigint(20) not null auto_increment,
+    `publication_date` date not null ,
+    `created_at` timestamp not null,
+    `deleted` tinyint(1) default '0',
+    `updated_at` timestamp null default null,
+    primary key (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `teaching_material_author` (
+    `id` bigint(20) not null auto_increment,
+    `teaching_material_id` bigint(20),
+    `first_name` varchar(128) not null ,
+    `last_name` varchar(128) not null ,
+    `created_at` timestamp not null,
+    `deleted` tinyint(1) default '0',
+    `updated_at` timestamp null default null,
+    primary key (`id`),
+    foreign key (`teaching_material_id`) references `teaching_material` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `file` (
+    `id` bigint(20) not null auto_increment,
+    `teaching_material_id` bigint(20) not null ,
+    `path` varchar(256) not null ,
+    `description` varchar(256) not null ,
+    `created_at` timestamp not null,
+    `deleted` tinyint(1) default '0',
+    `updated_at` timestamp null default null,
+    primary key (`id`),
+    foreign key (`teaching_material_id`) references `teaching_material` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
