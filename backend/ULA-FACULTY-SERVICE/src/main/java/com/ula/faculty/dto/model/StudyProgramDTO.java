@@ -19,6 +19,7 @@ public class StudyProgramDTO
     private String description;
     private StudyProgramLocationDTO location;
     private StudyProgramDegreeDTO degree;
+    private StudyProgramManagerDTO manager;
 //    @OneToMany(mappedBy = "studyProgram")
 //    private Set<YearOfStudy> yearsOfStudy;
 }
