@@ -6,8 +6,7 @@ import com.ula.student.feign.AuthService;
 import com.ula.student.feign.FacultyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.servlet.http.HttpServletRequest;
+import org.ula.core.util.JWTUtil;
 
 @Service
 public class StudentServiceImpl implements StudentService
@@ -21,15 +20,15 @@ public class StudentServiceImpl implements StudentService
     private FacultyService facultyService;
 
     @Autowired
-    private HttpServletRequest request;
+    private JWTUtil jwtUtil;
 
     @Override
     public StudentDTO getStudent(String username)
     {
-        StudentDTO studentResponse = authService.getStudent(request.getHeader("Authorization"), username);
+        StudentDTO studentResponse = authService.getStudent(jwtUtil.getToken(), username);
         if(studentResponse != null)
         {
-            StudentOnYearDTO studentOnYearDTO = facultyService.getStudentOnYearByStudentId(request.getHeader("Authorization"),studentResponse.getId());
+            StudentOnYearDTO studentOnYearDTO = facultyService.getStudentOnYearByStudentId(jwtUtil.getToken(),studentResponse.getId());
 
 
             return new StudentDTO()

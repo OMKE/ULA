@@ -8,10 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.ula.core.annotation.Authorized;
-import org.ula.core.annotation.Token;
 import org.ula.core.api.response.Response;
 import org.ula.core.api.response.ResponseResolver;
-import org.ula.core.util.JWT;
 
 @RestController
 @Validated
@@ -25,7 +23,6 @@ public class SubjectController
     @GetMapping("/subject")
     public Response<Object> index
     (
-            @Token JWT jwt,
             @RequestParam(value = "fetch", required = false) String passed
 
     )
@@ -51,7 +48,6 @@ public class SubjectController
     @GetMapping("/subject/{id}")
     public Response<Object> show
     (
-            @Token JWT jwt,
             @PathVariable("id") Long id
     )
     {

@@ -11,10 +11,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.ula.core.annotation.Authorized;
-import org.ula.core.annotation.Token;
 import org.ula.core.api.BaseController;
 import org.ula.core.api.response.Response;
-import org.ula.core.util.JWT;
 
 import javax.validation.Valid;
 
@@ -53,7 +51,6 @@ public class UniversityInformationController extends BaseController
     @PutMapping("/information/about")
     public Response<Object> updateAbout
     (
-            @Token JWT jwt,
             @Valid @RequestBody InformationRequest informationRequest,
             Errors errors
     )
@@ -78,11 +75,10 @@ public class UniversityInformationController extends BaseController
     @Authorized("ADMIN")
     @PutMapping("/information/history")
     public Response<Object> updateHistory
-            (
-                    @Token JWT jwt,
-                    @Valid @RequestBody InformationRequest informationRequest,
-                    Errors errors
-            )
+    (
+            @Valid @RequestBody InformationRequest informationRequest,
+            Errors errors
+    )
     {
         try {
             return Response.ok().setPayload(universityInformationService.updateHistory(this.sanitize(informationRequest.getHtml())));
@@ -104,11 +100,10 @@ public class UniversityInformationController extends BaseController
     @Authorized("ADMIN")
     @PutMapping("/information/president")
     public Response<Object> updatePresident
-            (
-                    @Token JWT jwt,
-                    @Valid @RequestBody InformationRequest informationRequest,
-                    Errors errors
-            )
+    (
+            @Valid @RequestBody InformationRequest informationRequest,
+            Errors errors
+    )
     {
         try {
             return Response.ok().setPayload(universityInformationService.updatePresident(this.sanitize(informationRequest.getHtml())));
@@ -130,11 +125,10 @@ public class UniversityInformationController extends BaseController
     @Authorized("ADMIN")
     @PutMapping("/information/teaching-staff")
     public Response<Object> updateTeachingStaff
-            (
-                    @Token JWT jwt,
-                    @Valid @RequestBody InformationRequest informationRequest,
-                    Errors errors
-            )
+    (
+            @Valid @RequestBody InformationRequest informationRequest,
+            Errors errors
+    )
     {
         try {
             return Response.ok().setPayload(universityInformationService.updateTeachingStaff(this.sanitize(informationRequest.getHtml())));
@@ -155,11 +149,10 @@ public class UniversityInformationController extends BaseController
     @Authorized("ADMIN")
     @PutMapping("/information/publishing")
     public Response<Object> updatePublishing
-            (
-                    @Token JWT jwt,
-                    @Valid @RequestBody InformationRequest informationRequest,
-                    Errors errors
-            )
+    (
+            @Valid @RequestBody InformationRequest informationRequest,
+            Errors errors
+    )
     {
         try {
             return Response.ok().setPayload(universityInformationService.updatePublishing(this.sanitize(informationRequest.getHtml())));

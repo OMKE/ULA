@@ -6,9 +6,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.ula.core.annotation.Authorized;
-import org.ula.core.annotation.Token;
 import org.ula.core.api.response.Response;
-import org.ula.core.util.JWT;
+import org.ula.core.util.JWTUtil;
 
 @RestController
 @Validated
@@ -17,15 +16,15 @@ public class StudentController
     @Autowired
     private StudentService studentService;
 
+    @Autowired
+    private JWTUtil jwtUtil;
+
     @Authorized("STUDENT")
     @GetMapping("/me")
-    public Response<Object> show
-    (
-            @Token JWT jwt
-    )
+    public Response<Object> show()
     {
         return Response.ok()
-                       .setPayload(this.studentService.getStudent(jwt.getUsername()));
+                       .setPayload(this.studentService.getStudent(jwtUtil.getUsername()));
     }
 
 }

@@ -7,9 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.ula.core.annotation.Authorized;
-import org.ula.core.annotation.Token;
 import org.ula.core.api.response.Response;
-import org.ula.core.util.JWT;
 
 @RestController
 public class YearOfStudyController
@@ -21,10 +19,7 @@ public class YearOfStudyController
 
     @Authorized("STUDENT")
     @GetMapping("/year-of-study")
-    public Response<Object> index
-    (
-            @Token JWT jwt
-    )
+    public Response<Object> index()
     {
         return Response.ok().setPayload(this.yearOfStudyService.index());
     }
@@ -33,7 +28,6 @@ public class YearOfStudyController
     @GetMapping("/year-of-study/{id}")
     public Response<Object> show
     (
-            @Token JWT jwt,
             @PathVariable("id") Long id
     )
     {

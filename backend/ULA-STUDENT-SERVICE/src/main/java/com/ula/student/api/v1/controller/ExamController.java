@@ -8,10 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.ula.core.annotation.Authorized;
-import org.ula.core.annotation.Token;
 import org.ula.core.api.response.Response;
 import org.ula.core.api.response.ResponseResolver;
-import org.ula.core.util.JWT;
 
 import javax.validation.Valid;
 
@@ -27,7 +25,6 @@ public class ExamController
     @GetMapping("/subject/{subjectAttendance}/exam/{examId}")
     public Response<Object> show
     (
-            @Token JWT jwt,
             @PathVariable("subjectAttendance") Long subjectAttendanceId,
             @PathVariable("examId") Long examId
     )
@@ -39,7 +36,6 @@ public class ExamController
     @PostMapping("/subject/{subjectAttendance}/exam/{examId}")
     public Response<Object> addExamEntry
             (
-                    @Token JWT jwt,
                     @PathVariable("subjectAttendance") Long subjectAttendanceId,
                     @PathVariable("examId") Long examId,
                     @Valid @RequestBody UpdateExamEntryRequest updateRequest

@@ -14,10 +14,9 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.ula.core.annotation.Authorized;
-import org.ula.core.annotation.Token;
 import org.ula.core.api.BaseController;
 import org.ula.core.api.response.Response;
-import org.ula.core.util.JWT;
+import org.ula.core.util.JWTUtil;
 
 import javax.validation.Valid;
 
@@ -31,12 +30,12 @@ public class TakingExamController extends BaseController
     @Autowired
     private PointsService pointsService;
 
+    @Autowired
+    private JWTUtil jwtUtil;
+
     @Authorized("[ADMIN,TEACHER]")
     @GetMapping("/taking-exam")
-    public Response<Object> index
-    (
-            @Token JWT jwt
-    )
+    public Response<Object> index()
     {
         return Response.ok()
                        .setPayload(this.takingExamService.index());
@@ -46,7 +45,6 @@ public class TakingExamController extends BaseController
     @GetMapping("/taking-exam/{id}")
     public Response<Object> show
     (
-            @Token JWT jwt,
             @PathVariable("id") Long id
     )
     {
@@ -62,7 +60,6 @@ public class TakingExamController extends BaseController
     @GetMapping("/private/taking-exam/subject-attendance/{studentId}/{id}")
     public TakingExamDTO showBySubjectAttendanceId
             (
-                    @Token JWT jwt,
                     @PathVariable("studentId") Long studentId,
                     @PathVariable("id") Long id
             )
@@ -80,7 +77,6 @@ public class TakingExamController extends BaseController
     @GetMapping("/taking-exam/{id}/points")
     public Response<Object> showPoints
     (
-            @Token JWT jwt,
             @PathVariable("id") Long id
     )
     {
@@ -95,7 +91,6 @@ public class TakingExamController extends BaseController
     @PostMapping("/taking-exam")
     public Response<Object> store
     (
-            @Token JWT jwt,
             @Valid @RequestBody StoreTakingExamRequest storeRequest,
             Errors errors
     )
@@ -106,7 +101,7 @@ public class TakingExamController extends BaseController
 
         try {
             return Response.ok()
-                           .setPayload(this.takingExamService.store(takingExamDTO, jwt.getContent()));
+                           .setPayload(this.takingExamService.store(takingExamDTO, jwtUtil.getToken()));
         } catch (SubjectAttendanceNotFoundException | SubjectAttendanceConflictException e) {
             return Response.exception().setErrors(e.getMessage());
         }
@@ -116,7 +111,6 @@ public class TakingExamController extends BaseController
     @PutMapping("/taking-exam/{id}")
     public Response<Object> update
     (
-            @Token JWT jwt,
             @Valid @RequestBody UpdateTakingExamRequest updateRequest,
             @PathVariable("id") Long id,
             Errors errors
@@ -138,7 +132,6 @@ public class TakingExamController extends BaseController
     @DeleteMapping("/taking-exam/{id}")
     public Response<Object> delete
     (
-            @Token JWT jwt,
             @PathVariable("id") Long id
     )
     {

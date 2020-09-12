@@ -12,10 +12,8 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.ula.core.annotation.Authorized;
-import org.ula.core.annotation.Token;
 import org.ula.core.api.BaseController;
 import org.ula.core.api.response.Response;
-import org.ula.core.util.JWT;
 
 import javax.validation.Valid;
 
@@ -42,7 +40,6 @@ public class SubjectController extends BaseController
     @PostMapping("/subject")
     public Response<Object> store
     (
-            @Token JWT jwt,
             @Valid @RequestBody StoreAndUpdateSubjectRequest storeRequest,
             Errors errors
     )
@@ -71,7 +68,6 @@ public class SubjectController extends BaseController
     @PutMapping("/subject/{id}")
     public Response<Object> update
     (
-            @Token JWT jwt,
             @PathVariable("id") Long id,
             @Valid @RequestBody StoreAndUpdateSubjectRequest updateRequest,
             Errors errors
@@ -101,7 +97,6 @@ public class SubjectController extends BaseController
     @DeleteMapping("/subject/{id}")
     public Response<Object> delete
     (
-            @Token JWT jwt,
             @PathVariable("id") Long id
     )
     {

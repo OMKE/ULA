@@ -12,10 +12,8 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.ula.core.annotation.Authorized;
-import org.ula.core.annotation.Token;
 import org.ula.core.api.BaseController;
 import org.ula.core.api.response.Response;
-import org.ula.core.util.JWT;
 
 import javax.validation.Valid;
 
@@ -34,7 +32,6 @@ public class ExamController extends BaseController
     @GetMapping("/exam")
     public Response<Object> index
     (
-            @Token JWT jwt
     )
     {
         return Response.ok()
@@ -45,7 +42,6 @@ public class ExamController extends BaseController
     @GetMapping("/exam/{id}")
     public Response<Object> show
     (
-            @Token JWT jwt,
             @PathVariable("id") Long id
     )
     {
@@ -61,7 +57,6 @@ public class ExamController extends BaseController
     @GetMapping("/private/taking-exam/subject-attendance/{studentId}/{subjectAttendanceId}/{examId}")
     public ExamDTO showByStudentIdSubjectAttendanceIdAndExamId
     (
-        @Token JWT jwt,
         @PathVariable("studentId") Long studentId,
         @PathVariable("subjectAttendanceId") Long subjectAttendanceId,
         @PathVariable("examId") Long examId
@@ -78,7 +73,6 @@ public class ExamController extends BaseController
     @PostMapping("/private/taking-exam/subject-attendance/{studentId}/{subjectAttendanceId}/{examId}")
     public String addExamEntry
     (
-                    @Token JWT jwt,
                     @PathVariable("studentId") Long studentId,
                     @PathVariable("subjectAttendanceId") Long subjectAttendanceId,
                     @PathVariable("examId") Long examId,
@@ -98,7 +92,6 @@ public class ExamController extends BaseController
     @PostMapping("exam")
     public Response<Object> store
     (
-        @Token JWT jwt,
         @Valid @RequestBody StoreExamRequest storeRequest,
         Errors errors
     )
@@ -123,7 +116,6 @@ public class ExamController extends BaseController
     @PutMapping("/exam/{id}")
     public Response<Object> update
     (
-        @Token JWT jwt,
         @Valid @RequestBody UpdateExamRequest updateRequest,
         @PathVariable("id") Long id,
         Errors errors
@@ -143,7 +135,6 @@ public class ExamController extends BaseController
     @DeleteMapping("/exam/{id}")
     public Response<Object> delete
     (
-        @Token JWT jwt,
         @PathVariable("id") Long id
     )
     {

@@ -7,10 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.ula.core.annotation.Authorized;
-import org.ula.core.annotation.Token;
 import org.ula.core.api.response.Response;
 import org.ula.core.api.response.ResponseResolver;
-import org.ula.core.util.JWT;
 
 @RestController
 @Validated
@@ -28,7 +26,6 @@ public class TakingExamController
     @GetMapping("/subject/{id}/exam")
     public Response<Object> show
     (
-            @Token JWT jwt,
             @PathVariable("id") Long id
     )
     {
