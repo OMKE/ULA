@@ -4,10 +4,7 @@ import com.ula.authentication.api.v1.request.StoreStudentRequest;
 import com.ula.authentication.api.v1.request.UpdateStudentRequest;
 import com.ula.authentication.domain.guard.StudentGuard;
 import com.ula.authentication.dto.model.StudentDTO;
-import com.ula.authentication.service.exception.StudentNotFoundException;
-import com.ula.authentication.service.exception.UserIsAlreadyStudent;
-import com.ula.authentication.service.exception.UserNotFoundException;
-import com.ula.authentication.service.exception.UserPermissionException;
+import com.ula.authentication.service.exception.*;
 import com.ula.authentication.service.student.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -65,7 +62,7 @@ public class StudentController extends BaseController
         try {
             return Response.ok()
                            .setPayload(this.studentService.store(storeRequest.getUserId(), studentDTO));
-        } catch (UserNotFoundException | UserIsAlreadyStudent e) {
+        } catch (UserNotFoundException | UserIsAlreadyStudent | StudentSSNConflictException e) {
             return Response.exception().setErrors(e.getMessage());
         }
     }
