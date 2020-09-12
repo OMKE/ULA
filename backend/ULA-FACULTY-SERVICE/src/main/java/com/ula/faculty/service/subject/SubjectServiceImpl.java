@@ -1,6 +1,12 @@
 package com.ula.faculty.service.subject;
 
+import com.ula.faculty.domain.model.Subject;
+import com.ula.faculty.domain.model.SubjectRealization;
+import com.ula.faculty.domain.model.SubjectSyllabus;
+import com.ula.faculty.domain.model.YearOfStudy;
+import com.ula.faculty.domain.repository.SubjectRealizationRepository;
 import com.ula.faculty.domain.repository.SubjectRepository;
+import com.ula.faculty.domain.repository.SubjectSyllabusRepository;
 import com.ula.faculty.domain.repository.YearOfStudyRepository;
 import com.ula.faculty.dto.model.SubjectDTO;
 import com.ula.faculty.mapper.SubjectMapper;
@@ -19,6 +25,12 @@ public class SubjectServiceImpl implements SubjectService
 
     @Autowired
     private SubjectRepository subjectRepository;
+
+    @Autowired
+    private SubjectSyllabusRepository subjectSyllabusRepository;
+
+    @Autowired
+    private SubjectRealizationRepository subjectRealizationRepository;
 
     @Override
     public List<SubjectDTO> index()
@@ -44,6 +56,97 @@ public class SubjectServiceImpl implements SubjectService
                                 )).getId()
                     )
         );
+    }
+
+    @Override
+    public String store(SubjectDTO subjectDTO)
+    throws YearOfStudyNotFoundException
+    {
+        YearOfStudy yearOfStudy = this.yearOfStudyRepository
+                .findById(subjectDTO.getYearOfStudyId())
+                .orElseThrow(() -> new YearOfStudyNotFoundException
+                        (String.format("Year of study with id: %s could not be found", subjectDTO.getYearOfStudyId())));
+
+        Subject subject = new Subject()
+                .setName(subjectDTO.getName())
+                .setYearOfStudy(yearOfStudy)
+                .setSemester(subjectDTO.getSemester())
+                .setEspb(subjectDTO.getEspb())
+                .setNumberOfLectures(subjectDTO.getNumberOfLectures())
+                .setNumberOfPracticalLectures(subjectDTO.getNumberOfPracticalLectures())
+                .setOtherFormsOfLectures(subjectDTO.getOtherFormsOfLectures())
+                .setResearchWorks(subjectDTO.getResearchWorks())
+                .setOtherLectures(subjectDTO.getOtherLectures())
+                .setRequired(subjectDTO.isRequired());
+
+        this.subjectRepository.save(subject);
+
+        this.subjectSyllabusRepository
+                .save
+                (
+                        new SubjectSyllabus()
+                            .setContent(subjectDTO.getSyllabus().getContent())
+                            .setSubject(subject)
+                );
+        this.subjectRealizationRepository
+                .save
+                     (
+                             new SubjectRealization()
+                                .setSubject(subject)
+
+                     );
+
+        return "Subject has been stored";
+
+    }
+
+    @Override
+    public String update(Long id, SubjectDTO subjectDTO)
+    throws SubjectNotFoundException, YearOfStudyNotFoundException
+    {
+        Subject subject = this.subjectRepository
+                        .findById(id)
+                        .orElseThrow(() -> new SubjectNotFoundException(String.format("Subject with id: %s coudl not be found", id)));
+
+        YearOfStudy yearOfStudy = this.yearOfStudyRepository
+                                .findById(subjectDTO.getYearOfStudyId())
+                                .orElseThrow
+                                    (
+                                        () ->
+                                        new YearOfStudyNotFoundException
+                                                (
+                                                    String.format("Year of study with id: %s could not be found", subjectDTO.getYearOfStudyId())
+                                                )
+                                    );
+        subject.setName(subjectDTO.getName())
+                .setEspb(subjectDTO.getEspb())
+                .setNumberOfLectures(subjectDTO.getNumberOfLectures())
+                .setNumberOfPracticalLectures(subjectDTO.getNumberOfPracticalLectures())
+                .setOtherFormsOfLectures(subjectDTO.getOtherFormsOfLectures())
+                .setRequired(subjectDTO.isRequired())
+                .setOtherLectures(subjectDTO.getOtherLectures())
+                .setSemester(subjectDTO.getSemester())
+                .setYearOfStudy(yearOfStudy)
+                .setResearchWorks(subjectDTO.getResearchWorks());
+
+        subject.getSyllabus().setContent(subjectDTO.getSyllabus().getContent());
+
+        this.subjectRepository.save(subject);
+
+        return "Subject has been updated";
+    }
+
+    @Override
+    public String delete(Long id)
+    throws SubjectNotFoundException
+    {
+        Subject subject = this.subjectRepository
+                .findById(id)
+                .orElseThrow(() -> new SubjectNotFoundException(String.format("Subject with id: %s could not be found", id)));
+
+        this.subjectRepository.deleteById(id);
+
+        return "Subject has been deleted";
     }
 
     @Override
