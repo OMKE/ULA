@@ -9,14 +9,12 @@ import com.ula.authentication.domain.repository.UserPermissionRepository;
 import com.ula.authentication.domain.repository.UserRepository;
 import com.ula.authentication.dto.model.StudentDTO;
 import com.ula.authentication.mapper.StudentMapper;
-import com.ula.authentication.service.exception.StudentNotFoundException;
-import com.ula.authentication.service.exception.UserIsAlreadyStudent;
-import com.ula.authentication.service.exception.UserNotFoundException;
-import com.ula.authentication.service.exception.UserPermissionException;
+import com.ula.authentication.service.exception.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentServiceImpl implements StudentService
@@ -56,7 +54,7 @@ public class StudentServiceImpl implements StudentService
 
     @Override
     public String store(Long userId, StudentDTO studentDTO)
-    throws UserNotFoundException, UserIsAlreadyStudent
+    throws UserNotFoundException, UserIsAlreadyStudent, StudentSSNConflictException
     {
         // Find user with provided userId
         User user = this.userRepository.findById(userId)
@@ -79,7 +77,10 @@ public class StudentServiceImpl implements StudentService
         {
             throw new UserIsAlreadyStudent(String.format("User with id: %s is already a student", userId));
         }
-
+        Optional<Student> foundStudent = this.studentRepository.findBySsn(studentDTO.getSsn());
+        if(foundStudent.isPresent()) {
+            throw new StudentSSNConflictException(String.format("Student with ssn: %s already exists", studentDTO.getSsn()));
+        }
         // Add STUDENT role to UserPermission
         user.getUserPermissions().add
                 (

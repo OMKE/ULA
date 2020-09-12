@@ -36,5 +36,6 @@ public class TeachingTerm extends BaseEntity
     @OneToOne(mappedBy = "teachingTerm")
     private TeachingTermOutcome outcome;
 
-
+    @OneToOne(mappedBy = "teachingTerm")
+    private TeachingMaterial teachingMaterial;
 }

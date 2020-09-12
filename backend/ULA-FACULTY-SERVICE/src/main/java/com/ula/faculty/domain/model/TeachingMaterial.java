@@ -21,6 +21,12 @@ public class TeachingMaterial extends BaseEntity
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @OneToOne(optional = false)
+    private TeachingTerm teachingTerm;
+
+    @Column(nullable = false, columnDefinition = "VARCHAR(128)")
+    private String name;
+
     @Column(nullable = false, columnDefinition = "DATE")
     private Date publicationDate;
 

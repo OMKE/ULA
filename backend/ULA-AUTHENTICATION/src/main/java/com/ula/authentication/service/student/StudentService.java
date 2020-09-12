@@ -1,10 +1,7 @@
 package com.ula.authentication.service.student;
 
 import com.ula.authentication.dto.model.StudentDTO;
-import com.ula.authentication.service.exception.StudentNotFoundException;
-import com.ula.authentication.service.exception.UserIsAlreadyStudent;
-import com.ula.authentication.service.exception.UserNotFoundException;
-import com.ula.authentication.service.exception.UserPermissionException;
+import com.ula.authentication.service.exception.*;
 
 import java.util.List;
 
@@ -15,7 +12,7 @@ public interface StudentService
     StudentDTO show(Long id) throws StudentNotFoundException;
 
     String store(Long userId, StudentDTO studentDTO)
-    throws UserNotFoundException, UserIsAlreadyStudent;
+    throws UserNotFoundException, UserIsAlreadyStudent, StudentSSNConflictException;
 
     String update(Long id, StudentDTO studentDTO)
     throws StudentNotFoundException;
