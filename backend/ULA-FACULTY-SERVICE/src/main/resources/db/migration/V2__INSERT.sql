@@ -2105,7 +2105,7 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 
 INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (88, "CHolism and law", 4, 5, 20, 20, 0, 0, 0, NOW());
 
-INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (88, "Serbian philosophy of law", 4, 7, 20, 20, 0, 0, 0, NOW());
+INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (88, "English philosophy of law", 4, 7, 20, 20, 0, 0, 0, NOW());
 
 INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (88, "Contemporary political theories", 4, 5, 20, 20, 0, 0, 0, NOW());
 
