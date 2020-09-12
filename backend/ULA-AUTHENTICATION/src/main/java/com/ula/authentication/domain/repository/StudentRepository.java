@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface StudentRepository extends CrudRepository<Student, Long>
 {
     Optional<Student> getByUserId(Long userId);
+
+    Optional<Student> findBySsn(String ssn);
 }
