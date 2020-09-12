@@ -68,7 +68,7 @@ public class Authentication
 
     private boolean checkHeader(String header)
     {
-        if(header != null && header.equals(""))
+        if(header != null && !header.equals(""))
         {
             return true;
         } else {
