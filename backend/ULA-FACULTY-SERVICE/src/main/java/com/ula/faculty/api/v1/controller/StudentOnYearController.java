@@ -10,10 +10,9 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.ula.core.annotation.Authorized;
-import org.ula.core.annotation.Token;
 import org.ula.core.api.BaseController;
 import org.ula.core.api.response.Response;
-import org.ula.core.util.JWT;
+import org.ula.core.util.JWTUtil;
 
 import javax.validation.Valid;
 
@@ -25,12 +24,12 @@ public class StudentOnYearController extends BaseController
     @Autowired
     private StudentOnYearService studentOnYearService;
 
+    @Autowired
+    private JWTUtil jwtUtil;
+
     @Authorized("ADMIN,TEACHER")
     @GetMapping("/student-on-year")
-    public Response<Object> index
-    (
-            @Token JWT jwt
-    )
+    public Response<Object> index()
     {
         return Response.ok()
                        .setPayload(this.studentOnYearService.index());
@@ -40,7 +39,6 @@ public class StudentOnYearController extends BaseController
     @GetMapping("/student-on-year/{id}")
     public Response<Object> show
     (
-            @Token JWT jwt,
             @PathVariable("id") Long id
     )
     {
@@ -56,7 +54,6 @@ public class StudentOnYearController extends BaseController
     @GetMapping("/student-on-year/student/{studentId}")
     public StudentOnYearDTO showByStudentId
     (
-            @Token JWT jwt,
             @PathVariable("studentId") Long studentId
     )
     {
@@ -70,17 +67,16 @@ public class StudentOnYearController extends BaseController
     @Authorized("ADMIN")
     @PostMapping("/student-on-year")
     public Response<Object> store
-            (
-                    @Token JWT jwt,
-                    @Valid @RequestBody StoreStudentOnYearRequest storeRequest,
-                    Errors errors
-            )
+    (
+            @Valid @RequestBody StoreStudentOnYearRequest storeRequest,
+            Errors errors
+    )
     {
 
 
         try {
             return Response.ok()
-                           .setPayload(this.studentOnYearService.store(jwt.getContent(), storeRequest));
+                           .setPayload(this.studentOnYearService.store(jwtUtil.getToken(), storeRequest));
         } catch (StudentOnYearNotFoundException |
                 YearOfStudyNotFoundException |
                 StudentNotFoundException |
@@ -93,18 +89,17 @@ public class StudentOnYearController extends BaseController
     @Authorized("ADMIN")
     @PutMapping("/student-on-year/{id}")
     public Response<Object> update
-            (
-                    @Token JWT jwt,
-                    @Valid @RequestBody UpdateStudentOnYearRequest updateRequest,
-                    @PathVariable("id") Long id,
-                    Errors errors
-            )
+    (
+            @Valid @RequestBody UpdateStudentOnYearRequest updateRequest,
+            @PathVariable("id") Long id,
+            Errors errors
+    )
     {
 
 
         try {
             return Response.ok()
-                           .setPayload(this.studentOnYearService.addYearOfStudy(id, updateRequest, jwt.getContent()));
+                           .setPayload(this.studentOnYearService.addYearOfStudy(id, updateRequest, jwtUtil.getToken()));
         } catch (StudentNotFoundException |
                 YearOfStudyNotFoundException |
                 StudentOnYearConflictException |
@@ -117,10 +112,9 @@ public class StudentOnYearController extends BaseController
     @Authorized("ADMIN")
     @DeleteMapping("/student-on-year/{id}")
     public Response<Object> delete
-            (
-                    @Token JWT jwt,
-                    @PathVariable("id") Long id
-            )
+    (
+            @PathVariable("id") Long id
+    )
     {
         try {
             return Response.ok()

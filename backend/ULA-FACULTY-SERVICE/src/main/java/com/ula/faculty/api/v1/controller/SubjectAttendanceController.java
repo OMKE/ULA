@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.ula.core.annotation.Authorized;
-import org.ula.core.annotation.Token;
 import org.ula.core.api.response.Response;
-import org.ula.core.util.JWT;
 
 import java.util.List;
 
@@ -27,7 +25,6 @@ public class SubjectAttendanceController
     @GetMapping("/subject-attendance")
     public Response<Object> index
     (
-        @Token JWT jwt
     )
     {
         return Response.ok()
@@ -38,7 +35,6 @@ public class SubjectAttendanceController
     @GetMapping("/subject-attendance/{id}")
     public Response<Object> show
     (
-            @Token JWT jwt,
             @PathVariable("id") Long id
     )
     {
@@ -54,7 +50,6 @@ public class SubjectAttendanceController
     @GetMapping("/private/subject-attendance/student/{id}")
     public List<SubjectAttendanceWithSubjectDTO> indexByStudentId
     (
-            @Token JWT jwt,
             @PathVariable("id") Long id
     )
     {
@@ -65,7 +60,6 @@ public class SubjectAttendanceController
     @GetMapping("/private/subject-attendance/student/{id}/passed")
     public List<SubjectAttendanceWithSubjectDTO> indexPassedByStudentId
     (
-            @Token JWT jwt,
             @PathVariable("id") Long id
     )
     {
@@ -77,7 +71,6 @@ public class SubjectAttendanceController
     @GetMapping("/private/subject-attendance/student/{id}/not-passed")
     public List<SubjectAttendanceWithSubjectDTO> indexCurrentByStudentId
     (
-            @Token JWT jwt,
             @PathVariable("id") Long id
     )
     {
@@ -88,7 +81,6 @@ public class SubjectAttendanceController
     @GetMapping("/private/subject-attendance/student/{studentId}/{id}")
     public SubjectAttendanceWithSubjectDTO showByStudentId
     (
-            @Token JWT jwt,
             @PathVariable("studentId") Long studentId,
             @PathVariable("id") Long resourceId
     )

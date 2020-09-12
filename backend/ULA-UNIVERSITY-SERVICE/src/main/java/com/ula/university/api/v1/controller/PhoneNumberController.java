@@ -10,10 +10,8 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.ula.core.annotation.Authorized;
-import org.ula.core.annotation.Token;
 import org.ula.core.api.BaseController;
 import org.ula.core.api.response.Response;
-import org.ula.core.util.JWT;
 
 import javax.validation.Valid;
 
@@ -46,7 +44,6 @@ public class PhoneNumberController extends BaseController
     @PostMapping("/contact/phone-number")
     public Response<Object> store
     (
-        @Token JWT jwt,
         @Valid @RequestBody PhoneNumberRequest phoneNumberRequest,
         Errors errors
     )
@@ -72,7 +69,6 @@ public class PhoneNumberController extends BaseController
     @PutMapping("/contact/phone-number/{id}")
     public Response<Object> update
     (
-            @Token JWT jwt,
             @PathVariable("id") Long id,
             @RequestBody @Valid PhoneNumberRequest phoneNumberRequest,
             Errors errors
@@ -99,7 +95,6 @@ public class PhoneNumberController extends BaseController
     @DeleteMapping("/contact/phone-number/{id}")
     public Response<Object> delete
     (
-            @Token JWT jwt,
             @PathVariable("id") Long id
     )
     {

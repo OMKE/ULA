@@ -7,9 +7,9 @@ import com.ula.student.feign.ExamServiceFeignClient;
 import com.ula.student.service.exception.EntryIsAlreadyActiveException;
 import com.ula.student.service.exception.ExamNotFoundException;
 import com.ula.student.service.student.StudentService;
-import com.ula.student.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.ula.core.util.JWTUtil;
 
 
 @Service
@@ -20,7 +20,7 @@ public class ExamServiceImpl implements ExamService
     private StudentService studentService;
 
     @Autowired
-    private UserUtil userUtil;
+    private JWTUtil jwtUtil;
 
     @Autowired
     private ExamServiceFeignClient examService;
@@ -29,12 +29,12 @@ public class ExamServiceImpl implements ExamService
     public ExamDTO show(Long subjectAttendanceId, Long examId)
     {
 
-        StudentDTO studentDTO = this.studentService.getStudent(this.userUtil.getUsername());
+        StudentDTO studentDTO = this.studentService.getStudent(this.jwtUtil.getUsername());
         if(studentDTO != null)
         {
             ExamDTO examDTO = this.examService.getExamByStudentIdAndSubjectAttendanceIdAndExamId
                     (
-                            userUtil.getToken(), studentDTO.getStudentOnYear().getId(), subjectAttendanceId, examId
+                            jwtUtil.getToken(), studentDTO.getStudentOnYear().getId(), subjectAttendanceId, examId
                     );
             return examDTO;
         } else {
@@ -48,7 +48,7 @@ public class ExamServiceImpl implements ExamService
     throws EntryIsAlreadyActiveException, ExamNotFoundException
     {
 
-        StudentDTO studentDTO = this.studentService.getStudent(this.userUtil.getUsername());
+        StudentDTO studentDTO = this.studentService.getStudent(this.jwtUtil.getUsername());
 
         ExamDTO examDTO = this.show(subjectAttendanceId, examId);
 
@@ -61,7 +61,7 @@ public class ExamServiceImpl implements ExamService
                     // send request to the exam service
                     return this.examService.addExamEntry
                             (
-                                    userUtil.getToken(),
+                                    jwtUtil.getToken(),
                                     studentDTO.getStudentOnYear().getId(),
                                     subjectAttendanceId,
                                     examId,

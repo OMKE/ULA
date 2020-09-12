@@ -12,10 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 import org.ula.core.annotation.Authorized;
-import org.ula.core.annotation.Token;
 import org.ula.core.api.response.Response;
 import org.ula.core.exception.NotAuthorizedException;
-import org.ula.core.util.JWT;
+import org.ula.core.util.JWTUtil;
 
 @RestController
 public class UserImageController
@@ -23,6 +22,9 @@ public class UserImageController
 
     @Autowired
     private ImageService imageService;
+
+    @Autowired
+    private JWTUtil jwtUtil;
 
 
 //    https://spring.io/guides/gs/uploading-files/
@@ -42,16 +44,13 @@ public class UserImageController
     @Headers("Content-Type: multipart/form-data")
     public Response<Object> store
     (
-            @Token JWT jwt,
             @RequestPart(value = "file") MultipartFile file
 
     )
     {
         try {
             return Response.ok().setPayload(this.imageService.store(file, "users"));
-        } catch (FileStorageException e) {
-            return Response.exception().setErrors(e.getMessage());
-        } catch (IllegalTypeOfFileException e) {
+        } catch (FileStorageException | IllegalTypeOfFileException e) {
             return Response.exception().setErrors(e.getMessage());
         }
     }
@@ -60,13 +59,12 @@ public class UserImageController
     @DeleteMapping("/image/users/{username}")
     public Response<Object> delete
     (
-        @Token JWT jwt,
         @PathVariable("username") String username,
         @RequestBody Response request
     )
     {
         try {
-            if(jwt.getUsername().equals(username))
+            if(jwtUtil.getUsername().equals(username))
             {
                 return Response.ok().setPayload(this.imageService.delete((String) request.getPayload()));
             } else {

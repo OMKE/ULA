@@ -4,9 +4,9 @@ import com.ula.student.dto.StudentDTO;
 import com.ula.student.dto.SubjectAttendanceWithSubjectDTO;
 import com.ula.student.feign.FacultyService;
 import com.ula.student.service.student.StudentService;
-import com.ula.student.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.ula.core.util.JWTUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,16 +22,16 @@ public class SubjectServiceImpl implements SubjectService
     private FacultyService facultyService;
 
     @Autowired
-    private UserUtil userUtil;
+    private JWTUtil jwtUtil;
 
 
     @Override
     public List<SubjectAttendanceWithSubjectDTO> index()
     {
-        StudentDTO studentDTO = this.studentService.getStudent(this.userUtil.getUsername());
+        StudentDTO studentDTO = this.studentService.getStudent(this.jwtUtil.getUsername());
         if(studentDTO != null && studentDTO.getStudentOnYear() != null)
         {
-            return this.facultyService.getAllSubjectAttendancesWithSubjects(userUtil.getToken(), studentDTO.getStudentOnYear().getId());
+            return this.facultyService.getAllSubjectAttendancesWithSubjects(jwtUtil.getToken(), studentDTO.getStudentOnYear().getId());
         } else {
             return new ArrayList<>();
         }
@@ -40,10 +40,10 @@ public class SubjectServiceImpl implements SubjectService
     @Override
     public List<SubjectAttendanceWithSubjectDTO> indexPassed()
     {
-        StudentDTO studentDTO = this.studentService.getStudent(this.userUtil.getUsername());
+        StudentDTO studentDTO = this.studentService.getStudent(this.jwtUtil.getUsername());
         if(studentDTO != null && studentDTO.getStudentOnYear() != null)
         {
-            return this.facultyService.getPassedSubjectAttendancesWithSubjects(userUtil.getToken(), studentDTO.getStudentOnYear().getId());
+            return this.facultyService.getPassedSubjectAttendancesWithSubjects(jwtUtil.getToken(), studentDTO.getStudentOnYear().getId());
         } else {
             return new ArrayList<>();
         }
@@ -52,10 +52,10 @@ public class SubjectServiceImpl implements SubjectService
     @Override
     public List<SubjectAttendanceWithSubjectDTO> indexNotPassed()
     {
-        StudentDTO studentDTO = this.studentService.getStudent(this.userUtil.getUsername());
+        StudentDTO studentDTO = this.studentService.getStudent(this.jwtUtil.getUsername());
         if(studentDTO != null && studentDTO.getStudentOnYear() != null)
         {
-            return this.facultyService.getNotPassedSubjectAttendancesWithSubjects(userUtil.getToken(), studentDTO.getStudentOnYear().getId());
+            return this.facultyService.getNotPassedSubjectAttendancesWithSubjects(jwtUtil.getToken(), studentDTO.getStudentOnYear().getId());
         } else {
             return new ArrayList<>();
         }
@@ -64,10 +64,10 @@ public class SubjectServiceImpl implements SubjectService
     @Override
     public SubjectAttendanceWithSubjectDTO show(Long id)
     {
-        StudentDTO studentDTO = this.studentService.getStudent(this.userUtil.getUsername());
+        StudentDTO studentDTO = this.studentService.getStudent(this.jwtUtil.getUsername());
         if(studentDTO != null && studentDTO.getStudentOnYear() != null)
         {
-            return this.facultyService.getSubjectAttendanceById(this.userUtil.getToken(), studentDTO.getStudentOnYear().getId(), id);
+            return this.facultyService.getSubjectAttendanceById(this.jwtUtil.getToken(), studentDTO.getStudentOnYear().getId(), id);
         }
         return null;
     }

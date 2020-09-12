@@ -11,10 +11,10 @@ import com.ula.exam.mapper.TakingExamMapper;
 import com.ula.exam.service.exception.SubjectAttendanceConflictException;
 import com.ula.exam.service.exception.SubjectAttendanceNotFoundException;
 import com.ula.exam.service.exception.TakingExamNotFoundException;
-import com.ula.exam.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.ula.core.api.response.Response;
+import org.ula.core.util.JWTUtil;
 
 import java.util.HashSet;
 import java.util.List;
@@ -36,7 +36,7 @@ public class TakingExamServiceImpl implements TakingExamService
     private FacultyFeignClient facultyFeignClient;
 
     @Autowired
-    private UserUtil userUtil;
+    private JWTUtil jwtUtil;
 
     @Override
     public List<TakingExamDTO> index()
@@ -65,7 +65,7 @@ public class TakingExamServiceImpl implements TakingExamService
 
         // Get subject attendance by studentId and SubjectAttendanceId
         SubjectAttendanceDTO subjectAttendanceDTO = this.facultyFeignClient
-                .getByStudentIdAndSubjectAttendanceId(userUtil.getToken(),studentId, subjectAttendanceId);
+                .getByStudentIdAndSubjectAttendanceId(jwtUtil.getToken(),studentId, subjectAttendanceId);
 
         // If it's not null
 

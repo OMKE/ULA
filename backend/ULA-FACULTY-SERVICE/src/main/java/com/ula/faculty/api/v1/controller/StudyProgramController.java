@@ -14,10 +14,8 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.ula.core.annotation.Authorized;
-import org.ula.core.annotation.Token;
 import org.ula.core.api.BaseController;
 import org.ula.core.api.response.Response;
-import org.ula.core.util.JWT;
 
 import javax.validation.Valid;
 import java.util.Optional;
@@ -73,7 +71,6 @@ public class StudyProgramController extends BaseController
     @PostMapping("/study-program")
     public Response<Object> store
     (
-            @Token JWT jwt,
             @Valid @RequestBody StoreAndUpdateStudyProgramRequest storeRequest,
             Errors errors
     )
@@ -92,12 +89,11 @@ public class StudyProgramController extends BaseController
     @Authorized("ADMIN")
     @PutMapping("/study-program/{id}")
     public Response<Object> update
-            (
-                    @Token JWT jwt,
-                    @PathVariable("id") Long id,
-                    @Valid @RequestBody StoreAndUpdateStudyProgramRequest storeRequest,
-                    Errors errors
-            )
+    (
+            @PathVariable("id") Long id,
+            @Valid @RequestBody StoreAndUpdateStudyProgramRequest storeRequest,
+            Errors errors
+    )
     {
 
         storeRequest.setDescription(this.sanitize(storeRequest.getDescription()))
@@ -114,7 +110,6 @@ public class StudyProgramController extends BaseController
     @DeleteMapping("/study-program/{id}")
     public Response<Object> delete
     (
-        @Token JWT jwt,
         @PathVariable("id") Long id
     )
     {

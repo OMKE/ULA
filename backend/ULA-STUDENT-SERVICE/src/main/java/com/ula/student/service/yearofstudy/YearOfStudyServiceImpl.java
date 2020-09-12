@@ -6,9 +6,9 @@ import com.ula.student.mapper.YearOfStudyMapper;
 import com.ula.student.service.exception.YearOfStudyNotFoundException;
 import com.ula.student.service.student.StudentService;
 import com.ula.student.service.subject.SubjectService;
-import com.ula.student.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.ula.core.util.JWTUtil;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -25,12 +25,12 @@ public class YearOfStudyServiceImpl implements YearOfStudyService
 
 
     @Autowired
-    private UserUtil userUtil;
+    private JWTUtil jwtUtil;
 
     @Override
     public List<YearOfStudyDTO> index()
     {
-        StudentDTO studentDTO = this.studentService.getStudent(this.userUtil.getUsername());
+        StudentDTO studentDTO = this.studentService.getStudent(this.jwtUtil.getUsername());
         List<YearOfStudyDTO> years = new ArrayList<>();
 
         if(studentDTO != null)
@@ -54,7 +54,7 @@ public class YearOfStudyServiceImpl implements YearOfStudyService
     throws YearOfStudyNotFoundException
     {
 
-        StudentDTO studentDTO = this.studentService.getStudent(this.userUtil.getUsername());
+        StudentDTO studentDTO = this.studentService.getStudent(this.jwtUtil.getUsername());
         if (studentDTO.getStudentOnYear().getYearOfStudyIds().contains(id))
         {
             return YearOfStudyMapper.map(this.subjectService.index(), id);

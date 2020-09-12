@@ -10,10 +10,8 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.ula.core.annotation.Authorized;
-import org.ula.core.annotation.Token;
 import org.ula.core.api.BaseController;
 import org.ula.core.api.response.Response;
-import org.ula.core.util.JWT;
 
 import javax.validation.Valid;
 
@@ -45,7 +43,7 @@ public class AddressController extends BaseController
     @Authorized("ADMIN")
     @PostMapping("/contact/address")
     public Response<Object> store
-    (       @Token JWT jwt,
+    (
             @Valid @RequestBody AddressRequest addressRequest,
             Errors errors
     )
@@ -72,7 +70,6 @@ public class AddressController extends BaseController
     @PutMapping("/contact/address/{id}")
     public Response<Object> update
     (
-            @Token JWT jwt,
             @PathVariable("id") Long id,
             @Valid @RequestBody AddressRequest addressRequest,
             Errors errors
@@ -92,9 +89,7 @@ public class AddressController extends BaseController
                                         .setNumber(this.sanitize(addressRequest.getNumber()))
                                     )
                         );
-        } catch (AddressNotFoundException e) {
-            return Response.exception().setErrors(e.getMessage());
-        } catch (CityNotFoundException e) {
+        } catch (AddressNotFoundException | CityNotFoundException e) {
             return Response.exception().setErrors(e.getMessage());
         }
     }
