@@ -12,7 +12,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.stereotype.Component;
 import org.ula.core.annotation.Authorized;
 import org.ula.core.domain.model.ULAUserDTO;
-import org.ula.core.exception.JWTNotFoundException;
 import org.ula.core.exception.NotAuthorizedException;
 import org.ula.core.feign.AuthServiceFeignClient;
 
@@ -34,7 +33,7 @@ public class Authentication
     private HttpServletRequest request;
 
     @Before("@annotation(org.ula.core.annotation.Authorized)")
-    public void authenticate(JoinPoint joinPoint) throws NotAuthorizedException, JWTNotFoundException
+    public void authenticate(JoinPoint joinPoint) throws NotAuthorizedException
     {
 
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
