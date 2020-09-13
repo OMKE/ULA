@@ -1,13 +1,12 @@
 package com.ula.faculty.domain.model;
 
 import lombok.Getter;
-import lombok.Setter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.ula.core.domain.model.BaseEntity;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -25,6 +24,4 @@ public class EducationalGoal extends BaseEntity
     @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
 
-    @OneToMany(mappedBy = "educationalGoal")
-    private Set<TeachingTermOutcome> teachingTermOutcomes;
 }
