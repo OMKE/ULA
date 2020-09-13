@@ -26,7 +26,6 @@ public class TeachingTermMapper
                                         .setId(teachingTerm.getOutcome().getId())
                                         .setTeachingTermId(teachingTerm.getId())
                                         .setDescription(teachingTerm.getOutcome().getDescription())
-                                        .setEducationalGoalId(teachingTerm.getOutcome().getEducationalGoal().getId())
                                     : null
                             )
                     .setType(

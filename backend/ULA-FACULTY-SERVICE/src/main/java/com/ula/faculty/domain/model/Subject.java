@@ -57,6 +57,8 @@ public class Subject extends BaseEntity
 	@OneToOne(mappedBy = "subject")
 	private SubjectSyllabus syllabus;
 
+	// @TODO - Add relationship to educational goal, every subject should have one educational goal
+
 	@ManyToOne
 	private YearOfStudy yearOfStudy;
 }

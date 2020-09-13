@@ -280,14 +280,12 @@ CREATE TABLE `teaching_term` (
 CREATE TABLE `teaching_term_outcome` (
     `id` bigint(20) not null auto_increment,
     `teaching_term_id` bigint(20) not null ,
-    `educational_goal_id` bigint(20) not null ,
     `description` text not null ,
     `created_at` timestamp not null,
     `deleted` tinyint(1) default '0',
     `updated_at` timestamp null default null,
     primary key (`id`),
-    foreign key (`teaching_term_id`) references `teaching_term` (`id`),
-    foreign key (`educational_goal_id`) references `educational_goal` (`id`)
+    foreign key (`teaching_term_id`) references `teaching_term` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `teaching_material` (
