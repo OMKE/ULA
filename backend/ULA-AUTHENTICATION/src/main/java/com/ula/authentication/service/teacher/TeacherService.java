@@ -12,6 +12,9 @@ public interface TeacherService
 {
     List<TeacherDTO> index();
 
+    TeacherDTO getByUsername(String username)
+    throws UserNotFoundException, TeacherNotFoundException;
+
     TeacherDTO show(Long id) throws TeacherNotFoundException;
 
     String store(Long userId, TeacherDTO teacherDTO) throws UserNotFoundException, UserIsAlreadyTeacherException;

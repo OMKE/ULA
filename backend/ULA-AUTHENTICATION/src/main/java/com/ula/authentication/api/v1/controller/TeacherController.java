@@ -10,6 +10,7 @@ import com.ula.authentication.service.exception.UserPermissionException;
 import com.ula.authentication.service.teacher.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +31,19 @@ public class TeacherController extends BaseController
     public Response<Object> index()
     {
         return Response.ok().setPayload(this.teacherService.index());
+    }
+
+
+
+    @PreAuthorize("hasAuthority('TEACHER')")
+    @GetMapping("/private/teacher")
+    public TeacherDTO getLoggedInTeacher(Authentication authentication)
+    {
+        try {
+            return this.teacherService.getByUsername(authentication.getName());
+        } catch (UserNotFoundException | TeacherNotFoundException e) {
+            return null;
+        }
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
