@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: ula-faculty-service
+  main:
+    allow-bean-definition-overriding: true
   datasource:
     url: jdbc:mysql://localhost:3306/ula_faculty?transformedBitIsBoolean=true
     username: username
@@ -23,3 +25,15 @@ spring:
   jackson:
     mapper:
       default-view-inclusion: true
+
+
+
+feign:
+  hystrix:
+    enabled: true
+
+
+
+
+
+
