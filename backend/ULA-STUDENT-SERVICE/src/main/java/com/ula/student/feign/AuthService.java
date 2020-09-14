@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.RequestHeader;
 @FeignClient(value = "ula-auth-service", fallbackFactory = AuthServiceFallbackFactory.class)
 public interface AuthService
 {
-    @GetMapping("/student/username/{username}")
+    @GetMapping("/private/student/username/{username}")
     StudentDTO getStudent(@RequestHeader("Authorization") String token, @PathVariable("username") String username);
 }
