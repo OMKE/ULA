@@ -17,4 +17,5 @@ public class SubjectNotificationDTO
     private String subjectName;
     private String type;
     private Date time;
+    private String text;
 }
