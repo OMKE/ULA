@@ -27,7 +27,7 @@ public class AuthController
         Route for services only
      */
     @PreAuthorize("hasAuthority('USER')")
-    @PostMapping("/user")
+    @PostMapping("/private/user")
     public ULAUserDTO getUser
     (
             Authentication authentication,

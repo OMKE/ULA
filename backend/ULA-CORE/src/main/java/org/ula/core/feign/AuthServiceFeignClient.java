@@ -11,7 +11,7 @@ import org.ula.core.api.response.Response;
 @FeignClient(value = "ula-auth-service", fallbackFactory = AuthServiceFallbackFactory.class)
 public interface AuthServiceFeignClient
 {
-    @PostMapping("user")
+    @PostMapping("/private/user")
     ULAUserDTO getUser(@RequestHeader(value = "Authorization", required = true) String token, @RequestBody String authorizeRoles);
 
     @GetMapping("/student/{id}")
@@ -20,4 +20,5 @@ public interface AuthServiceFeignClient
                     @PathVariable("id") Long id,
                     @RequestHeader(value = "Authorization") String token
             );
+
 }

@@ -1,8 +1,8 @@
-package com.ula.faculty.dto.model;
+package com.ula.student.dto;
 
 import lombok.Getter;
-import lombok.Setter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import java.util.Date;

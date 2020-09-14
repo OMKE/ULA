@@ -121,7 +121,7 @@ public class StudentController extends BaseController
     }
 
     @PreAuthorize("hasAuthority('STUDENT') && @studentGuard.check(#username, authentication)")
-    @GetMapping("/student/username/{username}")
+    @GetMapping("/private/student/username/{username}")
     public StudentDTO getByUsername
     (
             @PathVariable("username") String username

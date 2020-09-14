@@ -41,6 +41,24 @@ public class TeacherServiceImpl implements TeacherService
     }
 
     @Override
+    public TeacherDTO getByUsername(String username)
+    throws UserNotFoundException, TeacherNotFoundException
+    {
+
+        User user =this.userRepository
+                .findByUsername(username)
+                .orElseThrow(() ->
+                                new UserNotFoundException(String.format("User with username: %s could not be found", username)));
+
+        Teacher teacher = this.teacherRepository
+                    .findByUserIdAndDeletedFalse(user.getId())
+                    .orElseThrow(() -> new TeacherNotFoundException(String.format("Teacher with user id: %s could not be found", user.getId())));
+
+        return TeacherMapper.map(teacher);
+
+    }
+
+    @Override
     public TeacherDTO show(Long id) throws TeacherNotFoundException
     {
         return TeacherMapper.map
