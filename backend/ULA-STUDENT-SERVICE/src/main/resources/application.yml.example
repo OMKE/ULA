@@ -1,10 +1,15 @@
 spring:
   application:
     name: ula-student-service
+  main:
+    allow-bean-definition-overriding: true
+
+
 server:
   port: 8085
-
 
 feign:
   hystrix:
     enabled: true
+
+
