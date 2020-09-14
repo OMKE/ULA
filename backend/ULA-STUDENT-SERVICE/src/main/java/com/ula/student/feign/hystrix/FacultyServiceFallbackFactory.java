@@ -2,10 +2,12 @@ package com.ula.student.feign.hystrix;
 
 import com.ula.student.dto.StudentOnYearDTO;
 import com.ula.student.dto.SubjectAttendanceWithSubjectDTO;
+import com.ula.student.dto.SubjectNotificationDTO;
 import com.ula.student.feign.FacultyService;
 import feign.hystrix.FallbackFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -63,6 +65,26 @@ public class FacultyServiceFallbackFactory implements FallbackFactory<FacultySer
                 LOGGER.error(String.format("Error occurred while fetching subject attendance with id", id), cause);
                 return null;
             }
+
+            @Override
+            public List<SubjectNotificationDTO> getNotifications(
+                    String token, Long studentId, Pageable pageable
+                                                                )
+            {
+                LOGGER.error(String.format("Error occurred while fetching user's notifications"), cause);
+                return null;
+            }
+
+            @Override
+            public List<SubjectNotificationDTO> getNotificationsBySubjectId(
+                    String token, Long subjectId, Pageable pageable
+                                                                           )
+            {
+                LOGGER.error(String.format("Error occurred while fetching notifications by subject id"), cause);
+                return null;
+            }
+
+
         };
     }
 }

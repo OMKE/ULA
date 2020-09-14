@@ -2,8 +2,10 @@ package com.ula.student.feign;
 
 import com.ula.student.dto.StudentOnYearDTO;
 import com.ula.student.dto.SubjectAttendanceWithSubjectDTO;
+import com.ula.student.dto.SubjectNotificationDTO;
 import com.ula.student.feign.hystrix.FacultyServiceFallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -29,8 +31,19 @@ public interface FacultyService
     @GetMapping("/private/subject-attendance/student/{studentId}/{id}")
     SubjectAttendanceWithSubjectDTO getSubjectAttendanceById
             (
-            @RequestHeader("Authorization") String token,
-            @PathVariable("studentId") Long studentId,
-            @PathVariable("id") Long id
+                @RequestHeader("Authorization") String token,
+                @PathVariable("studentId") Long studentId,
+                @PathVariable("id") Long id
+            );
+
+    @GetMapping("/private/subject-notification/{studentId}")
+    List<SubjectNotificationDTO> getNotifications(@RequestHeader("Authorization") String token, @PathVariable("studentId") Long studentId, Pageable pageable);
+
+    @GetMapping("/private/subject/{id}/notification")
+    List<SubjectNotificationDTO> getNotificationsBySubjectId
+            (
+                @RequestHeader("Authorization") String token,
+                @PathVariable("id") Long subjectId,
+                Pageable pageable
             );
 }
