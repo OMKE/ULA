@@ -38,13 +38,15 @@ public class StudentOnYearServiceImpl implements StudentOnYearService
     private YearOfStudyRepository yearOfStudyRepository;
 
     @Autowired
-    private AuthServiceFeignClient facultyFeignClient;
+    private AuthServiceFeignClient authServiceULACORE;
 
     @Autowired
     private TranscriptIdentifierGenerator transcriptIdentifierGenerator;
 
     @Autowired
     private SubjectAttendanceService subjectAttendanceService;
+
+
 
     @Autowired
     private StudentOnYearYearOfStudyRepository studentOnYearYearOfStudyRepository;
@@ -92,7 +94,7 @@ public class StudentOnYearServiceImpl implements StudentOnYearService
     throws StudentOnYearNotFoundException, StudentNotFoundException, YearOfStudyNotFoundException, StudentOnYearConflictException, SubjectRealizationNotFoundException
     {
 
-        Response<Object> response = facultyFeignClient.getStudent(studentOnYearDTO.getStudentId(), token);
+        Response<Object> response = authServiceULACORE.getStudent(studentOnYearDTO.getStudentId(), token);
 
 
 
