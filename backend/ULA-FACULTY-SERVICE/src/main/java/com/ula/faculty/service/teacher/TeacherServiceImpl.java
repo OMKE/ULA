@@ -63,6 +63,7 @@ public class TeacherServiceImpl implements TeacherService
         return SubjectWithRealizationMapper.map(teacherOnRealization.getSubjectRealization());
 
     }
+
     @Override
     public SubjectWithRealizationIdDTO subject(Long teacherId, Long subjectId)
     throws SubjectNotFoundException, TeacherOnRealizationNotFoundException, TeacherSubjectRealizationNotFoundException
