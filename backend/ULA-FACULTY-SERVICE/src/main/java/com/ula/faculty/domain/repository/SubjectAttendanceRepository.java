@@ -1,6 +1,7 @@
 package com.ula.faculty.domain.repository;
 
 import com.ula.faculty.domain.model.SubjectAttendance;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.ula.core.domain.repository.CrudRepository;
 
@@ -15,6 +16,8 @@ public interface SubjectAttendanceRepository extends CrudRepository<SubjectAtten
     List<SubjectAttendance> getAllByStudentIdAndFinalGradeNull(Long studentId);
 
     Optional<SubjectAttendance> getByIdAndStudentIdAndDeletedFalse(Long id, Long studentId);
+
+    List<SubjectAttendance> getAllBySubjectRealizationIdAndDeletedFalse(Long subjectRealizationId, Pageable pageable);
 
     List<SubjectAttendance> getAllBySubjectRealizationIdAndStudentIdAndDeletedFalse(Long subjectRealizationId, Long studentId);
 }

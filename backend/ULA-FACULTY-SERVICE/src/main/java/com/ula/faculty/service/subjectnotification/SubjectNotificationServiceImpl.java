@@ -43,6 +43,8 @@ public class SubjectNotificationServiceImpl implements SubjectNotificationServic
     @Autowired
     private StudentOnYearRepository studentOnYearRepository;
 
+
+
     @Override
     public List<SubjectNotificationDTO> index(Long subjectId, Pageable pageable)
     throws SubjectRealizationNotFoundException
@@ -93,6 +95,27 @@ public class SubjectNotificationServiceImpl implements SubjectNotificationServic
 
         return SubjectNotificationMapper.map(
                 this.subjectNotificationRepository.findAllBySubjectRealizationIdInOrderByCreatedAtDesc(subjectRealizationsIds, pageable)
+                                            );
+    }
+
+    @Override
+    public List<SubjectNotificationDTO> getByTeacherId(Long teacherId, Pageable pageable)
+    throws TeacherOnRealizationNotFoundException
+    {
+        TeacherOnRealization teacherOnRealization = this.teacherOnRealizationRepository
+                .findByTeacherId(teacherId)
+                .orElseThrow(() ->
+                        new TeacherOnRealizationNotFoundException(String.format("Teacher on realization with teacher id: %s could not be found", teacherId)));
+
+        ArrayList<Long> subjectRealizationIds = new ArrayList<>();
+        teacherOnRealization
+                .getSubjectRealization()
+                .forEach(sr ->
+                    subjectRealizationIds.add(sr.getSubjectRealization().getId())
+                        );
+
+        return SubjectNotificationMapper.map(
+                this.subjectNotificationRepository.findAllBySubjectRealizationIdInOrderByCreatedAtDesc(subjectRealizationIds, pageable)
                                             );
     }
 

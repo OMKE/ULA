@@ -36,7 +36,7 @@ public interface FacultyService
                 @PathVariable("id") Long id
             );
 
-    @GetMapping("/private/subject-notification/{studentId}")
+    @GetMapping("/private/student/{studentId}/subject-notification")
     List<SubjectNotificationDTO> getNotifications(@RequestHeader("Authorization") String token, @PathVariable("studentId") Long studentId, Pageable pageable);
 
     @GetMapping("/private/subject/{id}/notification")
