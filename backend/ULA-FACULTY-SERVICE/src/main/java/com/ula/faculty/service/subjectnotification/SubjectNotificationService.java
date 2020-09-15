@@ -19,6 +19,9 @@ public interface SubjectNotificationService
     List<SubjectNotificationDTO> getByStudentId(Long studentId, Pageable pageable)
     throws StudentOnYearNotFoundException;
 
+    List<SubjectNotificationDTO> getByTeacherId(Long teacherId, Pageable pageable)
+    throws TeacherOnRealizationNotFoundException;
+
     String store(Long subjectId,StoreAndUpdateSubjectNotificationRequest storeRequest)
     throws SubjectRealizationNotFoundException, TeacherOnRealizationNotFoundException, SubjectNotificationTypeNotFoundException, NotAuthorizedException;
 
