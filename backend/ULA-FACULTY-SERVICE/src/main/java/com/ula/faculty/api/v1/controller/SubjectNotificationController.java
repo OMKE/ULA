@@ -44,8 +44,23 @@ public class SubjectNotificationController extends BaseController
         }
     }
 
+    @Authorized("TEACHER")
+    @GetMapping("/private/teacher/{teacherId}/subject-notification")
+    public List<SubjectNotificationDTO> showTeacherNotifications
+    (
+            @PathVariable("teacherId") Long teacherId,
+            Pageable pageable
+    )
+    {
+        try {
+            return this.notificationService.getByTeacherId(teacherId, pageable);
+        } catch (TeacherOnRealizationNotFoundException e) {
+            return null;
+        }
+    }
+
     @Authorized("STUDENT")
-    @GetMapping("/private/subject-notification/{studentId}")
+    @GetMapping("/private/student/{studentId}/subject-notification")
     public List<SubjectNotificationDTO> showStudentsNotifications
     (
             @PathVariable("studentId") Long studentId,
