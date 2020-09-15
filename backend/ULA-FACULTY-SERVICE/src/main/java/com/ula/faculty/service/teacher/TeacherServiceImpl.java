@@ -63,3 +63,27 @@ public class TeacherServiceImpl implements TeacherService
         return SubjectWithRealizationMapper.map(teacherOnRealization.getSubjectRealization());
 
     }
+    @Override
+    public SubjectWithRealizationIdDTO subject(Long teacherId, Long subjectId)
+    throws SubjectNotFoundException, TeacherOnRealizationNotFoundException, TeacherSubjectRealizationNotFoundException
+    {
+        SubjectRealization subjectRealization = this.subjectRealizationRepository
+                .findBySubjectId(subjectId)
+                .orElseThrow(() ->
+                         new SubjectNotFoundException(String.format("Subject realization with subject id: %s could not be found", subjectId)));
+        TeacherOnRealization teacherOnRealization = this.teacherOnRealizationRepository
+                .findByTeacherId(teacherId)
+                .orElseThrow(() ->
+                        new TeacherOnRealizationNotFoundException(String.format("Teacher on realization with teacher id: %s could not be found", teacherId)));
+
+        TeacherSubjectRealization teacherSubjectRealization =
+                this.teacherSubjectRealizationRepository
+                        .findBySubjectRealizationIdAndTeacherOnRealizationId(subjectRealization.getId(), teacherOnRealization.getId())
+                        .orElseThrow(() ->
+                                     new TeacherSubjectRealizationNotFoundException(
+                                 String.format("Teacher subject realization with teacher id: %s and subject realization id: %s could not be found",
+                                               teacherId, subjectId)));
+
+        System.out.println(teacherSubjectRealization.getId() + " " + teacherSubjectRealization.getSubjectRealization().getSubject().getName());
+        return SubjectWithRealizationMapper.map(teacherSubjectRealization);
+    }
