@@ -9,6 +9,8 @@ public interface StudentService
 {
     List<StudentDTO> index();
 
+    List<StudentDTO> getByIds(List<Long> studentIds);
+
     StudentDTO show(Long id) throws StudentNotFoundException;
 
     String store(Long userId, StudentDTO studentDTO)

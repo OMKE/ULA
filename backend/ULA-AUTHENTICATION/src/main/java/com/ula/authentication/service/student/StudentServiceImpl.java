@@ -40,6 +40,12 @@ public class StudentServiceImpl implements StudentService
     }
 
     @Override
+    public List<StudentDTO> getByIds(List<Long> studentIds)
+    {
+        return StudentMapper.map((List<Student>) this.studentRepository.findAllById(studentIds));
+    }
+
+    @Override
     public StudentDTO show(Long id) throws StudentNotFoundException
     {
         return StudentMapper.map

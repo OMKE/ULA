@@ -15,6 +15,7 @@ import org.ula.core.api.BaseController;
 import org.ula.core.api.response.Response;
 
 import javax.validation.Valid;
+import java.util.List;
 
 
 @RestController
@@ -133,4 +134,16 @@ public class StudentController extends BaseController
             return null;
         }
     }
+
+
+    @PreAuthorize("hasAuthority('TEACHER')")
+    @PostMapping("/private/student-all")
+    public List<StudentDTO> getById
+    (
+            @RequestBody List<Long> ids
+    )
+    {
+        return this.studentService.getByIds(ids);
+    }
+
 }
