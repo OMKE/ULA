@@ -87,3 +87,28 @@ public class TeacherServiceImpl implements TeacherService
         System.out.println(teacherSubjectRealization.getId() + " " + teacherSubjectRealization.getSubjectRealization().getSubject().getName());
         return SubjectWithRealizationMapper.map(teacherSubjectRealization);
     }
+
+
+    // Return students on particular subject
+    @Override
+    public List<StudentDTO> students(Long subjectId, Pageable pageable)
+    throws SubjectRealizationNotFoundException
+    {
+        SubjectRealization subjectRealization = this.subjectRealizationRepository
+                .findBySubjectId(subjectId)
+                .orElseThrow(
+                        () ->
+                                new SubjectRealizationNotFoundException(String.format("Subject realization with subject id: %s could not be found", subjectId))
+                            );
+        // holds students
+        List<SubjectAttendance> subjectAttendances = this.subjectAttendanceRepository
+                .getAllBySubjectRealizationIdAndDeletedFalse(subjectRealization.getId(), pageable);
+
+        List<Long> studentIds = new ArrayList<>();
+        subjectAttendances.forEach(sA -> studentIds.add(sA.getStudent().getStudentId()));
+
+        return this.authService.getAllStudents(jwtUtil.getToken(), studentIds);
+    }
+
+
+}

@@ -14,7 +14,12 @@ public interface TeacherService
 {
     List<SubjectWithRealizationIdDTO> subjects(Long teacherId)
     throws TeacherOnRealizationNotFoundException;
+
+
     SubjectWithRealizationIdDTO subject(Long teacherId, Long subjectId)
     throws SubjectNotFoundException, TeacherOnRealizationNotFoundException, TeacherSubjectRealizationNotFoundException;
+
+    List<StudentDTO> students(Long subjectId, Pageable pageable)
+    throws SubjectRealizationNotFoundException;
 
 }
