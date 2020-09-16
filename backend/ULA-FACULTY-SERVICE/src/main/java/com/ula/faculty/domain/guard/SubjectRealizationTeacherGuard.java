@@ -18,4 +18,19 @@ public class SubjectRealizationTeacherGuard
         }
         return valid;
     }
+
+    public static boolean check(Long teacherId, Set<TeacherSubjectRealization> teacherSubjectRealizations)
+    {
+        boolean valid = false;
+
+        for(TeacherSubjectRealization tSR: teacherSubjectRealizations)
+        {
+            if(tSR.getTeacherOnRealization().getTeacherId().equals(teacherId))
+            {
+                System.out.println("TeacherOnRealization.getTeacherId: " + tSR.getTeacherOnRealization().getTeacherId() + ", teacherID:" + teacherId);
+                valid = true;
+            }
+        }
+        return valid;
+    }
 }
