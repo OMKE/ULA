@@ -35,12 +35,12 @@ public class ExamController
     @Authorized("STUDENT")
     @PostMapping("/subject/{subjectAttendance}/exam/{examId}")
     public Response<Object> addExamEntry
-            (
-                    @PathVariable("subjectAttendance") Long subjectAttendanceId,
-                    @PathVariable("examId") Long examId,
-                    @Valid @RequestBody UpdateExamEntryRequest updateRequest
+    (
+            @PathVariable("subjectAttendance") Long subjectAttendanceId,
+            @PathVariable("examId") Long examId,
+            @Valid @RequestBody UpdateExamEntryRequest updateRequest
 
-            )
+    )
     {
         try {
             return ResponseResolver.resolve(this.examService.storeEntry(subjectAttendanceId, examId, updateRequest));
