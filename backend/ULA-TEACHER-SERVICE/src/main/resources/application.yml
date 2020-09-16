@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: ula-teacher-service
+  main:
+    allow-bean-definition-overriding: true
+
+server:
+  port: 8086
+
+feign:
+  hystrix:
+    enabled: true
