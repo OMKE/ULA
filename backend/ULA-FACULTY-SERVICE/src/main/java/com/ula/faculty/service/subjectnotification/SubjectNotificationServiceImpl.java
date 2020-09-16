@@ -177,8 +177,18 @@ public class SubjectNotificationServiceImpl implements SubjectNotificationServic
     }
 
     @Override
-    public String delete(Long id)
+    public String delete(Long id, Long teacherId)
+    throws SubjectNotificationNotFoundException, NotAuthorizedException
     {
-        return null;
+        SubjectNotification subjectNotification = this.subjectNotificationRepository
+                .findById(id)
+                .orElseThrow(() -> new SubjectNotificationNotFoundException(String.format("Subject notification with id: %s could not be found")));
+        if(SubjectRealizationTeacherGuard.check(teacherId, subjectNotification.getSubjectRealization().getTeachersOnRealization()))
+        {
+            this.subjectNotificationRepository.deleteById(id);
+            return "Subject notification has been deleted";
+        } else {
+            throw new NotAuthorizedException(String.format("You're not authorized for notification with id: %s", id));
+        }
     }
 }
