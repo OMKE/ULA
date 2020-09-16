@@ -2,10 +2,7 @@ package com.ula.faculty.api.v1.controller;
 
 import com.ula.faculty.api.v1.request.StoreAndUpdateSubjectNotificationRequest;
 import com.ula.faculty.dto.model.SubjectNotificationDTO;
-import com.ula.faculty.service.exception.StudentOnYearNotFoundException;
-import com.ula.faculty.service.exception.SubjectNotificationTypeNotFoundException;
-import com.ula.faculty.service.exception.SubjectRealizationNotFoundException;
-import com.ula.faculty.service.exception.TeacherOnRealizationNotFoundException;
+import com.ula.faculty.service.exception.*;
 import com.ula.faculty.service.subjectnotification.SubjectNotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -91,6 +88,21 @@ public class SubjectNotificationController extends BaseController
                 TeacherOnRealizationNotFoundException |
                 SubjectNotificationTypeNotFoundException |
                 NotAuthorizedException e) {
+            return Response.exception().setErrors(e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/private/teacher/{teacherId}/notification/{notificationId}")
+    @Authorized("TEACHER")
+    private Response<Object> delete
+    (
+            @PathVariable("teacherId") Long teacherId,
+            @PathVariable("notificationId") Long notificationId
+    )
+    {
+        try {
+            return Response.ok().setPayload(this.notificationService.delete(notificationId, teacherId));
+        } catch (SubjectNotificationNotFoundException | NotAuthorizedException e) {
             return Response.exception().setErrors(e.getMessage());
         }
     }
