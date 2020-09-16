@@ -27,5 +27,6 @@ public interface SubjectNotificationService
 
     String update(Long id, StoreAndUpdateSubjectNotificationRequest updateRequest);
 
-    String delete(Long id);
+    String delete(Long id, Long teacherId)
+    throws SubjectNotificationNotFoundException, NotAuthorizedException;
 }
