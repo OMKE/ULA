@@ -6,7 +6,6 @@ import com.ula.exam.api.v1.request.UpdateExamRequest;
 import com.ula.exam.dto.model.ExamDTO;
 import com.ula.exam.service.exam.ExamService;
 import com.ula.exam.service.exception.*;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
@@ -23,9 +22,6 @@ public class ExamController extends BaseController
 {
     @Autowired
     private ExamService examService;
-
-    @Autowired
-    private RabbitTemplate rabbitTemplate;
 
 
     @Authorized("[ADMIN,TEACHER]")
@@ -144,13 +140,5 @@ public class ExamController extends BaseController
         } catch (ExamNotFoundException e) {
             return Response.exception().setErrors(e.getMessage());
         }
-    }
-
-    @GetMapping("/test")
-    public String test(@RequestParam("message") String message)
-    {
-        rabbitTemplate.convertAndSend("ula-queue", "ula.test.baz", message);
-
-        return message;
     }
 }
