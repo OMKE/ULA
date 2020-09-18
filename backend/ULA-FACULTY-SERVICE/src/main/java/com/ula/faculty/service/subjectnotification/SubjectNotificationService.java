@@ -22,11 +22,11 @@ public interface SubjectNotificationService
     List<SubjectNotificationDTO> getByTeacherId(Long teacherId, Pageable pageable)
     throws TeacherOnRealizationNotFoundException;
 
-    String store(Long subjectId,StoreAndUpdateSubjectNotificationRequest storeRequest)
+    String store(StoreAndUpdateSubjectNotificationRequest storeRequest)
     throws SubjectRealizationNotFoundException, TeacherOnRealizationNotFoundException, SubjectNotificationTypeNotFoundException, NotAuthorizedException;
 
     String update(Long id, StoreAndUpdateSubjectNotificationRequest updateRequest);
 
     String delete(Long id, Long teacherId)
-    throws SubjectNotificationNotFoundException, NotAuthorizedException;
+    throws SubjectNotificationNotFoundException, NotAuthorizedException, TeacherOnRealizationNotFoundException;
 }

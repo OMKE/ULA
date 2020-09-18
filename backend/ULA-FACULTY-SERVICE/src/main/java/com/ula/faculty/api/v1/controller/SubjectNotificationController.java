@@ -71,11 +71,10 @@ public class SubjectNotificationController extends BaseController
         }
     }
 
-    @PostMapping("/private/subject/{id}/notification")
     @Authorized("TEACHER")
+    @PostMapping("/private/subject/notification")
     public Response<Object> store
     (
-            @PathVariable("id") Long subjectId,
             @Valid @RequestBody StoreAndUpdateSubjectNotificationRequest storeRequest,
             Errors errors
     )
@@ -83,7 +82,7 @@ public class SubjectNotificationController extends BaseController
         storeRequest.setText(this.sanitize(storeRequest.getText()));
 
         try {
-            return Response.ok().setPayload(this.notificationService.store(subjectId, storeRequest));
+            return Response.ok().setPayload(this.notificationService.store(storeRequest));
         } catch (SubjectRealizationNotFoundException |
                 TeacherOnRealizationNotFoundException |
                 SubjectNotificationTypeNotFoundException |
@@ -92,9 +91,9 @@ public class SubjectNotificationController extends BaseController
         }
     }
 
-    @DeleteMapping("/private/teacher/{teacherId}/notification/{notificationId}")
     @Authorized("TEACHER")
-    private Response<Object> delete
+    @DeleteMapping("/private/teacher/{teacherId}/notification/{notificationId}")
+    public Response<Object> delete
     (
             @PathVariable("teacherId") Long teacherId,
             @PathVariable("notificationId") Long notificationId
@@ -102,7 +101,7 @@ public class SubjectNotificationController extends BaseController
     {
         try {
             return Response.ok().setPayload(this.notificationService.delete(notificationId, teacherId));
-        } catch (SubjectNotificationNotFoundException | NotAuthorizedException e) {
+        } catch (SubjectNotificationNotFoundException | NotAuthorizedException | TeacherOnRealizationNotFoundException e) {
             return Response.exception().setErrors(e.getMessage());
         }
     }

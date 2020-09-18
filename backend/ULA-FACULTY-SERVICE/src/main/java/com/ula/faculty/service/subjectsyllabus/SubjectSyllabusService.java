@@ -8,7 +8,7 @@ import org.ula.core.exception.NotAuthorizedException;
 
 public interface SubjectSyllabusService
 {
-    boolean update(Long id, Long teacherId, UpdateSubjectSyllabusRequest request)
+    String update(Long id, Long teacherId, UpdateSubjectSyllabusRequest request)
     throws SubjectNotFoundException, SubjectSyllabusNotFoundException, NotAuthorizedException, TeacherOnRealizationNotFoundException;
 
 }
