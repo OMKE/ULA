@@ -6,9 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -16,10 +13,6 @@ import javax.validation.constraints.Size;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UpdateSubjectSyllabusRequest
 {
-
-    @NotEmpty(message = "Content is required")
-    @Size(min = 50, message = "Content has to be at least 50 characters long")
+    // Validation is done in Faculty Service
     private String content;
-
-
 }
