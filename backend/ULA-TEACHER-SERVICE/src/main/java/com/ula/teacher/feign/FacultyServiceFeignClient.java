@@ -1,17 +1,32 @@
 package com.ula.teacher.feign;
 
 import com.ula.teacher.api.v1.request.StoreAndUpdateSubjectNotificationRequest;
+import com.ula.teacher.api.v1.request.StoreTeachingTermRequest;
+import com.ula.teacher.api.v1.request.UpdateSubjectSyllabusRequest;
+import com.ula.teacher.dto.StudentDTO;
 import com.ula.teacher.dto.SubjectNotificationDTO;
 import com.ula.teacher.dto.SubjectWithRealizationIdDTO;
+import com.ula.teacher.feign.hystrix.FacultyServiceFallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import org.ula.core.api.response.Response;
 
 import java.util.List;
 
-@FeignClient(value = "ula-faculty-service")
+@FeignClient(value = "ula-faculty-service", fallbackFactory = FacultyServiceFallbackFactory.class)
 public interface FacultyServiceFeignClient
 {
+
+    // Get Subjects
+    @GetMapping("/private/teacher/{id}/subject")
+    List<SubjectWithRealizationIdDTO> getSubjects
+    (
+            @RequestHeader("Authorization") String token,
+            @PathVariable("id") Long teacherId
+    );
+
+    // Get subject by Id
     @GetMapping("/private/teacher/{teacherId}/subject/{subjectId}")
     SubjectWithRealizationIdDTO getSubjectById
             (
@@ -20,33 +35,75 @@ public interface FacultyServiceFeignClient
             @PathVariable("subjectId") Long subjectId
             );
 
+    // Get students
+    @GetMapping("/private/teacher/subject/{subjectId}/student")
+    List<StudentDTO> getStudents
+        (
+                @RequestHeader("Authorization") String token,
+                @PathVariable("subjectId") Long subjectId,
+                Pageable pageable
+        );
+
+    // Get teacher's notifications
     @GetMapping("/private/teacher/{teacherId}/subject-notification")
     List<SubjectNotificationDTO> getNotifications
             (
                 @RequestHeader(value = "Authorization") String token,
-                @PathVariable("teacherId") Long teacherId
+                @PathVariable("teacherId") Long teacherId,
+                Pageable pageable
             );
 
+    // Get notifications by subject Id
     @GetMapping("/private/subject/{id}/notification")
     List<SubjectNotificationDTO> getNotificationsBySubject
             (
                     @RequestHeader(value = "Authorization") String token,
-                    @PathVariable("id") Long subjectId
+                    @PathVariable("id") Long subjectId,
+                    Pageable pageable
             );
-    
-    @PostMapping("/private/subject/{id}/notification")
+
+    // Adds notification on Subject
+    @PostMapping("/private/subject/notification")
     Response<Object> addNotification
             (
                     @RequestHeader(value = "Authorization") String token,
-                    @PathVariable("id") Long subjectId,
                     @RequestBody StoreAndUpdateSubjectNotificationRequest request
                     );
 
+    // Deletes notification
     @DeleteMapping("/private/teacher/{teacherId}/notification/{notificationId}")
     Response<Object> deleteNotification
             (
                     @RequestHeader(value = "Authorization") String token,
                     @PathVariable("teacherId") Long teacherId,
                     @PathVariable("notificationId") Long notificationId
+            );
+
+    // Get teaching terms based on Subject Id
+    @GetMapping("/subject/{id}/term")
+    Response<Object> getTeachingTermsBySubjectId
+    (
+            @RequestHeader(value = "Authorization") String token,
+            @PathVariable("id") Long subjectId
+    );
+
+    // Add teaching term
+    @PostMapping("/private/teacher/{teacherId}/teaching-term")
+    Response<Object> addTeachingTerm
+            (
+                    @RequestHeader(value = "Authorization") String token,
+                    @PathVariable("teacherId") Long teacherId,
+                    @RequestBody StoreTeachingTermRequest request
+            );
+
+
+    // Update subject syllabus by Subject Id
+    @PutMapping("/private/teacher/{teacherId}/subject-syllabus/{id}")
+    Response<Object> updateSubjectSyllabus
+            (
+                    @RequestHeader(value = "Authorization") String token,
+                    @PathVariable("teacherId") Long teacherId,
+                    @PathVariable("id") Long subjectId,
+                    @RequestBody UpdateSubjectSyllabusRequest request
             );
 }
