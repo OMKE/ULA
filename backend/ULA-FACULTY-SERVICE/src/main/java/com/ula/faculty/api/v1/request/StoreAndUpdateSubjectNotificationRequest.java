@@ -18,9 +18,9 @@ import javax.validation.constraints.Size;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class StoreAndUpdateSubjectNotificationRequest
 {
-    @NotNull(message = "Subject realization id is required")
-    @Min(value = 1, message = "Subject realization id can not be lower than 1")
-    private Long subjectRealizationId;
+    @NotNull(message = "Subject id is required")
+    @Min(value = 1, message = "Subject id can not be lower than 1")
+    private Long subjectId;
 
 
     @NotNull(message = "Type id is required")

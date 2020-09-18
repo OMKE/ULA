@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface SubjectNotificationRepository extends CrudRepository<SubjectNotification, Long>
 {
-    List<SubjectNotification> findBySubjectRealizationIdOrderByCreatedAtDesc(Long subjectRealizationId, Pageable pageable);
-    List<SubjectNotification> findAllBySubjectRealizationIdInOrderByCreatedAtDesc(List<Long> ids, Pageable pageable);
+    List<SubjectNotification> findBySubjectRealizationIdAndDeletedFalseOrderByCreatedAtDesc(Long subjectRealizationId, Pageable pageable);
+    List<SubjectNotification> findAllBySubjectRealizationIdInAndDeletedFalseOrderByCreatedAtDesc(List<Long> ids, Pageable pageable);
 }

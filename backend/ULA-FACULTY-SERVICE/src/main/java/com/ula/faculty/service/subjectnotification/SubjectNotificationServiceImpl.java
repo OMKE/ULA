@@ -56,7 +56,8 @@ public class SubjectNotificationServiceImpl implements SubjectNotificationServic
                              String.format("Subject realization with subject id: %s could not be found", subjectId))
                             );
 
-        return SubjectNotificationMapper.map(this.subjectNotificationRepository.findBySubjectRealizationIdOrderByCreatedAtDesc(subjectRealization.getId(), pageable));
+        return SubjectNotificationMapper.map(this.subjectNotificationRepository
+                                                     .findBySubjectRealizationIdAndDeletedFalseOrderByCreatedAtDesc(subjectRealization.getId(), pageable));
     }
 
     @Override
@@ -94,7 +95,7 @@ public class SubjectNotificationServiceImpl implements SubjectNotificationServic
                                   subjectRealizationsIds.add(subject.getSubjectRealization().getId())));
 
         return SubjectNotificationMapper.map(
-                this.subjectNotificationRepository.findAllBySubjectRealizationIdInOrderByCreatedAtDesc(subjectRealizationsIds, pageable)
+                this.subjectNotificationRepository.findAllBySubjectRealizationIdInAndDeletedFalseOrderByCreatedAtDesc(subjectRealizationsIds, pageable)
                                             );
     }
 
@@ -115,20 +116,21 @@ public class SubjectNotificationServiceImpl implements SubjectNotificationServic
                         );
 
         return SubjectNotificationMapper.map(
-                this.subjectNotificationRepository.findAllBySubjectRealizationIdInOrderByCreatedAtDesc(subjectRealizationIds, pageable)
+                this.subjectNotificationRepository.findAllBySubjectRealizationIdInAndDeletedFalseOrderByCreatedAtDesc(subjectRealizationIds, pageable)
                                             );
     }
 
     @Override
-    public String store(Long subjectId, StoreAndUpdateSubjectNotificationRequest storeRequest)
+    public String store(StoreAndUpdateSubjectNotificationRequest storeRequest)
     throws SubjectRealizationNotFoundException, TeacherOnRealizationNotFoundException, SubjectNotificationTypeNotFoundException, NotAuthorizedException
     {
         TeacherDTO teacherDTO = this.authService.getTeacher(this.jwtUtil.getToken());
         SubjectRealization subjectRealization = this.subjectRealizationRepository
-                .findBySubjectId(subjectId)
+                .findBySubjectId(storeRequest.getSubjectId())
                 .orElseThrow(() ->
-                         new SubjectRealizationNotFoundException(String.format("Subject realization with subject id: %s could not be found", subjectId))
-                            );
+                         new SubjectRealizationNotFoundException(
+                                 String.format("Subject realization with subject id: %s could not be found", storeRequest.getSubjectId())
+                            ));
         TeacherOnRealization teacherOnRealization = this.teacherOnRealizationRepository
                 .findByTeacherId(teacherDTO.getId())
                 .orElseThrow(() ->
@@ -178,12 +180,22 @@ public class SubjectNotificationServiceImpl implements SubjectNotificationServic
 
     @Override
     public String delete(Long id, Long teacherId)
-    throws SubjectNotificationNotFoundException, NotAuthorizedException
+    throws SubjectNotificationNotFoundException, NotAuthorizedException, TeacherOnRealizationNotFoundException
     {
         SubjectNotification subjectNotification = this.subjectNotificationRepository
                 .findById(id)
                 .orElseThrow(() -> new SubjectNotificationNotFoundException(String.format("Subject notification with id: %s could not be found")));
-        if(SubjectRealizationTeacherGuard.check(teacherId, subjectNotification.getSubjectRealization().getTeachersOnRealization()))
+
+        TeacherOnRealization teacherOnRealization = this.teacherOnRealizationRepository
+                .findByTeacherId(teacherId)
+                .orElseThrow(() ->
+                                     new TeacherOnRealizationNotFoundException
+                                             (
+                                                     String.format("Teacher on realization with teacher id: %s could not be found", teacherId)
+                                             )
+                            );
+
+        if(SubjectRealizationTeacherGuard.check(teacherOnRealization.getTeacherId(), subjectNotification.getSubjectRealization().getTeachersOnRealization()))
         {
             this.subjectNotificationRepository.deleteById(id);
             return "Subject notification has been deleted";
