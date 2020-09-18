@@ -128,6 +128,23 @@ public class TakingExamServiceImpl implements TakingExamService
 
     }
 
+    @Override
+    public String store(List<StoreTakingExamRequest> requests)
+    {
+        List<TakingExam> takingExams = new ArrayList<>();
+        for(StoreTakingExamRequest request: requests)
+        {
+            takingExams.add
+                    (
+                    new TakingExam()
+                            .setSubjectAttendanceId(request.getSubjectAttendanceId())
+                            .setNote(request.getNote())
+                   );
+        }
+        this.takingExamRepository.saveAll(takingExams);
+
+        return "Taking exams have been stored";
+    }
 
     @Override
     public String update(Long id, TakingExamDTO takingExamDTO)

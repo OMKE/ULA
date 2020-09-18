@@ -107,6 +107,15 @@ public class TakingExamController extends BaseController
         }
     }
 
+    @Authorized("ADMIN")
+    @PostMapping("/private/taking-exam")
+    public Response<Object> storeMany
+            (
+                    @Valid @RequestBody List<StoreTakingExamRequest> requests
+            )
+    {
+        return Response.ok().setPayload(this.takingExamService.store(requests));
+    }
     @Authorized("[ADMIN,TEACHER]")
     @PutMapping("/taking-exam/{id}")
     public Response<Object> update
