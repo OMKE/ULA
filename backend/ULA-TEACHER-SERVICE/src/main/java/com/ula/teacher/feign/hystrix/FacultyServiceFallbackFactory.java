@@ -107,6 +107,13 @@ public class FacultyServiceFallbackFactory implements FallbackFactory<FacultySer
                 LOGGER.error("Error occurred while updating SubjectSyllabus in Faculty Service", cause);
                 return null;
             }
+
+            @Override
+            public List<Long> getSubjectAttendancesBySubjectId(String token, Long teacherId, Long subjectId)
+            {
+                LOGGER.error("Error occurred while fetching SubjectAttendance IDs from Faculty Service", cause);
+                return null;
+            }
         };
     }
 }

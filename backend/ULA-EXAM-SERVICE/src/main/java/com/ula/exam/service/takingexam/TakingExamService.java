@@ -1,9 +1,9 @@
 package com.ula.exam.service.takingexam;
 
+import com.ula.exam.api.v1.request.StoreTakingExamRequest;
+import com.ula.exam.dto.model.ExamDTO;
 import com.ula.exam.dto.model.TakingExamDTO;
-import com.ula.exam.service.exception.SubjectAttendanceConflictException;
-import com.ula.exam.service.exception.SubjectAttendanceNotFoundException;
-import com.ula.exam.service.exception.TakingExamNotFoundException;
+import com.ula.exam.service.exception.*;
 
 import java.util.List;
 
@@ -19,6 +19,11 @@ public interface TakingExamService
 
     String store(TakingExamDTO takingExamDTO, String token)
     throws SubjectAttendanceNotFoundException, SubjectAttendanceConflictException;
+
+    String store(List<StoreTakingExamRequest> requests);
+
+    String createExams(List<Long> subjectAttendanceIds, ExamDTO examDTO)
+    throws TakingExamNotFoundException, ExamTypeNotFoundException, ExamTermNotFoundException;
 
 
     String update(Long id, TakingExamDTO takingExamDTO) throws TakingExamNotFoundException;

@@ -23,8 +23,9 @@ public interface StudentOnYearService
     String store(String token, StoreStudentOnYearRequest studentOnYearDTO)
     throws StudentOnYearNotFoundException, StudentNotFoundException, YearOfStudyNotFoundException, StudentOnYearConflictException, SubjectRealizationNotFoundException;
 
-    void storeSubjectAttendanceBasedOnSubjects(Set<Subject> subjects, Long studentId, String token)
+    void storeSubjectAttendanceBasedOnSubjects(Set<Subject> subjects, Long studentId)
     throws SubjectRealizationNotFoundException, StudentNotFoundException, StudentOnYearNotFoundException;
+
 
     String addYearOfStudy(Long id, UpdateStudentOnYearRequest studentOnYearDTO, String token)
     throws StudentNotFoundException, YearOfStudyNotFoundException, StudentOnYearConflictException, StudentOnYearNotFoundException, SubjectRealizationNotFoundException;

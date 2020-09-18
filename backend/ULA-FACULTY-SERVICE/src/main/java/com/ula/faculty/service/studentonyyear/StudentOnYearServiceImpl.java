@@ -2,16 +2,14 @@ package com.ula.faculty.service.studentonyyear;
 
 import com.ula.faculty.api.v1.request.StoreStudentOnYearRequest;
 import com.ula.faculty.api.v1.request.UpdateStudentOnYearRequest;
-import com.ula.faculty.domain.model.StudentOnYear;
-import com.ula.faculty.domain.model.StudentOnYearYearOfStudy;
-import com.ula.faculty.domain.model.Subject;
-import com.ula.faculty.domain.model.YearOfStudy;
+import com.ula.faculty.domain.model.*;
 import com.ula.faculty.domain.repository.StudentOnYearRepository;
 import com.ula.faculty.domain.repository.StudentOnYearYearOfStudyRepository;
 import com.ula.faculty.domain.repository.YearOfStudyRepository;
 import com.ula.faculty.dto.model.StudentDTO;
 import com.ula.faculty.dto.model.StudentOnYearDTO;
-import com.ula.faculty.dto.model.SubjectAttendanceDTO;
+import com.ula.faculty.dto.request.StoreTakingExamRequest;
+import com.ula.faculty.feign.ExamFeignClient;
 import com.ula.faculty.mapper.StudentDTOMapper;
 import com.ula.faculty.mapper.StudentOnYearMapper;
 import com.ula.faculty.service.exception.*;
@@ -21,11 +19,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.ula.core.api.response.Response;
 import org.ula.core.feign.AuthServiceFeignClient;
+import org.ula.core.util.JWTUtil;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentOnYearServiceImpl implements StudentOnYearService
@@ -45,6 +42,13 @@ public class StudentOnYearServiceImpl implements StudentOnYearService
 
     @Autowired
     private SubjectAttendanceService subjectAttendanceService;
+
+
+    @Autowired
+    private ExamFeignClient examService;
+
+    @Autowired
+    private JWTUtil jwtUtil;
 
 
 
@@ -136,23 +140,29 @@ public class StudentOnYearServiceImpl implements StudentOnYearService
         this.studentOnYearRepository.save(studentOnYear);
         studentOnYear.getYearOfStudies().add(new StudentOnYearYearOfStudy().setYearOfStudy(yearOfStudy).setStudentOnYear(studentOnYear));
         this.studentOnYearRepository.save(studentOnYear);
-        this.storeSubjectAttendanceBasedOnSubjects(yearOfStudy.getSubjects(), studentOnYear.getId(), token);
+        this.storeSubjectAttendanceBasedOnSubjects(yearOfStudy.getSubjects(), studentOnYear.getId());
         return "Student on year has been stored";
 
     }
 
     @Override
-    public void storeSubjectAttendanceBasedOnSubjects(Set<Subject> subjects, Long studentId, String token)
+    public void storeSubjectAttendanceBasedOnSubjects(Set<Subject> subjects, Long studentId)
     throws SubjectRealizationNotFoundException, StudentNotFoundException, StudentOnYearNotFoundException
     {
-        for (Subject subject: subjects)
-        {
-            SubjectAttendanceDTO subjectAttendanceDTO = new SubjectAttendanceDTO()
-                        .setSubjectRealizationId(subject.getSubjectRealization().getId())
-                        .setStudentId(studentId);
-            subjectAttendanceService.store(subjectAttendanceDTO, token);
-        }
+        Set<SubjectAttendance> subjectAttendances = this.subjectAttendanceService.storeMany(subjects, studentId);
+
+        List<StoreTakingExamRequest> requests = subjectAttendances
+                .stream()
+                .map(
+                    subjectAttendance ->
+                    new StoreTakingExamRequest()
+                        .setSubjectAttendanceId(subjectAttendance.getId())
+                        .setNote(String.format("Subject: %s", subjectAttendance.getSubjectRealization().getSubject().getName()))
+                    )
+                .collect(Collectors.toList());
+        this.examService.storeManyTakingExam(jwtUtil.getToken(), requests);
     }
+
 
     @Override
     public String addYearOfStudy(Long id, UpdateStudentOnYearRequest studentOnYearDTO, String token)
@@ -177,7 +187,7 @@ public class StudentOnYearServiceImpl implements StudentOnYearService
 
         studentOnYear.getYearOfStudies().add(new StudentOnYearYearOfStudy().setStudentOnYear(studentOnYear).setYearOfStudy(yearOfStudy));
         this.studentOnYearRepository.save(studentOnYear);
-        this.storeSubjectAttendanceBasedOnSubjects(yearOfStudy.getSubjects(), studentOnYear.getId(), token);
+        this.storeSubjectAttendanceBasedOnSubjects(yearOfStudy.getSubjects(), studentOnYear.getId());
         return "Student on year has been updated";
 
     }

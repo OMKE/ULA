@@ -1,21 +1,23 @@
 package com.ula.exam.service.takingexam;
 
+import com.ula.exam.api.v1.request.StoreTakingExamRequest;
 import com.ula.exam.domain.model.TakingExam;
 import com.ula.exam.domain.repository.ExamRepository;
 import com.ula.exam.domain.repository.TakingExamRepository;
+import com.ula.exam.dto.model.ExamDTO;
 import com.ula.exam.dto.model.SubjectAttendanceDTO;
 import com.ula.exam.dto.model.TakingExamDTO;
 import com.ula.exam.feign.FacultyFeignClient;
 import com.ula.exam.mapper.SubjectAttendanceDTOMapper;
 import com.ula.exam.mapper.TakingExamMapper;
-import com.ula.exam.service.exception.SubjectAttendanceConflictException;
-import com.ula.exam.service.exception.SubjectAttendanceNotFoundException;
-import com.ula.exam.service.exception.TakingExamNotFoundException;
+import com.ula.exam.service.exam.ExamService;
+import com.ula.exam.service.exception.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.ula.core.api.response.Response;
 import org.ula.core.util.JWTUtil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -31,6 +33,9 @@ public class TakingExamServiceImpl implements TakingExamService
 
     @Autowired
     private ExamRepository examRepository;
+
+    @Autowired
+    private ExamService examService;
 
     @Autowired
     private FacultyFeignClient facultyFeignClient;
@@ -126,6 +131,36 @@ public class TakingExamServiceImpl implements TakingExamService
 
         return String.format("Taking exam has been stored");
 
+    }
+
+    @Override
+    public String store(List<StoreTakingExamRequest> requests)
+    {
+        List<TakingExam> takingExams = new ArrayList<>();
+        for(StoreTakingExamRequest request: requests)
+        {
+            takingExams.add
+                    (
+                    new TakingExam()
+                            .setSubjectAttendanceId(request.getSubjectAttendanceId())
+                            .setNote(request.getNote())
+                   );
+        }
+        this.takingExamRepository.saveAll(takingExams);
+
+        return "Taking exams have been stored";
+    }
+
+    @Override
+    public String createExams(List<Long> subjectAttendanceIds, ExamDTO examDTO)
+    throws TakingExamNotFoundException, ExamTypeNotFoundException, ExamTermNotFoundException
+    {
+        List<TakingExam> takingExams = this.takingExamRepository.findAllBySubjectAttendanceIdIn(subjectAttendanceIds);
+        for(TakingExam takingExam: takingExams)
+        {
+            this.examService.store(examDTO.setTakingExamId(takingExam.getId()));
+        }
+        return "Exams have been stored";
     }
 
 
