@@ -2,6 +2,8 @@ package com.ula.faculty.api.v1.controller;
 
 import com.ula.faculty.dto.model.SubjectAttendanceWithSubjectDTO;
 import com.ula.faculty.service.exception.SubjectAttendanceNotFoundException;
+import com.ula.faculty.service.exception.SubjectRealizationNotFoundException;
+import com.ula.faculty.service.exception.TeacherOnRealizationNotFoundException;
 import com.ula.faculty.service.subjectattendance.SubjectAttendanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.ula.core.annotation.Authorized;
 import org.ula.core.api.response.Response;
+import org.ula.core.exception.NotAuthorizedException;
 
 import java.util.List;
 
@@ -92,47 +95,18 @@ public class SubjectAttendanceController
         }
     }
 
-
-    /*
-    @Authorized("ADMIN")
-    @PostMapping("")
-    public Response<Object> store
-            (
-                    @Token JWT jwt,
-                    @Valid @RequestBody Object storeRequest,
-                    Errors errors
-            )
+    @Authorized("TEACHER")
+    @GetMapping("/private/teacher/{teacherId}/subject/{subjectId}/attendance")
+    public List<Long> getSubjectAttendanceIds
+    (
+            @PathVariable("teacherId") Long teacherId,
+            @PathVariable("subjectId") Long subjectId
+    )
     {
-        return Response.ok()
-                       .setPayload("Not implemented");
+        try {
+            return this.subjectAttendanceService.getIdsBySubjectId(teacherId, subjectId);
+        } catch (SubjectRealizationNotFoundException | TeacherOnRealizationNotFoundException | NotAuthorizedException e) {
+            return null;
+        }
     }
-
-    @Authorized()
-    @PutMapping("/{id}")
-    public Response<Object> update
-            (
-                    @Token JWT jwt,
-                    @Valid @RequestBody Object updateRequest,
-                    @PathVariable("id") Long id,
-                    Errors errors
-            )
-    {
-        return Response.ok()
-                       .setPayload("Not implemented");
-    }
-
-    @Authorized()
-    @DeleteMapping("/{id}")
-    public Response<Object> delete
-            (
-                    @Token JWT jwt,
-                    @PathVariable("id") Long id,
-                    Errors errors
-            )
-    {
-        return Response.ok()
-                       .setPayload("Not implemented");
-    }
-
-    */
 }

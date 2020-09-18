@@ -1,26 +1,26 @@
 package com.ula.faculty.service.subjectattendance;
 
-import com.ula.faculty.domain.model.StudentOnYear;
-import com.ula.faculty.domain.model.SubjectAttendance;
-import com.ula.faculty.domain.model.SubjectRealization;
+import com.ula.faculty.domain.guard.SubjectRealizationTeacherGuard;
+import com.ula.faculty.domain.model.*;
 import com.ula.faculty.domain.repository.StudentOnYearRepository;
 import com.ula.faculty.domain.repository.SubjectAttendanceRepository;
 import com.ula.faculty.domain.repository.SubjectRealizationRepository;
+import com.ula.faculty.domain.repository.TeacherOnRealizationRepository;
 import com.ula.faculty.dto.model.SubjectAttendanceDTO;
 import com.ula.faculty.dto.model.SubjectAttendanceWithSubjectDTO;
-import com.ula.faculty.dto.request.StoreTakingExamRequest;
 import com.ula.faculty.feign.ExamFeignClient;
 import com.ula.faculty.mapper.SubjectAttendanceMapper;
 import com.ula.faculty.mapper.SubjectAttendanceWithSubjectMapper;
-import com.ula.faculty.service.exception.StudentNotFoundException;
-import com.ula.faculty.service.exception.StudentOnYearNotFoundException;
-import com.ula.faculty.service.exception.SubjectAttendanceNotFoundException;
-import com.ula.faculty.service.exception.SubjectRealizationNotFoundException;
+import com.ula.faculty.service.exception.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.ula.core.exception.NotAuthorizedException;
 import org.ula.core.feign.AuthServiceFeignClient;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class SubjectAttendanceServiceImpl implements SubjectAttendanceService
@@ -35,7 +35,8 @@ public class SubjectAttendanceServiceImpl implements SubjectAttendanceService
     @Autowired
     private StudentOnYearRepository studentOnYearRepository;
 
-
+    @Autowired
+    private TeacherOnRealizationRepository teacherOnRealizationRepository;
 
     @Autowired
     private AuthServiceFeignClient authServiceFeignClient;
@@ -137,10 +138,39 @@ public class SubjectAttendanceServiceImpl implements SubjectAttendanceService
 
 
         String note = "Subject: " + subjectRealization.getSubject().getName();
-        // Call exam service and create TakingExam
-        this.examFeignClient.storeTakingExam(new StoreTakingExamRequest().setNote(note).setSubjectAttendanceId(subjectAttendance.getId()), token);
 
         return "Subject attendance has been stored";
+    }
+
+    @Override
+    public Set<SubjectAttendance> storeMany(Set<Subject> subjects, Long studentId)
+    throws StudentOnYearNotFoundException
+    {
+        Set<SubjectAttendance> subjectAttendances = new HashSet<>();
+
+        StudentOnYear studentOnYear = this.studentOnYearRepository
+                .findById(studentId)
+                .orElseThrow
+                        (() ->
+                                 new StudentOnYearNotFoundException
+                                         (
+                                                 String.format("Student on year with id: %s could not be found", studentId)
+                                         )
+                        );
+        for(Subject subject: subjects)
+        {
+            subjectAttendances
+                    .add
+                    (
+                        this.subjectAttendanceRepository
+                                .save(
+                                        new SubjectAttendance()
+                                            .setSubjectRealization(subject.getSubjectRealization())
+                                            .setStudent(studentOnYear)
+                                     )
+                    );
+        }
+        return subjectAttendances;
     }
 
     @Override
@@ -187,5 +217,36 @@ public class SubjectAttendanceServiceImpl implements SubjectAttendanceService
     public String delete(Long id)
     {
         return null;
+    }
+
+    @Override
+    public List<Long> getIdsBySubjectId(Long teacherId, Long subjectId)
+    throws SubjectRealizationNotFoundException, TeacherOnRealizationNotFoundException, NotAuthorizedException
+    {
+        SubjectRealization subjectRealization = this.subjectRealizationRepository
+                .findBySubjectId(subjectId)
+                .orElseThrow(() -> new SubjectRealizationNotFoundException(
+                        String.format("Subject realization with subject id: %s could not be found", subjectId)));
+
+        TeacherOnRealization teacherOnRealization = this.teacherOnRealizationRepository
+                .findByTeacherId(teacherId)
+                .orElseThrow(() -> new TeacherOnRealizationNotFoundException(
+                        String.format("Teacher on realization with teacher id: %s could not be found", teacherId))
+                            );
+
+        if(SubjectRealizationTeacherGuard.check(teacherOnRealization.getTeacherId(), subjectRealization.getTeachersOnRealization()))
+        {
+            List<Long> ids = new ArrayList<>();
+
+            List<SubjectAttendance> subjectAttendances = this.subjectAttendanceRepository.findAllBySubjectRealizationId(subjectRealization.getId());
+
+            subjectAttendances.forEach(subject -> ids.add(subject.getId()));
+
+            return ids;
+
+        } else {
+            throw new NotAuthorizedException("Teacher is not authorized with provided subject id");
+        }
+
     }
 }

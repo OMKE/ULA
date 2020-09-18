@@ -106,4 +106,12 @@ public interface FacultyServiceFeignClient
                     @PathVariable("id") Long subjectId,
                     @RequestBody UpdateSubjectSyllabusRequest request
             );
+
+    @GetMapping("/private/teacher/{teacherId}/subject/{subjectId}/attendance")
+    List<Long> getSubjectAttendancesBySubjectId
+            (
+                    @RequestHeader("Authorization") String token,
+                    @PathVariable("teacherId") Long teacherId,
+                    @PathVariable("subjectId") Long subjectId
+            );
 }

@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.ula.core.api.response.Response;
 
+import java.util.List;
+
 @Component
 public class ExamServiceFallbackFactory implements FallbackFactory<ExamFeignClient>
 {
@@ -25,6 +27,15 @@ public class ExamServiceFallbackFactory implements FallbackFactory<ExamFeignClie
             {
                 LOGGER.error("Error occurred while trying to store taking exam", cause);
                 return Response.exception().setErrors(cause.getMessage());
+            }
+
+            @Override
+            public Response<Object> storeManyTakingExam(
+                    String token, List<StoreTakingExamRequest> requests
+                                                       )
+            {
+                LOGGER.error("Error occurred while trying to store an array of taking exam", cause);
+                return null;
             }
         };
     }

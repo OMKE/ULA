@@ -1,12 +1,10 @@
 package com.ula.exam.api.v1.controller;
 
+import com.ula.exam.api.v1.request.CreateExamsRequest;
 import com.ula.exam.api.v1.request.StoreTakingExamRequest;
 import com.ula.exam.api.v1.request.UpdateTakingExamRequest;
 import com.ula.exam.dto.model.TakingExamDTO;
-import com.ula.exam.service.exception.FinalExamNotFoundException;
-import com.ula.exam.service.exception.SubjectAttendanceConflictException;
-import com.ula.exam.service.exception.SubjectAttendanceNotFoundException;
-import com.ula.exam.service.exception.TakingExamNotFoundException;
+import com.ula.exam.service.exception.*;
 import com.ula.exam.service.points.PointsService;
 import com.ula.exam.service.takingexam.TakingExamService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +17,7 @@ import org.ula.core.api.response.Response;
 import org.ula.core.util.JWTUtil;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @Validated
@@ -116,6 +115,26 @@ public class TakingExamController extends BaseController
     {
         return Response.ok().setPayload(this.takingExamService.store(requests));
     }
+
+
+    @Authorized("TEACHER")
+    @PostMapping("/private/create-exam")
+    public Response<Object> createExams
+    (
+            @Valid @RequestBody CreateExamsRequest request,
+            Errors errors
+    )
+    {
+        try {
+            return Response.ok().setPayload(this.takingExamService.createExams(request.getSubjectAttendanceIds(), request.getExamDTO()));
+        } catch (TakingExamNotFoundException | ExamTypeNotFoundException | ExamTermNotFoundException e) {
+            return Response.exception().setErrors(e.getMessage());
+        }
+    }
+
+
+
+
     @Authorized("[ADMIN,TEACHER]")
     @PutMapping("/taking-exam/{id}")
     public Response<Object> update
