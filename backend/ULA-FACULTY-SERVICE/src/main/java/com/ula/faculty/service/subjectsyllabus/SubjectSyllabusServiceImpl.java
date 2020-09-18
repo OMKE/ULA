@@ -29,7 +29,7 @@ public class SubjectSyllabusServiceImpl implements SubjectSyllabusService
     private TeacherOnRealizationRepository teacherOnRealizationRepository;
 
     @Override
-    public boolean update(Long id, Long teacherId, UpdateSubjectSyllabusRequest request)
+    public String update(Long id, Long teacherId, UpdateSubjectSyllabusRequest request)
     throws SubjectNotFoundException, SubjectSyllabusNotFoundException, NotAuthorizedException, TeacherOnRealizationNotFoundException
     {
         TeacherOnRealization teacherOnRealization = this.teacherOnRealizationRepository
@@ -55,7 +55,7 @@ public class SubjectSyllabusServiceImpl implements SubjectSyllabusService
 
             subjectSyllabus.setContent(request.getContent());
             this.subjectSyllabusRepository.save(subjectSyllabus);
-            return true;
+            return "Subject syllabus has been updated";
         } else {
             throw new NotAuthorizedException(String.format("Teacher with id: %s is not authorized for provided subject", teacherId));
         }
