@@ -39,7 +39,7 @@ public class TeachingTermController extends BaseController
     }
 
     @Authorized("TEACHER")
-    @PostMapping("/teacher/{teacherId}/teaching-term")
+    @PostMapping("/private/teacher/{teacherId}/teaching-term")
     public Response<Object> store
     (
             @PathVariable("teacherId") Long teacherId,
