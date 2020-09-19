@@ -3,9 +3,7 @@ package com.ula.teacher.feign;
 import com.ula.teacher.api.v1.request.StoreAndUpdateSubjectNotificationRequest;
 import com.ula.teacher.api.v1.request.StoreTeachingTermRequest;
 import com.ula.teacher.api.v1.request.UpdateSubjectSyllabusRequest;
-import com.ula.teacher.dto.StudentDTO;
-import com.ula.teacher.dto.SubjectNotificationDTO;
-import com.ula.teacher.dto.SubjectWithRealizationIdDTO;
+import com.ula.teacher.dto.*;
 import com.ula.teacher.feign.hystrix.FacultyServiceFallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.data.domain.Pageable;
@@ -35,14 +33,39 @@ public interface FacultyServiceFeignClient
             @PathVariable("subjectId") Long subjectId
             );
 
-    // Get students
+
+    // Get all teacher's students
+    @GetMapping("/private/teacher/{teacherId}/student")
+    List<StudentOnYearDTO> getStudents
+            (
+                    @RequestHeader(value = "Authorization") String token,
+                    @PathVariable("teacherId") Long teacherId,
+                    Pageable pageable
+            );
+
+    // Search students
+    @GetMapping("/private/teacher/student/search")
+    Response<Object> searchStudents
+    (
+            @RequestHeader(value = "Authorization") String token,
+            @RequestParam("search") String searchParam
+    );
+
+    // Get students based on Subject
     @GetMapping("/private/teacher/subject/{subjectId}/student")
-    List<StudentDTO> getStudents
+    List<StudentOnYearDTO> getStudentsBySubject
         (
                 @RequestHeader("Authorization") String token,
                 @PathVariable("subjectId") Long subjectId,
                 Pageable pageable
         );
+
+    @GetMapping("/private/teacher/student/{studentId}")
+    StudentOnYearDTO getStudentById
+            (
+                    @RequestHeader("Authorization") String token,
+                    @PathVariable("studentId") Long studentId
+            );
 
     // Get teacher's notifications
     @GetMapping("/private/teacher/{teacherId}/subject-notification")
@@ -113,5 +136,13 @@ public interface FacultyServiceFeignClient
                     @RequestHeader("Authorization") String token,
                     @PathVariable("teacherId") Long teacherId,
                     @PathVariable("subjectId") Long subjectId
+            );
+
+    @GetMapping("/private/teacher/subject/{subjectId}/student/{studentId}/attendance")
+    SubjectAttendanceDTO getSubjectAttendanceBySubjectIdAndStudentId
+            (
+                    @RequestHeader("Authorization") String token,
+                    @PathVariable("subjectId") Long subjectId,
+                    @PathVariable("studentId") Long studentId
             );
 }
