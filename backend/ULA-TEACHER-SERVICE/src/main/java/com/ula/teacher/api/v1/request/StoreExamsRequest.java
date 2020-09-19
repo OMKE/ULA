@@ -1,4 +1,4 @@
-package com.ula.teacher.dto.request;
+package com.ula.teacher.api.v1.request;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ula.teacher.dto.ExamDTO;
@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Accessors(chain = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CreateExamsRequest
+public class StoreExamsRequest
 {
     // Validation is done in Exam Service
     private List<Long> subjectAttendanceIds;
