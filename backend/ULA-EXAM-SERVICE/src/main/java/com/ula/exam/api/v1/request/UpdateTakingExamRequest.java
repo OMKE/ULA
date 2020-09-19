@@ -6,9 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Getter
 @Setter
@@ -18,11 +18,8 @@ import javax.validation.constraints.Size;
 public class UpdateTakingExamRequest
 {
 
-    @NotNull(message = "Points is required")
-    private double points;
-
-    @NotEmpty(message = "Note is required")
-    @Size(min = 10, message = "Note has to be at least 10 characters long")
-    @Size(max = 400, message = "Note can not be longer than 400 characters")
-    private String note;
+    @NotNull(message = "Points are required")
+    @Min(value = 0, message = "Points have to be higher than 0")
+    @Max(value = 100, message = "Points can not be higher than 100")
+    private Double points;
 }
