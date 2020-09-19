@@ -35,9 +35,23 @@ public class AuthServiceFallbackFactory implements FallbackFactory<AuthServiceFe
             }
 
             @Override
+            public StudentDTO getStudentById(String token, Long studentId)
+            {
+                LOGGER.error("Error occurred while fetching Student by id from Auth service", cause);
+                return null;
+            }
+
+            @Override
             public List<StudentDTO> getAllStudents(String token, List<Long> ids)
             {
                 LOGGER.error("Error occurred while fetching students with list of ids from Auth service", cause);
+                return null;
+            }
+
+            @Override
+            public List<StudentDTO> searchStudents(String token, String searchParam)
+            {
+                LOGGER.error("Error occurred while searching students from Auth service", cause);
                 return null;
             }
         };

@@ -18,7 +18,18 @@ public interface AuthServiceFeignClient
     @GetMapping("/private/student/username/{username}")
     StudentDTO getStudent(@RequestHeader("Authorization") String token, @PathVariable("username") String username);
 
+    @GetMapping("/private/student/{id}")
+    StudentDTO getStudentById(@RequestHeader("Authorization") String token, @PathVariable("id") Long studentId);
+
     // returns all students with ids passed as array
     @PostMapping("/private/student-all")
     List<StudentDTO> getAllStudents(@RequestHeader("Authorization") String token, @RequestBody List<Long> ids);
+
+    // Search students
+    @GetMapping("/private/teacher/student")
+    List<StudentDTO> searchStudents
+    (
+            @RequestHeader("Authorization") String token,
+            @RequestParam(value = "search", required = true) String searchParam
+    );
 }
