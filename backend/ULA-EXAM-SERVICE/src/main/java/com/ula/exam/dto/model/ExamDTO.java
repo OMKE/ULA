@@ -20,6 +20,7 @@ public class ExamDTO
     private Long takingExamId;
     private Long examTermId;
     private ExamEntryDTO examEntry;
+    private ExamOutcomeDTO outcome;
     private Date startTime;
     private Date endTime;
     private double points;
