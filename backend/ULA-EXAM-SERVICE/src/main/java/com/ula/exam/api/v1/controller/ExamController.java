@@ -72,7 +72,8 @@ public class ExamController extends BaseController
                     @PathVariable("studentId") Long studentId,
                     @PathVariable("subjectAttendanceId") Long subjectAttendanceId,
                     @PathVariable("examId") Long examId,
-                    @Valid @RequestBody UpdateExamEntryRequest updateExamEntryRequest
+                    @Valid @RequestBody UpdateExamEntryRequest updateExamEntryRequest,
+                    Errors errors
     )
     {
         try {
