@@ -1,13 +1,12 @@
 package com.ula.faculty.service.teacher;
 
-import com.ula.faculty.domain.model.SubjectAttendance;
-import com.ula.faculty.domain.model.SubjectRealization;
-import com.ula.faculty.domain.model.TeacherOnRealization;
-import com.ula.faculty.domain.model.TeacherSubjectRealization;
+import com.ula.faculty.domain.model.*;
 import com.ula.faculty.domain.repository.*;
 import com.ula.faculty.dto.model.StudentDTO;
+import com.ula.faculty.dto.model.StudentOnYearDTO;
 import com.ula.faculty.dto.model.SubjectWithRealizationIdDTO;
 import com.ula.faculty.feign.AuthServiceFeignClient;
+import com.ula.faculty.mapper.StudentOnYearMapper;
 import com.ula.faculty.mapper.SubjectWithRealizationMapper;
 import com.ula.faculty.service.exception.SubjectNotFoundException;
 import com.ula.faculty.service.exception.SubjectRealizationNotFoundException;
@@ -20,6 +19,7 @@ import org.ula.core.util.JWTUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TeacherServiceImpl implements TeacherService
@@ -37,10 +37,10 @@ public class TeacherServiceImpl implements TeacherService
     private AuthServiceFeignClient authService;
 
     @Autowired
-    private JWTUtil jwtUtil;
+    private StudentOnYearRepository studentOnYearRepository;
 
     @Autowired
-    private StudentOnYearRepository studentOnYearRepository;
+    private JWTUtil jwtUtil;
 
     @Autowired
     private SubjectAttendanceRepository subjectAttendanceRepository;
@@ -89,10 +89,44 @@ public class TeacherServiceImpl implements TeacherService
         return SubjectWithRealizationMapper.map(teacherSubjectRealization);
     }
 
+    @Override
+    public List<StudentOnYearDTO> students(Long teacherId, Pageable pageable)
+    throws TeacherOnRealizationNotFoundException
+    {
+        TeacherOnRealization teacherOnRealization = this.teacherOnRealizationRepository
+                .findByTeacherId(teacherId)
+                .orElseThrow(() ->
+                             new TeacherOnRealizationNotFoundException
+                             (
+                                String.format("Teacher on realization with teacher id: %s could not be found", teacherId)
+                             )
+                            );
+
+
+        List<Long> subjectRealizationIds = teacherOnRealization
+                .getSubjectRealization()
+                .stream()
+                .mapToLong(sR -> sR.getSubjectRealization().getId())
+                .boxed()
+                .collect(Collectors.toList());
+
+        List<SubjectAttendance> subjectAttendances = this.subjectAttendanceRepository.findAllBySubjectRealizationIdIn(subjectRealizationIds, pageable);
+
+        List<Long> studentIds = new ArrayList<>();
+        subjectAttendances.forEach(sA -> studentIds.add(sA.getStudent().getStudentId()));
+
+        List<StudentDTO> studentDTOS = this.authService.getAllStudents(jwtUtil.getToken(), studentIds);
+
+        List<Long> studentIdsDTO = studentDTOS.stream().mapToLong(StudentDTO::getId).boxed().collect(Collectors.toList());
+        List<StudentOnYear> studentOnYears = this.studentOnYearRepository.findAllByStudentIdIn(studentIdsDTO);
+        return StudentOnYearMapper.map(studentDTOS, studentOnYears);
+
+    }
+
 
     // Return students on particular subject
     @Override
-    public List<StudentDTO> students(Long subjectId, Pageable pageable)
+    public List<StudentOnYearDTO> studentsBySubject(Long subjectId, Pageable pageable)
     throws SubjectRealizationNotFoundException
     {
         SubjectRealization subjectRealization = this.subjectRealizationRepository
@@ -108,8 +142,12 @@ public class TeacherServiceImpl implements TeacherService
         List<Long> studentIds = new ArrayList<>();
         subjectAttendances.forEach(sA -> studentIds.add(sA.getStudent().getStudentId()));
 
-        return this.authService.getAllStudents(jwtUtil.getToken(), studentIds);
-    }
+        List<StudentDTO> studentDTOS = this.authService.getAllStudents(jwtUtil.getToken(), studentIds);
 
+        List<Long> studentIdsDTO = studentDTOS.stream().mapToLong(StudentDTO::getId).boxed().collect(Collectors.toList());
+        List<StudentOnYear> studentOnYears = this.studentOnYearRepository.findAllByStudentIdIn(studentIdsDTO);
+        return StudentOnYearMapper.map(studentDTOS, studentOnYears);
+    }
+    
 
 }

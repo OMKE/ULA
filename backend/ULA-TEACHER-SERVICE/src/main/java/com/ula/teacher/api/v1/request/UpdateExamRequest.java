@@ -1,4 +1,4 @@
-package com.ula.exam.api.v1.request;
+package com.ula.teacher.api.v1.request;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
@@ -15,10 +15,9 @@ import javax.validation.constraints.*;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UpdateExamRequest
 {
-
     @NotNull(message = "Points are required")
-    @Min(value = 0, message = "Points have to be higher than 0")
-    @Max(value = 30, message = "Points can not be higher than 30 points per exam")
+    @Min(value = 0, message = "Points can not be lower than 0")
+    @Max(value = 30, message = "Points are limited to 30")
     private Double points;
 
     @NotEmpty(message = "Description is required")

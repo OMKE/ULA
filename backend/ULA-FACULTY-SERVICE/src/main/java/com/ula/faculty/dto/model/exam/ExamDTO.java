@@ -1,4 +1,4 @@
-package com.ula.exam.dto.model;
+package com.ula.faculty.dto.model.exam;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
@@ -20,7 +20,6 @@ public class ExamDTO
     private Long takingExamId;
     private Long examTermId;
     private ExamEntryDTO examEntry;
-    private ExamOutcomeDTO outcome;
     private Date startTime;
     private Date endTime;
     private double points;

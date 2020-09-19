@@ -1,6 +1,8 @@
 package com.ula.faculty.api.v1.controller;
 
+import com.ula.faculty.dto.model.SubjectAttendanceDTO;
 import com.ula.faculty.dto.model.SubjectAttendanceWithSubjectDTO;
+import com.ula.faculty.service.exception.StudentOnYearNotFoundException;
 import com.ula.faculty.service.exception.SubjectAttendanceNotFoundException;
 import com.ula.faculty.service.exception.SubjectRealizationNotFoundException;
 import com.ula.faculty.service.exception.TeacherOnRealizationNotFoundException;
@@ -80,7 +82,7 @@ public class SubjectAttendanceController
         return this.subjectAttendanceService.getAllCurrentByStudentId(id);
     }
 
-    @Authorized("STUDENT")
+    @Authorized("[STUDENT,TEACHER]")
     @GetMapping("/private/subject-attendance/student/{studentId}/{id}")
     public SubjectAttendanceWithSubjectDTO showByStudentId
     (
@@ -91,6 +93,21 @@ public class SubjectAttendanceController
         try {
             return this.subjectAttendanceService.getOneByStudentId(resourceId, studentId);
         } catch (SubjectAttendanceNotFoundException e) {
+            return null;
+        }
+    }
+
+    @Authorized("TEACHER")
+    @GetMapping("/private/teacher/subject/{subjectId}/student/{studentId}/attendance")
+    public SubjectAttendanceDTO getBySubjectIdAndStudentOnYearId
+    (
+            @PathVariable("subjectId") Long subjectId,
+            @PathVariable("studentId") Long studentId
+    )
+    {
+        try {
+            return this.subjectAttendanceService.getBySubjectIdAndStudentId(subjectId, studentId);
+        } catch (SubjectRealizationNotFoundException | SubjectAttendanceNotFoundException | StudentOnYearNotFoundException e) {
             return null;
         }
     }

@@ -3,9 +3,7 @@ package com.ula.teacher.feign.hystrix;
 import com.ula.teacher.api.v1.request.StoreAndUpdateSubjectNotificationRequest;
 import com.ula.teacher.api.v1.request.StoreTeachingTermRequest;
 import com.ula.teacher.api.v1.request.UpdateSubjectSyllabusRequest;
-import com.ula.teacher.dto.StudentDTO;
-import com.ula.teacher.dto.SubjectNotificationDTO;
-import com.ula.teacher.dto.SubjectWithRealizationIdDTO;
+import com.ula.teacher.dto.*;
 import com.ula.teacher.feign.FacultyServiceFeignClient;
 import feign.hystrix.FallbackFactory;
 import org.slf4j.Logger;
@@ -43,9 +41,32 @@ public class FacultyServiceFallbackFactory implements FallbackFactory<FacultySer
             }
 
             @Override
-            public List<StudentDTO> getStudents(String token, Long subjectId, Pageable pageable)
+            public List<StudentOnYearDTO> getStudents(
+                    String token, Long teacherId, Pageable pageable
+                                                     )
             {
                 LOGGER.error("Error occurred while fetching Students from Faculty Service", cause);
+                return null;
+            }
+
+            @Override
+            public Response<Object> searchStudents(String token, String searchParam)
+            {
+                LOGGER.error("Error occurred while searching Students from Faculty Service", cause);
+                return null;
+            }
+
+            @Override
+            public List<StudentOnYearDTO> getStudentsBySubject(String token, Long subjectId, Pageable pageable)
+            {
+                LOGGER.error("Error occurred while fetching Students from Faculty Service", cause);
+                return null;
+            }
+
+            @Override
+            public StudentOnYearDTO getStudentById(String token, Long studentId)
+            {
+                LOGGER.error("Error occurred while fetching Student by id from Faculty Service", cause);
                 return null;
             }
 
@@ -112,6 +133,15 @@ public class FacultyServiceFallbackFactory implements FallbackFactory<FacultySer
             public List<Long> getSubjectAttendancesBySubjectId(String token, Long teacherId, Long subjectId)
             {
                 LOGGER.error("Error occurred while fetching SubjectAttendance IDs from Faculty Service", cause);
+                return null;
+            }
+
+            @Override
+            public SubjectAttendanceDTO getSubjectAttendanceBySubjectIdAndStudentId(
+                    String token, Long subjectId, Long studentId
+                                                                                   )
+            {
+                LOGGER.error("Error occurred while fetching SubjectAttendance from Faculty Service", cause);
                 return null;
             }
         };

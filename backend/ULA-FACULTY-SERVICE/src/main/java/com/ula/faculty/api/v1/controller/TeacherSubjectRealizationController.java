@@ -1,11 +1,8 @@
 package com.ula.faculty.api.v1.controller;
 
-import com.ula.faculty.dto.model.StudentDTO;
+import com.ula.faculty.dto.model.StudentOnYearDTO;
 import com.ula.faculty.dto.model.SubjectWithRealizationIdDTO;
-import com.ula.faculty.service.exception.SubjectNotFoundException;
-import com.ula.faculty.service.exception.SubjectRealizationNotFoundException;
-import com.ula.faculty.service.exception.TeacherOnRealizationNotFoundException;
-import com.ula.faculty.service.exception.TeacherSubjectRealizationNotFoundException;
+import com.ula.faculty.service.exception.*;
 import com.ula.faculty.service.teacher.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -51,18 +48,38 @@ public class TeacherSubjectRealizationController
             return null;
         }
     }
+
+    @Authorized("TEACHER")
+    @GetMapping("/private/teacher/{teacherId}/student")
+    public List<StudentOnYearDTO> students
+    (
+        @PathVariable("teacherId") Long teacherId,
+        Pageable pageable
+    )
+    {
+        try {
+            return this.teacherService.students(teacherId, pageable);
+        } catch (TeacherOnRealizationNotFoundException e) {
+            return null;
+        }
+    }
+
+
     @Authorized("TEACHER")
     @GetMapping("/private/teacher/subject/{subjectId}/student")
-    public List<StudentDTO> students
+    public List<StudentOnYearDTO> studentsBySubject
     (
             @PathVariable("subjectId") Long subjectId,
             Pageable pageable
     )
     {
         try {
-            return this.teacherService.students(subjectId, pageable);
+            return this.teacherService.studentsBySubject(subjectId, pageable);
         } catch (SubjectRealizationNotFoundException e) {
             return null;
         }
     }
+
+
+
 }

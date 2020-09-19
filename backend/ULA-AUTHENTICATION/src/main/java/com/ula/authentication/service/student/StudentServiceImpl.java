@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentServiceImpl implements StudentService
@@ -43,6 +44,16 @@ public class StudentServiceImpl implements StudentService
     public List<StudentDTO> getByIds(List<Long> studentIds)
     {
         return StudentMapper.map((List<Student>) this.studentRepository.findAllById(studentIds));
+    }
+
+    @Override
+    public List<StudentDTO> search(String searchParam)
+    {
+        List<Long> userIds = this.userRepository
+                .findAllByFirstNameContainsOrLastNameContainsOrUsernameContains(searchParam, searchParam, searchParam)
+                .stream().mapToLong(User::getId).boxed().collect(Collectors.toList());
+
+        return StudentMapper.map(this.studentRepository.findAllByUserIdIn(userIds));
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.ula.exam.mapper;
 import com.ula.exam.domain.model.Exam;
 import com.ula.exam.dto.model.ExamDTO;
 import com.ula.exam.dto.model.ExamEntryDTO;
+import com.ula.exam.dto.model.ExamOutcomeDTO;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,6 +24,12 @@ public class ExamMapper
                                 .setExamTermId(exam.getExamEntry().getExamTerm().getId())
                                 .setActive(exam.getExamEntry().isActive())
                                  )
+                    .setOutcome(
+                            new ExamOutcomeDTO()
+                                .setId(exam.getExamOutcome().getId())
+                                .setExamId(exam.getId())
+                                .setDescription(exam.getExamOutcome().getDescription())
+                               )
                     .setExamType(exam.getType().getName())
                     .setStartTime(exam.getStartTime())
                     .setEndTime(exam.getEndTime())

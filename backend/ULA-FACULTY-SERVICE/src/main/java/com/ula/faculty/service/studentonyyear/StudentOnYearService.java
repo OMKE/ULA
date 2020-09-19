@@ -13,11 +13,16 @@ public interface StudentOnYearService
 {
     List<StudentOnYearDTO> index();
 
+    List<StudentOnYearDTO> search(String searchParam);
+
     StudentOnYearDTO show(Long id)
     throws StudentOnYearNotFoundException;
 
     StudentOnYearDTO showByStudentId(Long studentId)
     throws StudentOnYearNotFoundException;
+
+    StudentOnYearDTO student(Long studentId)
+    throws SubjectRealizationNotFoundException, StudentOnYearNotFoundException, StudentNotFoundException;
 
 
     String store(String token, StoreStudentOnYearRequest studentOnYearDTO)

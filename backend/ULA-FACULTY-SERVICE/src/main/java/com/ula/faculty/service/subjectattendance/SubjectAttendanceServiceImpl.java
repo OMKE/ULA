@@ -96,6 +96,31 @@ public class SubjectAttendanceServiceImpl implements SubjectAttendanceService
     }
 
     @Override
+    public SubjectAttendanceDTO getBySubjectIdAndStudentId(Long subjectId, Long studentId)
+    throws SubjectRealizationNotFoundException, StudentOnYearNotFoundException, SubjectAttendanceNotFoundException
+    {
+        SubjectRealization subjectRealization = this.subjectRealizationRepository
+                .findBySubjectId(subjectId)
+                .orElseThrow(() -> new SubjectRealizationNotFoundException(
+                        String.format("Subject realization with subject id: %s could not be found", subjectId)));
+
+        StudentOnYear studentOnYear = this.studentOnYearRepository
+                .findById(studentId)
+                .orElseThrow(() -> new StudentOnYearNotFoundException(String.format("Student on year with id: %s could not be found", studentId)));
+
+        SubjectAttendance subjectAttendance = this.subjectAttendanceRepository
+                .getBySubjectRealizationIdAndStudentId(subjectRealization.getId(), studentOnYear.getId())
+                .orElseThrow(() ->
+                         new SubjectAttendanceNotFoundException(
+                                 String.format("Subject attendance with Subject Realization id: %s and Student on Year id: %s could not be found",
+                                               subjectRealization.getId(), studentOnYear.getId()))
+                            );
+
+        return SubjectAttendanceMapper.map(subjectAttendance);
+
+    }
+
+    @Override
     public SubjectAttendanceDTO show(Long id)
     throws SubjectAttendanceNotFoundException
     {
