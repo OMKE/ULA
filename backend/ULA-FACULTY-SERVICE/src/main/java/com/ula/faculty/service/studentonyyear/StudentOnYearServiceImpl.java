@@ -34,8 +34,15 @@ public class StudentOnYearServiceImpl implements StudentOnYearService
     @Autowired
     private YearOfStudyRepository yearOfStudyRepository;
 
+
+    // Auth Service Feign Client from ULA-CORE library
     @Autowired
     private AuthServiceFeignClient authServiceULACORE;
+
+
+    // Auth Service Feign Client from Faculty Service
+    @Autowired
+    private com.ula.faculty.feign.AuthServiceFeignClient authService;
 
     @Autowired
     private TranscriptIdentifierGenerator transcriptIdentifierGenerator;
@@ -62,6 +69,22 @@ public class StudentOnYearServiceImpl implements StudentOnYearService
     }
 
     @Override
+    public List<StudentOnYearDTO> search(String searchParam)
+    {
+
+        List<StudentDTO> studentDTOS = this.authService.searchStudents(this.jwtUtil.getToken(), searchParam);
+        List<Long> studentIds = studentDTOS
+                .stream()
+                .mapToLong(StudentDTO::getId)
+                .boxed()
+                .collect(Collectors.toList());
+        
+        List<StudentOnYear> studentOnYears = this.studentOnYearRepository.findAllByStudentIdIn(studentIds);
+
+        return StudentOnYearMapper.map(studentDTOS, studentOnYears);
+    }
+
+    @Override
     public StudentOnYearDTO show(Long id)
     throws StudentOnYearNotFoundException
     {
@@ -72,6 +95,20 @@ public class StudentOnYearServiceImpl implements StudentOnYearService
                                     () -> new StudentOnYearNotFoundException(String.format("Student with id: %s could not be found", id))
                                 )
                 );
+    }
+
+    @Override
+    public StudentOnYearDTO student(Long studentId)
+    throws SubjectRealizationNotFoundException, StudentOnYearNotFoundException, StudentNotFoundException
+    {
+        StudentOnYear studentOnYear = this.studentOnYearRepository
+                .findById(studentId)
+                .orElseThrow(() -> new StudentOnYearNotFoundException(String.format("Student on year with student id: %s could not be found", studentId)));
+
+        StudentDTO studentDTO = this.authService.getStudentById(this.jwtUtil.getToken(),studentOnYear.getStudentId());
+
+        return StudentOnYearMapper.map(studentDTO, studentOnYear);
+
     }
 
     @Override
