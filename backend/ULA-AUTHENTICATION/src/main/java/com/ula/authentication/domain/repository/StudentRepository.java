@@ -4,6 +4,7 @@ import com.ula.authentication.domain.model.Student;
 import org.springframework.stereotype.Repository;
 import org.ula.core.domain.repository.CrudRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -13,4 +14,6 @@ public interface StudentRepository extends CrudRepository<Student, Long>
 
     Optional<Student> findBySsn(String ssn);
 
+
+    List<Student> findAllByUserIdIn(List<Long> ids);
 }
