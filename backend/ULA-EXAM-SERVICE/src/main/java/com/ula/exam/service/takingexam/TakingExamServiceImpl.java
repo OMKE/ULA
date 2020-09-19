@@ -97,6 +97,18 @@ public class TakingExamServiceImpl implements TakingExamService
     }
 
     @Override
+    public TakingExamDTO showBySubjectAttendanceId(Long subjectAttendanceId)
+    throws TakingExamNotFoundException
+    {
+        TakingExam takingExam = this.takingExamRepository
+                .getBySubjectAttendanceId(subjectAttendanceId)
+                .orElseThrow(() ->
+                         new TakingExamNotFoundException
+                                 (String.format("Taking exam with Subject attendance id: %s could not be found", subjectAttendanceId)));
+        return TakingExamMapper.map(takingExam);
+    }
+
+    @Override
     public String store(TakingExamDTO takingExamDTO, String token)
     throws SubjectAttendanceNotFoundException, SubjectAttendanceConflictException
     {
@@ -177,7 +189,7 @@ public class TakingExamServiceImpl implements TakingExamService
                                          );
 
         // Update fields
-        takingExam.setNote(takingExamDTO.getNote())
+        takingExam
                   .setPoints(takingExamDTO.getPoints());
 
         // Save to db
