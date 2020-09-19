@@ -22,4 +22,8 @@ public interface SubjectAttendanceRepository extends CrudRepository<SubjectAtten
     List<SubjectAttendance> getAllBySubjectRealizationIdAndStudentIdAndDeletedFalse(Long subjectRealizationId, Long studentId);
 
     List<SubjectAttendance> findAllBySubjectRealizationId(Long subjectRealizationId);
+
+    List<SubjectAttendance> findAllBySubjectRealizationIdIn(List<Long> ids, Pageable pageable);
+
+    Optional<SubjectAttendance> getBySubjectRealizationIdAndStudentId(Long subjectRealizationId, Long studentOnYearId);
 }
