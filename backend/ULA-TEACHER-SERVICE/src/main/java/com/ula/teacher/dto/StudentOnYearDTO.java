@@ -7,24 +7,22 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Accessors(chain = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ExamDTO
+public class StudentOnYearDTO
 {
     private Long id;
-    private Long examTypeId;
-    private Long takingExamId;
-    private Long examTermId;
-    private ExamEntryDTO examEntry;
-    private ExamOutcomeDTO outcome;
-    private Date startTime;
-    private Date endTime;
-    private double points;
-    private String examType;
-    private boolean finalExam;
-
+    private Long studentId;
+    private StudentDTO student;
+    private List<Long> yearOfStudyIds;
+    private Date dateOfEnrollment;
+    private String transcriptIdentifier;
+    private boolean deleted;
+    private Date createdAt;
+    private Date updatedAt;
 }
