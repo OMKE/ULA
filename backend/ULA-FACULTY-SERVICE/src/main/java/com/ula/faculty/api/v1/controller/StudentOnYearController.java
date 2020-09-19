@@ -35,7 +35,7 @@ public class StudentOnYearController extends BaseController
                        .setPayload(this.studentOnYearService.index());
     }
 
-    @Authorized("ADMIN, TEACHER")
+    @Authorized("ADMIN,TEACHER")
     @GetMapping("/student-on-year/{id}")
     public Response<Object> show
     (
@@ -47,6 +47,20 @@ public class StudentOnYearController extends BaseController
                            .setPayload(this.studentOnYearService.show(id));
         } catch (StudentOnYearNotFoundException e) {
             return Response.exception().setErrors(e.getMessage());
+        }
+    }
+
+    @Authorized("TEACHER")
+    @GetMapping("/private/teacher/student/{studentId}")
+    public StudentOnYearDTO student
+            (
+                    @PathVariable("studentId") Long studentId
+            )
+    {
+        try {
+            return this.studentOnYearService.student(studentId);
+        } catch (StudentOnYearNotFoundException | SubjectRealizationNotFoundException | StudentNotFoundException e) {
+            return null;
         }
     }
 
@@ -63,6 +77,17 @@ public class StudentOnYearController extends BaseController
             return null;
         }
     }
+
+    @Authorized("TEACHER")
+    @GetMapping("/private/teacher/student/search")
+    public Response<Object> search
+    (
+            @RequestParam("search") String searchParam
+    )
+    {
+        return Response.ok().setPayload(this.studentOnYearService.search(searchParam));
+    }
+
 
 
     @Authorized("ADMIN")
