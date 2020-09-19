@@ -135,6 +135,32 @@ public class StudentController extends BaseController
         }
     }
 
+    @PreAuthorize("hasAuthority('TEACHER')")
+    @GetMapping("/private/teacher/student")
+    public List<StudentDTO> searchStudents
+    (
+            @RequestParam(value = "search", required = true) String searchParam
+    )
+    {
+        return this.studentService.search(searchParam);
+    }
+
+
+
+    @PreAuthorize("hasAuthority('TEACHER')")
+    @GetMapping("/private/student/{id}")
+    public StudentDTO getByStudentId
+    (
+        @PathVariable("id") Long studentId
+    )
+    {
+        try {
+            return this.studentService.show(studentId);
+        } catch (StudentNotFoundException e) {
+            return null;
+        }
+    }
+
 
     @PreAuthorize("hasAuthority('TEACHER')")
     @PostMapping("/private/student-all")
