@@ -2,8 +2,12 @@ package com.ula.teacher.feign.hystrix;
 
 import com.ula.teacher.api.v1.request.StoreAndUpdateSubjectNotificationRequest;
 import com.ula.teacher.api.v1.request.StoreTeachingTermRequest;
+import com.ula.teacher.api.v1.request.UpdateSubjectAttendanceFinalGradeRequest;
 import com.ula.teacher.api.v1.request.UpdateSubjectSyllabusRequest;
-import com.ula.teacher.dto.*;
+import com.ula.teacher.dto.StudentOnYearDTO;
+import com.ula.teacher.dto.SubjectAttendanceDTO;
+import com.ula.teacher.dto.SubjectNotificationDTO;
+import com.ula.teacher.dto.SubjectWithRealizationIdDTO;
 import com.ula.teacher.feign.FacultyServiceFeignClient;
 import feign.hystrix.FallbackFactory;
 import org.slf4j.Logger;
@@ -142,6 +146,13 @@ public class FacultyServiceFallbackFactory implements FallbackFactory<FacultySer
                                                                                    )
             {
                 LOGGER.error("Error occurred while fetching SubjectAttendance from Faculty Service", cause);
+                return null;
+            }
+
+            @Override
+            public Response<Object> updateFinalGrade(String token, Long teacherId, Long subjectAttendanceId, UpdateSubjectAttendanceFinalGradeRequest request)
+            {
+                LOGGER.error("Error occurred while updating SubjectAttendance Final Grade in Faculty Service", cause);
                 return null;
             }
         };
