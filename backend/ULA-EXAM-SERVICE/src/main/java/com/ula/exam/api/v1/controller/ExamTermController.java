@@ -1,13 +1,16 @@
 package com.ula.exam.api.v1.controller;
 
+import com.ula.exam.dto.model.ExamTermDTO;
 import com.ula.exam.service.examterm.ExamTermService;
 import com.ula.exam.service.exception.ExamTermNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.ula.core.api.response.Response;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @RestController
 @Validated
@@ -33,6 +36,20 @@ public class ExamTermController
             return Response.exception().setErrors(e.getMessage());
         }
     }
-    
 
+
+    @GetMapping("/term/closest/{date}")
+    public ExamTermDTO showClosest
+    (
+            @PathVariable("date") String date
+    )
+    {
+        try {
+            Date parsed = new SimpleDateFormat("yyyy-MM-dd h:m").parse(date);
+            return this.examTermService.showByClosestDate(parsed);
+        } catch (ParseException e) {
+            return null;
+        }
+
+    }
 }
