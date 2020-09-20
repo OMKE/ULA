@@ -4,31 +4,33 @@ import { FacultiesComponent } from "./faculties.component";
 import { FacultyListComponent } from "./faculty-list/faculty-list.component";
 
 const routes: Routes = [
-  {
-    path: "",
-    component: FacultiesComponent,
-    data: {
-      title: "ULA - Faculties",
-    },
-    children: [
-      {
+    {
         path: "",
-        component: FacultyListComponent,
-      },
-      {
-        path: ":name",
-        loadChildren: () =>
-          import("./faculty/faculty.module").then((m) => m.FacultyModule),
+        component: FacultiesComponent,
         data: {
-          title: "ULA - Faculty",
+            title: "ULA - Faculties",
         },
-      },
-    ],
-  },
+        children: [
+            {
+                path: "",
+                component: FacultyListComponent,
+            },
+            {
+                path: ":name",
+                loadChildren: () =>
+                    import("./faculty/faculty.module").then(
+                        (m) => m.FacultyModule
+                    ),
+                data: {
+                    title: "ULA - Faculty",
+                },
+            },
+        ],
+    },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
 })
 export class FacultiesRoutingModule {}

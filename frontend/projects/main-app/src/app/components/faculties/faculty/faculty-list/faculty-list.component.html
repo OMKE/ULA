@@ -1,8 +1,7 @@
 <div class="faculty-list">
-  <app-faculty-list-item
-    [studyProgram]="studyProgram"
-    [isLast]="last"
-    *ngFor="let studyProgram of studyPrograms; let last = last"
-  ></app-faculty-list-item>
-  <!-- @TODO - Pagination -->
+    <app-faculty-list-item
+        [studyProgram]="studyProgram"
+        [isLast]="last"
+        *ngFor="let studyProgram of studyPrograms; let last = last"
+    ></app-faculty-list-item>
 </div>
