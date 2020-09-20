@@ -59,6 +59,26 @@ public class StudentServiceImpl implements StudentService
         }
     }
 
+    /*
+        - Sends request to get all teacher's students on subject, filters them and finds a student with id
+        @TODO Refactor
+        - Call Faculty service to get just one student on that subject and return it
+     */
+    @Override
+    public StudentOnYearDTO showInSubject(Long subjectId, Long studentId)
+    throws StudentOnYearNotFoundException
+    {
+        StudentOnYearDTO student = this.getStudentsBySubjectId(subjectId, Pageable.unpaged())
+                               .stream()
+                               .filter(studentOnYear -> studentOnYear.getId().equals(studentId))
+                               .findFirst()
+                               .orElseThrow(() -> new
+                                      StudentOnYearNotFoundException(String.format("Student on year with id: %s could not be found", studentId)));
+
+        return student;
+
+    }
+
     @Override
     public Response<Object> search(String searchParam)
     {
