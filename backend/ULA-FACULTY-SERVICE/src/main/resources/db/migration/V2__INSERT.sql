@@ -1,9 +1,9 @@
-INSERT INTO faculty (id, name, icon, campus_id, university_id, created_at) VALUES (1,'Faculty of Technical Sciences', 'faculty_of_technical_sciences.svg', 1, 1, NOW());
-INSERT INTO faculty (id, name, icon, campus_id, university_id, created_at) VALUES (2,'Faculty of Philosophy', 'faculty_of_agriculture.svg', 2, 1, NOW());
-INSERT INTO faculty (id, name, icon, campus_id, university_id, created_at) VALUES (3,'Faculty of Law', 'faculty_of_law.svg', 3, 1, NOW());
-INSERT INTO faculty (id, name, icon, campus_id, university_id, created_at) VALUES (4,'Faculty of Economics', 'faculty_of_economics.svg', 3, 1, NOW());
-INSERT INTO faculty (id, name, icon, campus_id, university_id, created_at) VALUES (5,'Faculty of Medicine', 'faculty_of_medicine.svg', 2, 1, NOW());
-INSERT INTO faculty (id, name, icon, campus_id, university_id, created_at) VALUES (6,'Academy of Arts', 'academy_of_arts.svg', 3, 1, NOW());
+INSERT INTO faculty (id, name, icon, campus_id, university_id, slug,created_at) VALUES (1,'Faculty of Technical Sciences', 'faculty_of_technical_sciences.png', 1, 1, 'FacultyOfTechnicalSciences',NOW());
+INSERT INTO faculty (id, name, icon, campus_id, university_id, slug, created_at) VALUES (2,'Faculty of Philosophy', 'faculty_of_agriculture.png', 2, 1, 'FacultyOfPhilosophy',NOW());
+INSERT INTO faculty (id, name, icon, campus_id, university_id, slug, created_at) VALUES (3,'Faculty of Law', 'faculty_of_law.png', 3, 1, 'FacultyOfLaw',NOW());
+INSERT INTO faculty (id, name, icon, campus_id, university_id, slug, created_at) VALUES (4,'Faculty of Economics', 'faculty_of_economics.png', 3, 1, 'FacultyOfEconomics',NOW());
+INSERT INTO faculty (id, name, icon, campus_id, university_id, slug, created_at) VALUES (5,'Faculty of Medicine', 'faculty_of_medicine.png', 2, 1, 'FacultyOfMedicine',NOW());
+INSERT INTO faculty (id, name, icon, campus_id, university_id, slug, created_at) VALUES (6,'Academy of Arts', 'academy_of_arts.png', 3, 1, 'AcademyOfArts',NOW());
 
 
 

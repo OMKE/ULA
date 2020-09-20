@@ -9,6 +9,7 @@ CREATE TABLE `faculty` (
     `campus_id` bigint(20) not null comment 'Database: ula_university; Table:campus Column: id; No constraint',
     `name` varchar(256) not null,
     `icon` varchar(256),
+    `slug` varchar(256) unique not null ,
     primary key (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

@@ -17,6 +17,7 @@ public class FacultyMapper
                     .setName(faculty.getName())
                     .setIcon(faculty.getIcon())
                     .setCampusId(faculty.getCampusId())
+                    .setSlug(faculty.getSlug())
                     .setInformation(
                                 new FacultyInformationDTO()
                                     .setAccreditation(faculty.getInformation().getAccreditation())

@@ -52,6 +52,19 @@ public class FacultyController extends BaseController
         }
     }
 
+    @GetMapping(path = "/slug/{slug}")
+    public Response<Object> showBySlug
+    (
+            @PathVariable("slug") String slug
+    )
+    {
+        try {
+            return Response.ok().setPayload(this.facultyService.showBySlug(slug));
+        } catch (FacultyNotFoundException e) {
+            return Response.exception().setErrors(e.getMessage());
+        }
+    }
+
 
     /*
         Store a newly created resource in storage
