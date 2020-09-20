@@ -22,6 +22,7 @@ public class StudentOnYearDTO
     private List<Long> yearOfStudyIds;
     private Date dateOfEnrollment;
     private String transcriptIdentifier;
+    private SubjectAttendanceDTO attendance;
     private boolean deleted;
     private Date createdAt;
     private Date updatedAt;
