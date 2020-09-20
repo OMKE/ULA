@@ -7,6 +7,7 @@ import com.ula.exam.service.exception.ExamTermNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -31,5 +32,12 @@ public class ExamTermServiceImpl implements ExamTermService
                             .findById(id)
                             .orElseThrow(() -> new ExamTermNotFoundException(String.format("Exam term with id: %s could not be found", id)))
                 );
+    }
+
+    @Override
+    public ExamTermDTO showByClosestDate(Date date)
+    {
+        return ExamTermMapper
+                .map(this.examTermRepository.findTopByStartDateLessThanEqualOrderByStartDateDesc(date));
     }
 }
