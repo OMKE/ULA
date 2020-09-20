@@ -1,5 +1,6 @@
 package com.ula.faculty.service.subjectattendance;
 
+import com.ula.faculty.api.v1.request.UpdateSubjectAttendanceFinalGradeRequest;
 import com.ula.faculty.domain.model.Subject;
 import com.ula.faculty.domain.model.SubjectAttendance;
 import com.ula.faculty.dto.model.SubjectAttendanceDTO;
@@ -25,6 +26,9 @@ public interface SubjectAttendanceService
 
     String update(Long id, SubjectAttendanceDTO subjectAttendanceDTO)
     throws SubjectRealizationNotFoundException, StudentOnYearNotFoundException, SubjectAttendanceNotFoundException;
+
+    String updateFinalGrade(Long id, Long teacherId, UpdateSubjectAttendanceFinalGradeRequest request)
+    throws ExamTermNotFoundException, FifteenDaysPassedAfterEndOfExamTermException, SubjectAttendanceNotFoundException, TeacherOnRealizationNotFoundException, NotAuthorizedException;
 
     String delete(Long id);
 
