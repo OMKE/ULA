@@ -64,6 +64,7 @@ public class Config implements WebMvcConfigurer
 
 
     private List<MediaType> getSupportedMediaTypes() {
+
         List<MediaType> list = new ArrayList<MediaType>();
         list.add(MediaType.IMAGE_JPEG);
         list.add(MediaType.IMAGE_PNG);
