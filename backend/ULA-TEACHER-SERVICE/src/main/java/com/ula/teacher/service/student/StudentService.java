@@ -16,5 +16,8 @@ public interface StudentService
     StudentOnYearDTO show(Long studentId)
     throws StudentOnYearNotFoundException;
 
+    StudentOnYearDTO showInSubject(Long subjectId, Long studentId)
+    throws StudentOnYearNotFoundException;
+
     Response<Object> search(String searchParam);
 }

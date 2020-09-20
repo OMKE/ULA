@@ -1,21 +1,18 @@
 package com.ula.faculty.api.v1.controller;
 
+import com.ula.faculty.api.v1.request.UpdateSubjectAttendanceFinalGradeRequest;
 import com.ula.faculty.dto.model.SubjectAttendanceDTO;
 import com.ula.faculty.dto.model.SubjectAttendanceWithSubjectDTO;
-import com.ula.faculty.service.exception.StudentOnYearNotFoundException;
-import com.ula.faculty.service.exception.SubjectAttendanceNotFoundException;
-import com.ula.faculty.service.exception.SubjectRealizationNotFoundException;
-import com.ula.faculty.service.exception.TeacherOnRealizationNotFoundException;
+import com.ula.faculty.service.exception.*;
 import com.ula.faculty.service.subjectattendance.SubjectAttendanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.ula.core.annotation.Authorized;
 import org.ula.core.api.response.Response;
 import org.ula.core.exception.NotAuthorizedException;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -126,4 +123,25 @@ public class SubjectAttendanceController
             return null;
         }
     }
+
+    @Authorized("TEACHER")
+    @PutMapping("/private/teacher/{teacherId}/subject-attendance/final-grade/{subjectAttendanceId}")
+    public Response<Object> updateFinalGrade
+    (
+            @PathVariable("teacherId") Long teacherId,
+            @PathVariable("subjectAttendanceId") Long subjectAttendanceId,
+            @Valid @RequestBody UpdateSubjectAttendanceFinalGradeRequest request
+    )
+    {
+        try {
+            return Response.ok().setPayload(this.subjectAttendanceService.updateFinalGrade(subjectAttendanceId, teacherId, request));
+        } catch (ExamTermNotFoundException |
+                FifteenDaysPassedAfterEndOfExamTermException |
+                SubjectAttendanceNotFoundException |
+                TeacherOnRealizationNotFoundException |
+                NotAuthorizedException e) {
+            return Response.exception().setErrors(e.getMessage());
+        }
+    }
+
 }

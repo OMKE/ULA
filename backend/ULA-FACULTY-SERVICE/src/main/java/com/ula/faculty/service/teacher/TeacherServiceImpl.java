@@ -146,7 +146,7 @@ public class TeacherServiceImpl implements TeacherService
 
         List<Long> studentIdsDTO = studentDTOS.stream().mapToLong(StudentDTO::getId).boxed().collect(Collectors.toList());
         List<StudentOnYear> studentOnYears = this.studentOnYearRepository.findAllByStudentIdIn(studentIdsDTO);
-        return StudentOnYearMapper.map(studentDTOS, studentOnYears);
+        return StudentOnYearMapper.map(studentDTOS, studentOnYears, subjectRealization);
     }
     
 

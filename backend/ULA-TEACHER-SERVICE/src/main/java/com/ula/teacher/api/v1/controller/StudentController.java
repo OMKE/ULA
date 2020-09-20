@@ -67,4 +67,19 @@ public class StudentController
         return Response.ok().setPayload(this.studentService.getStudentsBySubjectId(subjectId, pageable));
     }
 
+    @Authorized("TEACHER")
+    @GetMapping("/subject/{subjectId}/student/{studentId}")
+    public Response<Object> getStudentOnSubject
+    (
+            @PathVariable("subjectId") Long subjectId,
+            @PathVariable("studentId") Long studentId
+    )
+    {
+        try {
+            return Response.ok().setPayload(this.studentService.showInSubject(subjectId, studentId));
+        } catch (StudentOnYearNotFoundException e) {
+            return Response.exception().setErrors(e.getMessage());
+        }
+    }
+
 }

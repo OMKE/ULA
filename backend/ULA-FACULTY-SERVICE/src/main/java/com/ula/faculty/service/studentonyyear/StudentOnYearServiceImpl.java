@@ -78,7 +78,36 @@ public class StudentOnYearServiceImpl implements StudentOnYearService
                 .mapToLong(StudentDTO::getId)
                 .boxed()
                 .collect(Collectors.toList());
-        
+
+        // If we didn't get any from Auth service, that means user is searching by Transcript Identifier
+        if(studentDTOS.isEmpty())
+        {
+            StudentOnYear studentOnYear = this.studentOnYearRepository
+                    .findByTranscriptIdentifier(searchParam).orElse(null);
+            if(studentOnYear != null)
+            {
+                StudentDTO studentDTO = this.authService.getStudentById(this.jwtUtil.getToken(), studentOnYear.getStudentId());
+                if(studentDTO != null)
+                {
+                    return new ArrayList<>(Arrays.asList(StudentOnYearMapper.map(studentDTO, studentOnYear)));
+                }
+            } else {
+                if(searchParam.matches("[0-9]+"))
+                {
+                    List<StudentOnYear> studentOnYears = this.studentOnYearRepository.findAllByDateOfEnrollment(Integer.parseInt(searchParam));
+                    List<Long> studentOnYearsIds = studentOnYears
+                            .stream()
+                            .mapToLong(s -> s.getStudentId())
+                            .boxed()
+                            .collect(Collectors.toList());
+
+                    studentDTOS = this.authService.getAllStudents(this.jwtUtil.getToken(), studentOnYearsIds);
+
+                    return StudentOnYearMapper.map(studentDTOS, studentOnYears);
+                }
+            }
+        }
+
         List<StudentOnYear> studentOnYears = this.studentOnYearRepository.findAllByStudentIdIn(studentIds);
 
         return StudentOnYearMapper.map(studentDTOS, studentOnYears);

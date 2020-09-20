@@ -2,6 +2,7 @@ package com.ula.teacher.feign;
 
 import com.ula.teacher.api.v1.request.StoreAndUpdateSubjectNotificationRequest;
 import com.ula.teacher.api.v1.request.StoreTeachingTermRequest;
+import com.ula.teacher.api.v1.request.UpdateSubjectAttendanceFinalGradeRequest;
 import com.ula.teacher.api.v1.request.UpdateSubjectSyllabusRequest;
 import com.ula.teacher.dto.*;
 import com.ula.teacher.feign.hystrix.FacultyServiceFallbackFactory;
@@ -145,4 +146,14 @@ public interface FacultyServiceFeignClient
                     @PathVariable("subjectId") Long subjectId,
                     @PathVariable("studentId") Long studentId
             );
+
+    // Update final grade of student's attendance
+    @PutMapping("/private/teacher/{teacherId}/subject-attendance/final-grade/{subjectAttendanceId}")
+    Response<Object> updateFinalGrade
+    (
+            @RequestHeader("Authorization") String token,
+            @PathVariable("teacherId") Long teacherId,
+            @PathVariable("subjectAttendanceId") Long subjectAttendanceId,
+            @RequestBody UpdateSubjectAttendanceFinalGradeRequest request
+    );
 }
