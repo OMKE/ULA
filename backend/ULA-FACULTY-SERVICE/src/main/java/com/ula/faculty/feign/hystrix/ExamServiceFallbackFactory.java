@@ -1,5 +1,6 @@
 package com.ula.faculty.feign.hystrix;
 
+import com.ula.faculty.dto.model.exam.ExamTermDTO;
 import com.ula.faculty.dto.request.StoreTakingExamRequest;
 import com.ula.faculty.feign.ExamFeignClient;
 import feign.hystrix.FallbackFactory;
@@ -35,6 +36,13 @@ public class ExamServiceFallbackFactory implements FallbackFactory<ExamFeignClie
                                                        )
             {
                 LOGGER.error("Error occurred while trying to store an array of taking exam", cause);
+                return null;
+            }
+
+            @Override
+            public ExamTermDTO getExamTerm(String date)
+            {
+                LOGGER.error("Error occurred while fetching Exam Term from Exam service", cause);
                 return null;
             }
         };
