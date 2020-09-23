@@ -1,0 +1,41 @@
+<h1 class="u-mb-m h-m">Change profile image</h1>
+<div class="col-md-8 mx-auto user__image-container">
+    <img
+        *ngIf="user.profileImage"
+        [src]="getImage()"
+        (load)="getImage()"
+        class="rounded mx-auto d-block user__image"
+        alt="{{ user.firstName }} {{ user.lastName }} profile image"
+    />
+</div>
+<div
+    class="col-md-8 mx-auto u-mb-m"
+    *ngIf="user.profileImage != 'users/user-icon.png'"
+>
+    <button class="delete-image-button mx-auto d-block" (click)="deleteImage()">
+        Delete image
+    </button>
+</div>
+<form>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupFileAddon01"
+                >Upload</span
+            >
+        </div>
+        <div class="custom-file">
+            <input
+                type="file"
+                accept="image/*"
+                #imageInput
+                (change)="processFile(imageInput)"
+                class="custom-file-input"
+                id="inputGroupFile01"
+                aria-describedby="inputGroupFileAddon01"
+            />
+            <label class="custom-file-label" for="inputGroupFile01"
+                >Choose image</label
+            >
+        </div>
+    </div>
+</form>
