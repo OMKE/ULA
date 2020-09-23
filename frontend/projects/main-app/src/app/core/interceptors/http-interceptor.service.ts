@@ -3,10 +3,12 @@ import {
     HttpHandler,
     HttpInterceptor,
     HttpRequest,
+    HttpResponse,
 } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
+import { tap } from "rxjs/operators";
 import { AuthService } from "../../services/auth.service";
 
 @Injectable({
@@ -23,7 +25,16 @@ export class HttpInterceptorService implements HttpInterceptor {
             let newRequest = req.clone({
                 headers: req.headers.set("Authorization", token),
             });
-            return next.handle(newRequest);
+            return next.handle(newRequest).pipe(
+                tap((evt) => {
+                    if (evt instanceof HttpResponse) {
+                        if (evt.body.status == "ACCESS_DENIED") {
+                            this.authService.logout();
+                            this.router.navigate(["/auth/login"]);
+                        }
+                    }
+                })
+            );
         }
         return next.handle(req);
     }
