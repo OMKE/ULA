@@ -123,12 +123,10 @@ public class UserServiceImpl implements UserService
 	}
 
 
-	@Transactional
+
 	@Override
 	public String add(UserDTO userDTO) throws UserConflictException
 	{
-		
-
 		Optional<User> foundedUser = userRepository.findByUsername(userDTO.getUsername());
 		if (foundedUser.isPresent()) {
 			throw new UserConflictException(String.format("User with username: '%s' already exists",
