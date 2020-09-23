@@ -26,7 +26,8 @@ export class LoginComponent implements OnInit {
             if (response.errors != undefined) {
                 this.errors = response.errors;
             } else {
-                this.router.navigate(["dashboard"]);
+                this.authService.setToken(response.payload);
+                this.router.navigate(["/dashboard/user"]);
             }
         });
     }
