@@ -1,0 +1,21 @@
+@import "../../../../../styles/abstracts/_mixins.scss";
+
+.faculty-location {
+    &__map-container {
+        height: 50rem;
+        width: 80%;
+        margin: 0 auto;
+        @include break(medium) {
+            width: 100%;
+        }
+    }
+
+    &__map-frame {
+        overflow: hidden;
+        border-radius: 2rem;
+        height: 100%;
+    }
+}
+#map {
+    height: 100%;
+}
