@@ -376,16 +376,16 @@ public class UserServiceImpl implements UserService
 	{
 		User user = this.getByUsername(username).get();
 		String oldImage = "";
-		if(!user.getProfileImage().equals("user-icon.png") || !user.getProfileImage().equals("admin-icon.png"))
+		if(!user.getProfileImage().equals("users/user-icon.png") || !user.getProfileImage().equals("users/admin-icon.png"))
 		{
 			oldImage = user.getProfileImage();
 			Response response = this.staticContentServiceFeignClient.deleteProfileImage(token, username, Response.ok().setPayload(oldImage));
 			if(response.getPayload() != null)
 			{
 				if(authService.isAdmin(user.getUsername())){
-					user.setProfileImage("admin-icon.png");
+					user.setProfileImage("users/admin-icon.png");
 				} else {
-					user.setProfileImage("user-icon.png");
+					user.setProfileImage("users/user-icon.png");
 				}
 				userRepository.save(user);
 				String message = (String) response.getPayload();
