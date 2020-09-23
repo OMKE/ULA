@@ -1,0 +1,51 @@
+@import "../../../styles/abstracts/mixins";
+
+.contact {
+    font-size: 1.7rem;
+    font-weight: 300;
+    color: var(--color-black-2);
+
+    &__heading {
+        font-weight: 300;
+        // padding-bottom: 1.5rem;
+        // border-bottom: 1px solid var(--color-grey-light-5);
+    }
+
+    &__address {
+    }
+
+    &__email {
+        font-weight: 500;
+    }
+
+    &__address-heading {
+        font-weight: 500;
+    }
+
+    &__phone-number-heading {
+    }
+    &__phone-number {
+        margin: 2rem 0;
+    }
+
+    &__location-map-container {
+        height: 50rem;
+        width: 80%;
+        // margin: 0 auto;
+        margin-left: auto;
+        margin-right: auto;
+        @include break(medium) {
+            width: 100%;
+        }
+    }
+
+    &__location-map-frame {
+        overflow: hidden;
+        border-radius: 2rem;
+        height: 100%;
+    }
+}
+
+#map {
+    height: 100%;
+}
