@@ -1,0 +1,21 @@
+@import "../../../../../styles/abstracts/mixins";
+
+.faculty-about {
+    @include break(small) {
+        display: flex;
+        flex-direction: column;
+    }
+
+    display: grid;
+    grid-template-columns: 35% 1fr;
+
+    &__content {
+        grid-column: 2 / 3;
+        margin-left: 4rem;
+        font-size: 1.5rem;
+
+        @include break(small) {
+            margin-left: 0;
+        }
+    }
+}
