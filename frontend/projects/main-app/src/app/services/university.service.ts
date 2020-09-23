@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { url } from "../core/models/API";
 import { GenericResponse } from "../core/models/GenericResponse";
 import {
+    Contact,
     Information,
     President,
     Publishing,
@@ -42,6 +43,12 @@ export class UniversityService {
     getPublishing(): Observable<GenericResponse<Publishing>> {
         return this.http.get<GenericResponse<Publishing>>(
             `${url}/university/information/publishing`
+        );
+    }
+
+    getContact(): Observable<GenericResponse<Contact>> {
+        return this.http.get<GenericResponse<Contact>>(
+            `${url}/university/contact`
         );
     }
 }
