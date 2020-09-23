@@ -9,6 +9,10 @@ import { FacultyNavbarComponent } from "./faculty-navbar/faculty-navbar.componen
 import { FacultyRoutingModule } from "./faculty-routing.module";
 import { FacultyStudiesComponent } from "./faculty-studies/faculty-studies.component";
 import { FacultyComponent } from "./faculty.component";
+import { SearchComponent } from "./search/search.component";
+import { StudyProgramComponent } from './study-program/study-program.component';
+import { SubjectComponent } from './subject/subject.component';
+import { TeachingMaterialComponent } from './teaching-material/teaching-material.component';
 
 @NgModule({
     declarations: [
@@ -19,6 +23,10 @@ import { FacultyComponent } from "./faculty.component";
         FacultyContactComponent,
         FacultyListComponent,
         FacultyListItemComponent,
+        SearchComponent,
+        StudyProgramComponent,
+        SubjectComponent,
+        TeachingMaterialComponent,
     ],
     imports: [CommonModule, FacultyRoutingModule, SharedModule],
     exports: [],
