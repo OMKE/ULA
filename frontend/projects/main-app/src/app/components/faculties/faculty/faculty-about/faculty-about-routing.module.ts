@@ -12,7 +12,7 @@ const routes: Routes = [
         component: FacultyAboutComponent,
         children: [
             {
-                path: "",
+                path: "history",
                 component: FacultyHistoryComponent,
             },
             {
