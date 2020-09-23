@@ -1,81 +1,81 @@
-<nav class="navbar u-pt-xs">
+<nav class="ula-navbar u-pt-xs">
     <div class="u-container u-flex u-flex-jc-sb u-flex-ai-c">
-        <a class="navbar__logo" routerLink="">
+        <a class="ula-navbar__logo" routerLink="">
             <app-logo [imageSource]="getImageSrc()"></app-logo>
         </a>
         <ul
-            class="navbar__list u-flex"
-            [ngClass]="navShown ? 'navbar__list--active' : ''"
+            class="ula-navbar__list u-flex"
+            [ngClass]="navShown ? 'ula-navbar__list--active' : ''"
         >
             <li
-                class="navbar__item"
-                [routerLinkActive]="'navbar__item--active'"
+                class="ula-navbar__item"
+                [routerLinkActive]="'ula-navbar__item--active'"
             >
                 <a
                     [routerLink]="['/about']"
-                    [routerLinkActive]="'navbar__link--active'"
-                    class="navbar__link"
-                    [class.navbar__link--white]="!dark()"
+                    [routerLinkActive]="'ula-navbar__link--active'"
+                    class="ula-navbar__link"
+                    [class.ula-navbar__link--white]="white()"
                     >About ULA</a
                 >
             </li>
             <li
-                class="navbar__item"
-                [routerLinkActive]="'navbar__item--active'"
+                class="ula-navbar__item"
+                [routerLinkActive]="'ula-navbar__item--active'"
             >
                 <a
-                    class="navbar__link"
+                    class="ula-navbar__link"
                     [routerLink]="['/faculties']"
-                    routerLinkActive="navbar__link--active"
-                    [class.navbar__link--white]="!dark()"
+                    routerLinkActive="ula-navbar__link--active"
+                    [class.ula-navbar__link--white]="white()"
                 >
                     Faculties
                 </a>
             </li>
 
             <li
-                class="navbar__item"
-                [routerLinkActive]="'navbar__item--active'"
+                class="ula-navbar__item"
+                [routerLinkActive]="'ula-navbar__item--active'"
             >
                 <a
                     [routerLink]="['/research']"
-                    routerLinkActive="navbar__link--active"
-                    class="navbar__link"
-                    [class.navbar__link--white]="!dark()"
+                    routerLinkActive="ula-navbar__link--active"
+                    class="ula-navbar__link"
+                    [class.ula-navbar__link--white]="white()"
                     >Research</a
                 >
             </li>
             <li
-                class="navbar__item"
-                [routerLinkActive]="'navbar__item--active'"
+                class="ula-navbar__item"
+                [routerLinkActive]="'ula-navbar__item--active'"
             >
                 <a
                     [routerLink]="['/contact']"
-                    class="navbar__link"
-                    [class.navbar__link--white]="!dark()"
-                    routerLinkActive="navbar__link--active"
+                    class="ula-navbar__link"
+                    [class.ula-navbar__link--white]="white()"
+                    routerLinkActive="ula-navbar__link--active"
                     [routerLinkActiveOptions]="{ exact: true }"
                     >Contact</a
                 >
             </li>
             <li
-                class="navbar__item"
-                [routerLinkActive]="'navbar__item--active'"
+                class="ula-navbar__item"
+                [routerLinkActive]="'ula-navbar__item--active'"
             >
                 <a
                     [routerLink]="['/auth']"
-                    class="navbar__link"
-                    [class.navbar__link--white]="!dark()"
-                    routerLinkActive="navbar__link--active"
+                    class="ula-navbar__link"
+                    [class.ula-navbar__link--white]="white()"
+                    routerLinkActive="ula-navbar__link--active"
                     >Online services</a
                 >
             </li>
         </ul>
         <div
-            class="navbar__toggler"
+            class="ula-navbar__toggler"
             (click)="toggle()"
-            [ngClass]="navShown ? 'navbar__toggler--close' : ''"
-            [class.navbar__toggler--dark]="darkToggler()"
+            [ngClass]="navShown ? 'ula-navbar__toggler--close' : ''"
+            [class.ula-navbar__toggler--dark]="darkToggler()"
         ></div>
     </div>
 </nav>
