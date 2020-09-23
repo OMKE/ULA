@@ -1,43 +1,10 @@
 <div class="faculty-studies u-container">
     <div class="faculty-studies__content">
         <app-search
-            [placeholder]="'Search your program, topic or interest'"
+            [facultyId]="faculty.id"
+            (onSearch)="propagateStudyPrograms($event)"
         ></app-search>
-        <div class="faculty-studies-dropdown-container u-mb-m">
-            <a class="faculty-studies__dropdown">
-                Degree
-                <svg
-                    class="faculty-studies__dropdown-icon"
-                    width="20"
-                    height="12"
-                    viewBox="0 0 20 12"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path
-                        d="M3.50002 0.800049L10 7.30005L16.5 0.800049L19.1 2.10005L10 11.2L0.900024 2.10005L3.50002 0.800049Z"
-                        fill="white"
-                    />
-                </svg>
-            </a>
-            <a class="faculty-studies__dropdown">
-                Campus
-                <svg
-                    class="faculty-studies__dropdown-icon"
-                    width="20"
-                    height="12"
-                    viewBox="0 0 20 12"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path
-                        d="M3.50002 0.800049L10 7.30005L16.5 0.800049L19.1 2.10005L10 11.2L0.900024 2.10005L3.50002 0.800049Z"
-                        fill="white"
-                    />
-                </svg>
-            </a>
-        </div>
-        <app-faculty-list></app-faculty-list>
+        <app-faculty-list [studyPrograms]="studyPrograms"></app-faculty-list>
     </div>
     <div class="faculty-studies-card-container">
         <div class="faculty-studies-card faculty-studies-card--red">

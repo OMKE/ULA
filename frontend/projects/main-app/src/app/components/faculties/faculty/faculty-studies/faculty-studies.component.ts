@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Faculty } from "projects/main-app/src/app/core/models/Faculty";
+import { StudyProgram } from "projects/main-app/src/app/core/models/StudyProgram";
 import { FacultyService } from "projects/main-app/src/app/services/faculty.service";
 
 @Component({
@@ -22,6 +23,8 @@ export class FacultyStudiesComponent implements OnInit {
         name: "",
     };
 
+    studyPrograms: StudyProgram[];
+
     getFaculty(): void {
         this.facultyService.getFaculty(this.name).subscribe((response) => {
             this.faculty = response.payload;
@@ -32,5 +35,9 @@ export class FacultyStudiesComponent implements OnInit {
     ngOnInit(): void {
         this.name = this.router.url.split("/")[2];
         this.getFaculty();
+    }
+
+    propagateStudyPrograms(studyPrograms: StudyProgram[]) {
+        this.studyPrograms = studyPrograms;
     }
 }
