@@ -34,4 +34,6 @@ zuul:
     connect-timeout-millis: 60000
 #    In order to hide service route from external access, we just add private to the url so only services can access those routes
   ignored-patterns: /**/private/**
+  ignored-headers: Access-Control-Allow-Credentials, Access-Control-Allow-Origin
+
 
