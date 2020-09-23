@@ -16,6 +16,6 @@ public interface StudyProgramRepository extends CrudRepository<StudyProgram, Lon
     @Query("select e from StudyProgram e where e.faculty.id=?1 and e.deleted=false")
     Page<StudyProgram> findAllByFacultyId(Long facultyId, Pageable pageable);
 
-    @Query("select e from StudyProgram e where e.name like %:name% and e.deleted=false")
-    List<StudyProgram> findStudyProgramByNameContains(@Param("name") String name);
+    @Query("select e from StudyProgram e where e.name like %:name% and e.deleted=false and faculty_id=:facultyId")
+    List<StudyProgram> findStudyProgramByNameContains(@Param("name") String name, @Param("facultyId") Long facultyId);
 }
