@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { ContactComponent } from "./components/contact/contact.component";
 import { IndexComponent } from "./components/index/index.component";
+import { AuthGuard } from "./guards/auth.guard";
 
 const routes: Routes = [
     {
@@ -42,6 +43,10 @@ const routes: Routes = [
     },
     {
         path: "dashboard",
+        canActivate: [AuthGuard],
+        data: {
+            allowedRoles: ["USER"],
+        },
         loadChildren: () =>
             import("./dashboard/dashboard.module").then(
                 (m) => m.DashboardModule
