@@ -30,7 +30,7 @@ export class FacultyComponent implements OnInit {
         location: {
             id: null,
             longitude: null,
-            lattitude: null,
+            latitude: null,
             name: "",
         },
         information: {
