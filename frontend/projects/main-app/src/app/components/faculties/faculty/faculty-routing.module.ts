@@ -4,6 +4,7 @@ import { FacultyContactComponent } from "./faculty-contact/faculty-contact.compo
 import { FacultyLocationComponent } from "./faculty-location/faculty-location.component";
 import { FacultyStudiesComponent } from "./faculty-studies/faculty-studies.component";
 import { FacultyComponent } from "./faculty.component";
+import { StudyProgramComponent } from "./study-program/study-program.component";
 
 const routes: Routes = [
     {
@@ -16,6 +17,10 @@ const routes: Routes = [
                 data: {
                     title: "ULA - {projectname} - Studies",
                 },
+            },
+            {
+                path: "studies/:id",
+                component: StudyProgramComponent,
             },
             {
                 path: "about",
