@@ -19,7 +19,7 @@ export interface Faculty {
     location?: {
         id: number;
         longitude: number;
-        lattitude: number;
+        latitude: number;
         name: string;
     };
     information?: {
