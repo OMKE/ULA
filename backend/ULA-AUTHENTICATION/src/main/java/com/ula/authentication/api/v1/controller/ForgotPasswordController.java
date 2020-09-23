@@ -41,7 +41,7 @@ public class ForgotPasswordController extends BaseController
 		} catch (EmailNotFoundException e)
 		{
 			return Response.wrongCredentials()
-					.setErrors(e.getMessage());
+					.setErrors(errors(e.getMessage()));
 		}
 	}
 }

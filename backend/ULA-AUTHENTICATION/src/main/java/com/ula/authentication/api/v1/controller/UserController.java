@@ -38,7 +38,7 @@ public class UserController extends BaseController
         try {
             return Response.ok().setPayload(this.userService.getUserData(authentication.getName()));
         } catch (UserException | UserNotFoundException e) {
-            return Response.exception().setErrors(e.getMessage());
+            return Response.exception().setErrors(errors(e.getMessage()));
         }
     }
 
@@ -59,7 +59,7 @@ public class UserController extends BaseController
         try {
             return Response.ok().setPayload(this.userService.update(userDTO));
         } catch (UserNotFoundException e) {
-            return Response.exception().setErrors(e.getMessage());
+            return Response.exception().setErrors(errors(e.getMessage()));
         }
 
     }
@@ -82,7 +82,7 @@ public class UserController extends BaseController
             userService.checkForOldPassword(authentication.getName(), updateUserPasswordRequest.getOldPassword());
             return Response.ok().setPayload(userService.updatePassword(userDTO));
         } catch (PasswordsDontMatchException | UserException | UserNotFoundException | WrongOldPasswordException e) {
-            return Response.exception().setErrors(e.getMessage());
+            return Response.exception().setErrors(errors(e.getMessage()));
         }
     }
 
@@ -106,7 +106,7 @@ public class UserController extends BaseController
         try {
             return Response.ok().setPayload(this.userService.storeProfileImage(authentication.getName(), authHeader, image));
         } catch (IOException | UserNotFoundException | FileStorageException e) {
-            return Response.exception().setErrors(e.getMessage());
+            return Response.exception().setErrors(errors(e.getMessage()));
         }
     }
 
@@ -121,7 +121,7 @@ public class UserController extends BaseController
         try {
             return Response.ok().setPayload(this.userService.deleteProfileImage(authentication.getName(), authHeader));
         } catch (UserNotFoundException | ProfileImageNotFoundException e) {
-            return Response.exception().setErrors(e.getMessage());
+            return Response.exception().setErrors(errors(e.getMessage()));
         }
     }
 

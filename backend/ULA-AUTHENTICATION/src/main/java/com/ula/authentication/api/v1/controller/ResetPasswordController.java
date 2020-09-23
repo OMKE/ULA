@@ -53,12 +53,9 @@ public class ResetPasswordController extends BaseController
 		{
 			return Response.ok()
 					.setPayload(passwordResetService.verifyEmailToken(passwordResetsDTO));
-		} catch (ResetPasswordTokenInvalidException e)
+		} catch (ResetPasswordTokenInvalidException | PasswordsDontMatchException e)
 		{
-			return Response.validationException().setErrors(e.getMessage());
-		} catch (PasswordsDontMatchException e)
-		{
-			return Response.validationException().setErrors(e.getMessage());
+			return Response.validationException().setErrors(errors(e.getMessage()));
 		}
 
 

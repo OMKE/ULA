@@ -11,13 +11,14 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.ula.core.api.BaseController;
 import org.ula.core.api.response.Response;
 
 import javax.validation.Valid;
 
 @RestController
 @Validated
-public class AdministratorController
+public class AdministratorController extends BaseController
 {
 
     /*
@@ -41,7 +42,7 @@ public class AdministratorController
         try {
             return Response.ok().setPayload(this.administratorService.show(id));
         } catch (AdministratorNotFoundException e) {
-            return Response.exception().setErrors(e.getMessage());
+            return Response.exception().setErrors(errors(e.getMessage()));
         }
     }
     
@@ -57,7 +58,7 @@ public class AdministratorController
         try {
             return Response.ok().setPayload(this.administratorService.store(storeAdministratorRequest.getUserId()));
         } catch (UserNotFoundException | UserIsAlreadyAdministratorException e) {
-            return Response.exception().setErrors(e.getMessage());
+            return Response.exception().setErrors(errors(e.getMessage()));
         }
     }
 
@@ -72,7 +73,7 @@ public class AdministratorController
         try {
             return Response.ok().setPayload(this.administratorService.delete(userId));
         } catch (UserNotFoundException | UserPermissionException | AdministratorNotFoundException e) {
-            return Response.exception().setErrors(e.getMessage());
+            return Response.exception().setErrors(errors(e.getMessage()));
         }
     }
 
@@ -86,7 +87,7 @@ public class AdministratorController
         try {
             return Response.ok().setPayload(this.administratorService.restore(userId));
         } catch (UserNotFoundException | UserPermissionException | AdministratorNotFoundException e) {
-            return Response.exception().setErrors(e.getMessage());
+            return Response.exception().setErrors(errors(e.getMessage()));
         }
     }
 }
