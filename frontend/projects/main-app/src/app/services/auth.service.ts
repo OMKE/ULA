@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { url } from "../core/models/API";
 import { GenericResponse } from "../core/models/GenericResponse";
@@ -11,7 +12,11 @@ import { ErrorService } from "./error.service";
     providedIn: "root",
 })
 export class AuthService {
-    constructor(private http: HttpClient, private errorService: ErrorService) {}
+    constructor(
+        private http: HttpClient,
+        private errorService: ErrorService,
+        private router: Router
+    ) {}
 
     private user: User = {
         username: "",
@@ -22,22 +27,10 @@ export class AuthService {
     private token: string = null;
 
     login(user: User): Observable<GenericResponse<Token>> {
-        return this.http
-            .post<GenericResponse<Token>>(`${url}/auth/login`, user)
-            .pipe((response) => {
-                response.subscribe((payload) => {
-                    if (payload.errors != undefined) {
-                        this.errorService.setErrors(payload.errors);
-                        return response;
-                    } else {
-                        this.token = payload.payload.token;
-                        this.user = JSON.parse(atob(this.token.split(".")[1]));
-                        localStorage.setItem("user", JSON.stringify(this.user));
-                        localStorage.setItem("token", this.token);
-                    }
-                });
-                return response;
-            });
+        return this.http.post<GenericResponse<Token>>(
+            `${url}/auth/login`,
+            user
+        );
     }
 
     register(user: User): Observable<GenericResponse<string>> {
@@ -48,7 +41,7 @@ export class AuthService {
     }
 
     validateRoles(roles) {
-        if (this.user) {
+        if (this.getUser()) {
             const userRoles: Set<string> = new Set(this.user.roles);
             const matchedRoles = roles.filter((r) => userRoles.has(r));
 
@@ -56,16 +49,80 @@ export class AuthService {
                 return true;
             }
         }
+
         return false;
+    }
+
+    logout(): void {
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        this.router.navigate(["/auth/login"]);
+    }
+
+    setToken(token: Token) {
+        this.token = token.token;
+        this.user = JSON.parse(atob(this.token.split(".")[1]));
+        localStorage.setItem("user", JSON.stringify(this.user));
+        localStorage.setItem("token", this.token);
     }
 
     getToken() {
         if (!this.token) {
-            const tokenLS = localStorage.getItem("token");
-            if (tokenLS) {
-                return tokenLS;
+            const token = localStorage.getItem("token");
+            if (token) {
+                this.token = token;
+                return token;
             }
         }
         return this.token;
+    }
+
+    getUser(): User {
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (user) {
+            this.user = user;
+            return user;
+        }
+    }
+
+    getRoles(): string[] {
+        const user: User = JSON.parse(localStorage.getItem("user"));
+        if (user) {
+            return user.roles;
+        }
+    }
+
+    isUser() {
+        if (
+            this.getRoles().includes("USER") &&
+            !this.getRoles().includes("STUDENT") &&
+            !this.getRoles().includes("TEACHER") &&
+            !this.getRoles().includes("ADMIN")
+        ) {
+            return true;
+        }
+        return false;
+    }
+    isAdmin() {
+        const foundRole = this.getUser().roles.find((e) => e === "ADMIN");
+        if (foundRole) {
+            return true;
+        }
+        return false;
+    }
+    isStudent() {
+        const foundRole = this.getUser().roles.find((e) => e === "STUDENT");
+        if (foundRole) {
+            return true;
+        }
+        return false;
+    }
+
+    isTeacher() {
+        const foundRole = this.getUser().roles.find((e) => e === "TEACHER");
+        if (foundRole) {
+            return true;
+        }
+        return false;
     }
 }
