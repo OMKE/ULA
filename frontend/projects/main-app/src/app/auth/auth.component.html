@@ -1,0 +1,22 @@
+<app-navbar></app-navbar>
+<div class="u-container">
+    <div class="auth u-mt-xxl">
+        <app-big-heading [text]="'Online Services'"></app-big-heading>
+
+        <div class="auth__links">
+            <a
+                routerLink="register"
+                class="auth__link"
+                routerLinkActive="auth__link--active"
+                >Register</a
+            >
+            <a
+                routerLink="login"
+                class="auth__link"
+                routerLinkActive="auth__link--active"
+                >Login</a
+            >
+        </div>
+    </div>
+    <router-outlet></router-outlet>
+</div>

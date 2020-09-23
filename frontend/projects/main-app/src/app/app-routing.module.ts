@@ -22,6 +22,11 @@ const routes: Routes = [
     path: "faculties",
     data: {
       title: "ULA - Faculties",
+    {
+        path: "auth",
+        loadChildren: () =>
+            import("./auth/auth.module").then((m) => m.AuthModule),
+    },
     },
     loadChildren: () =>
       import("./components/faculties/faculties.module").then(
