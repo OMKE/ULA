@@ -1,0 +1,13 @@
+.user {
+    &__image-container {
+        width: 20rem;
+        height: 20rem;
+        overflow: hidden;
+    }
+
+    &__image {
+        height: 80%;
+        width: 80%;
+        object-fit: contain;
+    }
+}
