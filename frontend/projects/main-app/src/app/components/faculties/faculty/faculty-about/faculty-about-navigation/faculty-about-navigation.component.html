@@ -2,27 +2,7 @@
     <ul class="about-nav__list u-flex u-flex-d-c">
         <li class="about-nav__item">
             <a
-                routerLink="/history"
-                class="about-nav__link"
-                [routerLinkActive]="'about-nav__link--active'"
-                [routerLinkActiveOptions]="{ exact: true }"
-            >
-                About
-                <svg
-                    class="about-nav__icon"
-                    width="8"
-                    height="14"
-                    viewBox="0 0 8 14"
-                    xmlns="http://www.w3.org/2000/svg"
-                    id="chevron-right"
-                >
-                    <path d="M0 12L5 7L0 2L1 0L8 7L1 14L0 12Z" fill="#2C2C2C" />
-                </svg>
-            </a>
-        </li>
-        <li class="about-nav__item">
-            <a
-                routerLink="/president"
+                routerLink="history"
                 [routerLinkActive]="'about-nav__link--active'"
                 class="about-nav__link"
             >
@@ -41,7 +21,7 @@
         </li>
         <li class="about-nav__item">
             <a
-                routerLink="/mission"
+                routerLink="president"
                 [routerLinkActive]="'about-nav__link--active'"
                 class="about-nav__link"
             >
@@ -60,11 +40,30 @@
         </li>
         <li class="about-nav__item">
             <a
-                routerLink="/accreditation"
+                routerLink="accreditation"
                 [routerLinkActive]="'about-nav__link--active'"
                 class="about-nav__link"
             >
-                Teaching staff
+                Accreditation
+                <svg
+                    class="about-nav__icon"
+                    width="8"
+                    height="14"
+                    viewBox="0 0 8 14"
+                    xmlns="http://www.w3.org/2000/svg"
+                    id="chevron-right"
+                >
+                    <path d="M0 12L5 7L0 2L1 0L8 7L1 14L0 12Z" fill="#2C2C2C" />
+                </svg>
+            </a>
+        </li>
+        <li class="about-nav__item">
+            <a
+                routerLink="mission"
+                [routerLinkActive]="'about-nav__link--active'"
+                class="about-nav__link"
+            >
+                Mission
                 <svg
                     class="about-nav__icon"
                     width="8"

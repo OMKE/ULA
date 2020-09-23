@@ -14,7 +14,6 @@
     }
 
     &__item {
-        text-align: right;
         padding-bottom: 2rem;
         border-bottom: 0.1rem solid var(--color-grey-light-4);
 
@@ -41,6 +40,9 @@
     }
 
     &__link {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        align-items: center;
         color: var(--color-black-2);
         text-decoration: none;
         font-size: 4rem;
@@ -69,5 +71,6 @@
         margin-left: 1.5rem;
         width: 2rem;
         height: 2rem;
+        justify-self: end;
     }
 }
