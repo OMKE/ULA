@@ -7,5 +7,5 @@ export interface Student {
     ssn: string;
     phoneNumber: string;
     dateOfBirth: Date;
-    studentOnYear: StudentOnYear;
+    studentOnYear?: StudentOnYear;
 }
