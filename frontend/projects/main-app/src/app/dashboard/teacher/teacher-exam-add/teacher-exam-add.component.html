@@ -1,1 +1,70 @@
-<p>teacher-exam-add works!</p>
+<h1 class="u-mb-m h-m">Add exam</h1>
+
+<form class="col-md-6 mx-auto" (ngSubmit)="addExam()">
+    <div class="form-group">
+        <label for="examTermId">Exam term</label>
+        <select
+            class="form-control"
+            name="examTermId"
+            id="examTermId"
+            [(ngModel)]="exam.examTermId"
+        >
+            <option
+                value="{{ examTerm.id }}"
+                *ngFor="let examTerm of examTerms; let first = first"
+            >
+                {{ examTerm.name }}
+            </option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="typeId">Exam type</label>
+        <select
+            class="form-control"
+            name="typeId"
+            id="typeId"
+            [(ngModel)]="exam.typeId"
+        >
+            <option value="{{ type.id }}" *ngFor="let type of examTypes">
+                {{ type.name }}
+            </option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="startTime">Start time</label>
+        <input
+            id="startTime"
+            class="form-control"
+            type="datetime-local"
+            [(ngModel)]="exam.startTime"
+            name="startTime"
+        />
+    </div>
+    <div class="form-group">
+        <label for="endTime">End time</label>
+        <input
+            id="endTime"
+            class="form-control"
+            type="datetime-local"
+            [(ngModel)]="exam.endTime"
+            name="endTime"
+        />
+    </div>
+    <div class="form-check">
+        <input
+            type="checkbox"
+            name="finalExam"
+            [(ngModel)]="exam.finalExam"
+            class="form-check-input"
+            id="finalExam"
+        />
+        <label class="form-check-label u-ml-xs" for="finalExam"
+            >Final exam</label
+        >
+    </div>
+    <app-error></app-error>
+    <div class="u-flex u-flex-jc-c">
+        <button class="btn btn-primary" type="submit">Add exam</button>
+    </div>
+</form>
