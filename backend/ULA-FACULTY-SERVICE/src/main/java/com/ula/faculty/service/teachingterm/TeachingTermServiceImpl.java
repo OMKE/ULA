@@ -5,6 +5,7 @@ import com.ula.faculty.domain.guard.SubjectRealizationTeacherGuard;
 import com.ula.faculty.domain.model.*;
 import com.ula.faculty.domain.repository.*;
 import com.ula.faculty.dto.model.TeachingTermDTO;
+import com.ula.faculty.dto.model.TeachingTypeDTO;
 import com.ula.faculty.mapper.TeachingTermMapper;
 import com.ula.faculty.service.exception.SubjectNotFoundException;
 import com.ula.faculty.service.exception.SubjectRealizationNotFoundException;
@@ -16,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.ula.core.exception.NotAuthorizedException;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TeachingTermServiceImpl implements TeachingTermService
@@ -63,6 +65,19 @@ public class TeachingTermServiceImpl implements TeachingTermService
 
 
         return TeachingTermMapper.map(this.teachingTermRepository.findBySubjectRealizationId(subjectRealization.getId()));
+    }
+
+    @Override
+    public List<TeachingTypeDTO> types()
+    {
+        return this.teachingTypeRepository
+                .findAll()
+                .stream()
+                .map(type ->
+                             new TeachingTypeDTO()
+                                     .setId(type.getId())
+                                     .setName(type.getName()))
+                .collect(Collectors.toList());
     }
 
     @Override

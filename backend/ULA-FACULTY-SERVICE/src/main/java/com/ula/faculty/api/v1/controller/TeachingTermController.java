@@ -66,4 +66,10 @@ public class TeachingTermController extends BaseController
         }
     }
 
+    @GetMapping("/teaching-type")
+    public Response<Object> types()
+    {
+        return Response.ok().setPayload(this.teachingTermService.types());
+    }
+
 }
