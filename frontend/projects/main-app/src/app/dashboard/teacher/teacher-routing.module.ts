@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { TeacherAddTeachingTermComponent } from "./teacher-add-teaching-term/teacher-add-teaching-term.component";
 import { TeacherChangePasswordComponent } from "./teacher-change-password/teacher-change-password.component";
 import { TeacherChangeProfileImageComponent } from "./teacher-change-profile-image/teacher-change-profile-image.component";
+import { TeacherExamAddComponent } from "./teacher-exam-add/teacher-exam-add.component";
 import { TeacherExamUpdateComponent } from "./teacher-exam-update/teacher-exam-update.component";
 import { TeacherNotificationsAddComponent } from "./teacher-notifications-add/teacher-notifications-add.component";
 import { TeacherNotificationsComponent } from "./teacher-notifications/teacher-notifications.component";
@@ -13,6 +14,7 @@ import { TeacherSubjectStudentComponent } from "./teacher-subject-student/teache
 import { TeacherSubjectComponent } from "./teacher-subject/teacher-subject.component";
 import { TeacherSubjectsComponent } from "./teacher-subjects/teacher-subjects.component";
 import { TeacherUpdateProfileComponent } from "./teacher-update-profile/teacher-update-profile.component";
+import { TeacherUpdateSubjectSyllabusComponent } from "./teacher-update-subject-syllabus/teacher-update-subject-syllabus.component";
 import { TeacherComponent } from "./teacher.component";
 
 const routes: Routes = [
@@ -43,6 +45,14 @@ const routes: Routes = [
             {
                 path: "subjects/:id",
                 component: TeacherSubjectComponent,
+            },
+            {
+                path: "subjects/:id/update-syllabus",
+                component: TeacherUpdateSubjectSyllabusComponent,
+            },
+            {
+                path: "subjects/:id/add-exam",
+                component: TeacherExamAddComponent,
             },
             {
                 path: "subjects/:id/add-teaching-term",
