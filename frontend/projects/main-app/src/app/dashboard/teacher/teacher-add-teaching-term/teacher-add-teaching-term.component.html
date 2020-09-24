@@ -1,1 +1,91 @@
-<p>teacher-add-teaching-term works!</p>
+<h1 class="u-mb-m h-m">Add teaching term</h1>
+
+<form (ngSubmit)="add()" class="col-md-6 mx-auto">
+    <div class="form-group">
+        <label for="typeId">Type: </label>
+        <select
+            name="typeId"
+            id="typeId"
+            class="form-control"
+            [(ngModel)]="request.typeId"
+        >
+            <option value="{{ type.id }}" *ngFor="let type of teachingTypes">
+                {{ type.name }}
+            </option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="startTime">Start time</label>
+        <input
+            id="startTime"
+            class="form-control"
+            type="datetime-local"
+            name="startTime"
+            [(ngModel)]="request.startTime"
+        />
+    </div>
+    <div class="form-group">
+        <label for="endTime">End time</label>
+        <input
+            id="endTime"
+            class="form-control"
+            type="datetime-local"
+            name="endTime"
+            [(ngModel)]="request.endTime"
+        />
+    </div>
+    <div class="form-group">
+        <label for="teachingMaterialName">Teaching material name</label>
+        <input
+            id="teachingMaterialName"
+            class="form-control"
+            type="text"
+            name="teachingMaterialName"
+            [(ngModel)]="request.teachingMaterialName"
+        />
+    </div>
+    <div class="form-group">
+        <label for="teachingMaterialAuthor">Author first name</label>
+        <input
+            id="teachingMaterialAuthor"
+            class="form-control"
+            type="text"
+            name="teachingMaterialAuthorFirstName"
+            [(ngModel)]="request.authors[0].firstName"
+        />
+    </div>
+    <div class="form-group">
+        <label for="teachingMaterialAuthor">Author last name</label>
+        <input
+            id="teachingMaterialAuthor"
+            class="form-control"
+            type="text"
+            name="teachingMaterialAuthorLastName"
+            [(ngModel)]="request.authors[0].lastName"
+        />
+    </div>
+    <div class="form-group">
+        <label for="teachingMaterialPublicationDate">Publication date</label>
+        <input
+            id="teachingMaterialPublicationDate"
+            class="form-control"
+            type="date"
+            name="teachingMaterialPublicationDate"
+            [(ngModel)]="request.teachingMaterialPublicationDate"
+        />
+    </div>
+    <div class="form-group">
+        <label for="teachingMaterialOutcome">Outcome description</label>
+        <input
+            id="teachingMaterialOutcome"
+            class="form-control"
+            type="text"
+            name="teachingMaterialOutcomeDescription"
+            [(ngModel)]="request.teachingTermOutcomeDescription"
+        />
+    </div>
+    <app-error [errors]="errors"></app-error>
+    <div class="col-md-12 u-flex u-flex-jc-c u-mb-l">
+        <button class="btn btn-primary" type="submit">Add</button>
+    </div>
+</form>
