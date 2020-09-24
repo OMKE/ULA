@@ -44,4 +44,10 @@ export class TeacherNotificationsComponent implements OnInit {
             this.decreaseCurrentPage();
         }
     }
+
+    delete(id: number) {
+        this.teacherService.deleteNotification(id).subscribe((res) => {
+            this.getNotifications(this.currentPage);
+        });
+    }
 }

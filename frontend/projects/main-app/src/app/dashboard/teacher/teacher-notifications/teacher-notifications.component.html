@@ -13,6 +13,7 @@
             <th scope="col">Type</th>
             <th scope="col">Text</th>
             <th scope="col">Time</th>
+            <th scope="col">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -30,6 +31,11 @@
             <td>{{ notification.type }}</td>
             <td>{{ notification.text }}</td>
             <td>{{ notification.time | date: "MM-dd-yyyy h:mm" }}</td>
+            <td>
+                <a (click)="delete(notification.id)" class="btn btn-danger"
+                    >Delete</a
+                >
+            </td>
         </tr>
     </tbody>
 </table>
