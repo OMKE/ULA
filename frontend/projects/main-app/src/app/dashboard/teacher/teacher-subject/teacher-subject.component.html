@@ -1,0 +1,94 @@
+<h1 class="u-mb-m h-m">{{ subject.name }}</h1>
+
+<ul class="list-group mx-auto u-mb-l">
+    <div class="u-mb-xs" [innerHtml]="subject.syllabus.content"></div>
+    <div class="u-mb-l"><a class="btn btn-primary">Update syllabus</a></div>
+    <li class="list-group-item">Semester: {{ subject.semester }}</li>
+    <li class="list-group-item">Espb: {{ subject.espb }}</li>
+    <li class="list-group-item">Lectures: {{ subject.numberOfLectures }}</li>
+    <li class="list-group-item">
+        Practical lectures: {{ subject.numberOfPracticalLectures }}
+    </li>
+    <li class="list-group-item">
+        Other forms of lectures: {{ subject.otherFormsOfLectures }}
+    </li>
+    <li class="list-group-item">Research works: {{ subject.researchWorks }}</li>
+    <li class="list-group-item">Other lectures: {{ subject.otherLectures }}</li>
+    <li class="list-group-item">Required: {{ subject.required }}</li>
+</ul>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone number</th>
+            <th scope="col">Transcript identifier</th>
+            <th scope="col">Final grade</th>
+            <th scope="col">Date of enrollment</th>
+            <th scope="col">Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let student of students">
+            <td *ngIf="student.student.user.profileImage != undefined">
+                <img
+                    class="table-image"
+                    [src]="getStudentImage(student.student.user.profileImage)"
+                    (load)="getStudentImage(student.student.user.profileImage)"
+                    alt="{{ student.student.user.firstName }} {{
+                        student.student.user.lastName
+                    }} profile image"
+                />
+            </td>
+            <td>
+                {{ student.student.user.firstName }}
+                {{ student.student.user.lastName }}
+            </td>
+            <td>{{ student.student.user.email }}</td>
+            <td>{{ student.student.phoneNumber }}</td>
+            <td>{{ student.transcriptIdentifier }}</td>
+            <td>{{ student.attendance.finalGrade }}</td>
+            <td>{{ student.dateOfEnrollment | date: "MM-dd-yyyy" }}</td>
+            <td>
+                <a
+                    [routerLink]="[
+                        '/dashboard/teacher/subjects',
+                        subject.id,
+                        'student',
+                        student.id
+                    ]"
+                    class="btn btn-primary"
+                    >Open</a
+                >
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<nav class="u-mb-l">
+    <ul class="pagination u-flex-jc-c u-mt-xs">
+        <li class="page-item u-flex u-flex-jc-sb w-25">
+            <a
+                class="page-link"
+                aria-label="Previous"
+                (click)="decreaseStudentCurrentPage()"
+                (click)="getStudents(currentPageStudent)"
+            >
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+            </a>
+
+            <a
+                class="page-link"
+                aria-label="Next"
+                (click)="increaseStudentCurrentPage()"
+                (click)="getStudents(currentPageStudent)"
+            >
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+    </ul>
+</nav>
