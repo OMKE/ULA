@@ -10,6 +10,7 @@ import { TakingExam } from "../core/models/TakingExam";
 import { TeacherExam } from "../core/models/TeacherExam";
 import { TeacherStudent } from "../core/models/TeacherStudent";
 import { TeachingTerm } from "../core/models/TeachingTerm";
+import { TeachingType } from "../core/models/TeachingType";
 import { AddExamRequest } from "../core/requests/AddExamRequest";
 import { AddNotificationRequest } from "../core/requests/AddNotificationRequest";
 import { AddTeachingTermRequest } from "../core/requests/AddTeachingTermRequest";
@@ -101,7 +102,13 @@ export class TeacherService {
         size: number
     ): Observable<GenericResponse<TeachingTerm[]>> {
         return this.http.get<GenericResponse<TeachingTerm[]>>(
-            `${url}/teacher/teaching-term/${subjectId}&page=${page}&size=${size}`
+            `${url}/teacher/teaching-term/subject/${subjectId}?page=${page}&size=${size}`
+        );
+    }
+
+    getTeachingTermTypes(): Observable<GenericResponse<TeachingType[]>> {
+        return this.http.get<GenericResponse<TeachingType[]>>(
+            `${url}/faculty/teaching-type`
         );
     }
 
@@ -167,7 +174,7 @@ export class TeacherService {
         examId: number
     ): Observable<GenericResponse<TeacherExam>> {
         return this.http.get<GenericResponse<TeacherExam>>(
-            `${url}/teacher/subject/${subjectId}/student/${studentId}/taking-exam/exam/$${examId}`
+            `${url}/teacher/subject/${subjectId}/student/${studentId}/taking-exam/exam/${examId}`
         );
     }
 
