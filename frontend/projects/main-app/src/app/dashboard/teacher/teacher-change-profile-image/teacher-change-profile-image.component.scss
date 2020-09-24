@@ -1,0 +1,18 @@
+.user {
+    &__image-container {
+        width: 20rem;
+        height: 20rem;
+    }
+
+    &__image {
+        height: 80%;
+        width: 80%;
+        object-fit: contain;
+    }
+}
+.delete-image-button {
+    padding: 0.9rem 2.8rem;
+    background-color: #d70b30;
+    border-radius: 0.5rem;
+    color: #fff;
+}
