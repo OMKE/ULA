@@ -1,0 +1,37 @@
+<h1 class="u-mb-m h-m">Subjects</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Subject name</th>
+            <th scope="col">Semester</th>
+            <th scope="col">Espb</th>
+            <th scope="col">Required</th>
+            <th scope="col">Lectures</th>
+            <th scope="col">Practical lectures</th>
+            <th scope="col">Other forms of lectures</th>
+            <th scope="col">Research works</th>
+            <th scope="col">Other lectures</th>
+            <th scope="col">Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let subject of subjects">
+            <td>{{ subject.name }}</td>
+            <td>{{ subject.semester }}</td>
+            <td>{{ subject.espb }}</td>
+            <td>{{ subject.required }}</td>
+            <td>{{ subject.numberOfLectures }}</td>
+            <td>{{ subject.numberOfPracticalLectures }}</td>
+            <td>{{ subject.otherFormsOfLectures }}</td>
+            <td>{{ subject.researchWorks }}</td>
+            <td>{{ subject.otherLectures }}</td>
+            <td>
+                <a
+                    class="btn btn-primary"
+                    [routerLink]="['/dashboard/teacher/subjects', subject.id]"
+                    >Open</a
+                >
+            </td>
+        </tr>
+    </tbody>
+</table>
