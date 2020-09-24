@@ -32,6 +32,7 @@ public class TakingExamMapper
                                                             .setStartTime(exam.getStartTime())
                                                             .setEndTime(exam.getEndTime())
                                                             .setPoints(exam.getPoints())
+                                                            .setFinalExam(exam.isFinalExam())
                                                             .setExamEntry(exam.getExamEntry() != null ?
                                                                     new ExamEntryDTO()
                                                                         .setId(exam.getExamEntry().getId())
