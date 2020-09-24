@@ -17,6 +17,7 @@
     <li class="list-group-item">Required: {{ subject.required }}</li>
 </ul>
 
+<h3>Students</h3>
 <table class="table">
     <thead>
         <tr>
@@ -92,3 +93,50 @@
         </li>
     </ul>
 </nav>
+
+<h3>Teaching terms</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Type</th>
+            <th scope="col">Start time</th>
+            <th scope="col">End time</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let teachingTerm of teachingTerms">
+            <td>{{ teachingTerm.type.name }}</td>
+            <td>{{ teachingTerm.startTime | date: "MM-dd-yyyy h:m" }}</td>
+            <td>{{ teachingTerm.endTime | date: "MM-dd-yyyy h:m" }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<nav class="u-mb-l">
+    <ul class="pagination u-flex-jc-c u-mt-xs">
+        <li class="page-item u-flex u-flex-jc-sb w-25">
+            <a
+                class="page-link"
+                aria-label="Previous"
+                (click)="decreaseTermsCurrentPage()"
+                (click)="getTeachingTerms(currentPageTeachingTerms)"
+            >
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+            </a>
+
+            <a
+                class="page-link"
+                aria-label="Next"
+                (click)="increaseTermsCurrentPage()"
+                (click)="getTeachingTerms(currentPageTeachingTerms)"
+            >
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+<div class="col-md-4 mx-auto u-flex u-flex-jc-c u-flex-ai-c u-mb-l">
+    <a (click)="navigateToTeachingTermAdd()" class="btn btn-primary">Add</a>
+</div>

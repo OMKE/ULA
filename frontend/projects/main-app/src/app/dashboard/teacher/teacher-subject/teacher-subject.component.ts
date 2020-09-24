@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { userImageURL } from "../../../core/models/API";
 import { Subject } from "../../../core/models/Subject";
 import { TeacherStudent } from "../../../core/models/TeacherStudent";
@@ -15,7 +15,8 @@ import { TeacherService } from "../../../services/teacher.service";
 export class TeacherSubjectComponent implements OnInit {
     constructor(
         private teacherService: TeacherService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private router: Router
     ) {}
 
     students: TeacherStudent[];
@@ -59,11 +60,11 @@ export class TeacherSubjectComponent implements OnInit {
     }
 
     getTeachingTerms(page: number) {
-        this.teacherService.getTeachingTerm(
-            this.route.snapshot.params["id"],
-            page,
-            7
-        );
+        this.teacherService
+            .getTeachingTerm(this.route.snapshot.params["id"], page, 7)
+            .subscribe((res) => {
+                this.populateTeachingTerms(res.payload);
+            });
     }
 
     getStudents(page: number) {
@@ -86,6 +87,14 @@ export class TeacherSubjectComponent implements OnInit {
         }
     }
 
+    populateTeachingTerms(teachingTerms: TeachingTerm[]) {
+        if (teachingTerms.length != 0) {
+            this.teachingTerms = teachingTerms;
+        } else {
+            this.decreaseStudentCurrentPage();
+        }
+    }
+
     increaseStudentCurrentPage() {
         this.currentPageStudent += 1;
     }
@@ -93,5 +102,20 @@ export class TeacherSubjectComponent implements OnInit {
         if (this.currentPageStudent != 0) {
             this.currentPageStudent -= 1;
         }
+    }
+
+    increaseTermsCurrentPage() {
+        this.currentPageTeachingTerms += 1;
+    }
+    decreaseTermsCurrentPage() {
+        if (this.currentPageTeachingTerms != 0) {
+            this.currentPageTeachingTerms -= 1;
+        }
+    }
+
+    navigateToTeachingTermAdd(): void {
+        this.router.navigate([
+            `/dashboard/teacher/subjects/${this.subject.id}/add-teaching-term`,
+        ]);
     }
 }
