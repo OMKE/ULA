@@ -20,6 +20,7 @@ export interface YearOfStudy {
                 researchWorks: number;
                 otherLectures: number;
             };
+            finalGrade?: number;
         }
     ];
 }
