@@ -1,0 +1,21 @@
+.user {
+    &__image-container {
+        width: 20rem;
+        height: 20rem;
+        overflow: hidden;
+    }
+
+    &__image {
+        height: 80%;
+        width: 80%;
+        object-fit: contain;
+    }
+}
+.table-btn {
+    font-size: 16px;
+    padding: 0.7rem 1.5rem;
+}
+
+input {
+    font-size: 16px;
+}
