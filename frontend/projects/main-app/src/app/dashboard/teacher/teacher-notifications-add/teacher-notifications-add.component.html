@@ -1,0 +1,50 @@
+<h1 class="u-mb-m h-m">Add notification</h1>
+
+<div class="col-md-8 mx-auto">
+    <form (ngSubmit)="addNotification()">
+        <div class="form-group">
+            <label for="typeId">Subject: </label>
+            <select
+                name="typeId"
+                id="typeId"
+                class="form-control"
+                [(ngModel)]="notification.subjectId"
+            >
+                <option
+                    value="{{ subject.id }}"
+                    *ngFor="let subject of subjects"
+                >
+                    {{ subject.name }}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="typeId">Notification type: </label>
+            <select
+                name="typeId"
+                id="typeId"
+                class="form-control"
+                [(ngModel)]="notification.typeId"
+            >
+                <option
+                    value="{{ type.id }}"
+                    *ngFor="let type of notificationTypes"
+                >
+                    {{ type.name }}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="text">Text</label>
+            <input
+                id="text"
+                class="form-control"
+                type="text"
+                name="text"
+                [(ngModel)]="notification.text"
+            />
+        </div>
+        <app-error [errors]="errors"></app-error>
+        <button class="btn btn-primary" type="submit">Add notification</button>
+    </form>
+</div>
