@@ -30,7 +30,7 @@
             <td>{{ notification.subjectName }}</td>
             <td>{{ notification.type }}</td>
             <td>{{ notification.text }}</td>
-            <td>{{ notification.time | date: "MM-dd-yyyy h:mm" }}</td>
+            <td>{{ notification.time | date: "MM-dd-yyyy hh:mm" }}</td>
             <td>
                 <a (click)="delete(notification.id)" class="btn btn-danger"
                     >Delete</a
