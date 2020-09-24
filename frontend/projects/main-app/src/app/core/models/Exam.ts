@@ -10,4 +10,9 @@ export interface Exam {
     points: number;
     examType: string;
     finalExam: boolean;
+    outcome?: {
+        id: number;
+        examId: number;
+        description: string;
+    };
 }
