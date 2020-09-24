@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { StudentService } from "../../../services/student.service";
 
 @Component({
@@ -13,6 +13,12 @@ export class StudentNotificationsComponent implements OnInit {
 
     currentPage = 0;
 
+    @Input()
+    basedOnSubject: boolean = false;
+
+    @Input()
+    subjectId: number = null;
+
     ngOnInit(): void {
         this.getNotifications(this.currentPage);
     }
@@ -26,9 +32,17 @@ export class StudentNotificationsComponent implements OnInit {
     }
 
     getNotifications(page: number): void {
-        this.studentService
-            .getNotifications(page, 7)
-            .subscribe((res) => this.populate(res.payload));
+        if (!this.basedOnSubject) {
+            this.studentService
+                .getNotifications(page, 7)
+                .subscribe((res) => this.populate(res.payload));
+        } else {
+            this.studentService
+                .getBasedOnSubject(this.subjectId, page, 7)
+                .subscribe((res) => {
+                    this.populate(res.payload);
+                });
+        }
     }
 
     populate(notifications: Notification[]) {
