@@ -10,17 +10,17 @@ import { TeacherExamAddComponent } from "./teacher-exam-add/teacher-exam-add.com
 import { TeacherExamUpdateComponent } from "./teacher-exam-update/teacher-exam-update.component";
 import { TeacherExamComponent } from "./teacher-exam/teacher-exam.component";
 import { TeacherNavbarComponent } from "./teacher-navbar/teacher-navbar.component";
+import { TeacherNotificationsAddComponent } from "./teacher-notifications-add/teacher-notifications-add.component";
 import { TeacherNotificationsComponent } from "./teacher-notifications/teacher-notifications.component";
 import { TeacherProfileComponent } from "./teacher-profile/teacher-profile.component";
 import { TeacherRoutingModule } from "./teacher-routing.module";
+import { TeacherStudentComponent } from "./teacher-student/teacher-student.component";
 import { TeacherStudentsComponent } from "./teacher-students/teacher-students.component";
+import { TeacherSubjectStudentComponent } from "./teacher-subject-student/teacher-subject-student.component";
+import { TeacherSubjectComponent } from "./teacher-subject/teacher-subject.component";
 import { TeacherSubjectsComponent } from "./teacher-subjects/teacher-subjects.component";
-import { TeacherTeachingTermsComponent } from "./teacher-teaching-terms/teacher-teaching-terms.component";
 import { TeacherUpdateProfileComponent } from "./teacher-update-profile/teacher-update-profile.component";
 import { TeacherUpdateSubjectSyllabusComponent } from "./teacher-update-subject-syllabus/teacher-update-subject-syllabus.component";
-import { TeacherNotificationsAddComponent } from './teacher-notifications-add/teacher-notifications-add.component';
-import { TeacherStudentComponent } from './teacher-student/teacher-student.component';
-import { TeacherSubjectComponent } from './teacher-subject/teacher-subject.component';
 
 @NgModule({
     declarations: [
@@ -33,7 +33,6 @@ import { TeacherSubjectComponent } from './teacher-subject/teacher-subject.compo
         TeacherStudentsComponent,
         TeacherSubjectsComponent,
         TeacherUpdateSubjectSyllabusComponent,
-        TeacherTeachingTermsComponent,
         TeacherAddTeachingTermComponent,
         TeacherExamComponent,
         TeacherExamUpdateComponent,
@@ -42,6 +41,7 @@ import { TeacherSubjectComponent } from './teacher-subject/teacher-subject.compo
         TeacherNotificationsAddComponent,
         TeacherStudentComponent,
         TeacherSubjectComponent,
+        TeacherSubjectStudentComponent,
     ],
     imports: [CommonModule, TeacherRoutingModule, FormsModule, SharedModule],
 })
