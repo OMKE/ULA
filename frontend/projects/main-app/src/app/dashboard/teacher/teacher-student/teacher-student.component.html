@@ -1,0 +1,34 @@
+<h1 class="u-mb-m h-m">
+    {{ student.student.user.firstName }} {{ student.student.user.lastName }}
+</h1>
+
+<div>
+    <div class="col-md-8 mx-auto user__image-container">
+        <img
+            *ngIf="student.student.user.profileImage"
+            [src]="getImage()"
+            (load)="getImage()"
+            class="rounded mx-auto d-block user__image"
+            alt="{{ student.student.user.firstName }} {{
+                student.student.user.lastName
+            }} profile image"
+        />
+    </div>
+    <ul class="list-group mx-auto u-mt-m">
+        <li class="list-group-item">Email: {{ student.student.user.email }}</li>
+        <li class="list-group-item">
+            Phone number: {{ student.student.phoneNumber }}
+        </li>
+        <li class="list-group-item">
+            Transcript identifier: {{ student.transcriptIdentifier }}
+        </li>
+        <li class="list-group-item">
+            Date of enrollment:
+            {{ student.dateOfEnrollment | date: "MM-dd-yyyy" }}
+        </li>
+        <li class="list-group-item">
+            Date of birth:
+            {{ student.student.dateOfBirth | date: "MM-dd-yyyy" }}
+        </li>
+    </ul>
+</div>
