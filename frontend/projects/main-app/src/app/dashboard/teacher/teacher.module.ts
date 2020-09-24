@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
+import { QuillModule } from "ngx-quill";
 import { SharedModule } from "../../shared/shared.module";
 import { TeacherComponent } from "../teacher/teacher.component";
 import { TeacherAddTeachingTermComponent } from "./teacher-add-teaching-term/teacher-add-teaching-term.component";
@@ -8,7 +9,6 @@ import { TeacherChangePasswordComponent } from "./teacher-change-password/teache
 import { TeacherChangeProfileImageComponent } from "./teacher-change-profile-image/teacher-change-profile-image.component";
 import { TeacherExamAddComponent } from "./teacher-exam-add/teacher-exam-add.component";
 import { TeacherExamUpdateComponent } from "./teacher-exam-update/teacher-exam-update.component";
-import { TeacherExamComponent } from "./teacher-exam/teacher-exam.component";
 import { TeacherNavbarComponent } from "./teacher-navbar/teacher-navbar.component";
 import { TeacherNotificationsAddComponent } from "./teacher-notifications-add/teacher-notifications-add.component";
 import { TeacherNotificationsComponent } from "./teacher-notifications/teacher-notifications.component";
@@ -34,7 +34,6 @@ import { TeacherUpdateSubjectSyllabusComponent } from "./teacher-update-subject-
         TeacherSubjectsComponent,
         TeacherUpdateSubjectSyllabusComponent,
         TeacherAddTeachingTermComponent,
-        TeacherExamComponent,
         TeacherExamUpdateComponent,
         TeacherExamAddComponent,
         TeacherNavbarComponent,
@@ -43,6 +42,12 @@ import { TeacherUpdateSubjectSyllabusComponent } from "./teacher-update-subject-
         TeacherSubjectComponent,
         TeacherSubjectStudentComponent,
     ],
-    imports: [CommonModule, TeacherRoutingModule, FormsModule, SharedModule],
+    imports: [
+        CommonModule,
+        QuillModule.forRoot(),
+        TeacherRoutingModule,
+        FormsModule,
+        SharedModule,
+    ],
 })
 export class TeacherModule {}

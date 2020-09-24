@@ -1,1 +1,11 @@
-<p>teacher-update-subject-syllabus works!</p>
+<h1 class="u-mb-m h-m">Update subject syllabus</h1>
+
+<quill-editor
+    [styles]="quillStyles"
+    [modules]="config"
+    [(ngModel)]="content"
+></quill-editor>
+
+<form class="u-flex u-mt-s u-flex-jc-c" (ngSubmit)="updateSyllabus()">
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>

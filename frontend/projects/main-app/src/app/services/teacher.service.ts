@@ -2,6 +2,8 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { url } from "../core/models/API";
+import { ExamTerm } from "../core/models/ExamTerm";
+import { ExamType } from "../core/models/ExamType";
 import { GenericResponse } from "../core/models/GenericResponse";
 import { StudentPointsCalculated } from "../core/models/StudentPointsCalculated";
 import { Subject } from "../core/models/Subject";
@@ -210,6 +212,16 @@ export class TeacherService {
     ): Observable<GenericResponse<TeacherStudent[]>> {
         return this.http.get<GenericResponse<TeacherStudent[]>>(
             `${url}/teacher/student?search=${searchParam}`
+        );
+    }
+
+    getExamTerms(): Observable<GenericResponse<ExamTerm[]>> {
+        return this.http.get<GenericResponse<ExamTerm[]>>(`${url}/exam/term`);
+    }
+
+    getExamTypes(): Observable<GenericResponse<ExamType[]>> {
+        return this.http.get<GenericResponse<ExamType[]>>(
+            `${url}/exam/exam-type`
         );
     }
 }
