@@ -1,1 +1,55 @@
 <h1 class="u-mb-m h-m">Subjects</h1>
+
+<h4 class="u-mb-s">Total espb for all years: {{ allTotalEspb }}</h4>
+<div class="year-of-study u-mb-m" *ngFor="let yearOfStudy of yearOfStudies">
+    <h4>Year of study id: {{ yearOfStudy.id }}</h4>
+    <h4>Average grade: {{ yearOfStudy.averageGrade }}</h4>
+    <h4>Total ESPB: {{ yearOfStudy.totalEspb }}</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Subject name</th>
+                <th scope="col">Final grade</th>
+                <th scope="col">Semester</th>
+                <th scope="col">Espb</th>
+                <th scope="col">Required</th>
+                <th scope="col">Lectures</th>
+                <th scope="col">Practical lectures</th>
+                <th scope="col">Other forms of lectures</th>
+                <th scope="col">Research works</th>
+                <th scope="col">Other lectures</th>
+                <th scope="col">Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let subject of yearOfStudy.subjects">
+                <td>{{ subject.subject.name }}</td>
+                <td>
+                    {{
+                        subject.finalGrade != null
+                            ? subject.finalGrade
+                            : "No grade"
+                    }}
+                </td>
+                <td>{{ subject.subject.semester }}</td>
+                <td>{{ subject.subject.espb }}</td>
+                <td>{{ subject.subject.required }}</td>
+                <td>{{ subject.subject.numberOfLectures }}</td>
+                <td>{{ subject.subject.numberOfPracticalLectures }}</td>
+                <td>{{ subject.subject.otherFormsOfLectures }}</td>
+                <td>{{ subject.subject.researchWorks }}</td>
+                <td>{{ subject.subject.otherLectures }}</td>
+                <td>
+                    <a
+                        class="btn btn-primary"
+                        [routerLink]="[
+                            '/dashboard/student/subjects',
+                            subject.id
+                        ]"
+                        >Open</a
+                    >
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
