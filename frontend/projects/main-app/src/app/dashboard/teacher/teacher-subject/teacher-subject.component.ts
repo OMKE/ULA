@@ -91,7 +91,7 @@ export class TeacherSubjectComponent implements OnInit {
         if (teachingTerms.length != 0) {
             this.teachingTerms = teachingTerms;
         } else {
-            this.decreaseStudentCurrentPage();
+            this.decreaseTermsCurrentPage();
         }
     }
 
@@ -116,6 +116,12 @@ export class TeacherSubjectComponent implements OnInit {
     navigateToTeachingTermAdd(): void {
         this.router.navigate([
             `/dashboard/teacher/subjects/${this.subject.id}/add-teaching-term`,
+        ]);
+    }
+
+    navigateToAddExam(): void {
+        this.router.navigate([
+            `/dashboard/teacher/subjects/${this.subject.id}/add-exam`,
         ]);
     }
 }

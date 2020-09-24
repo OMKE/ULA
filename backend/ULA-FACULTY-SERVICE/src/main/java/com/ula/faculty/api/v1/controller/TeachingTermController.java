@@ -8,6 +8,7 @@ import com.ula.faculty.service.exception.TeacherOnRealizationNotFoundException;
 import com.ula.faculty.service.exception.TeachingTypeNotFoundException;
 import com.ula.faculty.service.teachingterm.TeachingTermService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -29,10 +30,10 @@ public class TeachingTermController extends BaseController
 
     @Authorized("[ADMIN, TEACHER]")
     @GetMapping("/subject/{id}/term")
-    public Response<Object> index(@PathVariable("id") Long subjectId)
+    public Response<Object> index(@PathVariable("id") Long subjectId, Pageable pageable)
     {
         try {
-            return Response.ok().setPayload(this.teachingTermService.index(subjectId));
+            return Response.ok().setPayload(this.teachingTermService.index(subjectId, pageable));
         } catch (SubjectRealizationNotFoundException | SubjectNotFoundException e) {
             return Response.exception().setErrors(e.getMessage());
         }

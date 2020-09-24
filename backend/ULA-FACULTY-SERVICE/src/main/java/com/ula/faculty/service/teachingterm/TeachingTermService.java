@@ -7,6 +7,7 @@ import com.ula.faculty.service.exception.SubjectNotFoundException;
 import com.ula.faculty.service.exception.SubjectRealizationNotFoundException;
 import com.ula.faculty.service.exception.TeacherOnRealizationNotFoundException;
 import com.ula.faculty.service.exception.TeachingTypeNotFoundException;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
 import org.ula.core.exception.NotAuthorizedException;
 
@@ -14,7 +15,7 @@ import java.util.List;
 
 public interface TeachingTermService
 {
-    List<TeachingTermDTO> index(Long subjectId)
+    List<TeachingTermDTO> index(Long subjectId, Pageable pageable)
     throws SubjectRealizationNotFoundException, SubjectNotFoundException;
 
     List<TeachingTypeDTO> types();

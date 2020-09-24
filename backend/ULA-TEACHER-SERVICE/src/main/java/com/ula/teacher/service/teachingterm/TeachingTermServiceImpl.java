@@ -6,6 +6,7 @@ import com.ula.teacher.feign.AuthServiceFeignClient;
 import com.ula.teacher.feign.FacultyServiceFeignClient;
 import com.ula.teacher.service.exception.TeacherNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.ula.core.api.response.Response;
 import org.ula.core.util.JWTUtil;
@@ -24,9 +25,9 @@ public class TeachingTermServiceImpl implements TeachingTermService
     private JWTUtil jwtUtil;
 
     @Override
-    public Response<Object> index(Long subjectId)
+    public Response<Object> index(Long subjectId, Pageable pageable)
     {
-        return this.facultyService.getTeachingTermsBySubjectId(this.jwtUtil.getToken(), subjectId);
+        return this.facultyService.getTeachingTermsBySubjectId(this.jwtUtil.getToken(), subjectId, pageable);
     }
 
     @Override

@@ -2,7 +2,11 @@
 
 <ul class="list-group mx-auto u-mb-l">
     <div class="u-mb-xs" [innerHtml]="subject.syllabus.content"></div>
-    <div class="u-mb-l"><a class="btn btn-primary">Update syllabus</a></div>
+    <div class="u-mb-l">
+        <a routerLink="update-syllabus" class="btn btn-primary"
+            >Update syllabus</a
+        >
+    </div>
     <li class="list-group-item">Semester: {{ subject.semester }}</li>
     <li class="list-group-item">Espb: {{ subject.espb }}</li>
     <li class="list-group-item">Lectures: {{ subject.numberOfLectures }}</li>
@@ -16,6 +20,10 @@
     <li class="list-group-item">Other lectures: {{ subject.otherLectures }}</li>
     <li class="list-group-item">Required: {{ subject.required }}</li>
 </ul>
+
+<div class="col-md-6 mx-auto u-mb-m u-flex u-flex-jc-c">
+    <a (click)="navigateToAddExam()" class="btn btn-warning">Add exam</a>
+</div>
 
 <h3>Students</h3>
 <table class="table">
@@ -106,8 +114,8 @@
     <tbody>
         <tr *ngFor="let teachingTerm of teachingTerms">
             <td>{{ teachingTerm.type.name }}</td>
-            <td>{{ teachingTerm.startTime | date: "MM-dd-yyyy h:m" }}</td>
-            <td>{{ teachingTerm.endTime | date: "MM-dd-yyyy h:m" }}</td>
+            <td>{{ teachingTerm.startTime | date: "MM-dd-yyyy hh:mm" }}</td>
+            <td>{{ teachingTerm.endTime | date: "MM-dd-yyyy hh:mm" }}</td>
         </tr>
     </tbody>
 </table>

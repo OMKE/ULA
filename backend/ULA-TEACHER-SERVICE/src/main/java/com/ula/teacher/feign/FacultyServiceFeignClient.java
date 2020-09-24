@@ -108,7 +108,8 @@ public interface FacultyServiceFeignClient
     Response<Object> getTeachingTermsBySubjectId
     (
             @RequestHeader(value = "Authorization") String token,
-            @PathVariable("id") Long subjectId
+            @PathVariable("id") Long subjectId,
+            Pageable pageable
     );
 
     // Add teaching term

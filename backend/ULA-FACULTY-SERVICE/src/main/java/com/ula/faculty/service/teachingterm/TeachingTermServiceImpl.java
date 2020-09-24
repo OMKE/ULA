@@ -12,6 +12,7 @@ import com.ula.faculty.service.exception.SubjectRealizationNotFoundException;
 import com.ula.faculty.service.exception.TeacherOnRealizationNotFoundException;
 import com.ula.faculty.service.exception.TeachingTypeNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.ula.core.exception.NotAuthorizedException;
@@ -49,7 +50,7 @@ public class TeachingTermServiceImpl implements TeachingTermService
     private TeacherOnRealizationRepository teacherOnRealizationRepository;
 
     @Override
-    public List<TeachingTermDTO> index(Long subjectId)
+    public List<TeachingTermDTO> index(Long subjectId, Pageable pageable)
     throws SubjectRealizationNotFoundException, SubjectNotFoundException
     {
         Subject subject = this.subjectRepository
@@ -64,7 +65,7 @@ public class TeachingTermServiceImpl implements TeachingTermService
                         String.format("Subject realization with subject id: %s could not be found", subject.getId())));
 
 
-        return TeachingTermMapper.map(this.teachingTermRepository.findBySubjectRealizationId(subjectRealization.getId()));
+        return TeachingTermMapper.map(this.teachingTermRepository.findBySubjectRealizationId(subjectRealization.getId(), pageable));
     }
 
     @Override
