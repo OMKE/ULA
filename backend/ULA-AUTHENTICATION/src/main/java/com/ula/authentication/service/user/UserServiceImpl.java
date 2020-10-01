@@ -30,6 +30,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -110,6 +111,41 @@ public class UserServiceImpl implements UserService
 	public List<User> getAll() {
 
 		return userRepository.findAll();
+	}
+
+    @Override
+    public List<UserDTO> index()
+    {
+        return this.userRepository
+				.findAll()
+				.stream()
+				.map
+					(user ->
+						new UserDTO()
+					 	.setId(user.getId())
+					 	.setUsername(user.getUsername())
+					 	.setEmail(user.getEmail())
+					 	.setFirstName(user.getFirstName())
+					 	.setLastName(user.getLastName())
+					 	.setProfileImage(user.getProfileImage())
+					)
+				.collect(Collectors.toList());
+    }
+
+	@Override
+	public UserDTO show(Long id)
+	throws UserNotFoundException
+	{
+		User user =  this.userRepository
+				.findById(id)
+				.orElseThrow(() -> new UserNotFoundException(String.format("User with id: %s could not be found", id)));
+		return new UserDTO()
+			.setId(user.getId())
+			.setUsername(user.getUsername())
+			.setEmail(user.getEmail())
+			.setFirstName(user.getFirstName())
+			.setLastName(user.getLastName())
+			.setProfileImage(user.getProfileImage());
 	}
 
 	@Override

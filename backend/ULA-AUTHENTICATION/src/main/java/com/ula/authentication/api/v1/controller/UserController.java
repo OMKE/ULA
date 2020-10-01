@@ -31,6 +31,30 @@ public class UserController extends BaseController
     private PasswordEncoder passwordEncoder;
 
 
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/user")
+    public Response<Object> index()
+    {
+        return Response.ok().setPayload(this.userService.index());
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/user/{id}")
+    public Response<Object> show
+    (
+            @PathVariable("id") Long id
+    )
+    {
+        try {
+            return Response.ok().setPayload(this.userService.show(id));
+        } catch (UserNotFoundException e) {
+            return Response.exception().setErrors(errors(e.getMessage()));
+        }
+
+    }
+
+
+
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/me")
     public Response<Object> me(Authentication authentication)
