@@ -32,6 +32,9 @@ public class Faculty extends BaseEntity
 	@Column(columnDefinition = "VARCHAR(256)")
 	private String icon;
 
+	@Column(columnDefinition = "VARCHAR(256)")
+	private String slug;
+
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "faculty")
 	private FacultyInformation information;
 

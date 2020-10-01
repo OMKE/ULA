@@ -23,4 +23,5 @@ public class SubjectWithRealizationIdDTO
     private int otherFormsOfLectures;
     private int researchWorks;
     private int otherLectures;
+    private SubjectSyllabusDTO syllabus;
 }

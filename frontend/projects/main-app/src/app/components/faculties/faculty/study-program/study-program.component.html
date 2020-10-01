@@ -1,0 +1,47 @@
+<div class="u-container u-mt-m u-mb-xl study-program">
+    <h3 class="study-program__heading">{{ studyProgram.name }}</h3>
+
+    <div class="study-program__description u-mt-s">
+        <h1 class="study-program__description-heading">Description</h1>
+        <p class="study-program__description-text">
+            {{ studyProgram.description }}
+        </p>
+    </div>
+    <div class="study-program__manager u-mt-s">
+        <h1 class="study-program__manager-heading">Manager</h1>
+        <p class="study-program__manager-title">
+            {{ studyProgram.manager.title }}
+        </p>
+        <h4 class="study-program__manager-name u-mt-xsP">
+            {{ studyProgram.manager.firstName }}
+            {{ studyProgram.manager.lastName }}
+        </h4>
+        <div class="study-program__manager-contact">
+            <p class="study-program__manager-phone-number">
+                Phone number: {{ studyProgram.manager.phoneNumber }}
+            </p>
+            <p class="study-program__manager-email">
+                Email: {{ studyProgram.manager.email }}
+            </p>
+        </div>
+    </div>
+    <div class="study-program__years u-mt-m" *ngIf="yearOfStudies?.length != 0">
+        <h1>Year of studies</h1>
+        <div class="study-pgraom__years-buttons u-mt-xs">
+            <a
+                (click)="showYearOfStudy(year.id)"
+                *ngFor="let year of yearOfStudies; let first = first"
+                [class.study-program__years-btn--active]="isActive(year.id)"
+                class="study-program__years-btn"
+                >{{ year.ordinalNumber }}</a
+            >
+        </div>
+        <h1 class="u-mt-m">Subjects</h1>
+        <div class="study-program__subjects">
+            <app-subject
+                *ngFor="let subject of subjects"
+                [subject]="subject"
+            ></app-subject>
+        </div>
+    </div>
+</div>

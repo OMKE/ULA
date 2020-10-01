@@ -1,0 +1,76 @@
+@import "../../../../../../styles/abstracts/mixins";
+
+.about-nav {
+    &__list {
+        list-style: none;
+
+        @include break(small) {
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+    }
+
+    &__item {
+        padding-bottom: 2rem;
+        border-bottom: 0.1rem solid var(--color-grey-light-4);
+
+        &:not(:first-child) {
+            @include break(small) {
+                margin-top: 0;
+            }
+
+            margin-top: 1rem;
+        }
+
+        &:not(:last-child) {
+            @include break(small) {
+                margin-right: 5rem;
+            }
+
+            @include break(xsmall) {
+                margin-right: 2rem;
+            }
+        }
+        @include break(small) {
+            border-bottom: none;
+        }
+    }
+
+    &__link {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        align-items: center;
+        color: var(--color-black-2);
+        text-decoration: none;
+        font-size: 4rem;
+        font-weight: 400;
+
+        @include break(medium) {
+            font-size: 3rem;
+        }
+        @include break(small) {
+            & > svg {
+                display: none;
+            }
+        }
+        &--active {
+            & > svg > path {
+                fill: var(--color-primary);
+            }
+            @include break(small) {
+                padding-bottom: 1rem;
+                border-bottom: 0.2rem solid var(--color-primary);
+            }
+        }
+    }
+
+    &__icon {
+        margin-left: 1.5rem;
+        width: 2rem;
+        height: 2rem;
+        justify-self: end;
+    }
+}

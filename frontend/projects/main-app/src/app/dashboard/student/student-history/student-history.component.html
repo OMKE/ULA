@@ -1,0 +1,90 @@
+<h1 class="u-mb-m h-m">History</h1>
+
+<h4>Passed subjects</h4>
+<div class="u-mb-m">
+    <table class="table" *ngIf="passedSubjects.length != 0">
+        <thead>
+            <tr>
+                <th scope="col">Subject name</th>
+                <th scope="col">Semester</th>
+                <th scope="col">Espb</th>
+                <th scope="col">Required</th>
+                <th scope="col">Lectures</th>
+                <th scope="col">Practical lectures</th>
+                <th scope="col">Other forms of lectures</th>
+                <th scope="col">Research works</th>
+                <th scope="col">Other lectures</th>
+                <th scope="col">Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let subject of passedSubjects">
+                <td>{{ subject.subject.name }}</td>
+                <td>{{ subject.subject.semester }}</td>
+                <td>{{ subject.subject.espb }}</td>
+                <td>{{ subject.subject.required }}</td>
+                <td>{{ subject.subject.numberOfLectures }}</td>
+                <td>{{ subject.subject.numberOfPracticalLectures }}</td>
+                <td>{{ subject.subject.otherFormsOfLectures }}</td>
+                <td>{{ subject.subject.researchWorks }}</td>
+                <td>{{ subject.subject.otherLectures }}</td>
+                <td>
+                    <a
+                        class="btn btn-primary"
+                        [routerLink]="[
+                            '/dashboard/student/subjects',
+                            subject.id
+                        ]"
+                        >Open</a
+                    >
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="no-subjects-message" *ngIf="passedSubjects.length == 0">
+        No passed subjects
+    </div>
+</div>
+
+<h4>Not passed subjects</h4>
+<div class="u-mb-m">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Subject name</th>
+                <th scope="col">Semester</th>
+                <th scope="col">Espb</th>
+                <th scope="col">Required</th>
+                <th scope="col">Lectures</th>
+                <th scope="col">Practical lectures</th>
+                <th scope="col">Other forms of lectures</th>
+                <th scope="col">Research works</th>
+                <th scope="col">Other lectures</th>
+                <th scope="col">Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let subject of notPassedSubjects">
+                <td>{{ subject.subject.name }}</td>
+                <td>{{ subject.subject.semester }}</td>
+                <td>{{ subject.subject.espb }}</td>
+                <td>{{ subject.subject.required }}</td>
+                <td>{{ subject.subject.numberOfLectures }}</td>
+                <td>{{ subject.subject.numberOfPracticalLectures }}</td>
+                <td>{{ subject.subject.otherFormsOfLectures }}</td>
+                <td>{{ subject.subject.researchWorks }}</td>
+                <td>{{ subject.subject.otherLectures }}</td>
+                <td>
+                    <a
+                        class="btn btn-primary"
+                        [routerLink]="[
+                            '/dashboard/student/subjects',
+                            subject.id
+                        ]"
+                        >Open</a
+                    >
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.ula.core.api.BaseController;
 import org.ula.core.api.response.Response;
 import org.ula.core.domain.model.UserDTO;
 
 
 @RestController
-public class EmailVerificationController {
+public class EmailVerificationController extends BaseController
+{
 
 	@Autowired
 	private EmailVerificationService emailVerificationService;
@@ -47,7 +49,7 @@ public class EmailVerificationController {
 					.setPayload(emailVerificationService.resend(authentication.getName()));
 		} catch (EmailVerificationTokenException e)
 		{
-			return Response.exception().setErrors(e.getMessage());
+			return Response.exception().setErrors(errors(e.getMessage()));
 		}
 	}
 }

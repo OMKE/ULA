@@ -30,6 +30,7 @@ public class FacultyDTO {
     private Long campusId;
     private String name;
     private String icon;
+    private String slug;
     private Set<StudyProgramDTO> studyPrograms = new HashSet<StudyProgramDTO>() ;
 
 }

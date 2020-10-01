@@ -1,76 +1,76 @@
-INSERT INTO faculty (id, name, icon, campus_id, university_id, created_at) VALUES (1,'Faculty of Technical Sciences', 'faculty_of_technical_sciences.svg', 1, 1, NOW());
-INSERT INTO faculty (id, name, icon, campus_id, university_id, created_at) VALUES (2,'Faculty of Philosophy', 'faculty_of_agriculture.svg', 2, 1, NOW());
-INSERT INTO faculty (id, name, icon, campus_id, university_id, created_at) VALUES (3,'Faculty of Law', 'faculty_of_law.svg', 3, 1, NOW());
-INSERT INTO faculty (id, name, icon, campus_id, university_id, created_at) VALUES (4,'Faculty of Economics', 'faculty_of_economics.svg', 3, 1, NOW());
-INSERT INTO faculty (id, name, icon, campus_id, university_id, created_at) VALUES (5,'Faculty of Medicine', 'faculty_of_medicine.svg', 2, 1, NOW());
-INSERT INTO faculty (id, name, icon, campus_id, university_id, created_at) VALUES (6,'Academy of Arts', 'academy_of_arts.svg', 3, 1, NOW());
+INSERT INTO faculty (id, name, icon, campus_id, university_id, slug,created_at) VALUES (1,'Faculty of Technical Sciences', 'faculty_of_technical_sciences.png', 1, 1, 'FacultyOfTechnicalSciences',NOW());
+INSERT INTO faculty (id, name, icon, campus_id, university_id, slug, created_at) VALUES (2,'Faculty of Philosophy', 'faculty_of_agriculture.png', 2, 1, 'FacultyOfPhilosophy',NOW());
+INSERT INTO faculty (id, name, icon, campus_id, university_id, slug, created_at) VALUES (3,'Faculty of Law', 'faculty_of_law.png', 3, 1, 'FacultyOfLaw',NOW());
+INSERT INTO faculty (id, name, icon, campus_id, university_id, slug, created_at) VALUES (4,'Faculty of Economics', 'faculty_of_economics.png', 3, 1, 'FacultyOfEconomics',NOW());
+INSERT INTO faculty (id, name, icon, campus_id, university_id, slug, created_at) VALUES (5,'Faculty of Medicine', 'faculty_of_medicine.png', 2, 1, 'FacultyOfMedicine',NOW());
+INSERT INTO faculty (id, name, icon, campus_id, university_id, slug, created_at) VALUES (6,'Academy of Arts', 'academy_of_arts.png', 3, 1, 'AcademyOfArts',NOW());
 
 
 
-INSERT INTO faculty_information (id, faculty_id, email, history, mission, accreditation, president, phone_number, address_id, location_id,created_at) VALUES (1, 1, 'fts@ula.com', '<h4>Vitae purus ipsum, justo, vetibulum</h1><p>Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
-Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4>Lorem sagittis in praesent donec</h4><p>Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
-Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4>Vitae purus ipsum, justo, vetibulum</h1><p>Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
-Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4>Lorem sagittis in praesent donec</h4><p>Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
-Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4>Vitae purus ipsum, justo, vetibulum</h1><p>Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
-Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4>Lorem sagittis in praesent donec</h4><p>Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
-Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4>Vitae purus ipsum, justo, vetibulum</h1><p>Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
-Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4>Lorem sagittis in praesent donec</h4><p>Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
+INSERT INTO faculty_information (id, faculty_id, email, history, mission, accreditation, president, phone_number, address_id, location_id,created_at) VALUES (1, 1, 'fts@ula.com', '<h4 class="faculty-about__heading">Vitae purus ipsum, justo, vetibulum</h1><p class="faculty-about__text">Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
+Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4 class="faculty-about__heading">Lorem sagittis in praesent donec</h4><p class="faculty-about__text">Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
+Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4 class="faculty-about__heading">Vitae purus ipsum, justo, vetibulum</h1><p class="faculty-about__text">Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
+Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4 class="faculty-about__heading">Lorem sagittis in praesent donec</h4><p class="faculty-about__text">Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
+Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4 class="faculty-about__heading">Vitae purus ipsum, justo, vetibulum</h1><p class="faculty-about__text">Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
+Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4 class="faculty-about__heading">Lorem sagittis in praesent donec</h4><p class="faculty-about__text">Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
+Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4 class="faculty-about__heading">Vitae purus ipsum, justo, vetibulum</h1><p class="faculty-about__text">Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
+Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4 class="faculty-about__heading">Lorem sagittis in praesent donec</h4><p class="faculty-about__text">Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
 Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '202-555-0184', 1, 2, NOW());
 
 
 
-INSERT INTO faculty_information (id, faculty_id, email, history, mission, accreditation, president, phone_number, address_id, location_id,created_at) VALUES (2, 2, 'fa@ula.com', '<h4>Vitae purus ipsum, justo, vetibulum</h1><p>Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
-Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4>Lorem sagittis in praesent donec</h4><p>Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
-Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4>Vitae purus ipsum, justo, vetibulum</h1><p>Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
-Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4>Lorem sagittis in praesent donec</h4><p>Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
-Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4>Vitae purus ipsum, justo, vetibulum</h1><p>Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
-Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4>Lorem sagittis in praesent donec</h4><p>Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
-Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4>Vitae purus ipsum, justo, vetibulum</h1><p>Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
-Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4>Lorem sagittis in praesent donec</h4><p>Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
+INSERT INTO faculty_information (id, faculty_id, email, history, mission, accreditation, president, phone_number, address_id, location_id,created_at) VALUES (2, 2, 'fa@ula.com', '<h4 class="faculty-about__heading">Vitae purus ipsum, justo, vetibulum</h1><p class="faculty-about__text">Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
+Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4 class="faculty-about__heading">Lorem sagittis in praesent donec</h4><p class="faculty-about__text">Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
+Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4 class="faculty-about__heading">Vitae purus ipsum, justo, vetibulum</h1><p class="faculty-about__text">Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
+Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4 class="faculty-about__heading">Lorem sagittis in praesent donec</h4><p class="faculty-about__text">Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
+Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4 class="faculty-about__heading">Vitae purus ipsum, justo, vetibulum</h1><p class="faculty-about__text">Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
+Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4 class="faculty-about__heading">Lorem sagittis in praesent donec</h4><p class="faculty-about__text">Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
+Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4 class="faculty-about__heading">Vitae purus ipsum, justo, vetibulum</h1><p class="faculty-about__text">Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
+Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4 class="faculty-about__heading">Lorem sagittis in praesent donec</h4><p class="faculty-about__text">Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
 Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '202-555-0185', 2, 2,NOW());
 
 
-INSERT INTO faculty_information (id, faculty_id, email, history, mission, accreditation, president, phone_number, address_id, location_id, created_at) VALUES (3, 3, 'fl@ula.com', '<h4>Vitae purus ipsum, justo, vetibulum</h1><p>Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
-Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4>Lorem sagittis in praesent donec</h4><p>Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
-Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4>Vitae purus ipsum, justo, vetibulum</h1><p>Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
-Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4>Lorem sagittis in praesent donec</h4><p>Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
-Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4>Vitae purus ipsum, justo, vetibulum</h1><p>Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
-Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4>Lorem sagittis in praesent donec</h4><p>Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
-Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4>Vitae purus ipsum, justo, vetibulum</h1><p>Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
-Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4>Lorem sagittis in praesent donec</h4><p>Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
+INSERT INTO faculty_information (id, faculty_id, email, history, mission, accreditation, president, phone_number, address_id, location_id, created_at) VALUES (3, 3, 'fl@ula.com', '<h4 class="faculty-about__heading">Vitae purus ipsum, justo, vetibulum</h1><p class="faculty-about__text">Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
+Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4 class="faculty-about__heading">Lorem sagittis in praesent donec</h4><p class="faculty-about__text">Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
+Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4 class="faculty-about__heading">Vitae purus ipsum, justo, vetibulum</h1><p class="faculty-about__text">Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
+Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4 class="faculty-about__heading">Lorem sagittis in praesent donec</h4><p class="faculty-about__text">Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
+Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4 class="faculty-about__heading">Vitae purus ipsum, justo, vetibulum</h1><p class="faculty-about__text">Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
+Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4 class="faculty-about__heading">Lorem sagittis in praesent donec</h4><p class="faculty-about__text">Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
+Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4 class="faculty-about__heading">Vitae purus ipsum, justo, vetibulum</h1><p class="faculty-about__text">Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
+Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4 class="faculty-about__heading">Lorem sagittis in praesent donec</h4><p class="faculty-about__text">Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
 Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '202-555-0186', 3, 2, NOW());
 
 
-INSERT INTO faculty_information (id, faculty_id, email, history, mission, accreditation, president, phone_number, address_id, location_id,created_at) VALUES (4, 4, 'fe@ula.com', '<h4>Vitae purus ipsum, justo, vetibulum</h1><p>Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
-Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4>Lorem sagittis in praesent donec</h4><p>Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
-Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4>Vitae purus ipsum, justo, vetibulum</h1><p>Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
-Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4>Lorem sagittis in praesent donec</h4><p>Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
-Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4>Vitae purus ipsum, justo, vetibulum</h1><p>Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
-Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4>Lorem sagittis in praesent donec</h4><p>Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
-Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4>Vitae purus ipsum, justo, vetibulum</h1><p>Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
-Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4>Lorem sagittis in praesent donec</h4><p>Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
+INSERT INTO faculty_information (id, faculty_id, email, history, mission, accreditation, president, phone_number, address_id, location_id,created_at) VALUES (4, 4, 'fe@ula.com', '<h4 class="faculty-about__heading">Vitae purus ipsum, justo, vetibulum</h1><p class="faculty-about__text">Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
+Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4 class="faculty-about__heading">Lorem sagittis in praesent donec</h4><p class="faculty-about__text">Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
+Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4 class="faculty-about__heading">Vitae purus ipsum, justo, vetibulum</h1><p class="faculty-about__text">Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
+Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4 class="faculty-about__heading">Lorem sagittis in praesent donec</h4><p class="faculty-about__text">Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
+Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4 class="faculty-about__heading">Vitae purus ipsum, justo, vetibulum</h1><p class="faculty-about__text">Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
+Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4 class="faculty-about__heading">Lorem sagittis in praesent donec</h4><p class="faculty-about__text">Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
+Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4 class="faculty-about__heading">Vitae purus ipsum, justo, vetibulum</h1><p class="faculty-about__text">Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
+Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4 class="faculty-about__heading">Lorem sagittis in praesent donec</h4><p class="faculty-about__text">Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
 Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '202-555-0187', 2, 2,NOW());
 
 
-INSERT INTO faculty_information (id, faculty_id, email, history, mission, accreditation, president, phone_number, address_id, location_id, created_at) VALUES (5, 5, 'fm@ula.com', '<h4>Vitae purus ipsum, justo, vetibulum</h1><p>Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
-Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4>Lorem sagittis in praesent donec</h4><p>Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
-Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4>Vitae purus ipsum, justo, vetibulum</h1><p>Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
-Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4>Lorem sagittis in praesent donec</h4><p>Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
-Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4>Vitae purus ipsum, justo, vetibulum</h1><p>Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
-Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4>Lorem sagittis in praesent donec</h4><p>Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
-Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4>Vitae purus ipsum, justo, vetibulum</h1><p>Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
-Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4>Lorem sagittis in praesent donec</h4><p>Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
+INSERT INTO faculty_information (id, faculty_id, email, history, mission, accreditation, president, phone_number, address_id, location_id, created_at) VALUES (5, 5, 'fm@ula.com', '<h4 class="faculty-about__heading">Vitae purus ipsum, justo, vetibulum</h1><p class="faculty-about__text">Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
+Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4 class="faculty-about__heading">Lorem sagittis in praesent donec</h4><p class="faculty-about__text">Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
+Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4 class="faculty-about__heading">Vitae purus ipsum, justo, vetibulum</h1><p class="faculty-about__text">Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
+Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4 class="faculty-about__heading">Lorem sagittis in praesent donec</h4><p class="faculty-about__text">Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
+Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4 class="faculty-about__heading">Vitae purus ipsum, justo, vetibulum</h1><p class="faculty-about__text">Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
+Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4 class="faculty-about__heading">Lorem sagittis in praesent donec</h4><p class="faculty-about__text">Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
+Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4 class="faculty-about__heading">Vitae purus ipsum, justo, vetibulum</h1><p class="faculty-about__text">Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
+Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4 class="faculty-about__heading">Lorem sagittis in praesent donec</h4><p class="faculty-about__text">Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
 Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '202-555-0188', 1, 2, NOW());
 
 
-INSERT INTO faculty_information (id, faculty_id, email, history, mission, accreditation, president, phone_number, address_id, location_id, created_at) VALUES (6, 6, 'aoa@ula.com', '<h4>Vitae purus ipsum, justo, vetibulum</h1><p>Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
-Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4>Lorem sagittis in praesent donec</h4><p>Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
-Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4>Vitae purus ipsum, justo, vetibulum</h1><p>Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
-Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4>Lorem sagittis in praesent donec</h4><p>Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
-Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4>Vitae purus ipsum, justo, vetibulum</h1><p>Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
-Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4>Lorem sagittis in praesent donec</h4><p>Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
-Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4>Vitae purus ipsum, justo, vetibulum</h1><p>Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
-Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4>Lorem sagittis in praesent donec</h4><p>Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
+INSERT INTO faculty_information (id, faculty_id, email, history, mission, accreditation, president, phone_number, address_id, location_id, created_at) VALUES (6, 6, 'aoa@ula.com', '<h4 class="faculty-about__heading">Vitae purus ipsum, justo, vetibulum</h1><p class="faculty-about__text">Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
+Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4 class="faculty-about__heading">Lorem sagittis in praesent donec</h4><p class="faculty-about__text">Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
+Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4 class="faculty-about__heading">Vitae purus ipsum, justo, vetibulum</h1><p class="faculty-about__text">Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
+Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4 class="faculty-about__heading">Lorem sagittis in praesent donec</h4><p class="faculty-about__text">Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
+Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4 class="faculty-about__heading">Vitae purus ipsum, justo, vetibulum</h1><p class="faculty-about__text">Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
+Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4 class="faculty-about__heading">Lorem sagittis in praesent donec</h4><p class="faculty-about__text">Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
+Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '<h4 class="faculty-about__heading">Vitae purus ipsum, justo, vetibulum</h1><p class="faculty-about__text">Risus aliquam, tincidunt sem duis lectus dictum. Blandit tincidunt pellentesque sapien faucibus quisque. At accumsan quis et euismod feugiat. Diam eget platea purus, posuere pulvinar nec tellus. Mauris orci enim eu pharetra sed posuere.
+Iaculis nibh id turpis vitae eu sagittis. Laoreet platea pulvinar aenean elit. Viverra dictum nulla pretium quis eros, quisque blandit. Vitae est diam pulvinar urna in senectus suspendisse diam. Quis at neque, mi neque, feugiat nunc viverra ut.</p><h4 class="faculty-about__heading">Lorem sagittis in praesent donec</h4><p class="faculty-about__text">Aliquet interdum eros arcu volutpat scelerisque. Odio risus vulputate viverra congue nulla interdum a. Ultrices bibendum habitant eget dui dolor aenean dapibus. Pellentesque gravida mattis leo aliquet. Mi magna ac, nisi, euismod. Amet vitae bibendum sit etiam viverra. Quam mattis eget nam vitae dignissim.
 Odio viverra maecenas magna lacus viverra facilisi mi. Magnis nunc etiam tempus quisque in urna, sed. Morbi neque diam feugiat libero mauris at proin ipsum. Eget aliquet nisi, proin fusce ut ornare at nulla ligula. Sed aenean faucibus adipiscing convallis at convallis potenti. Aenean massa nec, aliquet eget. Eleifend eget amet mattis purus pulvinar nisi, ut eleifend feugiat. Maecenas nunc amet in massa vel orci. Feugiat aliquet id orci adipiscing quam elementum, mi diam tortor. Sed etiam cum integer commodo.</p>', '202-555-0189', 1, 3, NOW());
 
 
@@ -196,9 +196,9 @@ INSERT INTO study_program (name, description,degree_id, faculty_id, location_id,
 INSERT INTO study_program (name, description,degree_id, faculty_id, location_id, created_at) VALUES ('Fine Arts', 'Description about Fine Arts',3, 6, 3, NOW());
 
 # Production Engineering years
-INSERT INTO year_of_study (id,year, ordinal_number, study_program_id, created_at) VALUES (1,'2020-11-01', 1, 2, NOW());
-INSERT INTO year_of_study (id,year, ordinal_number, study_program_id, created_at) VALUES (2,'2021-11-01', 2, 2, NOW());
-INSERT INTO year_of_study (id,year, ordinal_number, study_program_id, created_at) VALUES (3,'2022-11-01', 3, 2, NOW());
+INSERT INTO year_of_study (id,year, ordinal_number, study_program_id, created_at) VALUES (1,'2020-11-01', 1, 1, NOW());
+INSERT INTO year_of_study (id,year, ordinal_number, study_program_id, created_at) VALUES (2,'2021-11-01', 2, 1, NOW());
+INSERT INTO year_of_study (id,year, ordinal_number, study_program_id, created_at) VALUES (3,'2022-11-01', 3, 1, NOW());
 
 
 # Subjects/Courses
@@ -251,10 +251,10 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 
 
 # Computer Science years
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (4,'2020-11-01', 1, 3, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (5,'2021-11-01', 2, 3, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (6,'2022-11-01', 3, 3, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (7,'2023-11-01', 4, 3, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (4,'2020-11-01', 1, 2, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (5,'2021-11-01', 2, 2, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (6,'2022-11-01', 3, 2, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (7,'2023-11-01', 4, 2, NOW());
 
 # Subjects/Courses
 
@@ -337,10 +337,10 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (7, "Advanced Topics in Programming Languages", 8, 6, 20, 20, 0, 0, 0, NOW());
 
 #Biomedical Engineering
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (8,'2020-11-01', 1, 4, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (9,'2021-11-01', 2, 4, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (10,'2022-11-01', 3, 4, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (11,'2023-11-01', 4, 4, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (8,'2020-11-01', 1, 3, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (9,'2021-11-01', 2, 3, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (10,'2022-11-01', 3, 3, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (11,'2023-11-01', 4, 3, NOW());
 
 # Subjects/Courses
 
@@ -423,10 +423,10 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (11, "Biomedical engineering in cognitive neuroscience", 8, 6, 20, 20, 0, 0, 0, NOW());
 
 #Mechatronics
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (12,'2020-11-01', 1, 5, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (13,'2021-11-01', 2, 5, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (14,'2022-11-01', 3, 5, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (15,'2023-11-01', 4, 5, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (12,'2020-11-01', 1, 4, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (13,'2021-11-01', 2, 4, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (14,'2022-11-01', 3, 4, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (15,'2023-11-01', 4, 4, NOW());
 
 # Subjects/Courses
 
@@ -510,10 +510,10 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 
 
 #Industrial Engineering
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (16,'2020-11-01', 1, 6, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (17,'2021-11-01', 2, 6, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (18,'2022-11-01', 3, 6, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (19,'2023-11-01', 4, 6, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (16,'2020-11-01', 1, 5, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (17,'2021-11-01', 2, 5, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (18,'2022-11-01', 3, 5, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (19,'2023-11-01', 4, 5, NOW());
 
 # Subjects/Courses
 
@@ -596,10 +596,10 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (19, "Database systems", 8, 6, 20, 20, 0, 0, 0, NOW());
 
 #Graphic Engineering and Design 
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (20,'2020-11-01', 1, 7, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (21,'2021-11-01', 2, 7, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (22,'2022-11-01', 3, 7, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (23,'2023-11-01', 4, 7, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (20,'2020-11-01', 1, 6, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (21,'2021-11-01', 2, 6, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (22,'2022-11-01', 3, 6, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (23,'2023-11-01', 4, 6, NOW());
 
 # Subjects/Courses
 
@@ -682,10 +682,10 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (23, "English for GRID 2", 8, 5, 20, 20, 0, 0, 0, NOW());
 
 #Computing and Control Engineering
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (24,'2020-11-01', 1, 8, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (25,'2021-11-01', 2, 8, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (26,'2022-11-01', 3, 8, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (27,'2023-11-01', 4, 8, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (24,'2020-11-01', 1, 7, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (25,'2021-11-01', 2, 7, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (26,'2022-11-01', 3, 7, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (27,'2023-11-01', 4, 7, NOW());
 
 # Subjects/Courses
 
@@ -768,9 +768,9 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (27, "Internet networks", 8, 5, 20, 20, 0, 0, 0, NOW());
 
 #Architecture
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (28,'2020-11-01', 1, 9, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (29,'2021-11-01', 2, 9, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (30,'2022-11-01', 3, 9, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (28,'2020-11-01', 1, 8, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (29,'2021-11-01', 2, 8, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (30,'2022-11-01', 3, 8, NOW());
 
 # Subjects/Courses
 
@@ -833,8 +833,8 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 
 
 #Production Engineering (Master)
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (31,'2020-11-01', 1, 10, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (32,'2021-11-01', 2, 10, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (31,'2020-11-01', 1, 9, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (32,'2021-11-01', 2, 9, NOW());
 
 
 # Subjects/Courses
@@ -879,8 +879,8 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 
 
 #Civil Engineering(Master)
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (33,'2020-11-01', 1, 11, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (34,'2021-11-01', 2, 11, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (33,'2020-11-01', 1, 10, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (34,'2021-11-01', 2, 10, NOW());
 
 # Subjects/Courses
 
@@ -923,8 +923,8 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (34, "Rehabilitation of concrete structures", 4, 7, 20, 20, 0, 0, 0, NOW());
 
 #Architecture(Master)
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (35,'2020-11-01', 1, 12, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (36,'2021-11-01', 2, 12, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (35,'2020-11-01', 1, 11, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (36,'2021-11-01', 2, 11, NOW());
 
 # Subjects/Courses
 
@@ -967,8 +967,8 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (36, "Strategies and methods in design", 4, 7, 20, 20, 0, 0, 0, NOW());
 
 #Computer Science(Master)
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (37,'2020-11-01', 1, 13, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (38,'2021-11-01', 2, 13, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (37,'2020-11-01', 1, 12, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (38,'2021-11-01', 2, 12, NOW());
 
 # Subjects/Courses
 
@@ -1011,7 +1011,7 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (38, "High performance computing", 4, 5, 20, 20, 0, 0, 0, NOW());
 
 #Graphic Engineering and Design(Master)
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (39,'2020-11-01', 1, 14, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (39,'2020-11-01', 1, 13, NOW());
 
 # Subjects/Courses
 
@@ -1035,7 +1035,7 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (39, "3D printing", 2, 6, 20, 20, 0, 0, 0, NOW());
 
 #Biomedical Engineering(Master)
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (40,'2020-11-01', 1, 15, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (40,'2020-11-01', 1, 14, NOW());
 
 # Subjects/Courses
 
@@ -1059,9 +1059,9 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (40, "Modeling of biophysical systems", 2, 7, 20, 20, 0, 0, 0, NOW());
 
 #Architecture(Doctoral)
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (41,'2020-11-01', 1, 16, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (42,'2021-11-01', 2, 16, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (43,'2022-11-01', 3, 16, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (41,'2020-11-01', 1, 15, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (42,'2021-11-01', 2, 15, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (43,'2022-11-01', 3, 15, NOW());
 
 # Subjects/Courses
 
@@ -1123,9 +1123,9 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (43, "Preparation of the application for the topic of the doctoral dissertation 2", 6, 7, 20, 20, 0, 0, 0, NOW());
 
 #Mechatronics(Doctoral)
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (44,'2020-11-01', 1, 17, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (45,'2021-11-01', 2, 17, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (46,'2022-11-01', 3, 17, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (44,'2020-11-01', 1, 16, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (45,'2021-11-01', 2, 16, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (46,'2022-11-01', 3, 16, NOW());
 
 # Subjects/Courses
 
@@ -1187,9 +1187,9 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (46, "work process automation 2", 6, 5, 20, 20, 0, 0, 0, NOW());
 
 #Computing and Control Engineering(Doctoral)
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (47,'2020-11-01', 1, 18, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (48,'2021-11-01', 2, 18, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (49,'2022-11-01', 3, 18, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (47,'2020-11-01', 1, 17, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (48,'2021-11-01', 2, 17, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (49,'2022-11-01', 3, 17, NOW());
 
 # Subjects/Courses
 
@@ -1252,10 +1252,10 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 
 
 #Pedagogy
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (50,'2020-11-01', 1, 19, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (51,'2021-11-01', 2, 19, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (52,'2022-11-01', 3, 19, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (53,'2023-11-01', 4, 19, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (50,'2020-11-01', 1, 18, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (51,'2021-11-01', 2, 18, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (52,'2022-11-01', 3, 18, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (53,'2023-11-01', 4, 18, NOW());
 
 # Subjects/Courses
 
@@ -1339,10 +1339,10 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 
 
 #Psychology
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (54,'2020-11-01', 1, 20, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (55,'2021-11-01', 2, 20, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (56,'2022-11-01', 3, 20, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (57,'2023-11-01', 4, 20, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (54,'2020-11-01', 1, 19, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (55,'2021-11-01', 2, 19, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (56,'2022-11-01', 3, 19, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (57,'2023-11-01', 4, 19, NOW());
 
 # Subjects/Courses
 
@@ -1425,10 +1425,10 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (57, "Psychotherapeutic modalities", 8, 5, 20, 20, 0, 0, 0, NOW());
 
 #Socilogy
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (58,'2020-11-01', 1, 21, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (59,'2021-11-01', 2, 21, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (60,'2022-11-01', 3, 21, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (61,'2023-11-01', 4, 21, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (58,'2020-11-01', 1, 20, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (59,'2021-11-01', 2, 20, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (60,'2022-11-01', 3, 20, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (61,'2023-11-01', 4, 20, NOW());
 
 # Subjects/Courses
 
@@ -1511,10 +1511,10 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (61, "English", 8, 6, 20, 20, 0, 0, 0, NOW());
 
 #Philosophy
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (62,'2020-11-01', 1, 22, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (63,'2021-11-01', 2, 22, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (64,'2022-11-01', 3, 22, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (65,'2023-11-01', 4, 22, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (62,'2020-11-01', 1, 21, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (63,'2021-11-01', 2, 21, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (64,'2022-11-01', 3, 21, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (65,'2023-11-01', 4, 21, NOW());
 
 # Subjects/Courses
 
@@ -1597,10 +1597,10 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (65, "Renaissance philosophy", 8, 6, 20, 20, 0, 0, 0, NOW());
 
 #Journalism
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (66,'2020-11-01', 1, 23, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (67,'2021-11-01', 2, 23, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (68,'2022-11-01', 3, 23, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (69,'2023-11-01', 4, 23, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (66,'2020-11-01', 1, 22, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (67,'2021-11-01', 2, 22, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (68,'2022-11-01', 3, 22, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (69,'2023-11-01', 4, 22, NOW());
 
 # Subjects/Courses
 
@@ -1683,7 +1683,7 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (69, "Intercultural management", 8, 6, 20, 20, 0, 0, 0, NOW());
 
 #History(Master)
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (70,'2023-11-01', 4, 24, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (70,'2023-11-01', 4, 23, NOW());
 
 # Subjects/Courses
 
@@ -1707,7 +1707,7 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (70, "Movies and history", 2, 4, 20, 20, 0, 0, 0, NOW());
 
 #Pedagogy(Master)
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (71,'2023-11-01', 4, 25, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (71,'2023-11-01', 4, 24, NOW());
 
 # Subjects/Courses
 
@@ -1731,7 +1731,7 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (71, "Development and rights of the child", 2, 4, 20, 20, 0, 0, 0, NOW());
 
 #Psychology (Master)
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (72,'2023-11-01', 4, 26, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (72,'2023-11-01', 4, 25, NOW());
 
 # Subjects/Courses
 
@@ -1755,7 +1755,7 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (72, "Evaluation of psychological measuring instruments", 2, 4, 20, 20, 0, 0, 0, NOW());
 
 #Sociology (Master)
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (73,'2023-11-01', 4, 27, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (73,'2023-11-01', 4, 26, NOW());
 
 # Subjects/Courses
 
@@ -1779,10 +1779,10 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (73, "Qualitative research methods", 2, 6, 20, 20, 0, 0, 0, NOW());
 
 #General Legal Studies
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (74,'2020-11-01', 1, 28, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (75,'2021-11-01', 2, 28, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (76,'2022-11-01', 3, 28, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (77,'2023-11-01', 4, 28, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (74,'2020-11-01', 1, 27, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (75,'2021-11-01', 2, 27, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (76,'2022-11-01', 3, 27, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (77,'2023-11-01', 4, 27, NOW());
 
 # Subjects/Courses
 
@@ -1865,9 +1865,9 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (77, "Inheritance law", 8, 6, 20, 20, 0, 0, 0, NOW());
 
 #Criminal Justice Studies
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (78,'2020-11-01', 1, 29, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (79,'2021-11-01', 2, 29, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (80,'2022-11-01', 3, 29, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (78,'2020-11-01', 1, 28, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (79,'2021-11-01', 2, 28, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (80,'2022-11-01', 3, 28, NOW());
 
 # Subjects/Courses
 
@@ -1929,7 +1929,7 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (80, "Criminology 2", 6, 5, 20, 20, 0, 0, 0, NOW());
 
 #General Legal Studies(Master)
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (81,'2020-11-01', 1, 30, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (81,'2020-11-01', 1, 29, NOW());
 
 # Subjects/Courses
 
@@ -1953,7 +1953,7 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (81, "Real security means", 2, 4, 20, 20, 0, 0, 0, NOW());
 
 #Criminal Justice Studies(Master)
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (82,'2020-11-01', 1, 31, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (82,'2020-11-01', 1, 30, NOW());
 
 # Subjects/Courses
 
@@ -1977,7 +1977,7 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (82, "Victimology", 2, 6, 20, 20, 0, 0, 0, NOW());
 
 #National Security(Master)
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (83,'2020-11-01', 1, 32, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (83,'2020-11-01', 1, 31, NOW());
 
 # Subjects/Courses
 
@@ -2001,9 +2001,9 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (83, "Security and human rights", 2, 6, 20, 20, 0, 0, 0, NOW());
 
 #Public Law(Doctoral)
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (84,'2020-11-01', 1, 33, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (85,'2021-11-01', 2, 33, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (86,'2022-11-01', 3, 33, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (84,'2020-11-01', 1, 32, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (85,'2021-11-01', 2, 32, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (86,'2022-11-01', 3, 32, NOW());
 
 # Subjects/Courses
 
@@ -2065,9 +2065,9 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (86, "Stock market law", 6, 5, 20, 20, 0, 0, 0, NOW());
 
 #Private Law(Doctoral)
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (87,'2020-11-01', 1, 34, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (88,'2021-11-01', 2, 34, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (89,'2022-11-01', 3, 34, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (87,'2020-11-01', 1, 33, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (88,'2021-11-01', 2, 33, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (89,'2022-11-01', 3, 33, NOW());
 
 # Subjects/Courses
 
@@ -2129,10 +2129,10 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (89, "Legal hermeneutics", 6, 5, 20, 20, 0, 0, 0, NOW());
 
 #Finance, Banking and Insurance
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (90,'2020-11-01', 1, 35, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (91,'2021-11-01', 2, 35, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (92,'2022-11-01', 3, 35, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (93,'2023-11-01', 4, 35, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (90,'2020-11-01', 1, 34, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (91,'2021-11-01', 2, 34, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (92,'2022-11-01', 3, 34, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (93,'2023-11-01', 4, 34, NOW());
 
 # Subjects/Courses
 
@@ -2215,9 +2215,9 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (93, "Commercial law", 8, 6, 20, 20, 0, 0, 0, NOW());
 
 #Management
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (94,'2020-11-01', 1, 36, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (95,'2021-11-01', 2, 36, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (96,'2022-11-01', 3, 36, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (94,'2020-11-01', 1, 35, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (95,'2021-11-01', 2, 35, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (96,'2022-11-01', 3, 35, NOW());
 
 # Subjects/Courses
 
@@ -2279,10 +2279,10 @@ INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures,
 INSERT INTO subject (year_of_study_id, name, semester, espb, number_of_lectures, number_of_practical_lectures, other_forms_of_lectures, research_works, other_lectures, created_at) VALUES (96, "Economic system 2", 6, 5, 20, 20, 0, 0, 0, NOW());
 
 #Accounting and Auditing
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (97,'2020-11-01', 1, 37, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (98,'2021-11-01', 2, 37, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (99,'2022-11-01', 3, 37, NOW());
-INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (100,'2023-11-01', 4, 37, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (97,'2020-11-01', 1, 36, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (98,'2021-11-01', 2, 36, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (99,'2022-11-01', 3, 36, NOW());
+INSERT INTO year_of_study (id, year, ordinal_number, study_program_id, created_at) VALUES (100,'2023-11-01', 4, 36, NOW());
 
 # Subjects/Courses
 

@@ -1,0 +1,145 @@
+<h1 class="u-mb-m h-m">
+    {{ student.student.user.firstName }} {{ student.student.user.lastName }}
+</h1>
+
+<div>
+    <div class="col-md-8 mx-auto user__image-container">
+        <img
+            *ngIf="student.student.user.profileImage"
+            [src]="getImage()"
+            (load)="getImage()"
+            class="rounded mx-auto d-block user__image"
+            alt="{{ student.student.user.firstName }} {{
+                student.student.user.lastName
+            }} profile image"
+        />
+    </div>
+    <ul class="list-group mx-auto u-mt-m">
+        <li class="list-group-item">Email: {{ student.student.user.email }}</li>
+        <li class="list-group-item">
+            Phone number: {{ student.student.phoneNumber }}
+        </li>
+        <li class="list-group-item">
+            Transcript identifier: {{ student.transcriptIdentifier }}
+        </li>
+        <li class="list-group-item">
+            Date of enrollment:
+            {{ student.dateOfEnrollment | date: "MM-dd-yyyy" }}
+        </li>
+        <li class="list-group-item">
+            Date of birth:
+            {{ student.student.dateOfBirth | date: "MM-dd-yyyy" }}
+        </li>
+        <li class="list-group-item">
+            Current grade: {{ student.attendance.finalGrade }}
+        </li>
+    </ul>
+</div>
+
+<h2 class="u-mt-s u-mb-s">Taking exams</h2>
+<h3>All exams</h3>
+<h4>Id: {{ allTakingExam.id }}</h4>
+<h4>Points: {{ allTakingExam.points }}</h4>
+<h4>Note: {{ allTakingExam.note }}</h4>
+<table class="table u-mb-l">
+    <thead>
+        <tr>
+            <th scope="col">Id:</th>
+            <th scope="col">Type:</th>
+            <th scope="col">Entry active:</th>
+            <th scope="col">Start time:</th>
+            <th scope="col">End time:</th>
+            <th scope="col">Points:</th>
+            <th scope="col">Final:</th>
+            <th scope="col">Update</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let exam of allTakingExam.exams">
+            <td>{{ exam.id }}</td>
+            <td>{{ exam.examType }}</td>
+            <td>{{ exam.examEntry.active == true ? "false" : "true" }}</td>
+            <td>{{ exam.startTime | date: "MM-dd-yyyy h:mm" }}</td>
+            <td>{{ exam.endTime | date: "MM-dd-yyyy h:mm" }}</td>
+            <td>{{ exam.points }}</td>
+            <td>{{ exam.finalExam }}</td>
+            <td>
+                <a
+                    (click)="navigateToUpdateExam(exam.id)"
+                    class="btn btn-primary table-btn"
+                    >Update</a
+                >
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="info-container u-flex u-flex-jc-sb u-flex-ai-c u-mb-s">
+    <div class="taking-exam-info">
+        <h3>Calculated exams</h3>
+        <h4>Id: {{ calculatedTakingExam.takingExamId }}</h4>
+        <h4>Points: {{ calculatedTakingExam.points }}</h4>
+        <h4>Subject: {{ calculatedTakingExam.subject }}</h4>
+    </div>
+    <div class="taking-exam-action">
+        <a class="btn btn-success" (click)="updateTakingExamPoints()"
+            >Update points</a
+        >
+    </div>
+</div>
+<app-error [errors]="errors"></app-error>
+<table class="table u-mb-l">
+    <thead>
+        <tr>
+            <th scope="col">Id:</th>
+            <th scope="col">Type:</th>
+            <th scope="col">Entry active:</th>
+            <th scope="col">Start time:</th>
+            <th scope="col">End time:</th>
+            <th scope="col">Points:</th>
+            <th scope="col">Final:</th>
+            <th scope="col">Outcome:</th>
+            <th scope="col">Update</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let exam of calculatedTakingExam.exams">
+            <td>{{ exam.id }}</td>
+            <td>{{ exam.examType }}</td>
+            <td>{{ exam.examEntry.active == true ? "false" : "true" }}</td>
+            <td>{{ exam.startTime | date: "MM-dd-yyyy h:mm" }}</td>
+            <td>{{ exam.endTime | date: "MM-dd-yyyy h:mm" }}</td>
+            <td>{{ exam.points }}</td>
+            <td>{{ exam.finalExam }}</td>
+            <td>{{ exam.outcome.description }}</td>
+            <td>
+                <a
+                    (click)="navigateToUpdateExam(exam.id)"
+                    class="btn btn-primary table-btn"
+                    >Update</a
+                >
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="col-md-6 mx-auto u-mb-l">
+    <h3>Update final grade</h3>
+    <form (ngSubmit)="updateFinalGrade()">
+        <div class="form-group">
+            <label for="finalGrade">Final grade</label>
+            <input
+                id="finalGrade"
+                class="form-control"
+                type="number"
+                name="finalGrade"
+                [(ngModel)]="updateFinalGradeRequest.finalGrade"
+                value="{{ student.attendance.finalGrade }}"
+            />
+        </div>
+        <button class="btn btn-success" type="submit">
+            Update final grade
+        </button>
+        <h4 class="text-success u-mt-xs">{{ textSuccess }}</h4>
+        <app-error [errors]="errors"></app-error>
+    </form>
+</div>

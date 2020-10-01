@@ -1,0 +1,27 @@
+<h1 class="u-mb-m h-m">Update profile</h1>
+<form (ngSubmit)="update()">
+    <div class="form-group">
+        <label for="firstName">First name: </label>
+        <input
+            type="text"
+            class="form-control"
+            id="firstName"
+            value="{{ user.firstName }}"
+            name="firstName"
+            [(ngModel)]="updateRequest.firstName"
+        />
+    </div>
+    <div class="form-group">
+        <label for="lastName">Last name: </label>
+        <input
+            type="text"
+            class="form-control"
+            id="lastName"
+            value="{{ user.lastName }}"
+            name="lastName"
+            [(ngModel)]="updateRequest.lastName"
+        />
+    </div>
+    <app-error [errors]="errors"></app-error>
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>

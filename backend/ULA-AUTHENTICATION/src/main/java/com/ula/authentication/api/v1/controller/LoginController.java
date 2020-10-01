@@ -40,7 +40,7 @@ public class LoginController extends BaseController
         } catch (UserException e)
         {
             return Response.wrongCredentials()
-                    .setErrors(e.getMessage());
+                    .setErrors(errors(e.getMessage()));
         }
 
     }

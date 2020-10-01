@@ -165,9 +165,9 @@ public class StudyProgramServiceImpl implements StudyProgramService
 
 
     @Override
-    public List<StudyProgramDTO> search(String searchTerm)
+    public List<StudyProgramDTO> search(Long facultyId, String searchTerm)
     {
-        return StudyProgramMapper.map(studyProgramRepository.findStudyProgramByNameContains(searchTerm));
+        return StudyProgramMapper.map(studyProgramRepository.findStudyProgramByNameContains(searchTerm, facultyId));
     }
 
     @Override

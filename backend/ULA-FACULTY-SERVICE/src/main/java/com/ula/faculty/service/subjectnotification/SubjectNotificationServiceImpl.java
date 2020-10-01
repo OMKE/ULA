@@ -5,6 +5,7 @@ import com.ula.faculty.domain.guard.SubjectRealizationTeacherGuard;
 import com.ula.faculty.domain.model.*;
 import com.ula.faculty.domain.repository.*;
 import com.ula.faculty.dto.model.SubjectNotificationDTO;
+import com.ula.faculty.dto.model.SubjectNotificationTypeDTO;
 import com.ula.faculty.feign.AuthServiceFeignClient;
 import com.ula.faculty.mapper.SubjectNotificationMapper;
 import com.ula.faculty.service.exception.*;
@@ -16,6 +17,7 @@ import org.ula.core.util.JWTUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -71,6 +73,14 @@ public class SubjectNotificationServiceImpl implements SubjectNotificationServic
                                  new SubjectNotificationNotFoundException(String.format("Subject notification with id: %s could not be found", id))
                                     )
                                             );
+    }
+
+    @Override
+    public List<SubjectNotificationTypeDTO> types()
+    {
+        List<SubjectNotificationType> types = this.subjectNotificationTypeRepository.findAll();
+        return types.stream().map(type -> new SubjectNotificationTypeDTO().setId(type.getId()).setName(type.getName())).collect(
+                Collectors.toList());
     }
 
     @Override

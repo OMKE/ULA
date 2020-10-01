@@ -108,8 +108,9 @@ public class FacultyServiceFallbackFactory implements FallbackFactory<FacultySer
                 return null;
             }
 
+
             @Override
-            public Response<Object> getTeachingTermsBySubjectId(String token, Long subjectId)
+            public Response<Object> getTeachingTermsBySubjectId(String token, Long subjectId, Pageable pageable)
             {
                 LOGGER.error("Error occurred while fetching Teaching terms based on subject from Faculty Service", cause);
                 return null;

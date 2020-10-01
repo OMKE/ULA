@@ -5,17 +5,20 @@ import com.ula.faculty.domain.guard.SubjectRealizationTeacherGuard;
 import com.ula.faculty.domain.model.*;
 import com.ula.faculty.domain.repository.*;
 import com.ula.faculty.dto.model.TeachingTermDTO;
+import com.ula.faculty.dto.model.TeachingTypeDTO;
 import com.ula.faculty.mapper.TeachingTermMapper;
 import com.ula.faculty.service.exception.SubjectNotFoundException;
 import com.ula.faculty.service.exception.SubjectRealizationNotFoundException;
 import com.ula.faculty.service.exception.TeacherOnRealizationNotFoundException;
 import com.ula.faculty.service.exception.TeachingTypeNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.ula.core.exception.NotAuthorizedException;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TeachingTermServiceImpl implements TeachingTermService
@@ -47,7 +50,7 @@ public class TeachingTermServiceImpl implements TeachingTermService
     private TeacherOnRealizationRepository teacherOnRealizationRepository;
 
     @Override
-    public List<TeachingTermDTO> index(Long subjectId)
+    public List<TeachingTermDTO> index(Long subjectId, Pageable pageable)
     throws SubjectRealizationNotFoundException, SubjectNotFoundException
     {
         Subject subject = this.subjectRepository
@@ -62,7 +65,20 @@ public class TeachingTermServiceImpl implements TeachingTermService
                         String.format("Subject realization with subject id: %s could not be found", subject.getId())));
 
 
-        return TeachingTermMapper.map(this.teachingTermRepository.findBySubjectRealizationId(subjectRealization.getId()));
+        return TeachingTermMapper.map(this.teachingTermRepository.findBySubjectRealizationId(subjectRealization.getId(), pageable));
+    }
+
+    @Override
+    public List<TeachingTypeDTO> types()
+    {
+        return this.teachingTypeRepository
+                .findAll()
+                .stream()
+                .map(type ->
+                             new TeachingTypeDTO()
+                                     .setId(type.getId())
+                                     .setName(type.getName()))
+                .collect(Collectors.toList());
     }
 
     @Override

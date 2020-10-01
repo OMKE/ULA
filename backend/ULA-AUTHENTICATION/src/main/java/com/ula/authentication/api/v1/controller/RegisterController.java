@@ -60,13 +60,13 @@ public class RegisterController extends BaseController
 			return Response.ok().setPayload(userService.add(userDTO));
 		} catch (UserException e) {
 			return Response.badRequest()
-					.setErrors(e.getMessage());
+					.setErrors(errors(e.getMessage()));
 		} catch (PasswordsDontMatchException e)
 		{
-			return Response.validationException().setErrors(e.getMessage());
+			return Response.validationException().setErrors(errors(e.getMessage()));
 
 		} catch (UserConflictException e) {
-			return Response.exception().setErrors(e.getMessage());
+			return Response.exception().setErrors(errors(e.getMessage()));
 		}
 
 

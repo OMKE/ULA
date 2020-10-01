@@ -31,7 +31,7 @@ public interface StudyProgramService
     String delete(Long id)
     throws StudyProgramNotFoundException;
 
-    List<StudyProgramDTO> search(String searchTerm);
+    List<StudyProgramDTO> search(Long facultyId, String searchTerm);
 
     StudyProgramWithYearsOfStudyDTO subjects(Long id) throws StudyProgramNotFoundException;
 

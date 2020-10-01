@@ -7,8 +7,8 @@ University of Los Angeles management system.
 
 ## Contributors
 
-- [Omar Iriskic](https://github.com/OMKE)
-- [Lazar Filipovic](https://github.com/laki098)
+-   [Omar Iriskic](https://github.com/OMKE)
+-   [Lazar Filipovic](https://github.com/laki098)
 
 ## Application Architecture
 
@@ -31,17 +31,23 @@ University of Los Angeles management system.
 
 ### Technologies and frameworks
 
-- SpringBoot
-- Zuul Proxy
-- Eureka Service Discovery
-- Hystrix Circuit Breaker
-- MySQL
-- MongoDB
-- Angular 9 with ngrx
-- Sass
-- Python (code-generation) - [SpringLeaf](https://github.com/OMKE/SpringLeaf)
+-   SpringBoot
+-   Zuul Proxy
+-   Eureka Service Discovery
+-   Hystrix Circuit Breaker
+-   MySQL
+-   MongoDB
+-   Angular 9 with ngrx
+-   Sass
+-   Python (code-generation) - [SpringLeaf](https://github.com/OMKE/SpringLeaf)
 
 ### Design resources
 
 [Figma project](https://www.figma.com/file/qc1DDLrPyskpR015t6c3Q1/University-of-Los-Angeles-LMS?node-id=0%3A1) <br>
 [Figma prototype](https://www.figma.com/proto/qc1DDLrPyskpR015t6c3Q1/University-of-Los-Angeles-LMS?node-id=0%3A1)
+
+### Documentation
+
+[University of Los Angeles - API](https://documenter.getpostman.com/view/6089658/TVKFzGJv)
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/5aaa3720f9c9d2d9c6af)

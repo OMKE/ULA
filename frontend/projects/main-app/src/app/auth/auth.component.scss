@@ -1,0 +1,18 @@
+.auth {
+    &__links {
+        font-size: 2rem;
+    }
+
+    &__link {
+        text-decoration: none;
+        color: var(--color-black-1);
+        font-weight: 500;
+        &:not(:last-child) {
+            margin-right: 2.5rem;
+        }
+
+        &--active {
+            color: var(--color-primary);
+        }
+    }
+}

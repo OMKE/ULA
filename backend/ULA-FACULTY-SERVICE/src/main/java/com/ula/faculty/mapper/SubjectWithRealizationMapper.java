@@ -1,6 +1,7 @@
 package com.ula.faculty.mapper;
 
 import com.ula.faculty.domain.model.TeacherSubjectRealization;
+import com.ula.faculty.dto.model.SubjectSyllabusDTO;
 import com.ula.faculty.dto.model.SubjectWithRealizationIdDTO;
 
 import java.util.Comparator;
@@ -24,7 +25,13 @@ public class SubjectWithRealizationMapper
                     .setResearchWorks(teacherSubjectRealization.getSubjectRealization().getSubject().getResearchWorks())
                     .setSemester(teacherSubjectRealization.getSubjectRealization().getSubject().getSemester())
                     .setSubjectRealizationId(teacherSubjectRealization.getSubjectRealization().getId())
-                    .setYearOfStudyId(teacherSubjectRealization.getSubjectRealization().getSubject().getYearOfStudy().getId());
+                    .setYearOfStudyId(teacherSubjectRealization.getSubjectRealization().getSubject().getYearOfStudy().getId())
+                    .setSyllabus(
+                            new SubjectSyllabusDTO()
+                                    .setId(teacherSubjectRealization.getSubjectRealization().getSubject().getSyllabus().getId())
+                                    .setSubjectId(teacherSubjectRealization.getSubjectRealization().getSubject().getId())
+                                    .setContent(teacherSubjectRealization.getSubjectRealization().getSubject().getSyllabus().getContent())
+                                );
     }
 
     public static List<SubjectWithRealizationIdDTO> map(Set<TeacherSubjectRealization> teacherSubjectRealizations)

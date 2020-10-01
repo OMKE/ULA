@@ -41,6 +41,12 @@ public class SubjectNotificationController extends BaseController
         }
     }
 
+    @GetMapping("/subject-notification-type")
+    public Response<Object> types()
+    {
+        return Response.ok().setPayload(this.notificationService.types());
+    }
+
     @Authorized("TEACHER")
     @GetMapping("/private/teacher/{teacherId}/subject-notification")
     public List<SubjectNotificationDTO> showTeacherNotifications

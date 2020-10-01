@@ -1,0 +1,66 @@
+<h1 class="u-mb-m h-m">Notifications</h1>
+<div class="col-md-4 u-mb-m mx-auto">
+    <a
+        [routerLink]="['/dashboard/teacher/notifications/add']"
+        class="btn btn-primary d-block mx-auto"
+        >Add notification</a
+    >
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Subject name</th>
+            <th scope="col">Type</th>
+            <th scope="col">Text</th>
+            <th scope="col">Time</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr
+            *ngFor="
+                let notification of notifications;
+                let odd = odd;
+                let even = even
+            "
+            [class.row-update]="notification.type == 'Update'"
+            [class.row-alert]="notification.type == 'Alert'"
+            [class.row-reminder]="notification.type == 'Reminder'"
+        >
+            <td>{{ notification.subjectName }}</td>
+            <td>{{ notification.type }}</td>
+            <td>{{ notification.text }}</td>
+            <td>{{ notification.time | date: "MM-dd-yyyy hh:mm" }}</td>
+            <td>
+                <a (click)="delete(notification.id)" class="btn btn-danger"
+                    >Delete</a
+                >
+            </td>
+        </tr>
+    </tbody>
+</table>
+<nav>
+    <ul class="pagination u-flex-jc-c u-mt-s">
+        <li class="page-item u-flex u-flex-jc-sb w-25">
+            <a
+                class="page-link"
+                aria-label="Previous"
+                (click)="decreaseCurrentPage()"
+                (click)="getNotifications(currentPage)"
+            >
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+            </a>
+
+            <a
+                class="page-link"
+                aria-label="Next"
+                (click)="increaseCurrentPage()"
+                (click)="getNotifications(currentPage)"
+            >
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+    </ul>
+</nav>

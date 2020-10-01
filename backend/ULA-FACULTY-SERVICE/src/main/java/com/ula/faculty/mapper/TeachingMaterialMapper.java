@@ -6,6 +6,7 @@ import com.ula.faculty.dto.model.TeachingMaterialDTO;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class TeachingMaterialMapper
@@ -16,7 +17,13 @@ public class TeachingMaterialMapper
                 .getSubjectRealization()
                 .getTeachingTerms()
                 .stream()
-                .map(teachingTerm -> TeachingMaterialMapper.map(teachingTerm.getTeachingMaterial())).collect(Collectors.toList());
+                .filter(teachingTerm -> Objects.nonNull(teachingTerm.getTeachingMaterial()))
+                .map(teachingTerm ->
+                            TeachingMaterialMapper.map
+                             (
+                                teachingTerm.getTeachingMaterial()
+                            )
+                    ).collect(Collectors.toList());
     }
 
     public static TeachingMaterialDTO map(TeachingMaterial teachingMaterial)
@@ -36,6 +43,8 @@ public class TeachingMaterialMapper
                                 FileMapper.mapFiles(teachingMaterial.getFiles())
                                 : new HashSet<>()
                          );
+
+
     }
 
 

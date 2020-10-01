@@ -14,6 +14,10 @@ import java.util.Optional;
 
 public interface UserService {
 
+	List<UserDTO> index();
+	UserDTO show(Long id)
+	throws UserNotFoundException;
+
 	Optional<User> getById(Long id) throws UserException, UserNotFoundException;
 
 	Optional<User> getByIdTrashed(Long id) throws UserException;

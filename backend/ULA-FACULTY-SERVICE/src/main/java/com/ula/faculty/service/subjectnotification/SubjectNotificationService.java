@@ -2,6 +2,7 @@ package com.ula.faculty.service.subjectnotification;
 
 import com.ula.faculty.api.v1.request.StoreAndUpdateSubjectNotificationRequest;
 import com.ula.faculty.dto.model.SubjectNotificationDTO;
+import com.ula.faculty.dto.model.SubjectNotificationTypeDTO;
 import com.ula.faculty.service.exception.*;
 import org.springframework.data.domain.Pageable;
 import org.ula.core.exception.NotAuthorizedException;
@@ -15,6 +16,8 @@ public interface SubjectNotificationService
 
     SubjectNotificationDTO show(Long id)
     throws SubjectNotificationNotFoundException;
+
+    List<SubjectNotificationTypeDTO> types();
 
     List<SubjectNotificationDTO> getByStudentId(Long studentId, Pageable pageable)
     throws StudentOnYearNotFoundException;

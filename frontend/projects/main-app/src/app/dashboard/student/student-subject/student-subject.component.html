@@ -1,0 +1,55 @@
+<h1 class="u-mb-m h-m">{{ subject.subject.name }}</h1>
+<app-error [errors]="errors"></app-error>
+<div class="u-mt-s">
+    Subject information:
+    <h4>Year of study id: {{ subject.subject.yearOfStudyId }}</h4>
+    <h4>Subject id: {{ subject.id }}</h4>
+    <h4>Semester: {{ subject.subject.semester }}</h4>
+    <h4>Espb: {{ subject.subject.espb }}</h4>
+    <h4>Required: {{ subject.subject.required }}</h4>
+    <h4>Lectures: {{ subject.subject.numberOfLectures }}</h4>
+    <h4>Practical lectures: {{ subject.subject.numberOfPracticalLectures }}</h4>
+    <h4>Other forms of lectures: {{ subject.subject.otherFormsOfLectures }}</h4>
+    <h4>Reasearch works: {{ subject.subject.researchWorks }}</h4>
+    <h4>Other lectures: {{ subject.subject.otherLectures }}</h4>
+</div>
+
+<h2 class="u-mt-s u-mb-s">Taking exam</h2>
+<h4>Id: {{ takingExam.id }}</h4>
+<h4>Points: {{ takingExam.points }}</h4>
+<h4>Note: {{ takingExam.note }}</h4>
+<table class="table u-mb-l">
+    <thead>
+        <tr>
+            <th scope="col">Id:</th>
+            <th scope="col">Type:</th>
+            <th scope="col">Entry active:</th>
+            <th scope="col">Start time:</th>
+            <th scope="col">End time:</th>
+            <th scope="col">Points:</th>
+            <th scope="col">Final:</th>
+            <th scope="col">Add entry</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let exam of takingExam.exams">
+            <td>{{ exam.id }}</td>
+            <td>{{ exam.examType }}</td>
+            <td>{{ exam.examEntry.active == true ? "false" : "true" }}</td>
+            <td>{{ exam.startTime | date: "MM-dd-yyyy h:mm" }}</td>
+            <td>{{ exam.endTime | date: "MM-dd-yyyy h:mm" }}</td>
+            <td>{{ exam.points }}</td>
+            <td>{{ exam.finalExam }}</td>
+            <td *ngIf="!exam.examEntry.active">
+                <a class="btn btn-primary" (click)="addExamEntry(exam.id)"
+                    >Add</a
+                >
+            </td>
+        </tr>
+    </tbody>
+</table>
+<app-student-notifications
+    *ngIf="subject.id != null"
+    [basedOnSubject]="true"
+    [subjectId]="subject.id"
+></app-student-notifications>

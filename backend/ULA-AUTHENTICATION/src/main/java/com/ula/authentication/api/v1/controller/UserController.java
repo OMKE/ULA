@@ -31,6 +31,30 @@ public class UserController extends BaseController
     private PasswordEncoder passwordEncoder;
 
 
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/user")
+    public Response<Object> index()
+    {
+        return Response.ok().setPayload(this.userService.index());
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/user/{id}")
+    public Response<Object> show
+    (
+            @PathVariable("id") Long id
+    )
+    {
+        try {
+            return Response.ok().setPayload(this.userService.show(id));
+        } catch (UserNotFoundException e) {
+            return Response.exception().setErrors(errors(e.getMessage()));
+        }
+
+    }
+
+
+
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/me")
     public Response<Object> me(Authentication authentication)
@@ -38,7 +62,7 @@ public class UserController extends BaseController
         try {
             return Response.ok().setPayload(this.userService.getUserData(authentication.getName()));
         } catch (UserException | UserNotFoundException e) {
-            return Response.exception().setErrors(e.getMessage());
+            return Response.exception().setErrors(errors(e.getMessage()));
         }
     }
 
@@ -59,7 +83,7 @@ public class UserController extends BaseController
         try {
             return Response.ok().setPayload(this.userService.update(userDTO));
         } catch (UserNotFoundException e) {
-            return Response.exception().setErrors(e.getMessage());
+            return Response.exception().setErrors(errors(e.getMessage()));
         }
 
     }
@@ -82,7 +106,7 @@ public class UserController extends BaseController
             userService.checkForOldPassword(authentication.getName(), updateUserPasswordRequest.getOldPassword());
             return Response.ok().setPayload(userService.updatePassword(userDTO));
         } catch (PasswordsDontMatchException | UserException | UserNotFoundException | WrongOldPasswordException e) {
-            return Response.exception().setErrors(e.getMessage());
+            return Response.exception().setErrors(errors(e.getMessage()));
         }
     }
 
@@ -106,7 +130,7 @@ public class UserController extends BaseController
         try {
             return Response.ok().setPayload(this.userService.storeProfileImage(authentication.getName(), authHeader, image));
         } catch (IOException | UserNotFoundException | FileStorageException e) {
-            return Response.exception().setErrors(e.getMessage());
+            return Response.exception().setErrors(errors(e.getMessage()));
         }
     }
 
@@ -121,7 +145,7 @@ public class UserController extends BaseController
         try {
             return Response.ok().setPayload(this.userService.deleteProfileImage(authentication.getName(), authHeader));
         } catch (UserNotFoundException | ProfileImageNotFoundException e) {
-            return Response.exception().setErrors(e.getMessage());
+            return Response.exception().setErrors(errors(e.getMessage()));
         }
     }
 

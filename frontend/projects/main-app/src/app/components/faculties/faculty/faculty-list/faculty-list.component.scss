@@ -1,0 +1,28 @@
+.faculty-list {
+    &__pagination {
+        width: 50%;
+        margin: 0 auto;
+        font-size: 2rem;
+        display: flex;
+        justify-content: center;
+    }
+
+    &__pagination-item {
+        padding: 0.8rem 2.5rem;
+        background-color: var(--color-black-1);
+        border-radius: 1rem;
+        color: var(--color-white);
+
+        &:not(:last-child) {
+            margin-right: 3rem;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        &--active {
+            background-color: var(--color-primary);
+        }
+    }
+}

@@ -1,0 +1,43 @@
+.subject {
+    padding: 1.5rem 0;
+
+    border-bottom: 1px solid var(--color-black-2);
+
+    h1 {
+        font-size: 1.7rem;
+    }
+    p {
+        font-size: 1.4rem;
+    }
+    &__name {
+        font-size: 2rem !important;
+    }
+    &__content {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        align-content: flex-start;
+    }
+    &__teaching-material {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    &__teaching-material-container {
+        display: flex;
+        justify-content: space-evenly;
+    }
+    &__btn {
+        margin-top: 1.3rem;
+        padding: 1rem 2rem;
+        font-size: 1.5rem;
+        border-radius: 1rem;
+        color: var(--color-white);
+        background-color: var(--color-primary);
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

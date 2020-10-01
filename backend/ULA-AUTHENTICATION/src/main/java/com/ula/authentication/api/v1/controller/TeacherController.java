@@ -53,7 +53,7 @@ public class TeacherController extends BaseController
         try {
             return Response.ok().setPayload(this.teacherService.show(id));
         } catch (TeacherNotFoundException e) {
-            return Response.exception().setErrors(e.getMessage());
+            return Response.exception().setErrors(errors(e.getMessage()));
         }
     }
 
@@ -72,7 +72,7 @@ public class TeacherController extends BaseController
         try {
             return Response.ok().setPayload(this.teacherService.store(storeRequest.getUserId(), teacherDTO));
         } catch (UserNotFoundException | UserIsAlreadyTeacherException e) {
-            return Response.exception().setErrors(e.getMessage());
+            return Response.exception().setErrors(errors(e.getMessage()));
         }
     }
 
@@ -91,7 +91,7 @@ public class TeacherController extends BaseController
         try {
             return Response.ok().setPayload(this.teacherService.update(id, teacherDTO));
         } catch (TeacherNotFoundException e) {
-            return Response.exception().setErrors(e.getMessage());
+            return Response.exception().setErrors(errors(e.getMessage()));
         }
     }
 
@@ -105,7 +105,7 @@ public class TeacherController extends BaseController
         try {
             return Response.ok().setPayload(this.teacherService.delete(id));
         } catch (TeacherNotFoundException | UserNotFoundException | UserPermissionException e) {
-            return Response.exception().setErrors(e.getMessage());
+            return Response.exception().setErrors(errors(e.getMessage()));
         }
     }
 
@@ -120,7 +120,7 @@ public class TeacherController extends BaseController
         try {
             return Response.ok().setPayload(this.teacherService.restore(id));
         } catch (TeacherNotFoundException | UserNotFoundException | UserPermissionException e) {
-            return Response.exception().setErrors(e.getMessage());
+            return Response.exception().setErrors(errors(e.getMessage()));
         }
 
     }

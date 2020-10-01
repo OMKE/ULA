@@ -85,7 +85,6 @@ public class TeacherServiceImpl implements TeacherService
                                  String.format("Teacher subject realization with teacher id: %s and subject realization id: %s could not be found",
                                                teacherId, subjectId)));
 
-        System.out.println(teacherSubjectRealization.getId() + " " + teacherSubjectRealization.getSubjectRealization().getSubject().getName());
         return SubjectWithRealizationMapper.map(teacherSubjectRealization);
     }
 

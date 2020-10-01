@@ -47,7 +47,7 @@ public class StudyProgramController extends BaseController
          */
         if(searchTerm.isPresent() && !StringUtils.isEmpty(searchTerm.get()))
         {
-            return Response.ok().setPayload(this.studyProgramService.search(searchTerm.get()));
+            return Response.ok().setPayload(this.studyProgramService.search(facultyId,searchTerm.get()));
         }
         try {
             return Response.ok().setPayload(this.studyProgramService.index(facultyId, pageable));

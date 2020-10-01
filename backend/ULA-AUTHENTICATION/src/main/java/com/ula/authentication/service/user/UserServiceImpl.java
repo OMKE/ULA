@@ -30,6 +30,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -112,6 +113,41 @@ public class UserServiceImpl implements UserService
 		return userRepository.findAll();
 	}
 
+    @Override
+    public List<UserDTO> index()
+    {
+        return this.userRepository
+				.findAll()
+				.stream()
+				.map
+					(user ->
+						new UserDTO()
+					 	.setId(user.getId())
+					 	.setUsername(user.getUsername())
+					 	.setEmail(user.getEmail())
+					 	.setFirstName(user.getFirstName())
+					 	.setLastName(user.getLastName())
+					 	.setProfileImage(user.getProfileImage())
+					)
+				.collect(Collectors.toList());
+    }
+
+	@Override
+	public UserDTO show(Long id)
+	throws UserNotFoundException
+	{
+		User user =  this.userRepository
+				.findById(id)
+				.orElseThrow(() -> new UserNotFoundException(String.format("User with id: %s could not be found", id)));
+		return new UserDTO()
+			.setId(user.getId())
+			.setUsername(user.getUsername())
+			.setEmail(user.getEmail())
+			.setFirstName(user.getFirstName())
+			.setLastName(user.getLastName())
+			.setProfileImage(user.getProfileImage());
+	}
+
 	@Override
 	public Optional<User> getById(Long id) throws UserNotFoundException {
 		Optional<User> user = userRepository.findById(id);
@@ -123,12 +159,10 @@ public class UserServiceImpl implements UserService
 	}
 
 
-	@Transactional
+
 	@Override
 	public String add(UserDTO userDTO) throws UserConflictException
 	{
-		
-
 		Optional<User> foundedUser = userRepository.findByUsername(userDTO.getUsername());
 		if (foundedUser.isPresent()) {
 			throw new UserConflictException(String.format("User with username: '%s' already exists",
@@ -378,16 +412,16 @@ public class UserServiceImpl implements UserService
 	{
 		User user = this.getByUsername(username).get();
 		String oldImage = "";
-		if(!user.getProfileImage().equals("user-icon.png") || !user.getProfileImage().equals("admin-icon.png"))
+		if(!user.getProfileImage().equals("users/user-icon.png") || !user.getProfileImage().equals("users/admin-icon.png"))
 		{
 			oldImage = user.getProfileImage();
 			Response response = this.staticContentServiceFeignClient.deleteProfileImage(token, username, Response.ok().setPayload(oldImage));
 			if(response.getPayload() != null)
 			{
 				if(authService.isAdmin(user.getUsername())){
-					user.setProfileImage("admin-icon.png");
+					user.setProfileImage("users/admin-icon.png");
 				} else {
-					user.setProfileImage("user-icon.png");
+					user.setProfileImage("users/user-icon.png");
 				}
 				userRepository.save(user);
 				String message = (String) response.getPayload();

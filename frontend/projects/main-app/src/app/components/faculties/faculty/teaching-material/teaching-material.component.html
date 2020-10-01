@@ -1,0 +1,17 @@
+<div class="teaching-material">
+    <h5 class="teaching-material__name">Name: {{ teachingMaterial.name }}</h5>
+    <p class="teaching-material__date">
+        Publication date:
+        {{ teachingMaterial.publicationDate | date: "MM-dd-yyyy" }}
+    </p>
+    <div class="teaching-material__authors">
+        <div
+            class="teaching-material__author"
+            *ngFor="let author of teachingMaterial.authors"
+        >
+            <p class="teaching-material__author-name">
+                Author: {{ author.firstName }} {{ author.lastName }}
+            </p>
+        </div>
+    </div>
+</div>

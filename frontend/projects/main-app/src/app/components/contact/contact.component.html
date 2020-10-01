@@ -1,0 +1,58 @@
+<app-navbar></app-navbar>
+<app-big-heading [text]="'Contact'"></app-big-heading>
+<div class="u-container">
+    <div class="contact">
+        <h1 class="contact__heading u-mb-xs">General information</h1>
+        <hr class="u-container" />
+        <p class="contact__disclaimer u-mt-m u-mb-m">
+            Whether you are planning a visit, joining us for an event, or have a
+            question, we're here to help.<br />
+            The following are a list of the main connections to the school or
+            office that you may need.
+        </p>
+        <div class="contact__address">
+            <h3 class="contact__address-heading u-mb-s">
+                Use this address for all University of Los Angeles mail:
+            </h3>
+            <div class="contact__address-container u-mb-s">
+                <p class="contact__address-name">University of Los Angeles</p>
+                <p class="contact__address-street-name">
+                    {{ contact.addresses[0].number }}
+                    {{ contact.addresses[0].streetName }}
+                </p>
+                <p class="contact__address-city-postal-code">
+                    {{ contact.addresses[0].cityName }},
+                    {{ contact.addresses[0].postalCode }} USA
+                </p>
+            </div>
+        </div>
+
+        <div class="contact__email">info@ula.com</div>
+        <div class="contact__phone-number-container">
+            <div class="contact__phone-number-heading u-mt-m u-mb-xs">
+                Phone numbers:
+            </div>
+            <div
+                class="contact__phone-number"
+                *ngFor="let phoneNumber of contact.phoneNumbers"
+            >
+                <p class="contact__phone-number-name">
+                    {{ phoneNumber.contactInfo }}
+                </p>
+                <p class="contact__phone-number-content">
+                    {{ phoneNumber.number }}
+                </p>
+            </div>
+        </div>
+        <div class="contact__location u-mt-m u-mb-xl">
+            <h1 class="contact__heading u-mb-xs">Location</h1>
+            <hr />
+            <div class="contact__location-map-container u-mt-l">
+                <div class="contact__location-map-frame">
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

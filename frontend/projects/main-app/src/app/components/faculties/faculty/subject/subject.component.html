@@ -1,0 +1,44 @@
+<div class="subject">
+    <h1 class="subject__name">{{ subject.name }}</h1>
+    <div [innerHtml]="subject.syllabus.content" class="u-mb-xs"></div>
+    <div class="subject__content">
+        <p class="subject__content-text">Semester: {{ subject.semester }}</p>
+        <p class="subject__content-text">Espb: {{ subject.espb }}</p>
+        <p class="subject__content-text">Required: {{ subject.required }}</p>
+        <p class="subject__content-text">
+            Number of lectures: {{ subject.numberOfLectures }}
+        </p>
+        <p class="subject__content-text">
+            Number of practical lectures:
+            {{ subject.numberOfPracticalLectures }}
+        </p>
+        <p class="subject__content-text">
+            Number of other forms of lectures:
+            {{ subject.otherFormsOfLectures }}
+        </p>
+        <p class="subject__content-text">
+            Number of research works: {{ subject.researchWorks }}
+        </p>
+        <p class="subject__content-text">
+            Number of other lectures: {{ subject.otherLectures }}
+        </p>
+    </div>
+    <div class="subject__teaching-material">
+        <a (click)="getTeachingMaterial(subject.id)" class="subject__btn"
+            >Show teaching material</a
+        >
+
+        <div
+            class="subject__teaching-material-container u-mt-xs"
+            *ngIf="isTeachingMaterialShowed"
+        >
+            <h1 *ngIf="!hasTeachingMaterial">
+                There is no teaching material defined
+            </h1>
+            <app-teaching-material
+                [teachingMaterial]="material"
+                *ngFor="let material of teachingMaterial"
+            ></app-teaching-material>
+        </div>
+    </div>
+</div>

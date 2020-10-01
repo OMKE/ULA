@@ -53,12 +53,28 @@ public class FacultyServiceImpl implements FacultyService
     }
 
     @Override
+    public FacultyDTO showBySlug(String slug)
+    throws FacultyNotFoundException
+    {
+        Faculty faculty = facultyRepository.findBySlug(slug).orElseThrow(
+                () -> new FacultyNotFoundException(String.format("Faculty with provided slug: %s could not be found", slug)));
+
+        // Maps payload to AddressDTO object
+        AddressDTO addressDTO = AddressMapper.map(universityFeignClient.getAddress(faculty.getInformation().getAddressId()).getPayload());
+
+        LocationDTO locationDTO = LocationMapper.map(universityFeignClient.getLocation(faculty.getInformation().getLocationId()).getPayload());
+
+        return FacultyMapper.map(faculty, addressDTO, locationDTO);
+    }
+
+    @Override
     public String store(FacultyDTO facultyDTO)
     {
         Faculty faculty = new Faculty()
                     .setName(facultyDTO.getName())
                     .setUniversityId(1L)
-                    .setCampusId(facultyDTO.getCampusId());
+                    .setCampusId(facultyDTO.getCampusId())
+                    .setSlug(facultyDTO.getName().replace(" ", ""));
 
         this.facultyRepository.save(faculty);
         return String.format("Faculty: %s has been stored", faculty.getName());

@@ -1,0 +1,19 @@
+<h1 class="u-mb-m h-m">Profile</h1>
+<div>
+    <div class="col-md-8 mx-auto user__image-container">
+        <img
+            *ngIf="user.profileImage"
+            [src]="getImage()"
+            (load)="getImage()"
+            class="rounded mx-auto d-block user__image"
+            alt="{{ user.firstName }} {{ user.lastName }} profile image"
+        />
+    </div>
+    <ul class="list-group mx-auto">
+        <li class="list-group-item">Username: {{ user.username }}</li>
+        <li class="list-group-item">Email: {{ user.email }}</li>
+        <li class="list-group-item">
+            Name: {{ user.firstName }} {{ user.lastName }}
+        </li>
+    </ul>
+</div>

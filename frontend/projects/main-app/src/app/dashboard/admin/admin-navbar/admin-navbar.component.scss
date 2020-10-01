@@ -1,0 +1,26 @@
+.dropdown-menu--active {
+    display: block;
+}
+
+.dropdown-menu {
+    font-size: 16px;
+    min-width: 20rem;
+}
+
+.navbar__logo {
+    color: var(--color-primary);
+    text-decoration: none;
+    margin-right: 2rem;
+}
+.logout {
+    cursor: pointer;
+    color: var(--color-black-2);
+    padding: 0.5rem 0;
+}
+
+.navbar-colapse--active {
+    display: block;
+}
+.link--active {
+    color: rgb(46, 118, 211);
+}

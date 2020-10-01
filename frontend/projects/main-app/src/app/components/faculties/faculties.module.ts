@@ -7,11 +7,11 @@ import { FacultyListItemComponent } from "./faculty-list/faculty-list-item/facul
 import { FacultyListComponent } from "./faculty-list/faculty-list.component";
 
 @NgModule({
-  declarations: [
-    FacultiesComponent,
-    FacultyListComponent,
-    FacultyListItemComponent,
-  ],
-  imports: [CommonModule, FacultiesRoutingModule, SharedModule],
+    declarations: [
+        FacultiesComponent,
+        FacultyListComponent,
+        FacultyListItemComponent,
+    ],
+    imports: [CommonModule, FacultiesRoutingModule, SharedModule],
 })
 export class FacultiesModule {}

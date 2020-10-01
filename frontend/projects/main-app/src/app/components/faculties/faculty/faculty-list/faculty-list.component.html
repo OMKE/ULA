@@ -1,8 +1,19 @@
-<div class="faculty-list">
-  <app-faculty-list-item
-    [studyProgram]="studyProgram"
-    [isLast]="last"
-    *ngFor="let studyProgram of studyPrograms; let last = last"
-  ></app-faculty-list-item>
-  <!-- @TODO - Pagination -->
+<div class="faculty-list u-mt-m">
+    <app-faculty-list-item
+        [studyProgram]="studyProgram"
+        [isLast]="last"
+        *ngFor="let studyProgram of studyPrograms; let last = last"
+    ></app-faculty-list-item>
+    <div
+        class="faculty-list__pagination u-mt-l u-pb-l"
+        *ngIf="pages.length > 0"
+    >
+        <a
+            *ngFor="let page of pages; let first = first"
+            class="faculty-list__pagination-item"
+            [class.faculty-list__pagination-item--active]="isActivePage(page)"
+            (click)="showStudyProgramsByPage(page, $event)"
+            >{{ page }}</a
+        >
+    </div>
 </div>

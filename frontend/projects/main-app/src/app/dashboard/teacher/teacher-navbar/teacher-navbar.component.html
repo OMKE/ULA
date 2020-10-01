@@ -1,0 +1,90 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar__logo" routerLink="">University of Los Angeles</a>
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            (click)="navbar = !navbar"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+            class="collapse navbar-collapse"
+            [class.navbar-colapse--active]="navbar"
+            id="navbarNav"
+        >
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="./">Home </a>
+                </li>
+                <li class="nav-item dropdown" (click)="dropDown = !dropDown">
+                    <a
+                        class="nav-link dropdown-toggle"
+                        id="navbarDropdown"
+                        role="button"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                    >
+                        Profile
+                    </a>
+                    <div
+                        class="dropdown-menu"
+                        [class.dropdown-menu--active]="dropDown"
+                        aria-labelledby="navbarDropdown"
+                    >
+                        <a
+                            class="dropdown-item"
+                            [routerLink]="['/dashboard/teacher/update-profile']"
+                            >Update profile</a
+                        >
+                        <a
+                            class="dropdown-item"
+                            [routerLink]="['/dashboard/teacher/profile-image']"
+                            >Change profile image</a
+                        >
+                        <div class="dropdown-divider"></div>
+                        <a
+                            class="dropdown-item"
+                            [routerLink]="[
+                                '/dashboard/teacher/change-password'
+                            ]"
+                            >Change password</a
+                        >
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        [routerLink]="['/dashboard/teacher/subjects']"
+                        >Subjects</a
+                    >
+                </li>
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        [routerLink]="['/dashboard/teacher/students']"
+                        >Students</a
+                    >
+                </li>
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        [routerLink]="['/dashboard/teacher/notifications']"
+                        >Notifications</a
+                    >
+                </li>
+            </ul>
+            <div>
+                <a class="nav-link logout" (click)="authService.logout()"
+                    >Logout</a
+                >
+            </div>
+        </div>
+    </div>
+</nav>
