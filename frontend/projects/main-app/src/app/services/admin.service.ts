@@ -6,6 +6,7 @@ import { url } from "../core/models/API";
 import { GenericResponse } from "../core/models/GenericResponse";
 import { Student } from "../core/models/Student";
 import { Teacher } from "../core/models/Teacher";
+import { User } from "../core/models/User";
 import { AddAdminRequest } from "../core/requests/AddAdminRequst";
 import { AddStudentOnYearRequest } from "../core/requests/AddStudentOnYearRequest";
 import { AddStudentRequest } from "../core/requests/AddStudentRequest";
@@ -16,6 +17,13 @@ import { AddTeacherRequest } from "../core/requests/AddTeacherRequest";
 })
 export class AdminService {
     constructor(private http: HttpClient) {}
+
+    getAllUsers(): Observable<GenericResponse<User[]>> {
+        return this.http.get<GenericResponse<User[]>>(`${url}/auth/user`);
+    }
+    getOne(id: number): Observable<GenericResponse<User>> {
+        return this.http.get<GenericResponse<User>>(`${url}/auth/user/${id}`);
+    }
 
     getAllAdmins(): Observable<GenericResponse<Admin[]>> {
         return this.http.get<GenericResponse<Admin[]>>(`${url}/auth/admin`);
