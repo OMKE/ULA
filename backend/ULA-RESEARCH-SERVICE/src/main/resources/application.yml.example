@@ -1,0 +1,33 @@
+
+server:
+  port: 8087
+spring:
+  application:
+    name: ula-research-service
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/ula_research?transformedBitIsBoolean=true
+    username: username
+    password: password
+  flyway:
+    enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  properties:
+    hibernate:
+      jdbc:
+        lob:
+          non_contextual_creation: true
+      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+  jackson:
+    mapper:
+      default-view-inclusion: true
+
+
+
+feign:
+  hystrix:
+    enabled: true

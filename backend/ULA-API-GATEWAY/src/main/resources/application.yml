@@ -29,6 +29,7 @@ zuul:
     ula-teacher-service: /api/v1/teacher/**
     ula-student-service: /api/v1/student/**
     ula-exam-service: /api/v1/exam/**
+    ula-research-service: /api/v1/research/**
     ula-static-content-service: /storage/**
   host:
     connect-timeout-millis: 60000
