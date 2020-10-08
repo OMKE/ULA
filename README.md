@@ -3,7 +3,13 @@
 ## Description
 
 University of Los Angeles management system.  
-@TODO
+Backend is done with microservice architecture, frontend is in Angular 9 with NgRx.  
+There are five roles in total.  
+Administrator manages university information, users, faculties and study programs.  
+Teacher manages Exams, Courses and Student's grades.  
+Student can see it's grades, exams, courses that he is enrolled in, chat with others.  
+Content creator manages university events, research works and news.  
+University staff works with university-student related information.
 
 ## Contributors
 
@@ -12,7 +18,7 @@ University of Los Angeles management system.
 
 ## Application Architecture
 
-<img src="https://user-images.githubusercontent.com/17277467/95518754-078f3d80-09c4-11eb-8831-180adf1968b4.png">
+<img src="https://user-images.githubusercontent.com/17277467/95520216-0f9cac80-09c7-11eb-8532-76bc75f5d815.png">
 
 ## How to run
 
