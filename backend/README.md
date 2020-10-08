@@ -30,4 +30,4 @@ Backend is done in microservice architecture, using Netflix OSS technologies
 example: /private/student/grades, /student/grades/private
 ...
 
-<img src="https://user-images.githubusercontent.com/17277467/95518754-078f3d80-09c4-11eb-8831-180adf1968b4.png">
+<img src="https://user-images.githubusercontent.com/17277467/95520216-0f9cac80-09c7-11eb-8532-76bc75f5d815.png">
