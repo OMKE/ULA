@@ -12,7 +12,7 @@ University of Los Angeles management system.
 
 ## Application Architecture
 
-@TODO
+<img src="https://user-images.githubusercontent.com/17277467/95518212-e7ab4a00-09c2-11eb-9941-1b6c2e840154.png">
 
 ## How to run
 
