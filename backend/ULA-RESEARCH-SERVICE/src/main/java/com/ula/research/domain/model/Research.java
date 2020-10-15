@@ -33,7 +33,7 @@ public class Research extends BaseEntity
     @Column(nullable = false, columnDefinition = "DATE")
     private Date publicationDate;
 
-    @OneToMany(mappedBy = "research")
+    @OneToMany(mappedBy = "research", cascade = CascadeType.ALL)
     private List<Author> authors;
 
 
