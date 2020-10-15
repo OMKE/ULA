@@ -11,7 +11,7 @@ spring:
 
 content:
   path: path/to/the/storage/location
-  folders: users, gallery, events, assets, assets/img, assets/css, assets/js, files, research
+  folders: users, gallery, events, assets, assets/img, assets/css, assets/js, assets/video, files, research, video,
 
 
 feign:
