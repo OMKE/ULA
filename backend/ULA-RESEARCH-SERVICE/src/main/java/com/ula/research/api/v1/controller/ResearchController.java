@@ -41,6 +41,16 @@ public class ResearchController extends BaseController
         }
     }
 
+    @GetMapping("/{id}/author")
+    public Response<Object> showAuthors(@PathVariable("id") Long id)
+    {
+        try {
+            return Response.ok().setPayload(this.researchService.getAuthors(id));
+        } catch (ResearchNotFoundException e) {
+            return Response.exception().setPayload(e.getMessage());
+        }
+    }
+
     @Authorized("CONTENT_CREATOR")
     @PostMapping(value = "")
     public Response<Object> store
