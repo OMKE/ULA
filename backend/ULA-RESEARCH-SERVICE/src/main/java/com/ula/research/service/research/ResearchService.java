@@ -1,5 +1,6 @@
 package com.ula.research.service.research;
 
+import com.ula.research.dto.AuthorDTO;
 import com.ula.research.dto.ResearchDTO;
 import com.ula.research.service.exception.ResearchNotFoundException;
 import org.springframework.data.domain.Pageable;
@@ -15,6 +16,9 @@ public interface ResearchService
     throws ResearchNotFoundException;
 
     String store(ResearchDTO researchDTO);
+
+    List<AuthorDTO> getAuthors(Long researchId)
+    throws ResearchNotFoundException;
 
     String storeThumbnailImage(Long researchId, MultipartFile file)
     throws ResearchNotFoundException;

@@ -5,8 +5,10 @@ import com.ula.research.domain.model.Image;
 import com.ula.research.domain.model.Research;
 import com.ula.research.domain.repository.AuthorRepository;
 import com.ula.research.domain.repository.ResearchRepository;
+import com.ula.research.dto.AuthorDTO;
 import com.ula.research.dto.ResearchDTO;
 import com.ula.research.feign.StaticContentServiceFeignClient;
+import com.ula.research.mapper.AuthorMapper;
 import com.ula.research.mapper.ResearchMapper;
 import com.ula.research.service.exception.ResearchNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,6 +93,8 @@ public class ResearchServiceImpl implements ResearchService
         if(researchDTO.getThumbnail() != null)
         {
             research.setThumbnail(researchDTO.getThumbnail());
+        } else {
+            research.setThumbnail("research/no-thumbnail.png");
         }
 
         this.researchRepository.save(research);
@@ -110,6 +114,18 @@ public class ResearchServiceImpl implements ResearchService
 
         return "Research has been stored";
     }
+
+    @Override
+    public List<AuthorDTO> getAuthors(Long researchId)
+    throws ResearchNotFoundException
+    {
+        Research research = this.researchRepository
+                .findById(researchId)
+                .orElseThrow(() -> new ResearchNotFoundException(String.format("Research with id: %s could not be found", researchId)));
+
+        return AuthorMapper.map(research.getAuthors());
+    }
+
 
     @Override
     public String update(Long id, ResearchDTO researchDTO)
