@@ -3,7 +3,7 @@
 ## Description
 
 University of Los Angeles management system.  
-Backend is done with microservice architecture, frontend is in Angular 9 with NgRx.  
+Backend is done with microservice architecture, frontend is in Angular 9.  
 There are five roles in total.  
 Administrator manages university information, users, faculties and study programs.  
 Teacher manages Exams, Courses and Student's grades.  
@@ -21,17 +21,6 @@ University staff works with university-student related information.
 <img src="https://user-images.githubusercontent.com/17277467/95520216-0f9cac80-09c7-11eb-8532-76bc75f5d815.png">
 
 ## How to run
-
-### 🐳 Docker
-
-<!-- #### Requiremets
-
-- [Docker](https://docs.docker.com/get-docker/)
-- [Docker-Compose](https://docs.docker.com/compose/install/) -->
-
-@TODO
-
-### 💻 Without docker
 
 @TODO
 
@@ -56,4 +45,3 @@ University staff works with university-student related information.
 
 [University of Los Angeles - API](https://documenter.getpostman.com/view/6089658/TVKFzGJv)
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/5aaa3720f9c9d2d9c6af)
