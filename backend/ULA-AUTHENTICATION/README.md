@@ -10,16 +10,48 @@ Core functionality is for Login, Registration, Email verification, Resetting pas
 - Discovery Server (Netflix Eureka)
 - API Gateway Server (Netflix Zuul)
 
-### Docker
-
-Read [README.md](https://github.com/OMKE/ULA/blob/master/README.md) for instructions
-
-### Without docker
-
 In terminal:  
 `$ mvn spring-boot:run`
 
 It will fire up a server on port 8081
+
+
+#### Credentials
+- Admin
+
+    **CREDENTIALS: admin:admindev1998**
+
+    **ROLES:** ADMIN, USER
+
+- Omar Iriskic
+
+    **CREDENTIALS: omaririskic:omar1234**
+
+    **ROLES:** USER
+
+- Lazar Filipovic
+
+    **CREDENTIALS: lazarfilipovic:lazar1234**
+
+    **ROLES:** USER, STUDENT
+
+- John Doe
+
+    **CREDENTIALS: johndoe:secret**
+
+    **ROLES:** USER, ADMIN
+
+- Henry Johnson
+
+    **CREDENTIALS: henryjohnson:henryjohnson**
+
+    **ROLES:** USER, CONTENT_CREATOR
+
+- Eddie Baker
+
+    **CREDENTIALS: eddiebaker:secert**
+
+    **ROLES:** USER, TEACHER
 
 
 
