@@ -14,7 +14,6 @@ University staff works with university-student related information.
 ## Contributors
 
 -   [Omar Iriskic](https://github.com/OMKE)
--   [Lazar Filipovic](https://github.com/laki098)
 
 ## Application Architecture
 
